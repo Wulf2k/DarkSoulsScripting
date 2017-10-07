@@ -17,7 +17,7 @@
 * Under the **ScriptTester** project double-click on the ScriptTester.py file: 
 
     ![Image of the solution explorer view](https://i.imgur.com/FbZtMjy.png)
-  * **Important**: Look at the import statements at the top of the python script. If they have squiggly error lines under them, try restarting Visual Studio (it may need to refresh now that you've bult the project).
+  * **Important**: Look at the import statements at the top of the python script. If they have squiggly error lines under them, try restarting Visual Studio (it may need to refresh now that you've built the project).
 * Make sure the latest Steam version of Dark Souls: Prepare to Die Edition is running.
 * Load a save of your choosing. ***Note: Saving is automatically disabled for the rest of the play session upon running ANY script. This will allow you to test things without overwriting your save (unless you manually call 'SetSaveEnable` in your script, of course)***
 * Press F5 to build the test script and immediately kill your player.
