@@ -14,7 +14,9 @@
   * On the top of the package manager console is a dropdown list labeled "Default project:". Make sure this is set to DarkSoulsScripting
   * Paste this in and hit Enter: `Install-Package InjectModuleInitializer -Version 1.5.0`
 * Once it's done, press the *F6 key* and see if it builds
-* Under the **ScriptTester** project double-click on the ScriptTester.py file: ![Image of the solution explorer view](https://i.imgur.com/FbZtMjy.png)
+* Under the **ScriptTester** project double-click on the ScriptTester.py file: 
+
+    ![Image of the solution explorer view](https://i.imgur.com/FbZtMjy.png)
   * **Important**: Look at the import statements at the top of the python script. If they have squiggly error lines under them, try restarting Visual Studio (it may need to refresh now that you've bult the project).
 * Make sure the latest Steam version of Dark Souls: Prepare to Die Edition is running.
 * Load a save of your choosing. ***Note: Saving is automatically disabled for the rest of the play session upon running ANY script. This will allow you to test things without overwriting your save (unless you manually call 'SetSaveEnable` in your script, of course)***
