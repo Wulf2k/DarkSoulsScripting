@@ -41,7 +41,7 @@ namespace DarkSoulsScripting
 
             public SafetyFinalizerHandler()
             {
-                CleanExitThread = new Thread(new ThreadStart(DoCleanExitWait));
+                CleanExitThread = new Thread(new ThreadStart(DoCleanExitWait)) { IsBackground = true };
                 CleanExitThread.Start();
             }
 

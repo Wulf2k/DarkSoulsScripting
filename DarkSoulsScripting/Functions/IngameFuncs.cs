@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DarkSoulsScripting.AI_DEFINE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,8 +31,8 @@ namespace DarkSoulsScripting
         public static int AddDeathCount()
             => Call<int>(FuncAddress.AddDeathCount);
 
-        public static int AddEventGoal(int a, int b, float c, float d, float e, float f, float g, float h, float i, float j, float k)
-            => Call<int>(FuncAddress.AddEventGoal, a, b, c, d, e, f, g, h, i, j, k);
+        public static int AddEventGoal(int ChrID, GOAL_COMMON Goal, float Time, float d, float e, float f, float g, float h, float i, float j, float k)
+            => Call<int>(FuncAddress.AddEventGoal, ChrID, (int)Goal, Time, d, e, f, g, h, i, j, k);
 
         public static bool AddEventSimpleTalk(int a, int b)
             => Call<bool>(FuncAddress.AddEventSimpleTalk, a, b);
@@ -39,65 +40,68 @@ namespace DarkSoulsScripting
         public static bool AddEventSimpleTalkTimer(int a, int b)
             => Call<bool>(FuncAddress.AddEventSimpleTalkTimer, a, b);
 
-        //public static _TYPE_ AddFieldInsFilter(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddFieldInsFilter, _ARGS_);
+        public static int AddFieldInsFilter(int a)
+            => Call<int>(FuncAddress.AddFieldInsFilter, a);
 
-        //public static _TYPE_ AddGeneEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddGeneEvent, _ARGS_);
+        public static int AddGeneEvent(int EventID, int b)
+            => Call<int>(FuncAddress.AddGeneEvent, EventID, b);
 
-        //public static _TYPE_ AddHelpWhiteGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddHelpWhiteGhost, _ARGS_);
+        public static int AddHelpWhiteGhost()
+            => Call<int>(FuncAddress.AddHelpWhiteGhost);
 
-        //public static _TYPE_ AddHitMaskByBit(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddHitMaskByBit, _ARGS_);
+        public static byte AddHitMaskByBit(int ChrID, byte b)
+            => Call<byte>(FuncAddress.AddHitMaskByBit, ChrID, b);
 
-        //public static _TYPE_ AddInfomationBuffer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInfomationBuffer, _ARGS_);
+        public static byte AddInfomationBuffer(int a)
+            => Call<byte>(FuncAddress.AddInfomationBuffer, a);
 
-        //public static _TYPE_ AddInfomationBufferTag(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInfomationBufferTag, _ARGS_);
+        public static byte AddInfomationBufferTag(int a, int b, int c)
+            => Call<byte>(FuncAddress.AddInfomationBufferTag, a, b, c);
 
-        //public static _TYPE_ AddInfomationList(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInfomationList, _ARGS_);
+        //TODO: ENUMS
+        public static byte AddInfomationList(int IconID, int CategoryID, int MessageID)
+            => Call<byte>(FuncAddress.AddInfomationList, IconID, CategoryID, MessageID);
 
-        //public static _TYPE_ AddInfomationListItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInfomationListItem, _ARGS_);
+        public static int AddInfomationListItem(int a, int b, int c)
+            => Call<int>(FuncAddress.AddInfomationListItem, a, b, c);
 
         //public static _TYPE_ AddInfomationTimeMsgTag(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.AddInfomationTimeMsgTag, _ARGS_);
 
-        //public static _TYPE_ AddInfomationTosBuffer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInfomationTosBuffer, _ARGS_);
+        public static int AddInfomationTosBuffer(int a)
+            => Call<int>(FuncAddress.AddInfomationTosBuffer, a);
 
         //public static _TYPE_ AddInfomationTosBufferPlus(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.AddInfomationTosBufferPlus, _ARGS_);
 
-        //public static _TYPE_ AddInventoryItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInventoryItem, _ARGS_);
+        public static bool AddInventoryItem(int ItemID, ItemCategory Category, int Quantity)
+            => Call<bool>(FuncAddress.AddInventoryItem, ItemID, (int)Category, Quantity);
 
-        //public static _TYPE_ AddKillBlackGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddKillBlackGhost, _ARGS_);
+        public static int AddKillBlackGhost()
+            => Call<int>(FuncAddress.AddKillBlackGhost);
 
-        //public static _TYPE_ AddQWC(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddQWC, _ARGS_);
+        //Returns weird pointer.
+        public static int AddQWC(int QwcID)
+            => Call<int>(FuncAddress.AddQWC, QwcID);
 
-        //public static _TYPE_ AddRumble(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddRumble, _ARGS_);
+        public static int AddRumble(int a, int b, int c, int d, int e)
+            => Call<int>(FuncAddress.AddRumble, a, b, c, d, e);
 
         //public static _TYPE_ AddTreasureEvent(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.AddTreasureEvent, _ARGS_);
 
-        //public static _TYPE_ AddTrueDeathCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddTrueDeathCount, _ARGS_);
+        //Returns pointer to GameStats struct.
+        public static int AddTrueDeathCount()
+            => Call<int>(FuncAddress.AddTrueDeathCount);
 
-        //public static _TYPE_ BeginAction(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.BeginAction, _ARGS_);
+        public static bool BeginAction(int ChrID, int b, int c, int d)
+            => Call<bool>(FuncAddress.BeginAction, ChrID, b, c, d);
 
-        //public static _TYPE_ BeginLoopCheck(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.BeginLoopCheck, _ARGS_);
+        public static int BeginLoopCheck(int ChrID)
+            => Call<int>(FuncAddress.BeginLoopCheck, ChrID);
 
-        //public static _TYPE_ CalcExcuteMultiBonus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CalcExcuteMultiBonus, _ARGS_);
+        public static int CalcExcuteMultiBonus(int a, float b, int c)
+            => Call<int>(FuncAddress.CalcExcuteMultiBonus, a, b, c);
 
         //public static _TYPE_ CalcGetCurrentMapEntityId(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.CalcGetCurrentMapEntityId, _ARGS_);
@@ -105,11 +109,11 @@ namespace DarkSoulsScripting
         //public static _TYPE_ CalcGetMultiWallEntityId(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.CalcGetMultiWallEntityId, _ARGS_);
 
-        //public static _TYPE_ CamReset(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CamReset, _ARGS_);
+        public static bool CamReset(int ChrID, bool State)
+            => Call<bool>(FuncAddress.CamReset, ChrID, State);
 
-        //public static _TYPE_ CastPointSpell(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CastPointSpell, _ARGS_);
+        public static int CastPointSpell(int ChrID, int ObjID, int BehaviourID, float AngleX, float AngleY, float AngleZ)
+            => Call<int>(FuncAddress.CastPointSpell, ChrID, ObjID, BehaviourID, AngleX, AngleY, AngleZ);
 
         //public static _TYPE_ CastPointSpell_Horming(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.CastPointSpell_Horming, _ARGS_);
@@ -120,53 +124,55 @@ namespace DarkSoulsScripting
         //public static _TYPE_ CastPointSpellPlus_Horming(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.CastPointSpellPlus_Horming, _ARGS_);
 
-        //public static _TYPE_ CastTargetSpell(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CastTargetSpell, _ARGS_);
+        //TODO: Check if returns bool.
+        public static byte CastTargetSpell(int ChrID, int b, int c, int d, int e)
+            => Call<byte>(FuncAddress.CastTargetSpell, ChrID, b, c, d, e);
 
-        //public static _TYPE_ CastTargetSpellPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CastTargetSpellPlus, _ARGS_);
+        public static byte CastTargetSpellPlus(int ChrID, int b, int c, int d, int e, int f)
+            => Call<byte>(FuncAddress.CastTargetSpellPlus, ChrID, b, c, d, e, f);
 
-        //public static _TYPE_ ChangeGreyGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChangeGreyGhost, _ARGS_);
+        public static int ChangeGreyGhost()
+            => Call<int>(FuncAddress.ChangeGreyGhost);
 
-        //public static _TYPE_ ChangeInitPosAng(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChangeInitPosAng, _ARGS_);
+        public static int ChangeInitPosAng(int ChrID, int AreaID)
+            => Call<int>(FuncAddress.ChangeInitPosAng, ChrID, AreaID);
 
-        //public static _TYPE_ ChangeModel(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChangeModel, _ARGS_);
+        public static bool ChangeModel(int ObjID, int ModelID)
+            => Call<bool>(FuncAddress.ChangeModel, ObjID, ModelID);
 
-        //public static _TYPE_ ChangeTarget(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChangeTarget, _ARGS_);
+        public static int ChangeTarget(int ChrID1, int ChrID2)
+            => Call<int>(FuncAddress.ChangeTarget, ChrID1, ChrID2);
 
-        //public static _TYPE_ ChangeThink(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChangeThink, _ARGS_);
+        public static bool ChangeThink(int ChrID, int b)
+            => Call<bool>(FuncAddress.ChangeThink, ChrID, b);
 
-        //public static _TYPE_ ChangeWander(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChangeWander, _ARGS_);
+        public static bool ChangeWander(int a)
+            => Call<bool>(FuncAddress.ChangeWander, a);
 
-        //public static _TYPE_ CharacterAllAttachSys(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CharacterAllAttachSys, _ARGS_);
+        public static bool CharacterAllAttachSys(int ChrID)
+            => Call<bool>(FuncAddress.CharacterAllAttachSys, ChrID);
 
-        //public static _TYPE_ CharactorCopyPosAng(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CharactorCopyPosAng, _ARGS_);
+        //TODO: CHECK
+        public static bool CharactorCopyPosAng(int ChrID1, int b, int ChrID2)
+            => Call<bool>(FuncAddress.CharactorCopyPosAng, ChrID1, b, ChrID2);
 
-        //public static _TYPE_ CheckChrHit_Obj(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CheckChrHit_Obj, _ARGS_);
+        public static bool CheckChrHit_Obj(int a, int b)
+            => Call<bool>(FuncAddress.CheckChrHit_Obj, a, b);
 
-        //public static _TYPE_ CheckChrHit_Wall(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CheckChrHit_Wall, _ARGS_);
+        public static bool CheckChrHit_Wall(int a, int b)
+            => Call<bool>(FuncAddress.CheckChrHit_Wall, a, b);
 
-        //public static _TYPE_ CheckEventBody(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CheckEventBody, _ARGS_);
+        public static void CheckEventBody(int a)
+            => Call<int>(FuncAddress.CheckEventBody, a);
 
-        //public static _TYPE_ CheckEventChr_Proxy(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CheckEventChr_Proxy, _ARGS_);
+        public static bool CheckEventChr_Proxy(int a, int b)
+            => Call<bool>(FuncAddress.CheckEventChr_Proxy, a, b);
 
-        //public static _TYPE_ CheckPenalty(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CheckPenalty, _ARGS_);
+        public static int CheckPenalty()
+            => Call<int>(FuncAddress.CheckPenalty);
 
-        //public static _TYPE_ ChrDisableUpdate(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChrDisableUpdate, _ARGS_);
+        public static int ChrDisableUpdate(int ChrID, bool State)
+            => Call<int>(FuncAddress.ChrDisableUpdate, ChrID, State);
 
         public static int ChrFadeIn(int ChrID, float Duration, float Opacity)
             => Call<int>(FuncAddress.ChrFadeIn, ChrID, Duration, Opacity);
@@ -174,38 +180,40 @@ namespace DarkSoulsScripting
         public static int ChrFadeOut(int ChrID, float Duration, float Opacity)
             => Call<int>(FuncAddress.ChrFadeOut, ChrID, Duration, Opacity);
 
-        //public static _TYPE_ ChrResetAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChrResetAnimation, _ARGS_);
+        public static int ChrResetAnimation(int ChrID)
+            => Call<int>(FuncAddress.ChrResetAnimation, ChrID);
 
-        //public static _TYPE_ ChrResetRequest(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ChrResetRequest, _ARGS_);
+        public static int ChrResetRequest(int ChrID)
+            => Call<int>(FuncAddress.ChrResetRequest, ChrID);
 
-        //public static _TYPE_ ClearBossGauge(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ClearBossGauge, _ARGS_);
+        public static void ClearBossGauge()
+            => Call<int>(FuncAddress.ClearBossGauge);
 
-        //public static _TYPE_ ClearMyWorldState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ClearMyWorldState, _ARGS_);
+        //Returns pointer to WorldState struct.
+        public static int ClearMyWorldState()
+            => Call<int>(FuncAddress.ClearMyWorldState);
 
-        //public static _TYPE_ ClearSosSign(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ClearSosSign, _ARGS_);
+        public static int ClearSosSign()
+            => Call<int>(FuncAddress.ClearSosSign);
 
-        //public static _TYPE_ ClearTarget(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ClearTarget, _ARGS_);
+        public static bool ClearTarget(int ChrID)
+            => Call<bool>(FuncAddress.ClearTarget, ChrID);
 
-        //public static _TYPE_ CloseGenDialog(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CloseGenDialog, _ARGS_);
+        public static void CloseGenDialog()
+            => Call<int>(FuncAddress.CloseGenDialog);
 
-        //public static _TYPE_ CloseMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CloseMenu, _ARGS_);
+        public static int CloseMenu()
+            => Call<int>(FuncAddress.CloseMenu);
 
-        //public static _TYPE_ CloseRankingDialog(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CloseRankingDialog, _ARGS_);
+        public static void CloseRankingDialog()
+            => Call<int>(FuncAddress.CloseRankingDialog);
 
-        //public static _TYPE_ CloseTalk(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CloseTalk, _ARGS_);
+        //TODO: Check if the number is a talk ID and not a pointer, chr id, etc
+        public static void CloseTalk(int TalkID)
+            => Call<int>(FuncAddress.CloseTalk, TalkID);
 
-        //public static _TYPE_ CompleteEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CompleteEvent, _ARGS_);
+        public static void CompleteEvent(int EventID)
+            => Call<int>(FuncAddress.CompleteEvent, EventID);
 
         //public static _TYPE_ CreateCamSfx(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.CreateCamSfx, _ARGS_);
@@ -228,11 +236,11 @@ namespace DarkSoulsScripting
         //public static _TYPE_ CreateSfx_DummyPoly(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.CreateSfx_DummyPoly, _ARGS_);
 
-        //public static _TYPE_ CroseBriefingMsg(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CroseBriefingMsg, _ARGS_);
+        public static void CroseBriefingMsg()
+            => Call<int>(FuncAddress.CroseBriefingMsg);
 
-        //public static _TYPE_ CustomLuaCall(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CustomLuaCall, _ARGS_);
+        public static int CustomLuaCall(int a, string b, bool OccurOnce)
+            => Call<int>(FuncAddress.CustomLuaCall, a, b, OccurOnce);
 
         //public static _TYPE_ CustomLuaCallStart(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.CustomLuaCallStart, _ARGS_);
@@ -255,47 +263,48 @@ namespace DarkSoulsScripting
         //public static _TYPE_ DeleteObjSfxEventID(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.DeleteObjSfxEventID, _ARGS_);
 
-        //public static _TYPE_ DisableCollection(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DisableCollection, _ARGS_);
+        public static int DisableCollection(int ChrID, bool State)
+            => Call<int>(FuncAddress.DisableCollection, ChrID, State);
 
-        //public static _TYPE_ DisableDamage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DisableDamage, _ARGS_);
+        public static int DisableDamage(int ChrID, bool State)
+            => Call<int>(FuncAddress.DisableDamage, ChrID, State);
 
         //public static _TYPE_ DisableHpGauge(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.DisableHpGauge, _ARGS_);
 
-        //public static _TYPE_ DisableInterupt(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DisableInterupt, _ARGS_);
+        public static int DisableInterupt(int ChrID, bool State)
+            => Call<int>(FuncAddress.DisableInterupt, ChrID, State);
 
-        //public static _TYPE_ DisableMapHit(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DisableMapHit, _ARGS_);
+        public static int DisableMapHit(int ChrID, bool State)
+            => Call<int>(FuncAddress.DisableMapHit, ChrID, State);
 
-        //public static _TYPE_ DisableMove(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DisableMove, _ARGS_);
+        public static int DisableMove(int ChrID, bool State)
+            => Call<int>(FuncAddress.DisableMove, ChrID, State);
 
         //public static _TYPE_ DivideRest(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.DivideRest, _ARGS_);
 
-        //public static _TYPE_ EnableAction(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EnableAction, _ARGS_);
+        public static int EnableAction(int ChrID, bool State)
+            => Call<int>(FuncAddress.EnableAction, ChrID, State);
 
-        //public static _TYPE_ EnableGeneratorSystem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EnableGeneratorSystem, _ARGS_);
+        public static int EnableGeneratorSystem(int UnknownID, bool State)
+            => Call<int>(FuncAddress.EnableGeneratorSystem, UnknownID, State);
 
-        //public static _TYPE_ EnableHide(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EnableHide, _ARGS_);
+        public static int EnableHide(int ChrID, bool State)
+            => Call<int>(FuncAddress.EnableHide, ChrID, State);
 
-        //public static _TYPE_ EnableInvincible(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EnableInvincible, _ARGS_);
+        public static int EnableInvincible(int ChrID, bool State)
+            => Call<int>(FuncAddress.EnableInvincible, ChrID, State);
 
-        //public static _TYPE_ EnableLogic(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EnableLogic, _ARGS_);
+        public static int EnableLogic(int ChrID, bool State)
+            => Call<int>(FuncAddress.EnableLogic, ChrID, State);
 
-        //public static _TYPE_ EnableObjTreasure(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EnableObjTreasure, _ARGS_);
+        public static int EnableObjTreasure(int ObjID, bool State)
+            => Call<int>(FuncAddress.EnableObjTreasure, ObjID, State);
 
-        //public static _TYPE_ EndAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EndAnimation, _ARGS_);
+        //TODO: DOUBLE CHECK
+        public static int EndAnimation(int ChrID, int AnimID)
+            => Call<int>(FuncAddress.EndAnimation, ChrID, AnimID);
 
         //public static _TYPE_ EraseEventSpecialEffect(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.EraseEventSpecialEffect, _ARGS_);
@@ -315,17 +324,17 @@ namespace DarkSoulsScripting
         //public static _TYPE_ ForceDead(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.ForceDead, _ARGS_);
 
-        //public static _TYPE_ ForcePlayAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ForcePlayAnimation, _ARGS_);
+        public static int ForcePlayAnimation(int ChrID, int AnimID)
+            => Call<int>(FuncAddress.ForcePlayAnimation, ChrID, AnimID);
 
-        //public static _TYPE_ ForcePlayAnimationStayCancel(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ForcePlayAnimationStayCancel, _ARGS_);
+        public static int ForcePlayAnimationStayCancel(int ChrID, int AnimID)
+            => Call<int>(FuncAddress.ForcePlayAnimationStayCancel, ChrID, AnimID);
 
-        //public static _TYPE_ ForcePlayLoopAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ForcePlayLoopAnimation, _ARGS_);
+        public static int ForcePlayLoopAnimation(int ChrID, int AnimID)
+            => Call<int>(FuncAddress.ForcePlayLoopAnimation, ChrID, AnimID);
 
-        //public static _TYPE_ ForceSetOmissionLevel(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ForceSetOmissionLevel, _ARGS_);
+        public static int ForceSetOmissionLevel(int ChrID, bool State, int NumFrames)
+            => Call<int>(FuncAddress.ForceSetOmissionLevel, ChrID, State, NumFrames);
 
         //public static _TYPE_ ForceUpdateNextFrame(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.ForceUpdateNextFrame, _ARGS_);
@@ -342,11 +351,11 @@ namespace DarkSoulsScripting
         //public static _TYPE_ GetClearState(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetClearState, _ARGS_);
 
-        //public static _TYPE_ GetCurrentMapAreaNo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetCurrentMapAreaNo, _ARGS_);
+        public static int GetCurrentMapAreaNo()
+            => Call<int>(FuncAddress.GetCurrentMapAreaNo);
 
-        //public static _TYPE_ GetCurrentMapBlockNo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetCurrentMapBlockNo, _ARGS_);
+        public static int GetCurrentMapBlockNo()
+            => Call<int>(FuncAddress.GetCurrentMapBlockNo);
 
         //public static _TYPE_ GetDeathState(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetDeathState, _ARGS_);
@@ -363,14 +372,14 @@ namespace DarkSoulsScripting
         //public static _TYPE_ GetEventGoalState(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetEventGoalState, _ARGS_);
 
-        //public static _TYPE_ GetEventMode(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetEventMode, _ARGS_);
+        public static int GetEventMode(int ChrID)
+            => Call<int>(FuncAddress.GetEventMode, ChrID);
 
-        //public static _TYPE_ GetEventRequest(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetEventRequest, _ARGS_);
+        public static int GetEventRequest()
+            => Call<int>(FuncAddress.GetEventRequest);
 
-        //public static _TYPE_ GetFloorMaterial(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetFloorMaterial, _ARGS_);
+        public static int GetFloorMaterial(int ChrID)
+            => Call<int>(FuncAddress.GetFloorMaterial, ChrID);
 
         //public static _TYPE_ GetGlobalQWC(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetGlobalQWC, _ARGS_);
@@ -378,29 +387,29 @@ namespace DarkSoulsScripting
         //public static _TYPE_ GetHeroPoint(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetHeroPoint, _ARGS_);
 
-        //public static _TYPE_ GetHostPlayerNo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetHostPlayerNo, _ARGS_);
+        public static int GetHostPlayerNo()
+            => Call<int>(FuncAddress.GetHostPlayerNo);
 
-        //public static _TYPE_ GetHp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetHp, _ARGS_);
+        public static int GetHp(int ChrID)
+            => Call<int>(FuncAddress.GetHp, ChrID);
 
         //public static _TYPE_ GetHpRate(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetHpRate, _ARGS_);
 
-        //public static _TYPE_ GetItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetItem, _ARGS_);
+        public static int GetItem(int a, int b)
+            => Call<int>(FuncAddress.GetItem, a, b);
 
         //public static _TYPE_ GetLadderCount(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetLadderCount, _ARGS_);
 
-        //public static _TYPE_ GetLastBlockId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLastBlockId, _ARGS_);
+        public static int GetLastBlockId()
+            => Call<int>(FuncAddress.GetLastBlockId);
 
-        //public static _TYPE_ GetLocalPlayerChrType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLocalPlayerChrType, _ARGS_);
+        public static ChrType GetLocalPlayerChrType()
+            => (ChrType)Call<int>(FuncAddress.GetLocalPlayerChrType);
 
-        //public static _TYPE_ GetLocalPlayerId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLocalPlayerId, _ARGS_);
+        public static int GetLocalPlayerId()
+            => Call<int>(FuncAddress.GetLocalPlayerId);
 
         //public static _TYPE_ GetLocalPlayerInvadeType(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetLocalPlayerInvadeType, _ARGS_);
@@ -417,8 +426,8 @@ namespace DarkSoulsScripting
         //public static _TYPE_ GetMultiWallNum(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetMultiWallNum, _ARGS_);
 
-        //public static _TYPE_ GetNetPlayerChrType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetNetPlayerChrType, _ARGS_);
+        public static int GetNetPlayerChrType(int NetworkPlayerID)
+            => Call<int>(FuncAddress.GetNetPlayerChrType, NetworkPlayerID);
 
         //public static _TYPE_ GetObjHp(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetObjHp, _ARGS_);
@@ -453,32 +462,33 @@ namespace DarkSoulsScripting
         //public static _TYPE_ GetQWC(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetQWC, _ARGS_);
 
-        //public static _TYPE_ GetRandom(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetRandom, _ARGS_);
+        public static int GetRandom(int Min, int Max)
+            => Call<int>(FuncAddress.GetRandom, Min, Max);
 
-        //public static _TYPE_ GetRateItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetRateItem, _ARGS_);
+        public static int GetRateItem(int ItemLotID)
+            => Call<int>(FuncAddress.GetRateItem, ItemLotID);
 
         //public static _TYPE_ GetRateItem_IgnoreMultiPlay(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetRateItem_IgnoreMultiPlay, _ARGS_);
 
-        //public static _TYPE_ GetReturnState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetReturnState, _ARGS_);
+        public static int GetReturnState()
+            => Call<int>(FuncAddress.GetReturnState);
 
-        //public static _TYPE_ GetRightCurrentWeaponId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetRightCurrentWeaponId, _ARGS_);
+        public static int GetRightCurrentWeaponId()
+            => Call<int>(FuncAddress.GetRightCurrentWeaponId);
 
-        //public static _TYPE_ GetSoloClearBonus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetSoloClearBonus, _ARGS_);
+        public static int GetSoloClearBonus(int a)
+            => Call<int>(FuncAddress.GetSoloClearBonus, a);
 
-        //public static _TYPE_ GetSummonAnimId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetSummonAnimId, _ARGS_);
+        //TODO: DOUBLE CHECK
+        public static int GetSummonAnimId(int ChrID)
+            => Call<int>(FuncAddress.GetSummonAnimId, ChrID);
 
         //public static _TYPE_ GetSummonBlackResult(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetSummonBlackResult, _ARGS_);
 
-        //public static _TYPE_ GetTargetChrID(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetTargetChrID, _ARGS_);
+        //public static int GetTargetChrID(int ChrID)
+        //    => Call<int>(FuncAddress.GetTargetChrID, ChrID);
 
         //public static _TYPE_ GetTempSummonParam(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetTempSummonParam, _ARGS_);
@@ -486,8 +496,8 @@ namespace DarkSoulsScripting
         //public static _TYPE_ GetTravelItemParamId(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.GetTravelItemParamId, _ARGS_);
 
-        //public static _TYPE_ GetWhiteGhostCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetWhiteGhostCount, _ARGS_);
+        public static int GetWhiteGhostCount()
+            => Call<int>(FuncAddress.GetWhiteGhostCount);
 
         //public static _TYPE_ HasSuppleItem(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.HasSuppleItem, _ARGS_);
@@ -507,8 +517,8 @@ namespace DarkSoulsScripting
         //public static _TYPE_ IncrementThiefInvadePlaySuccessCount(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.IncrementThiefInvadePlaySuccessCount, _ARGS_);
 
-        //public static _TYPE_ InfomationMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.InfomationMenu, _ARGS_);
+        public static int InfomationMenu(bool Simple, int TitleIconID, int TitleCatID, int TitleMsgID, int SysMsgID)
+            => Call<int>(FuncAddress.InfomationMenu, Simple, TitleIconID, TitleCatID, TitleMsgID, SysMsgID);
 
         //public static _TYPE_ InitDeathState(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.InitDeathState, _ARGS_);
@@ -519,8 +529,8 @@ namespace DarkSoulsScripting
         //public static _TYPE_ InvalidMyBloodMarkInfo_Tutorial(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.InvalidMyBloodMarkInfo_Tutorial, _ARGS_);
 
-        //public static _TYPE_ InvalidPointLight(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.InvalidPointLight, _ARGS_);
+        public static int InvalidPointLight(int LightID)
+            => Call<int>(FuncAddress.InvalidPointLight, LightID);
 
         //public static _TYPE_ InvalidSfx(_ARGS_)
         //    => Call<_TYPE_>(FuncAddress.InvalidSfx, _ARGS_);
