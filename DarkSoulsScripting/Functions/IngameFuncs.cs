@@ -65,14 +65,14 @@ namespace DarkSoulsScripting
         public static int AddInfomationListItem(int a, int b, int c)
             => Call<int>(FuncAddress.AddInfomationListItem, a, b, c);
 
-        //public static _TYPE_ AddInfomationTimeMsgTag(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInfomationTimeMsgTag, _ARGS_);
+        //public static int AddInfomationTimeMsgTag(_ARGS_)
+        //    => Call<int>(FuncAddress.AddInfomationTimeMsgTag, _ARGS_);
 
         public static int AddInfomationTosBuffer(int a)
             => Call<int>(FuncAddress.AddInfomationTosBuffer, a);
 
-        //public static _TYPE_ AddInfomationTosBufferPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddInfomationTosBufferPlus, _ARGS_);
+        //public static int AddInfomationTosBufferPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.AddInfomationTosBufferPlus, _ARGS_);
 
         public static bool AddInventoryItem(int ItemID, ItemCategory Category, int Quantity)
             => Call<bool>(FuncAddress.AddInventoryItem, ItemID, (int)Category, Quantity);
@@ -87,8 +87,8 @@ namespace DarkSoulsScripting
         public static int AddRumble(int a, int b, int c, int d, int e)
             => Call<int>(FuncAddress.AddRumble, a, b, c, d, e);
 
-        //public static _TYPE_ AddTreasureEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.AddTreasureEvent, _ARGS_);
+        //public static int AddTreasureEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.AddTreasureEvent, _ARGS_);
 
         //Returns pointer to GameStats struct.
         public static int AddTrueDeathCount()
@@ -103,11 +103,11 @@ namespace DarkSoulsScripting
         public static int CalcExcuteMultiBonus(int a, float b, int c)
             => Call<int>(FuncAddress.CalcExcuteMultiBonus, a, b, c);
 
-        //public static _TYPE_ CalcGetCurrentMapEntityId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CalcGetCurrentMapEntityId, _ARGS_);
+        //public static int CalcGetCurrentMapEntityId(_ARGS_)
+        //    => Call<int>(FuncAddress.CalcGetCurrentMapEntityId, _ARGS_);
 
-        //public static _TYPE_ CalcGetMultiWallEntityId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CalcGetMultiWallEntityId, _ARGS_);
+        //public static int CalcGetMultiWallEntityId(_ARGS_)
+        //    => Call<int>(FuncAddress.CalcGetMultiWallEntityId, _ARGS_);
 
         public static bool CamReset(int ChrID, bool State)
             => Call<bool>(FuncAddress.CamReset, ChrID, State);
@@ -115,14 +115,14 @@ namespace DarkSoulsScripting
         public static int CastPointSpell(int ChrID, int ObjID, int BehaviourID, float AngleX, float AngleY, float AngleZ)
             => Call<int>(FuncAddress.CastPointSpell, ChrID, ObjID, BehaviourID, AngleX, AngleY, AngleZ);
 
-        //public static _TYPE_ CastPointSpell_Horming(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CastPointSpell_Horming, _ARGS_);
+        //public static int CastPointSpell_Horming(_ARGS_)
+        //    => Call<int>(FuncAddress.CastPointSpell_Horming, _ARGS_);
 
-        //public static _TYPE_ CastPointSpellPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CastPointSpellPlus, _ARGS_);
+        //public static int CastPointSpellPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.CastPointSpellPlus, _ARGS_);
 
-        //public static _TYPE_ CastPointSpellPlus_Horming(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CastPointSpellPlus_Horming, _ARGS_);
+        //public static int CastPointSpellPlus_Horming(_ARGS_)
+        //    => Call<int>(FuncAddress.CastPointSpellPlus_Horming, _ARGS_);
 
         //TODO: Check if returns bool.
         public static byte CastTargetSpell(int ChrID, int b, int c, int d, int e)
@@ -215,26 +215,26 @@ namespace DarkSoulsScripting
         public static void CompleteEvent(int EventID)
             => Call<int>(FuncAddress.CompleteEvent, EventID);
 
-        //public static _TYPE_ CreateCamSfx(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CreateCamSfx, _ARGS_);
+        //public static int CreateCamSfx(_ARGS_)
+        //    => Call<int>(FuncAddress.CreateCamSfx, _ARGS_);
 
-        //public static _TYPE_ CreateDamage_NoCollision(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CreateDamage_NoCollision, _ARGS_);
+        //public static int CreateDamage_NoCollision(_ARGS_)
+        //    => Call<int>(FuncAddress.CreateDamage_NoCollision, _ARGS_);
 
-        //public static _TYPE_ CreateEventBody(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CreateEventBody, _ARGS_);
+        //public static int CreateEventBody(_ARGS_)
+        //    => Call<int>(FuncAddress.CreateEventBody, _ARGS_);
 
-        //public static _TYPE_ CreateEventBodyPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CreateEventBodyPlus, _ARGS_);
+        //public static int CreateEventBodyPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.CreateEventBodyPlus, _ARGS_);
 
-        //public static _TYPE_ CreateHeroBloodStain(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CreateHeroBloodStain, _ARGS_);
+        //public static int CreateHeroBloodStain(_ARGS_)
+        //    => Call<int>(FuncAddress.CreateHeroBloodStain, _ARGS_);
 
-        //public static _TYPE_ CreateSfx(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CreateSfx, _ARGS_);
+        //public static int CreateSfx(_ARGS_)
+        //    => Call<int>(FuncAddress.CreateSfx, _ARGS_);
 
-        //public static _TYPE_ CreateSfx_DummyPoly(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CreateSfx_DummyPoly, _ARGS_);
+        //public static int CreateSfx_DummyPoly(_ARGS_)
+        //    => Call<int>(FuncAddress.CreateSfx_DummyPoly, _ARGS_);
 
         public static void CroseBriefingMsg()
             => Call<int>(FuncAddress.CroseBriefingMsg);
@@ -242,26 +242,26 @@ namespace DarkSoulsScripting
         public static int CustomLuaCall(int a, string b, bool OccurOnce)
             => Call<int>(FuncAddress.CustomLuaCall, a, b, OccurOnce);
 
-        //public static _TYPE_ CustomLuaCallStart(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CustomLuaCallStart, _ARGS_);
+        //public static int CustomLuaCallStart(_ARGS_)
+        //    => Call<int>(FuncAddress.CustomLuaCallStart, _ARGS_);
 
-        //public static _TYPE_ CustomLuaCallStartPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.CustomLuaCallStartPlus, _ARGS_);
+        //public static int CustomLuaCallStartPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.CustomLuaCallStartPlus, _ARGS_);
 
-        //public static _TYPE_ DeleteCamSfx(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DeleteCamSfx, _ARGS_);
+        //public static int DeleteCamSfx(_ARGS_)
+        //    => Call<int>(FuncAddress.DeleteCamSfx, _ARGS_);
 
-        //public static _TYPE_ DeleteEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DeleteEvent, _ARGS_);
+        //public static int DeleteEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.DeleteEvent, _ARGS_);
 
-        //public static _TYPE_ DeleteObjSfxAll(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DeleteObjSfxAll, _ARGS_);
+        //public static int DeleteObjSfxAll(_ARGS_)
+        //    => Call<int>(FuncAddress.DeleteObjSfxAll, _ARGS_);
 
-        //public static _TYPE_ DeleteObjSfxDmyPlyID(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DeleteObjSfxDmyPlyID, _ARGS_);
+        //public static int DeleteObjSfxDmyPlyID(_ARGS_)
+        //    => Call<int>(FuncAddress.DeleteObjSfxDmyPlyID, _ARGS_);
 
-        //public static _TYPE_ DeleteObjSfxEventID(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DeleteObjSfxEventID, _ARGS_);
+        //public static int DeleteObjSfxEventID(_ARGS_)
+        //    => Call<int>(FuncAddress.DeleteObjSfxEventID, _ARGS_);
 
         public static int DisableCollection(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableCollection, ChrID, State);
@@ -269,8 +269,8 @@ namespace DarkSoulsScripting
         public static int DisableDamage(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableDamage, ChrID, State);
 
-        //public static _TYPE_ DisableHpGauge(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DisableHpGauge, _ARGS_);
+        //public static int DisableHpGauge(_ARGS_)
+        //    => Call<int>(FuncAddress.DisableHpGauge, _ARGS_);
 
         public static int DisableInterupt(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableInterupt, ChrID, State);
@@ -281,8 +281,8 @@ namespace DarkSoulsScripting
         public static int DisableMove(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableMove, ChrID, State);
 
-        //public static _TYPE_ DivideRest(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.DivideRest, _ARGS_);
+        //public static int DivideRest(_ARGS_)
+        //    => Call<int>(FuncAddress.DivideRest, _ARGS_);
 
         public static int EnableAction(int ChrID, bool State)
             => Call<int>(FuncAddress.EnableAction, ChrID, State);
@@ -306,23 +306,23 @@ namespace DarkSoulsScripting
         public static int EndAnimation(int ChrID, int AnimID)
             => Call<int>(FuncAddress.EndAnimation, ChrID, AnimID);
 
-        //public static _TYPE_ EraseEventSpecialEffect(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EraseEventSpecialEffect, _ARGS_);
+        //public static int EraseEventSpecialEffect(_ARGS_)
+        //    => Call<int>(FuncAddress.EraseEventSpecialEffect, _ARGS_);
 
-        //public static _TYPE_ EraseEventSpecialEffect_2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EraseEventSpecialEffect_2, _ARGS_);
+        //public static int EraseEventSpecialEffect_2(_ARGS_)
+        //    => Call<int>(FuncAddress.EraseEventSpecialEffect_2, _ARGS_);
 
-        //public static _TYPE_ EventTagInsertString_forPlayerNo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.EventTagInsertString_forPlayerNo, _ARGS_);
+        //public static int EventTagInsertString_forPlayerNo(_ARGS_)
+        //    => Call<int>(FuncAddress.EventTagInsertString_forPlayerNo, _ARGS_);
 
-        //public static _TYPE_ ExcutePenalty(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ExcutePenalty, _ARGS_);
+        //public static int ExcutePenalty(_ARGS_)
+        //    => Call<int>(FuncAddress.ExcutePenalty, _ARGS_);
 
-        //public static _TYPE_ ForceChangeTarget(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ForceChangeTarget, _ARGS_);
+        //public static int ForceChangeTarget(_ARGS_)
+        //    => Call<int>(FuncAddress.ForceChangeTarget, _ARGS_);
 
-        //public static _TYPE_ ForceDead(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ForceDead, _ARGS_);
+        //public static int ForceDead(_ARGS_)
+        //    => Call<int>(FuncAddress.ForceDead, _ARGS_);
 
         public static int ForcePlayAnimation(int ChrID, int AnimID)
             => Call<int>(FuncAddress.ForcePlayAnimation, ChrID, AnimID);
@@ -336,20 +336,20 @@ namespace DarkSoulsScripting
         public static int ForceSetOmissionLevel(int ChrID, bool State, int NumFrames)
             => Call<int>(FuncAddress.ForceSetOmissionLevel, ChrID, State, NumFrames);
 
-        //public static _TYPE_ ForceUpdateNextFrame(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ForceUpdateNextFrame, _ARGS_);
+        //public static int ForceUpdateNextFrame(_ARGS_)
+        //    => Call<int>(FuncAddress.ForceUpdateNextFrame, _ARGS_);
 
-        //public static _TYPE_ GetBountyRankPoint(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetBountyRankPoint, _ARGS_);
+        //public static int GetBountyRankPoint(_ARGS_)
+        //    => Call<int>(FuncAddress.GetBountyRankPoint, _ARGS_);
 
-        //public static _TYPE_ GetClearBonus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetClearBonus, _ARGS_);
+        //public static int GetClearBonus(_ARGS_)
+        //    => Call<int>(FuncAddress.GetClearBonus, _ARGS_);
 
-        //public static _TYPE_ GetClearCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetClearCount, _ARGS_);
+        //public static int GetClearCount(_ARGS_)
+        //    => Call<int>(FuncAddress.GetClearCount, _ARGS_);
 
-        //public static _TYPE_ GetClearState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetClearState, _ARGS_);
+        //public static int GetClearState(_ARGS_)
+        //    => Call<int>(FuncAddress.GetClearState, _ARGS_);
 
         public static int GetCurrentMapAreaNo()
             => Call<int>(FuncAddress.GetCurrentMapAreaNo);
@@ -357,20 +357,20 @@ namespace DarkSoulsScripting
         public static int GetCurrentMapBlockNo()
             => Call<int>(FuncAddress.GetCurrentMapBlockNo);
 
-        //public static _TYPE_ GetDeathState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetDeathState, _ARGS_);
+        //public static int GetDeathState(_ARGS_)
+        //    => Call<int>(FuncAddress.GetDeathState, _ARGS_);
 
-        //public static _TYPE_ GetDistance(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetDistance, _ARGS_);
+        //public static int GetDistance(_ARGS_)
+        //    => Call<int>(FuncAddress.GetDistance, _ARGS_);
 
-        //public static _TYPE_ GetEnemyPlayerId_Random(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetEnemyPlayerId_Random, _ARGS_);
+        //public static int GetEnemyPlayerId_Random(_ARGS_)
+        //    => Call<int>(FuncAddress.GetEnemyPlayerId_Random, _ARGS_);
 
-        //public static _TYPE_ GetEventFlagValue(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetEventFlagValue, _ARGS_);
+        //public static int GetEventFlagValue(_ARGS_)
+        //    => Call<int>(FuncAddress.GetEventFlagValue, _ARGS_);
 
-        //public static _TYPE_ GetEventGoalState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetEventGoalState, _ARGS_);
+        //public static int GetEventGoalState(_ARGS_)
+        //    => Call<int>(FuncAddress.GetEventGoalState, _ARGS_);
 
         public static int GetEventMode(int ChrID)
             => Call<int>(FuncAddress.GetEventMode, ChrID);
@@ -381,11 +381,11 @@ namespace DarkSoulsScripting
         public static int GetFloorMaterial(int ChrID)
             => Call<int>(FuncAddress.GetFloorMaterial, ChrID);
 
-        //public static _TYPE_ GetGlobalQWC(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetGlobalQWC, _ARGS_);
+        //public static int GetGlobalQWC(_ARGS_)
+        //    => Call<int>(FuncAddress.GetGlobalQWC, _ARGS_);
 
-        //public static _TYPE_ GetHeroPoint(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetHeroPoint, _ARGS_);
+        //public static int GetHeroPoint(_ARGS_)
+        //    => Call<int>(FuncAddress.GetHeroPoint, _ARGS_);
 
         public static int GetHostPlayerNo()
             => Call<int>(FuncAddress.GetHostPlayerNo);
@@ -393,14 +393,14 @@ namespace DarkSoulsScripting
         public static int GetHp(int ChrID)
             => Call<int>(FuncAddress.GetHp, ChrID);
 
-        //public static _TYPE_ GetHpRate(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetHpRate, _ARGS_);
+        //public static int GetHpRate(_ARGS_)
+        //    => Call<int>(FuncAddress.GetHpRate, _ARGS_);
 
         public static int GetItem(int a, int b)
             => Call<int>(FuncAddress.GetItem, a, b);
 
-        //public static _TYPE_ GetLadderCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLadderCount, _ARGS_);
+        //public static int GetLadderCount(_ARGS_)
+        //    => Call<int>(FuncAddress.GetLadderCount, _ARGS_);
 
         public static int GetLastBlockId()
             => Call<int>(FuncAddress.GetLastBlockId);
@@ -411,56 +411,56 @@ namespace DarkSoulsScripting
         public static int GetLocalPlayerId()
             => Call<int>(FuncAddress.GetLocalPlayerId);
 
-        //public static _TYPE_ GetLocalPlayerInvadeType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLocalPlayerInvadeType, _ARGS_);
+        //public static int GetLocalPlayerInvadeType(_ARGS_)
+        //    => Call<int>(FuncAddress.GetLocalPlayerInvadeType, _ARGS_);
 
-        //public static _TYPE_ GetLocalPlayerSoulLv(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLocalPlayerSoulLv, _ARGS_);
+        //public static int GetLocalPlayerSoulLv(_ARGS_)
+        //    => Call<int>(FuncAddress.GetLocalPlayerSoulLv, _ARGS_);
 
-        //public static _TYPE_ GetLocalPlayerVowType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLocalPlayerVowType, _ARGS_);
+        //public static int GetLocalPlayerVowType(_ARGS_)
+        //    => Call<int>(FuncAddress.GetLocalPlayerVowType, _ARGS_);
 
-        //public static _TYPE_ GetLocalQWC(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetLocalQWC, _ARGS_);
+        //public static int GetLocalQWC(_ARGS_)
+        //    => Call<int>(FuncAddress.GetLocalQWC, _ARGS_);
 
-        //public static _TYPE_ GetMultiWallNum(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetMultiWallNum, _ARGS_);
+        //public static int GetMultiWallNum(_ARGS_)
+        //    => Call<int>(FuncAddress.GetMultiWallNum, _ARGS_);
 
         public static int GetNetPlayerChrType(int NetworkPlayerID)
             => Call<int>(FuncAddress.GetNetPlayerChrType, NetworkPlayerID);
 
-        //public static _TYPE_ GetObjHp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetObjHp, _ARGS_);
+        //public static int GetObjHp(_ARGS_)
+        //    => Call<int>(FuncAddress.GetObjHp, _ARGS_);
 
-        //public static _TYPE_ GetParam(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetParam, _ARGS_);
+        //public static int GetParam(_ARGS_)
+        //    => Call<int>(FuncAddress.GetParam, _ARGS_);
 
-        //public static _TYPE_ GetParam1(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetParam1, _ARGS_);
+        //public static int GetParam1(_ARGS_)
+        //    => Call<int>(FuncAddress.GetParam1, _ARGS_);
 
-        //public static _TYPE_ GetParam2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetParam2, _ARGS_);
+        //public static int GetParam2(_ARGS_)
+        //    => Call<int>(FuncAddress.GetParam2, _ARGS_);
 
-        //public static _TYPE_ GetParam3(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetParam3, _ARGS_);
+        //public static int GetParam3(_ARGS_)
+        //    => Call<int>(FuncAddress.GetParam3, _ARGS_);
 
-        //public static _TYPE_ GetPartyMemberNum_InvadeType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetPartyMemberNum_InvadeType, _ARGS_);
+        //public static int GetPartyMemberNum_InvadeType(_ARGS_)
+        //    => Call<int>(FuncAddress.GetPartyMemberNum_InvadeType, _ARGS_);
 
-        //public static _TYPE_ GetPartyMemberNum_VowType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetPartyMemberNum_VowType, _ARGS_);
+        //public static int GetPartyMemberNum_VowType(_ARGS_)
+        //    => Call<int>(FuncAddress.GetPartyMemberNum_VowType, _ARGS_);
 
-        //public static _TYPE_ GetPlayerId_Random(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetPlayerId_Random, _ARGS_);
+        //public static int GetPlayerId_Random(_ARGS_)
+        //    => Call<int>(FuncAddress.GetPlayerId_Random, _ARGS_);
 
-        //public static _TYPE_ GetPlayerNo_LotNitoMultiItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetPlayerNo_LotNitoMultiItem, _ARGS_);
+        //public static int GetPlayerNo_LotNitoMultiItem(_ARGS_)
+        //    => Call<int>(FuncAddress.GetPlayerNo_LotNitoMultiItem, _ARGS_);
 
-        //public static _TYPE_ GetPlayID(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetPlayID, _ARGS_);
+        //public static int GetPlayID(_ARGS_)
+        //    => Call<int>(FuncAddress.GetPlayID, _ARGS_);
 
-        //public static _TYPE_ GetQWC(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetQWC, _ARGS_);
+        //public static int GetQWC(_ARGS_)
+        //    => Call<int>(FuncAddress.GetQWC, _ARGS_);
 
         public static int GetRandom(int Min, int Max)
             => Call<int>(FuncAddress.GetRandom, Min, Max);
@@ -468,8 +468,8 @@ namespace DarkSoulsScripting
         public static int GetRateItem(int ItemLotID)
             => Call<int>(FuncAddress.GetRateItem, ItemLotID);
 
-        //public static _TYPE_ GetRateItem_IgnoreMultiPlay(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetRateItem_IgnoreMultiPlay, _ARGS_);
+        //public static int GetRateItem_IgnoreMultiPlay(_ARGS_)
+        //    => Call<int>(FuncAddress.GetRateItem_IgnoreMultiPlay, _ARGS_);
 
         public static int GetReturnState()
             => Call<int>(FuncAddress.GetReturnState);
@@ -484,1058 +484,1067 @@ namespace DarkSoulsScripting
         public static int GetSummonAnimId(int ChrID)
             => Call<int>(FuncAddress.GetSummonAnimId, ChrID);
 
-        //public static _TYPE_ GetSummonBlackResult(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetSummonBlackResult, _ARGS_);
+        //public static int GetSummonBlackResult(_ARGS_)
+        //    => Call<int>(FuncAddress.GetSummonBlackResult, _ARGS_);
 
         //public static int GetTargetChrID(int ChrID)
         //    => Call<int>(FuncAddress.GetTargetChrID, ChrID);
 
-        //public static _TYPE_ GetTempSummonParam(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetTempSummonParam, _ARGS_);
+        //public static int GetTempSummonParam(_ARGS_)
+        //    => Call<int>(FuncAddress.GetTempSummonParam, _ARGS_);
 
-        //public static _TYPE_ GetTravelItemParamId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.GetTravelItemParamId, _ARGS_);
+        //public static int GetTravelItemParamId(_ARGS_)
+        //    => Call<int>(FuncAddress.GetTravelItemParamId, _ARGS_);
 
         public static int GetWhiteGhostCount()
             => Call<int>(FuncAddress.GetWhiteGhostCount);
 
-        //public static _TYPE_ HasSuppleItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.HasSuppleItem, _ARGS_);
+        //public static int HasSuppleItem(_ARGS_)
+        //    => Call<int>(FuncAddress.HasSuppleItem, _ARGS_);
 
-        //public static _TYPE_ HavePartyMember(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.HavePartyMember, _ARGS_);
+        //public static int HavePartyMember(_ARGS_)
+        //    => Call<int>(FuncAddress.HavePartyMember, _ARGS_);
 
-        //public static _TYPE_ HoverMoveVal(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.HoverMoveVal, _ARGS_);
+        //public static int HoverMoveVal(_ARGS_)
+        //    => Call<int>(FuncAddress.HoverMoveVal, _ARGS_);
 
-        //public static _TYPE_ HoverMoveValDmy(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.HoverMoveValDmy, _ARGS_);
+        //public static int HoverMoveValDmy(_ARGS_)
+        //    => Call<int>(FuncAddress.HoverMoveValDmy, _ARGS_);
 
-        //public static _TYPE_ IncrementCoopPlaySuccessCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IncrementCoopPlaySuccessCount, _ARGS_);
+        //public static int IncrementCoopPlaySuccessCount(_ARGS_)
+        //    => Call<int>(FuncAddress.IncrementCoopPlaySuccessCount, _ARGS_);
 
-        //public static _TYPE_ IncrementThiefInvadePlaySuccessCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IncrementThiefInvadePlaySuccessCount, _ARGS_);
+        //public static int IncrementThiefInvadePlaySuccessCount(_ARGS_)
+        //    => Call<int>(FuncAddress.IncrementThiefInvadePlaySuccessCount, _ARGS_);
 
         public static int InfomationMenu(bool Simple, int TitleIconID, int TitleCatID, int TitleMsgID, int SysMsgID)
             => Call<int>(FuncAddress.InfomationMenu, Simple, TitleIconID, TitleCatID, TitleMsgID, SysMsgID);
 
-        //public static _TYPE_ InitDeathState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.InitDeathState, _ARGS_);
+        //public static int InitDeathState(_ARGS_)
+        //    => Call<int>(FuncAddress.InitDeathState, _ARGS_);
 
-        //public static _TYPE_ InvalidMyBloodMarkInfo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.InvalidMyBloodMarkInfo, _ARGS_);
+        //public static int InvalidMyBloodMarkInfo(_ARGS_)
+        //    => Call<int>(FuncAddress.InvalidMyBloodMarkInfo, _ARGS_);
 
-        //public static _TYPE_ InvalidMyBloodMarkInfo_Tutorial(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.InvalidMyBloodMarkInfo_Tutorial, _ARGS_);
+        //public static int InvalidMyBloodMarkInfo_Tutorial(_ARGS_)
+        //    => Call<int>(FuncAddress.InvalidMyBloodMarkInfo_Tutorial, _ARGS_);
 
         public static int InvalidPointLight(int LightID)
             => Call<int>(FuncAddress.InvalidPointLight, LightID);
 
-        //public static _TYPE_ InvalidSfx(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.InvalidSfx, _ARGS_);
+        //public static int InvalidSfx(_ARGS_)
+        //    => Call<int>(FuncAddress.InvalidSfx, _ARGS_);
 
-        //public static _TYPE_ IsAction(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsAction, _ARGS_);
+        public static bool IsAction(int ChrID, int b)
+            => Call<bool>(FuncAddress.IsAction, ChrID, b);
 
-        //public static _TYPE_ IsAlive(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsAlive, _ARGS_);
+        //TODO: DOUBLE CHECK
+        public static bool IsAlive(int ChrID)
+            => Call<bool>(FuncAddress.IsAlive, ChrID);
 
-        //public static _TYPE_ IsAliveMotion(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsAliveMotion, _ARGS_);
+        public static bool IsAliveMotion()
+            => Call<bool>(FuncAddress.IsAliveMotion);
 
-        //public static _TYPE_ IsAngle(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsAngle, _ARGS_);
+        public static bool IsAngle(int ChrID1, int ChrID2, float Angle)
+            => Call<bool>(FuncAddress.IsAngle, ChrID1, ChrID2, Angle);
 
-        //public static _TYPE_ IsAnglePlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsAnglePlus, _ARGS_);
+        public static bool IsAnglePlus(int ChrID1, int ChrID2, int Angle, int d)
+            => Call<bool>(FuncAddress.IsAnglePlus, ChrID1, ChrID2, Angle, d);
 
-        //public static _TYPE_ IsAppearancePlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsAppearancePlayer, _ARGS_);
+        //public static bool IsAppearancePlayer(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsAppearancePlayer, _ARGS_);
 
-        //public static _TYPE_ IsBlackGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsBlackGhost, _ARGS_);
+        //public static bool IsBlackGhost(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsBlackGhost, _ARGS_);
 
-        //public static _TYPE_ IsBlackGhost_NetPlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsBlackGhost_NetPlayer, _ARGS_);
+        //public static bool IsBlackGhost_NetPlayer(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsBlackGhost_NetPlayer, _ARGS_);
 
-        //public static _TYPE_ IsClearItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsClearItem, _ARGS_);
+        public static bool IsClearItem()
+            => Call<bool>(FuncAddress.IsClearItem);
 
-        //public static _TYPE_ IsClient(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsClient, _ARGS_);
+        public static bool IsClient()
+            => Call<bool>(FuncAddress.IsClient);
 
-        //public static _TYPE_ IsColiseumGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsColiseumGhost, _ARGS_);
+        //public static bool IsColiseumGhost(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsColiseumGhost, _ARGS_);
 
-        //public static _TYPE_ IsCompleteEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsCompleteEvent, _ARGS_);
+        public static bool IsCompleteEvent(int EventID)
+            => Call<bool>(FuncAddress.IsCompleteEvent, EventID);
 
-        //public static _TYPE_ IsCompleteEventValue(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsCompleteEventValue, _ARGS_);
+        public static bool IsCompleteEventValue(int EventID)
+            => Call<bool>(FuncAddress.IsCompleteEventValue, EventID);
 
-        //public static _TYPE_ IsDead_NextGreyGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsDead_NextGreyGhost, _ARGS_);
+        //public static bool IsDead_NextGreyGhost(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsDead_NextGreyGhost, _ARGS_);
 
-        //public static _TYPE_ IsDeathPenaltySkip(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsDeathPenaltySkip, _ARGS_);
+        //public static bool IsDeathPenaltySkip(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsDeathPenaltySkip, _ARGS_);
 
-        //public static _TYPE_ IsDestroyed(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsDestroyed, _ARGS_);
+        //public static bool IsDestroyed(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsDestroyed, _ARGS_);
 
-        //public static _TYPE_ IsDisable(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsDisable, _ARGS_);
+        public static bool IsDisable(int ChrID)
+            => Call<bool>(FuncAddress.IsDisable, ChrID);
 
-        //public static _TYPE_ IsDistance(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsDistance, _ARGS_);
+        public static bool IsDistance(int ChrID1, int ChrID2, float Distance)
+            => Call<bool>(FuncAddress.IsDistance, ChrID1, ChrID2, Distance);
 
-        //public static _TYPE_ IsDropCheck_Only(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsDropCheck_Only, _ARGS_);
+        //public static bool IsDropCheck_Only(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsDropCheck_Only, _ARGS_);
 
-        //public static _TYPE_ IsEquip(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsEquip, _ARGS_);
+        public static bool IsEquip(ItemCategory Category, int ItemID)
+            => Call<bool>(FuncAddress.IsEquip, (int)Category, ItemID);
 
-        //public static _TYPE_ IsEventAnim(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsEventAnim, _ARGS_);
+        public static bool IsEventAnim(int ChrID, int b)
+            => Call<bool>(FuncAddress.IsEventAnim, ChrID, b);
 
-        //public static _TYPE_ IsFireDead(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsFireDead, _ARGS_);
+        //public static bool IsFireDead(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsFireDead, _ARGS_);
 
-        //public static _TYPE_ IsForceSummoned(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsForceSummoned, _ARGS_);
+        //public static bool IsForceSummoned(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsForceSummoned, _ARGS_);
 
-        //public static _TYPE_ IsGameClient(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsGameClient, _ARGS_);
+        //public static bool IsGameClient(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsGameClient, _ARGS_);
 
-        //public static _TYPE_ IsGreyGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsGreyGhost, _ARGS_);
+        //public static bool IsGreyGhost(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsGreyGhost, _ARGS_);
 
-        //public static _TYPE_ IsGreyGhost_NetPlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsGreyGhost_NetPlayer, _ARGS_);
+        //public static bool IsGreyGhost_NetPlayer(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsGreyGhost_NetPlayer, _ARGS_);
 
-        //public static _TYPE_ IsHost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsHost, _ARGS_);
+        //public static bool IsHost(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsHost, _ARGS_);
 
-        //public static _TYPE_ IsInParty(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsInParty, _ARGS_);
+        //public static bool IsInParty(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsInParty, _ARGS_);
 
-        //public static _TYPE_ IsInParty_EnemyMember(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsInParty_EnemyMember, _ARGS_);
+        //public static bool IsInParty_EnemyMember(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsInParty_EnemyMember, _ARGS_);
 
-        //public static _TYPE_ IsInParty_FriendMember(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsInParty_FriendMember, _ARGS_);
+        //public static bool IsInParty_FriendMember(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsInParty_FriendMember, _ARGS_);
 
-        //public static _TYPE_ IsIntruder(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsIntruder, _ARGS_);
+        //public static bool IsIntruder(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsIntruder, _ARGS_);
 
-        //public static _TYPE_ IsInventoryEquip(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsInventoryEquip, _ARGS_);
+        public static bool IsInventoryEquip(ItemCategory Category, int ItemID)
+            => Call<bool>(FuncAddress.IsInventoryEquip, (int)Category, ItemID);
 
-        //public static _TYPE_ IsJobType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsJobType, _ARGS_);
+        //public static bool IsJobType(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsJobType, _ARGS_);
 
-        //public static _TYPE_ IsLand(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsLand, _ARGS_);
+        public static bool IsLand(int ChrID)
+            => Call<bool>(FuncAddress.IsLand, ChrID);
 
-        //public static _TYPE_ IsLiveNetPlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsLiveNetPlayer, _ARGS_);
+        //public static bool IsLiveNetPlayer(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsLiveNetPlayer, _ARGS_);
 
-        //public static _TYPE_ IsLivePlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsLivePlayer, _ARGS_);
+        public static bool IsLivePlayer()
+            => Call<bool>(FuncAddress.IsLivePlayer);
 
-        //public static _TYPE_ IsLoadWait(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsLoadWait, _ARGS_);
+        //public static bool IsLoadWait(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsLoadWait, _ARGS_);
 
-        //public static _TYPE_ IsMatchingMultiPlay(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsMatchingMultiPlay, _ARGS_);
+        //public static bool IsMatchingMultiPlay(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsMatchingMultiPlay, _ARGS_);
 
-        //public static _TYPE_ IsOnline(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsOnline, _ARGS_);
+        //public static bool IsOnline(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsOnline, _ARGS_);
 
-        //public static _TYPE_ IsOnlineMode(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsOnlineMode, _ARGS_);
+        //public static bool IsOnlineMode(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsOnlineMode, _ARGS_);
 
-        //public static _TYPE_ IsPlayerAssessMenu_Tutorial(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsPlayerAssessMenu_Tutorial, _ARGS_);
+        //public static bool IsPlayerAssessMenu_Tutorial(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsPlayerAssessMenu_Tutorial, _ARGS_);
 
-        //public static _TYPE_ IsPlayerStay(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsPlayerStay, _ARGS_);
+        public static bool IsPlayerStay(int NetworkPlayerID)
+            => Call<bool>(FuncAddress.IsPlayerStay, NetworkPlayerID);
 
-        //public static _TYPE_ IsPlayMovie(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsPlayMovie, _ARGS_);
+        //public static bool IsPlayMovie(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsPlayMovie, _ARGS_);
 
-        //public static _TYPE_ IsPrevGreyGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsPrevGreyGhost, _ARGS_);
+        //public static bool IsPrevGreyGhost(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsPrevGreyGhost, _ARGS_);
 
-        //public static _TYPE_ IsProcessEventGoal(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsProcessEventGoal, _ARGS_);
+        //public static bool IsProcessEventGoal(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsProcessEventGoal, _ARGS_);
 
-        //public static _TYPE_ IsReady_Obj(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsReady_Obj, _ARGS_);
+        //public static bool IsReady_Obj(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsReady_Obj, _ARGS_);
 
-        //public static _TYPE_ IsRegionDrop(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsRegionDrop, _ARGS_);
+        //TODO: CHECK
+        //DeS example has *1 more arg*:
+        //if proxy:IsRegionDrop( itemevent_eventidlist[setNo] , 10000,itemevent_typelist[setNo],itemevent_idlist[setNo],2284) == true then
+        public static bool IsRegionDrop(int a, int b, int c, int Region)
+            => Call<bool>(FuncAddress.IsRegionDrop, a, b, c, Region);
 
-        //public static _TYPE_ IsRegionIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsRegionIn, _ARGS_);
+        public static bool IsRegionIn(int ChrID, int Region)
+            => Call<bool>(FuncAddress.IsRegionIn, ChrID, Region);
 
-        //public static _TYPE_ IsRevengeRequested(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsRevengeRequested, _ARGS_);
+        //public static bool IsRevengeRequested(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsRevengeRequested, _ARGS_);
 
-        //public static _TYPE_ IsReviveWait(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsReviveWait, _ARGS_);
+        //public static bool IsReviveWait(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsReviveWait, _ARGS_);
 
-        //public static _TYPE_ IsShow_CampMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsShow_CampMenu, _ARGS_);
+        //public static bool IsShow_CampMenu(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsShow_CampMenu, _ARGS_);
 
-        //public static _TYPE_ IsShowMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsShowMenu, _ARGS_);
+        public static bool IsShowMenu()
+            => Call<bool>(FuncAddress.IsShowMenu);
 
-        //public static _TYPE_ IsShowMenu_BriefingMsg(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsShowMenu_BriefingMsg, _ARGS_);
+        //public static bool IsShowMenu_BriefingMsg(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsShowMenu_BriefingMsg, _ARGS_);
 
-        //public static _TYPE_ IsShowMenu_GenDialog(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsShowMenu_GenDialog, _ARGS_);
+        //public static bool IsShowMenu_GenDialog(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsShowMenu_GenDialog, _ARGS_);
 
-        //public static _TYPE_ IsShowMenu_InfoMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsShowMenu_InfoMenu, _ARGS_);
+        //public static bool IsShowMenu_InfoMenu(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsShowMenu_InfoMenu, _ARGS_);
 
-        //public static _TYPE_ IsShowSosMsg_Tutorial(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsShowSosMsg_Tutorial, _ARGS_);
+        //public static bool IsShowSosMsg_Tutorial(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsShowSosMsg_Tutorial, _ARGS_);
 
-        //public static _TYPE_ IsSuccessQWC(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsSuccessQWC, _ARGS_);
+        //public static bool IsSuccessQWC(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsSuccessQWC, _ARGS_);
 
-        //public static _TYPE_ IsTryJoinSession(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsTryJoinSession, _ARGS_);
+        //public static bool IsTryJoinSession(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsTryJoinSession, _ARGS_);
 
-        //public static _TYPE_ IsValidInstance(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsValidInstance, _ARGS_);
+        //public static bool IsValidInstance(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsValidInstance, _ARGS_);
 
-        //public static _TYPE_ IsValidTalk(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsValidTalk, _ARGS_);
+        //public static bool IsValidTalk(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsValidTalk, _ARGS_);
 
-        //public static _TYPE_ IsWhiteGhost(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsWhiteGhost, _ARGS_);
+        //public static bool IsWhiteGhost(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsWhiteGhost, _ARGS_);
 
-        //public static _TYPE_ IsWhiteGhost_NetPlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.IsWhiteGhost_NetPlayer, _ARGS_);
+        //public static bool IsWhiteGhost_NetPlayer(_ARGS_)
+        //    => Call<bool>(FuncAddress.IsWhiteGhost_NetPlayer, _ARGS_);
 
-        //public static _TYPE_ LeaveSession(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.LeaveSession, _ARGS_);
+        public static void LeaveSession()
+            => Call<int>(FuncAddress.LeaveSession);
 
-        //public static _TYPE_ LockSession(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.LockSession, _ARGS_);
+        public static void LockSession()
+            => Call<int>(FuncAddress.LockSession);
 
-        //public static _TYPE_ LuaCall(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.LuaCall, _ARGS_);
+        //public static int LuaCall(_ARGS_)
+        //    => Call<int>(FuncAddress.LuaCall, _ARGS_);
 
-        //public static _TYPE_ LuaCallStart(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.LuaCallStart, _ARGS_);
+        //public static int LuaCallStart(_ARGS_)
+        //    => Call<int>(FuncAddress.LuaCallStart, _ARGS_);
 
-        //public static _TYPE_ LuaCallStartPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.LuaCallStartPlus, _ARGS_);
+        //public static int LuaCallStartPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.LuaCallStartPlus, _ARGS_);
 
-        //public static _TYPE_ MultiDoping_AllEventBody(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.MultiDoping_AllEventBody, _ARGS_);
+        //public static int MultiDoping_AllEventBody(_ARGS_)
+        //    => Call<int>(FuncAddress.MultiDoping_AllEventBody, _ARGS_);
 
-        //public static _TYPE_ NoAnimeTurnCharactor(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.NoAnimeTurnCharactor, _ARGS_);
+        public static int NoAnimeTurnCharactor(int ChrID1, int ChrID2, float Angle)
+            => Call<int>(FuncAddress.NoAnimeTurnCharactor, ChrID1, ChrID2, Angle);
 
-        //public static _TYPE_ NotNetMessage_begin(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.NotNetMessage_begin, _ARGS_);
+        public static int NotNetMessage_begin()
+            => Call<int>(FuncAddress.NotNetMessage_begin);
 
-        //public static _TYPE_ NotNetMessage_end(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.NotNetMessage_end, _ARGS_);
+        public static int NotNetMessage_end()
+            => Call<int>(FuncAddress.NotNetMessage_end);
 
-        //public static _TYPE_ ObjRootMtxMove(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ObjRootMtxMove, _ARGS_);
+        //public static int ObjRootMtxMove(_ARGS_)
+        //    => Call<int>(FuncAddress.ObjRootMtxMove, _ARGS_);
 
-        //public static _TYPE_ ObjRootMtxMoveByChrDmyPoly(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ObjRootMtxMoveByChrDmyPoly, _ARGS_);
+        //public static int ObjRootMtxMoveByChrDmyPoly(_ARGS_)
+        //    => Call<int>(FuncAddress.ObjRootMtxMoveByChrDmyPoly, _ARGS_);
 
-        //public static _TYPE_ ObjRootMtxMoveDmyPoly(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ObjRootMtxMoveDmyPoly, _ARGS_);
+        //public static int ObjRootMtxMoveDmyPoly(_ARGS_)
+        //    => Call<int>(FuncAddress.ObjRootMtxMoveDmyPoly, _ARGS_);
 
-        //public static _TYPE_ OnActionCheckKey(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnActionCheckKey, _ARGS_);
+        //public static int OnActionCheckKey(_ARGS_)
+        //    => Call<int>(FuncAddress.OnActionCheckKey, _ARGS_);
 
-        //public static _TYPE_ OnActionEventRegion(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnActionEventRegion, _ARGS_);
+        //public static int OnActionEventRegion(_ARGS_)
+        //    => Call<int>(FuncAddress.OnActionEventRegion, _ARGS_);
 
-        //public static _TYPE_ OnActionEventRegionAttribute(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnActionEventRegionAttribute, _ARGS_);
+        //public static int OnActionEventRegionAttribute(_ARGS_)
+        //    => Call<int>(FuncAddress.OnActionEventRegionAttribute, _ARGS_);
 
-        //public static _TYPE_ OnBallista(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnBallista, _ARGS_);
+        //public static int OnBallista(_ARGS_)
+        //    => Call<int>(FuncAddress.OnBallista, _ARGS_);
 
-        //public static _TYPE_ OnBloodMenuClose(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnBloodMenuClose, _ARGS_);
+        //public static int OnBloodMenuClose(_ARGS_)
+        //    => Call<int>(FuncAddress.OnBloodMenuClose, _ARGS_);
 
-        //public static _TYPE_ OnBonfireEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnBonfireEvent, _ARGS_);
+        //public static int OnBonfireEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.OnBonfireEvent, _ARGS_);
 
-        //public static _TYPE_ OnCharacterAnimEnd(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCharacterAnimEnd, _ARGS_);
+        //public static int OnCharacterAnimEnd(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCharacterAnimEnd, _ARGS_);
 
-        //public static _TYPE_ OnCharacterDead(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCharacterDead, _ARGS_);
+        //public static int OnCharacterDead(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCharacterDead, _ARGS_);
 
-        //public static _TYPE_ OnCharacterHP(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCharacterHP, _ARGS_);
+        //public static int OnCharacterHP(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCharacterHP, _ARGS_);
 
-        //public static _TYPE_ OnCharacterHP_CheckAttacker(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCharacterHP_CheckAttacker, _ARGS_);
+        //public static int OnCharacterHP_CheckAttacker(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCharacterHP_CheckAttacker, _ARGS_);
 
-        //public static _TYPE_ OnCharacterHpRate(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCharacterHpRate, _ARGS_);
+        //public static int OnCharacterHpRate(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCharacterHpRate, _ARGS_);
 
-        //public static _TYPE_ OnCharacterTotalDamage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCharacterTotalDamage, _ARGS_);
+        //public static int OnCharacterTotalDamage(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCharacterTotalDamage, _ARGS_);
 
-        //public static _TYPE_ OnCharacterTotalRateDamage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCharacterTotalRateDamage, _ARGS_);
+        //public static int OnCharacterTotalRateDamage(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCharacterTotalRateDamage, _ARGS_);
 
-        //public static _TYPE_ OnCheckEzStateMessage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnCheckEzStateMessage, _ARGS_);
+        //public static int OnCheckEzStateMessage(_ARGS_)
+        //    => Call<int>(FuncAddress.OnCheckEzStateMessage, _ARGS_);
 
-        //public static _TYPE_ OnChrAnimEnd(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnChrAnimEnd, _ARGS_);
+        //public static int OnChrAnimEnd(_ARGS_)
+        //    => Call<int>(FuncAddress.OnChrAnimEnd, _ARGS_);
 
-        //public static _TYPE_ OnChrAnimEndPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnChrAnimEndPlus, _ARGS_);
+        //public static int OnChrAnimEndPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OnChrAnimEndPlus, _ARGS_);
 
-        //public static _TYPE_ OnDistanceAction(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnDistanceAction, _ARGS_);
+        //public static int OnDistanceAction(_ARGS_)
+        //    => Call<int>(FuncAddress.OnDistanceAction, _ARGS_);
 
-        //public static _TYPE_ OnDistanceActionAttribute(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnDistanceActionAttribute, _ARGS_);
+        //public static int OnDistanceActionAttribute(_ARGS_)
+        //    => Call<int>(FuncAddress.OnDistanceActionAttribute, _ARGS_);
 
-        //public static _TYPE_ OnDistanceActionDmyPoly(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnDistanceActionDmyPoly, _ARGS_);
+        //public static int OnDistanceActionDmyPoly(_ARGS_)
+        //    => Call<int>(FuncAddress.OnDistanceActionDmyPoly, _ARGS_);
 
-        //public static _TYPE_ OnDistanceActionPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnDistanceActionPlus, _ARGS_);
+        //public static int OnDistanceActionPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OnDistanceActionPlus, _ARGS_);
 
-        //public static _TYPE_ OnDistanceActionPlusAttribute(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnDistanceActionPlusAttribute, _ARGS_);
+        //public static int OnDistanceActionPlusAttribute(_ARGS_)
+        //    => Call<int>(FuncAddress.OnDistanceActionPlusAttribute, _ARGS_);
 
-        //public static _TYPE_ OnDistanceJustIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnDistanceJustIn, _ARGS_);
+        //public static int OnDistanceJustIn(_ARGS_)
+        //    => Call<int>(FuncAddress.OnDistanceJustIn, _ARGS_);
 
-        //public static _TYPE_ OnEndFlow(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnEndFlow, _ARGS_);
+        //public static int OnEndFlow(_ARGS_)
+        //    => Call<int>(FuncAddress.OnEndFlow, _ARGS_);
 
-        //public static _TYPE_ OnFireDamage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnFireDamage, _ARGS_);
+        //public static int OnFireDamage(_ARGS_)
+        //    => Call<int>(FuncAddress.OnFireDamage, _ARGS_);
 
-        //public static _TYPE_ OnKeyTime2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnKeyTime2, _ARGS_);
+        //public static int OnKeyTime2(_ARGS_)
+        //    => Call<int>(FuncAddress.OnKeyTime2, _ARGS_);
 
-        //public static _TYPE_ OnNetDistanceIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnNetDistanceIn, _ARGS_);
+        //public static int OnNetDistanceIn(_ARGS_)
+        //    => Call<int>(FuncAddress.OnNetDistanceIn, _ARGS_);
 
-        //public static _TYPE_ OnNetRegion(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnNetRegion, _ARGS_);
+        //public static int OnNetRegion(_ARGS_)
+        //    => Call<int>(FuncAddress.OnNetRegion, _ARGS_);
 
-        //public static _TYPE_ OnNetRegionAttr(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnNetRegionAttr, _ARGS_);
+        //public static int OnNetRegionAttr(_ARGS_)
+        //    => Call<int>(FuncAddress.OnNetRegionAttr, _ARGS_);
 
-        //public static _TYPE_ OnNetRegionAttrPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnNetRegionAttrPlus, _ARGS_);
+        //public static int OnNetRegionAttrPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OnNetRegionAttrPlus, _ARGS_);
 
-        //public static _TYPE_ OnNetRegionPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnNetRegionPlus, _ARGS_);
+        //public static int OnNetRegionPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OnNetRegionPlus, _ARGS_);
 
-        //public static _TYPE_ OnObjAnimEnd(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnObjAnimEnd, _ARGS_);
+        //public static int OnObjAnimEnd(_ARGS_)
+        //    => Call<int>(FuncAddress.OnObjAnimEnd, _ARGS_);
 
-        //public static _TYPE_ OnObjAnimEndPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnObjAnimEndPlus, _ARGS_);
+        //public static int OnObjAnimEndPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OnObjAnimEndPlus, _ARGS_);
 
-        //public static _TYPE_ OnObjDestroy(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnObjDestroy, _ARGS_);
+        //public static int OnObjDestroy(_ARGS_)
+        //    => Call<int>(FuncAddress.OnObjDestroy, _ARGS_);
 
-        //public static _TYPE_ OnObjectDamageHit(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnObjectDamageHit, _ARGS_);
+        //public static int OnObjectDamageHit(_ARGS_)
+        //    => Call<int>(FuncAddress.OnObjectDamageHit, _ARGS_);
 
-        //public static _TYPE_ OnObjectDamageHit_NoCall(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnObjectDamageHit_NoCall, _ARGS_);
+        //public static int OnObjectDamageHit_NoCall(_ARGS_)
+        //    => Call<int>(FuncAddress.OnObjectDamageHit_NoCall, _ARGS_);
 
-        //public static _TYPE_ OnObjectDamageHit_NoCallPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnObjectDamageHit_NoCallPlus, _ARGS_);
+        //public static int OnObjectDamageHit_NoCallPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OnObjectDamageHit_NoCallPlus, _ARGS_);
 
-        //public static _TYPE_ OnPlayerActionInRegion(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerActionInRegion, _ARGS_);
+        //public static int OnPlayerActionInRegion(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerActionInRegion, _ARGS_);
 
-        //public static _TYPE_ OnPlayerActionInRegionAngle(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerActionInRegionAngle, _ARGS_);
+        //public static int OnPlayerActionInRegionAngle(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerActionInRegionAngle, _ARGS_);
 
-        //public static _TYPE_ OnPlayerActionInRegionAngleAttribute(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerActionInRegionAngleAttribute, _ARGS_);
+        //public static int OnPlayerActionInRegionAngleAttribute(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerActionInRegionAngleAttribute, _ARGS_);
 
-        //public static _TYPE_ OnPlayerActionInRegionAttribute(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerActionInRegionAttribute, _ARGS_);
+        //public static int OnPlayerActionInRegionAttribute(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerActionInRegionAttribute, _ARGS_);
 
-        //public static _TYPE_ OnPlayerAssessMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerAssessMenu, _ARGS_);
+        //public static int OnPlayerAssessMenu(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerAssessMenu, _ARGS_);
 
-        //public static _TYPE_ OnPlayerDistanceAngleInTarget(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerDistanceAngleInTarget, _ARGS_);
+        //public static int OnPlayerDistanceAngleInTarget(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerDistanceAngleInTarget, _ARGS_);
 
-        //public static _TYPE_ OnPlayerDistanceInTarget(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerDistanceInTarget, _ARGS_);
+        //public static int OnPlayerDistanceInTarget(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerDistanceInTarget, _ARGS_);
 
-        //public static _TYPE_ OnPlayerDistanceOut(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerDistanceOut, _ARGS_);
+        //public static int OnPlayerDistanceOut(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerDistanceOut, _ARGS_);
 
-        //public static _TYPE_ OnPlayerKill(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnPlayerKill, _ARGS_);
+        //public static int OnPlayerKill(_ARGS_)
+        //    => Call<int>(FuncAddress.OnPlayerKill, _ARGS_);
 
-        //public static _TYPE_ OnRegionIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnRegionIn, _ARGS_);
+        //public static int OnRegionIn(_ARGS_)
+        //    => Call<int>(FuncAddress.OnRegionIn, _ARGS_);
 
-        //public static _TYPE_ OnRegionJustIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnRegionJustIn, _ARGS_);
+        //public static int OnRegionJustIn(_ARGS_)
+        //    => Call<int>(FuncAddress.OnRegionJustIn, _ARGS_);
 
-        //public static _TYPE_ OnRegionJustOut(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnRegionJustOut, _ARGS_);
+        //public static int OnRegionJustOut(_ARGS_)
+        //    => Call<int>(FuncAddress.OnRegionJustOut, _ARGS_);
 
-        //public static _TYPE_ OnRegistFunc(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnRegistFunc, _ARGS_);
+        //public static int OnRegistFunc(_ARGS_)
+        //    => Call<int>(FuncAddress.OnRegistFunc, _ARGS_);
 
-        //public static _TYPE_ OnRequestMenuEnd(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnRequestMenuEnd, _ARGS_);
+        //public static int OnRequestMenuEnd(_ARGS_)
+        //    => Call<int>(FuncAddress.OnRequestMenuEnd, _ARGS_);
 
-        //public static _TYPE_ OnRevengeMenuClose(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnRevengeMenuClose, _ARGS_);
+        //public static int OnRevengeMenuClose(_ARGS_)
+        //    => Call<int>(FuncAddress.OnRevengeMenuClose, _ARGS_);
 
-        //public static _TYPE_ OnSelectMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSelectMenu, _ARGS_);
+        //public static int OnSelectMenu(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSelectMenu, _ARGS_);
 
-        //public static _TYPE_ OnSelfBloodMark(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSelfBloodMark, _ARGS_);
+        //public static int OnSelfBloodMark(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSelfBloodMark, _ARGS_);
 
-        //public static _TYPE_ OnSelfHeroBloodMark(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSelfHeroBloodMark, _ARGS_);
+        //public static int OnSelfHeroBloodMark(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSelfHeroBloodMark, _ARGS_);
 
-        //public static _TYPE_ OnSessionIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSessionIn, _ARGS_);
+        //public static int OnSessionIn(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSessionIn, _ARGS_);
 
-        //public static _TYPE_ OnSessionInfo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSessionInfo, _ARGS_);
+        //public static int OnSessionInfo(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSessionInfo, _ARGS_);
 
-        //public static _TYPE_ OnSessionJustIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSessionJustIn, _ARGS_);
+        //public static int OnSessionJustIn(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSessionJustIn, _ARGS_);
 
-        //public static _TYPE_ OnSessionJustOut(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSessionJustOut, _ARGS_);
+        //public static int OnSessionJustOut(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSessionJustOut, _ARGS_);
 
-        //public static _TYPE_ OnSessionOut(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSessionOut, _ARGS_);
+        //public static int OnSessionOut(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSessionOut, _ARGS_);
 
-        //public static _TYPE_ OnSimpleDamage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnSimpleDamage, _ARGS_);
+        //public static int OnSimpleDamage(_ARGS_)
+        //    => Call<int>(FuncAddress.OnSimpleDamage, _ARGS_);
 
-        //public static _TYPE_ OnTalkEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnTalkEvent, _ARGS_);
+        //public static int OnTalkEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.OnTalkEvent, _ARGS_);
 
-        //public static _TYPE_ OnTalkEventAngleOut(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnTalkEventAngleOut, _ARGS_);
+        //public static int OnTalkEventAngleOut(_ARGS_)
+        //    => Call<int>(FuncAddress.OnTalkEventAngleOut, _ARGS_);
 
-        //public static _TYPE_ OnTalkEventDistIn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnTalkEventDistIn, _ARGS_);
+        //public static int OnTalkEventDistIn(_ARGS_)
+        //    => Call<int>(FuncAddress.OnTalkEventDistIn, _ARGS_);
 
-        //public static _TYPE_ OnTalkEventDistOut(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnTalkEventDistOut, _ARGS_);
+        //public static int OnTalkEventDistOut(_ARGS_)
+        //    => Call<int>(FuncAddress.OnTalkEventDistOut, _ARGS_);
 
-        //public static _TYPE_ OnTestEffectEndPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnTestEffectEndPlus, _ARGS_);
+        //public static int OnTestEffectEndPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OnTestEffectEndPlus, _ARGS_);
 
-        //public static _TYPE_ OnTextEffectEnd(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnTextEffectEnd, _ARGS_);
+        //public static int OnTextEffectEnd(_ARGS_)
+        //    => Call<int>(FuncAddress.OnTextEffectEnd, _ARGS_);
 
-        //public static _TYPE_ OnTurnCharactorEnd(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnTurnCharactorEnd, _ARGS_);
+        //public static int OnTurnCharactorEnd(_ARGS_)
+        //    => Call<int>(FuncAddress.OnTurnCharactorEnd, _ARGS_);
 
-        //public static _TYPE_ OnWanderFade(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnWanderFade, _ARGS_);
+        //public static int OnWanderFade(_ARGS_)
+        //    => Call<int>(FuncAddress.OnWanderFade, _ARGS_);
 
-        //public static _TYPE_ OnWanderingDemon(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnWanderingDemon, _ARGS_);
+        //public static int OnWanderingDemon(_ARGS_)
+        //    => Call<int>(FuncAddress.OnWanderingDemon, _ARGS_);
 
-        //public static _TYPE_ OnWarpMenuClose(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnWarpMenuClose, _ARGS_);
+        //public static int OnWarpMenuClose(_ARGS_)
+        //    => Call<int>(FuncAddress.OnWarpMenuClose, _ARGS_);
 
-        //public static _TYPE_ OnYesNoDialog(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OnYesNoDialog, _ARGS_);
+        //public static int OnYesNoDialog(_ARGS_)
+        //    => Call<int>(FuncAddress.OnYesNoDialog, _ARGS_);
 
-        //public static _TYPE_ OpenCampMenu(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OpenCampMenu, _ARGS_);
+        public static int OpenCampMenu()
+            => Call<int>(FuncAddress.OpenCampMenu);
 
-        //public static _TYPE_ OpeningDead(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OpeningDead, _ARGS_);
+        public static int OpeningDead(int ChrID, bool b)
+            => Call<int>(FuncAddress.OpeningDead, ChrID, b);
 
-        //public static _TYPE_ OpeningDeadPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OpeningDeadPlus, _ARGS_);
+        //public static int OpeningDeadPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.OpeningDeadPlus, _ARGS_);
 
-        //public static _TYPE_ OpenSOSMsg_Tutorial(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.OpenSOSMsg_Tutorial, _ARGS_);
+        //public static int OpenSOSMsg_Tutorial(_ARGS_)
+        //    => Call<int>(FuncAddress.OpenSOSMsg_Tutorial, _ARGS_);
 
-        //public static _TYPE_ ParamInitialize(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ParamInitialize, _ARGS_);
+        //public static int ParamInitialize(_ARGS_)
+        //    => Call<int>(FuncAddress.ParamInitialize, _ARGS_);
 
-        //public static _TYPE_ PauseTutorial(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PauseTutorial, _ARGS_);
+        //public static int PauseTutorial(_ARGS_)
+        //    => Call<int>(FuncAddress.PauseTutorial, _ARGS_);
 
-        //public static _TYPE_ PlayAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PlayAnimation, _ARGS_);
+        public static int PlayAnimation(int ChrID, int AnimID)
+            => Call<int>(FuncAddress.PlayAnimation, ChrID, AnimID);
 
-        //public static _TYPE_ PlayAnimationStayCancel(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PlayAnimationStayCancel, _ARGS_);
+        public static int PlayAnimationStayCancel(int ChrID, int AnimID)
+            => Call<int>(FuncAddress.PlayAnimationStayCancel, ChrID, AnimID);
 
-        //public static _TYPE_ PlayerChrResetAnimation_RemoOnly(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PlayerChrResetAnimation_RemoOnly, _ARGS_);
+        //public static int PlayerChrResetAnimation_RemoOnly(_ARGS_)
+        //    => Call<int>(FuncAddress.PlayerChrResetAnimation_RemoOnly, _ARGS_);
 
-        //public static _TYPE_ PlayLoopAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PlayLoopAnimation, _ARGS_);
+        public static int PlayLoopAnimation(int ChrID, int AnimID)
+            => Call<int>(FuncAddress.PlayLoopAnimation, ChrID, AnimID);
 
-        //public static _TYPE_ PlayObjectSE(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PlayObjectSE, _ARGS_);
+        //public static int PlayObjectSE(_ARGS_)
+        //    => Call<int>(FuncAddress.PlayObjectSE, _ARGS_);
 
-        //public static _TYPE_ PlayPointSE(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PlayPointSE, _ARGS_);
+        //public static int PlayPointSE(_ARGS_)
+        //    => Call<int>(FuncAddress.PlayPointSE, _ARGS_);
 
-        //public static _TYPE_ PlayTypeSE(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.PlayTypeSE, _ARGS_);
+        //public static int PlayTypeSE(_ARGS_)
+        //    => Call<int>(FuncAddress.PlayTypeSE, _ARGS_);
 
-        //public static _TYPE_ RecallMenuEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RecallMenuEvent, _ARGS_);
+        //public static int RecallMenuEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.RecallMenuEvent, _ARGS_);
 
-        //public static _TYPE_ ReconstructBreak(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ReconstructBreak, _ARGS_);
+        //public static int ReconstructBreak(_ARGS_)
+        //    => Call<int>(FuncAddress.ReconstructBreak, _ARGS_);
 
-        //public static _TYPE_ RecoveryHeroin(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RecoveryHeroin, _ARGS_);
+        //public static int RecoveryHeroin(_ARGS_)
+        //    => Call<int>(FuncAddress.RecoveryHeroin, _ARGS_);
 
-        //public static _TYPE_ RegistObjact(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RegistObjact, _ARGS_);
+        //public static int RegistObjact(_ARGS_)
+        //    => Call<int>(FuncAddress.RegistObjact, _ARGS_);
 
-        //public static _TYPE_ RegistSimpleTalk(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RegistSimpleTalk, _ARGS_);
+        //public static int RegistSimpleTalk(_ARGS_)
+        //    => Call<int>(FuncAddress.RegistSimpleTalk, _ARGS_);
 
-        //public static _TYPE_ RemoveInventoryEquip(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RemoveInventoryEquip, _ARGS_);
+        public static bool RemoveInventoryEquip(ItemCategory Category, int ItemID)
+            => Call<int>(FuncAddress.RemoveInventoryEquip, (int)Category, ItemID) == 1; //1 = success, -256 = fail
 
-        //public static _TYPE_ RepeatMessage_begin(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RepeatMessage_begin, _ARGS_);
+        //public static int RepeatMessage_begin(_ARGS_)
+        //    => Call<int>(FuncAddress.RepeatMessage_begin, _ARGS_);
 
-        //public static _TYPE_ RepeatMessage_end(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RepeatMessage_end, _ARGS_);
+        //public static int RepeatMessage_end(_ARGS_)
+        //    => Call<int>(FuncAddress.RepeatMessage_end, _ARGS_);
 
-        //public static _TYPE_ RequestEnding(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestEnding, _ARGS_);
+        public static int RequestEnding()
+            => Call<int>(FuncAddress.RequestEnding);
 
-        //public static _TYPE_ RequestForceUpdateNetwork(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestForceUpdateNetwork, _ARGS_);
+        public static int RequestForceUpdateNetwork(int ChrID)
+            => Call<int>(FuncAddress.RequestForceUpdateNetwork, ChrID);
 
-        //public static _TYPE_ RequestFullRecover(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestFullRecover, _ARGS_);
+        public static int RequestFullRecover()
+            => Call<int>(FuncAddress.RequestFullRecover);
 
-        //public static _TYPE_ RequestGenerate(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestGenerate, _ARGS_);
+        public static int RequestGenerate(int ChrID)
+            => Call<int>(FuncAddress.RequestGenerate, ChrID);
 
-        //public static _TYPE_ RequestNormalUpdateNetwork(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestNormalUpdateNetwork, _ARGS_);
+        //public static int RequestNormalUpdateNetwork(_ARGS_)
+        //    => Call<int>(FuncAddress.RequestNormalUpdateNetwork, _ARGS_);
 
-        //public static _TYPE_ RequestOpenBriefingMsg(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestOpenBriefingMsg, _ARGS_);
+        public static int RequestOpenBriefingMsg(int MessageID, bool State)
+            => Call<int>(FuncAddress.RequestOpenBriefingMsg, MessageID, State);
 
-        //public static _TYPE_ RequestOpenBriefingMsgPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestOpenBriefingMsgPlus, _ARGS_);
+        //public static int RequestOpenBriefingMsgPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.RequestOpenBriefingMsgPlus, _ARGS_);
 
-        //public static _TYPE_ RequestPlayMovie(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestPlayMovie, _ARGS_);
+        //public static int RequestPlayMovie(_ARGS_)
+        //    => Call<int>(FuncAddress.RequestPlayMovie, _ARGS_);
 
-        //public static _TYPE_ RequestPlayMoviePlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestPlayMoviePlus, _ARGS_);
+        //public static int RequestPlayMoviePlus(_ARGS_)
+        //    => Call<int>(FuncAddress.RequestPlayMoviePlus, _ARGS_);
 
-        //public static _TYPE_ RequestRemo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestRemo, _ARGS_);
+        //public static int RequestRemo(_ARGS_)
+        //    => Call<int>(FuncAddress.RequestRemo, _ARGS_);
 
-        //public static _TYPE_ RequestRemoPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestRemoPlus, _ARGS_);
+        //public static int RequestRemoPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.RequestRemoPlus, _ARGS_);
 
-        //public static _TYPE_ RequestUnlockTrophy(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RequestUnlockTrophy, _ARGS_);
+        public static int RequestUnlockTrophy(int TrophyID)
+            => Call<int>(FuncAddress.RequestUnlockTrophy, TrophyID);
 
-        //public static _TYPE_ ReqularLeavePlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ReqularLeavePlayer, _ARGS_);
+        public static int ReqularLeavePlayer(int NetworkPlayerID)
+            => Call<int>(FuncAddress.ReqularLeavePlayer, NetworkPlayerID);
 
-        //public static _TYPE_ ResetCamAngle(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ResetCamAngle, _ARGS_);
+        public static int ResetCamAngle()
+            => Call<int>(FuncAddress.ResetCamAngle);
 
-        //public static _TYPE_ ResetEventQwcSpEffect(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ResetEventQwcSpEffect, _ARGS_);
+        public static int ResetEventQwcSpEffect(int ChrID)
+            => Call<int>(FuncAddress.ResetEventQwcSpEffect, ChrID);
 
-        //public static _TYPE_ ResetSummonParam(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ResetSummonParam, _ARGS_);
+        public static int ResetSummonParam()
+            => Call<int>(FuncAddress.ResetSummonParam);
 
-        //public static _TYPE_ ResetSyncRideObjInfo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ResetSyncRideObjInfo, _ARGS_);
+        public static int ResetSyncRideObjInfo(int UnknownID)
+            => Call<int>(FuncAddress.ResetSyncRideObjInfo, UnknownID);
 
-        //public static _TYPE_ ResetThink(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ResetThink, _ARGS_);
+        public static int ResetThink(int ChrID)
+            => Call<int>(FuncAddress.ResetThink, ChrID);
 
-        //public static _TYPE_ RestorePiece(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RestorePiece, _ARGS_);
+        public static int RestorePiece(int ObjID)
+            => Call<int>(FuncAddress.RestorePiece, ObjID);
 
-        //public static _TYPE_ ReturnMapSelect(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ReturnMapSelect, _ARGS_);
+        public static int ReturnMapSelect()
+            => Call<int>(FuncAddress.ReturnMapSelect);
 
-        //public static _TYPE_ RevivePlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RevivePlayer, _ARGS_);
+        public static bool RevivePlayer()
+            => Call<bool>(FuncAddress.RevivePlayer);
 
-        //public static _TYPE_ RevivePlayerNext(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.RevivePlayerNext, _ARGS_);
+        public static int RevivePlayerNext()
+            => Call<int>(FuncAddress.RevivePlayerNext);
 
-        //public static _TYPE_ SaveRequest(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SaveRequest, _ARGS_);
+        public static int SaveRequest()
+            => Call<int>(FuncAddress.SaveRequest);
 
-        //public static _TYPE_ SaveRequest_Profile(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SaveRequest_Profile, _ARGS_);
+        public static int SaveRequest_Profile()
+            => Call<int>(FuncAddress.SaveRequest_Profile);
 
-        //public static _TYPE_ SendEventRequest(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SendEventRequest, _ARGS_);
+        //public static int SendEventRequest(_ARGS_)
+        //    => Call<int>(FuncAddress.SendEventRequest, _ARGS_);
 
-        //public static _TYPE_ SetAlive(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetAlive, _ARGS_);
+        public static int SetAlive(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetAlive, ChrID, State);
 
-        //public static _TYPE_ SetAliveMotion(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetAliveMotion, _ARGS_);
+        public static int SetAliveMotion(bool a)
+            => Call<int>(FuncAddress.SetAliveMotion, a);
 
-        //public static _TYPE_ SetAlwaysDrawForEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetAlwaysDrawForEvent, _ARGS_);
+        //public static int SetAlwaysDrawForEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.SetAlwaysDrawForEvent, _ARGS_);
 
-        //public static _TYPE_ SetAlwaysEnableBackread_forEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetAlwaysEnableBackread_forEvent, _ARGS_);
+        //public static int SetAlwaysEnableBackread_forEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.SetAlwaysEnableBackread_forEvent, _ARGS_);
 
-        //public static _TYPE_ SetAngleFoward(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetAngleFoward, _ARGS_);
+        //public static int SetAngleFoward(_ARGS_)
+        //    => Call<int>(FuncAddress.SetAngleFoward, _ARGS_);
 
-        //public static _TYPE_ SetAreaStartMapUid(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetAreaStartMapUid, _ARGS_);
+        public static int SetAreaStartMapUid(int AreaID)
+            => Call<int>(FuncAddress.SetAreaStartMapUid, AreaID);
 
-        //public static _TYPE_ SetBossGauge(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetBossGauge, _ARGS_);
+        public static int SetBossGauge(int ChrID, int GaugeID, int NameID)
+            => Call<int>(FuncAddress.SetBossGauge, ChrID, GaugeID, NameID);
 
-        //public static _TYPE_ SetBossUnitJrHit(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetBossUnitJrHit, _ARGS_);
+        //public static int SetBossUnitJrHit(_ARGS_)
+        //    => Call<int>(FuncAddress.SetBossUnitJrHit, _ARGS_);
 
-        //public static _TYPE_ SetBountyRankPoint(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetBountyRankPoint, _ARGS_);
+        //public static int SetBountyRankPoint(_ARGS_)
+        //    => Call<int>(FuncAddress.SetBountyRankPoint, _ARGS_);
 
-        //public static _TYPE_ SetBrokenPiece(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetBrokenPiece, _ARGS_);
+        public static int SetBrokenPiece(int ObjID)
+            => Call<int>(FuncAddress.SetBrokenPiece, ObjID);
 
-        //public static _TYPE_ SetCamModeParamTargetId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetCamModeParamTargetId, _ARGS_);
+        //public static int SetCamModeParamTargetId(_ARGS_)
+        //    => Call<int>(FuncAddress.SetCamModeParamTargetId, _ARGS_);
 
-        //public static _TYPE_ SetCamModeParamTargetIdForBossLock(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetCamModeParamTargetIdForBossLock, _ARGS_);
+        //public static int SetCamModeParamTargetIdForBossLock(_ARGS_)
+        //    => Call<int>(FuncAddress.SetCamModeParamTargetIdForBossLock, _ARGS_);
 
-        //public static _TYPE_ SetChrType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetChrType, _ARGS_);
+        public static int SetChrType(int ChrID, ChrType Type)
+            => Call<int>(FuncAddress.SetChrType, ChrID, (int)Type);
 
-        //public static _TYPE_ SetChrTypeDataGrey(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetChrTypeDataGrey, _ARGS_);
+        public static int SetChrTypeDataGrey()
+            => Call<int>(FuncAddress.SetChrTypeDataGrey);
 
-        //public static _TYPE_ SetChrTypeDataGreyNext(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetChrTypeDataGreyNext, _ARGS_);
+        //public static int SetChrTypeDataGreyNext(_ARGS_)
+        //    => Call<int>(FuncAddress.SetChrTypeDataGreyNext, _ARGS_);
 
-        //public static _TYPE_ SetClearBonus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetClearBonus, _ARGS_);
+        //public static int SetClearBonus(_ARGS_)
+        //    => Call<int>(FuncAddress.SetClearBonus, _ARGS_);
 
-        //public static _TYPE_ SetClearItem(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetClearItem, _ARGS_);
+        public static int SetClearItem(bool a)
+            => Call<int>(FuncAddress.SetClearItem, a);
 
-        //public static _TYPE_ SetClearSesiionCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetClearSesiionCount, _ARGS_);
+        public static int SetClearSesiionCount()
+            => Call<int>(FuncAddress.SetClearSesiionCount);
 
-        //public static _TYPE_ SetClearState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetClearState, _ARGS_);
+        //public static int SetClearState(_ARGS_)
+        //    => Call<int>(FuncAddress.SetClearState, _ARGS_);
 
-        //public static _TYPE_ SetColiEnable(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetColiEnable, _ARGS_);
+        //public static int SetColiEnable(_ARGS_)
+        //    => Call<int>(FuncAddress.SetColiEnable, _ARGS_);
 
-        //public static _TYPE_ SetColiEnableArray(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetColiEnableArray, _ARGS_);
+        //public static int SetColiEnableArray(_ARGS_)
+        //    => Call<int>(FuncAddress.SetColiEnableArray, _ARGS_);
 
-        //public static _TYPE_ SetCompletelyNoMove(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetCompletelyNoMove, _ARGS_);
+        //public static int SetCompletelyNoMove(_ARGS_)
+        //    => Call<int>(FuncAddress.SetCompletelyNoMove, _ARGS_);
 
-        //public static _TYPE_ SetDeadMode(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDeadMode, _ARGS_);
+        //public static int SetDeadMode(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDeadMode, _ARGS_);
 
-        //public static _TYPE_ SetDeadMode2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDeadMode2, _ARGS_);
+        //public static int SetDeadMode2(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDeadMode2, _ARGS_);
 
-        //public static _TYPE_ SetDefaultAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDefaultAnimation, _ARGS_);
+        //public static int SetDefaultAnimation(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDefaultAnimation, _ARGS_);
 
-        //public static _TYPE_ SetDefaultMapUid(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDefaultMapUid, _ARGS_);
+        //public static int SetDefaultMapUid(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDefaultMapUid, _ARGS_);
 
-        //public static _TYPE_ SetDefaultRoutePoint(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDefaultRoutePoint, _ARGS_);
+        public static int SetDefaultRoutePoint(int ChrID)
+            => Call<int>(FuncAddress.SetDefaultRoutePoint, ChrID);
 
-        //public static _TYPE_ SetDisable(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDisable, _ARGS_);
+        public static int SetDisable(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetDisable, ChrID, State);
 
-        //public static _TYPE_ SetDisableBackread_forEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDisableBackread_forEvent, _ARGS_);
+        public static int SetDisableBackread_forEvent(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetDisableBackread_forEvent, ChrID, State);
 
-        //public static _TYPE_ SetDisableDamage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDisableDamage, _ARGS_);
+        public static int SetDisableDamage(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetDisableDamage, ChrID, State);
 
-        //public static _TYPE_ SetDisableGravity(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDisableGravity, _ARGS_);
+        public static int SetDisableGravity(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetDisableGravity, ChrID, State);
 
-        //public static _TYPE_ SetDisableWeakDamageAnim(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDisableWeakDamageAnim, _ARGS_);
+        //public static int SetDisableWeakDamageAnim(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDisableWeakDamageAnim, _ARGS_);
 
-        //public static _TYPE_ SetDisableWeakDamageAnim_light(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDisableWeakDamageAnim_light, _ARGS_);
+        //public static int SetDisableWeakDamageAnim_light(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDisableWeakDamageAnim_light, _ARGS_);
 
-        //public static _TYPE_ SetDispMask(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDispMask, _ARGS_);
+        //public static int SetDispMask(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDispMask, _ARGS_);
 
-        //public static _TYPE_ SetDrawEnable(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDrawEnable, _ARGS_);
+        public static int SetDrawEnable(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetDrawEnable, ChrID, State);
 
-        //public static _TYPE_ SetDrawEnableArray(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDrawEnableArray, _ARGS_);
+        //public static int SetDrawEnableArray(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDrawEnableArray, _ARGS_);
 
-        //public static _TYPE_ SetDrawGroup(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetDrawGroup, _ARGS_);
+        //public static int SetDrawGroup(_ARGS_)
+        //    => Call<int>(FuncAddress.SetDrawGroup, _ARGS_);
 
-        //public static _TYPE_ SetEnableEventPad(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEnableEventPad, _ARGS_);
+        public static int SetEnableEventPad(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetEnableEventPad, ChrID, State);
 
-        //public static _TYPE_ SetEventBodyBulletCorrect(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventBodyBulletCorrect, _ARGS_);
+        //public static int SetEventBodyBulletCorrect(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventBodyBulletCorrect, _ARGS_);
 
-        //public static _TYPE_ SetEventBodyMaterialSeAndSfx(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventBodyMaterialSeAndSfx, _ARGS_);
+        //public static int SetEventBodyMaterialSeAndSfx(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventBodyMaterialSeAndSfx, _ARGS_);
 
-        //public static _TYPE_ SetEventBodyMaxHp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventBodyMaxHp, _ARGS_);
+        //public static int SetEventBodyMaxHp(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventBodyMaxHp, _ARGS_);
 
-        //public static _TYPE_ SetEventCommand(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventCommand, _ARGS_);
+        public static int SetEventCommand(int ChrID, int b)
+            => Call<int>(FuncAddress.SetEventCommand, ChrID, b);
 
-        //public static _TYPE_ SetEventCommandIndex(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventCommandIndex, _ARGS_);
+        //public static int SetEventCommandIndex(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventCommandIndex, _ARGS_);
 
-        //public static _TYPE_ SetEventFlag(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventFlag, _ARGS_);
+        public static int SetEventFlag(int EventID, bool State)
+            => Call<int>(FuncAddress.SetEventFlag, EventID, State);
 
-        //public static _TYPE_ SetEventFlagValue(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventFlagValue, _ARGS_);
+        //public static int SetEventFlagValue(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventFlagValue, _ARGS_);
 
-        //public static _TYPE_ SetEventGenerate(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventGenerate, _ARGS_);
+        public static int SetEventGenerate(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetEventGenerate, ChrID, State);
 
-        //public static _TYPE_ SetEventMovePointType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventMovePointType, _ARGS_);
+        public static int SetEventMovePointType(int ChrID, POINT_MOVE_TYPE Type)
+            => Call<int>(FuncAddress.SetEventMovePointType, ChrID, (int)Type);
 
-        //public static _TYPE_ SetEventSimpleTalk(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventSimpleTalk, _ARGS_);
+        //public static int SetEventSimpleTalk(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventSimpleTalk, _ARGS_);
 
-        //public static _TYPE_ SetEventSpecialEffect(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventSpecialEffect, _ARGS_);
+        //TODO: CONFIRM USE OF SP_EFFECT_TYPE HERE
+        public static int SetEventSpecialEffect(int ChrID, SP_EFFECT_TYPE Type)
+            => Call<int>(FuncAddress.SetEventSpecialEffect, ChrID, (int)Type);
 
-        //public static _TYPE_ SetEventSpecialEffect_2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventSpecialEffect_2, _ARGS_);
+        //TODO: CONFIRM USE OF SP_EFFECT_TYPE HERE
+        public static int SetEventSpecialEffect_2(int ChrID, SP_EFFECT_TYPE Type)
+            => Call<int>(FuncAddress.SetEventSpecialEffect_2, ChrID, (int)Type);
 
-        //public static _TYPE_ SetEventSpecialEffectOwner(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventSpecialEffectOwner, _ARGS_);
+        //public static int SetEventSpecialEffectOwner(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventSpecialEffectOwner, _ARGS_);
 
-        //public static _TYPE_ SetEventSpecialEffectOwner_2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventSpecialEffectOwner_2, _ARGS_);
+        //public static int SetEventSpecialEffectOwner_2(_ARGS_)
+        //    => Call<int>(FuncAddress.SetEventSpecialEffectOwner_2, _ARGS_);
 
-        //public static _TYPE_ SetEventTarget(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetEventTarget, _ARGS_);
+        public static int SetEventTarget(int ChrID1, int ChrID2)
+            => Call<int>(FuncAddress.SetEventTarget, ChrID1, ChrID2);
 
-        //public static _TYPE_ SetExVelocity(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetExVelocity, _ARGS_);
+        //public static int SetExVelocity(_ARGS_)
+        //    => Call<int>(FuncAddress.SetExVelocity, _ARGS_);
 
-        //public static _TYPE_ SetFirstSpeed(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetFirstSpeed, _ARGS_);
+        //public static int SetFirstSpeed(_ARGS_)
+        //    => Call<int>(FuncAddress.SetFirstSpeed, _ARGS_);
 
-        //public static _TYPE_ SetFirstSpeedPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetFirstSpeedPlus, _ARGS_);
+        //public static int SetFirstSpeedPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.SetFirstSpeedPlus, _ARGS_);
 
-        //public static _TYPE_ SetFlagInitState(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetFlagInitState, _ARGS_);
+        //public static int SetFlagInitState(_ARGS_)
+        //    => Call<int>(FuncAddress.SetFlagInitState, _ARGS_);
 
-        //public static _TYPE_ SetFootIKInterpolateType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetFootIKInterpolateType, _ARGS_);
+        //public static int SetFootIKInterpolateType(_ARGS_)
+        //    => Call<int>(FuncAddress.SetFootIKInterpolateType, _ARGS_);
 
-        //public static _TYPE_ SetForceJoinBlackRequest(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetForceJoinBlackRequest, _ARGS_);
+        public static int SetForceJoinBlackRequest()
+            => Call<int>(FuncAddress.SetForceJoinBlackRequest);
 
-        //public static _TYPE_ SetHitInfo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetHitInfo, _ARGS_);
+        //public static int SetHitInfo(_ARGS_)
+        //    => Call<int>(FuncAddress.SetHitInfo, _ARGS_);
 
-        //public static _TYPE_ SetHitMask(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetHitMask, _ARGS_);
+        //public static int SetHitMask(_ARGS_)
+        //    => Call<int>(FuncAddress.SetHitMask, _ARGS_);
 
-        //public static _TYPE_ SetHp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetHp, _ARGS_);
+        //public static int SetHp(_ARGS_)
+        //    => Call<int>(FuncAddress.SetHp, _ARGS_);
 
-        //public static _TYPE_ SetIgnoreHit(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetIgnoreHit, _ARGS_);
+        public static int SetIgnoreHit(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetIgnoreHit, ChrID, State);
 
-        //public static _TYPE_ SetInfomationPriority(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetInfomationPriority, _ARGS_);
+        public static int SetInfomationPriority(int a)
+            => Call<int>(FuncAddress.SetInfomationPriority, a);
 
-        //public static _TYPE_ SetInsideBattleArea(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetInsideBattleArea, _ARGS_);
+        public static int SetInsideBattleArea(int ChrID, bool State)
+            => Call<int>(FuncAddress.SetInsideBattleArea, ChrID, State);
 
-        //public static _TYPE_ SetIsAnimPauseOnRemoPlayForEvent(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetIsAnimPauseOnRemoPlayForEvent, _ARGS_);
+        //public static int SetIsAnimPauseOnRemoPlayForEvent(_ARGS_)
+        //    => Call<int>(FuncAddress.SetIsAnimPauseOnRemoPlayForEvent, _ARGS_);
 
-        //public static _TYPE_ SetKeepCommandIndex(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetKeepCommandIndex, _ARGS_);
+        //public static int SetKeepCommandIndex(_ARGS_)
+        //    => Call<int>(FuncAddress.SetKeepCommandIndex, _ARGS_);
 
-        //public static _TYPE_ SetLoadWait(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetLoadWait, _ARGS_);
+        //public static int SetLoadWait(_ARGS_)
+        //    => Call<int>(FuncAddress.SetLoadWait, _ARGS_);
 
-        //public static _TYPE_ SetLockActPntInvalidateMask(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetLockActPntInvalidateMask, _ARGS_);
+        //public static int SetLockActPntInvalidateMask(_ARGS_)
+        //    => Call<int>(FuncAddress.SetLockActPntInvalidateMask, _ARGS_);
 
-        //public static _TYPE_ SetMapUid(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetMapUid, _ARGS_);
+        //Note: c and d are likely the 3rd and 4th numbers in map name (m##_##_##_##)
+        public static int SetMapUid(int Area, int Block, int c, int d, int Point)
+            => Call<int>(FuncAddress.SetMapUid, Area, Block, c, d, Point);
 
-        //public static _TYPE_ SetMaxHp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetMaxHp, _ARGS_);
+        //public static int SetMaxHp(_ARGS_)
+        //    => Call<int>(FuncAddress.SetMaxHp, _ARGS_);
 
-        //public static _TYPE_ SetMenuBrake(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetMenuBrake, _ARGS_);
+        //public static int SetMenuBrake(_ARGS_)
+        //    => Call<int>(FuncAddress.SetMenuBrake, _ARGS_);
 
-        //public static _TYPE_ SetMiniBlockIndex(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetMiniBlockIndex, _ARGS_);
+        //public static int SetMiniBlockIndex(_ARGS_)
+        //    => Call<int>(FuncAddress.SetMiniBlockIndex, _ARGS_);
 
-        //public static _TYPE_ SetMovePoint(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetMovePoint, _ARGS_);
+        public static int SetMovePoint(int ChrID, int AreaID, float c)
+            => Call<int>(FuncAddress.SetMovePoint, ChrID, AreaID, c);
 
-        //public static _TYPE_ SetMultiWallMapUid(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetMultiWallMapUid, _ARGS_);
+        //public static int SetMultiWallMapUid(_ARGS_)
+        //    => Call<int>(FuncAddress.SetMultiWallMapUid, _ARGS_);
 
-        //public static _TYPE_ SetNoNetSync(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetNoNetSync, _ARGS_);
+        //public static int SetNoNetSync(_ARGS_)
+        //    => Call<int>(FuncAddress.SetNoNetSync, _ARGS_);
 
-        //public static _TYPE_ SetObjDeactivate(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetObjDeactivate, _ARGS_);
+        //public static int SetObjDeactivate(_ARGS_)
+        //    => Call<int>(FuncAddress.SetObjDeactivate, _ARGS_);
 
-        //public static _TYPE_ SetObjDisableBreak(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetObjDisableBreak, _ARGS_);
+        //public static int SetObjDisableBreak(_ARGS_)
+        //    => Call<int>(FuncAddress.SetObjDisableBreak, _ARGS_);
 
-        //public static _TYPE_ SetObjEventCollisionFill(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetObjEventCollisionFill, _ARGS_);
+        //public static int SetObjEventCollisionFill(_ARGS_)
+        //    => Call<int>(FuncAddress.SetObjEventCollisionFill, _ARGS_);
 
-        //public static _TYPE_ SetObjSfx(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetObjSfx, _ARGS_);
+        public static int SetObjSfx(int a, int b, int c, bool d)
+            => Call<int>(FuncAddress.SetObjSfx, a, b, c, d);
 
-        //public static _TYPE_ SetReturnPointEntityId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetReturnPointEntityId, _ARGS_);
+        //public static int SetReturnPointEntityId(_ARGS_)
+        //    => Call<int>(FuncAddress.SetReturnPointEntityId, _ARGS_);
 
-        //public static _TYPE_ SetReviveWait(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetReviveWait, _ARGS_);
+        public static int SetReviveWait(bool State)
+            => Call<int>(FuncAddress.SetReviveWait, State);
 
-        //public static _TYPE_ SetSelfBloodMapUid(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSelfBloodMapUid, _ARGS_);
+        //public static int SetSelfBloodMapUid(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSelfBloodMapUid, _ARGS_);
 
-        //public static _TYPE_ SetSosSignPos(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSosSignPos, _ARGS_);
+        //public static int SetSosSignPos(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSosSignPos, _ARGS_);
 
-        //public static _TYPE_ SetSosSignWarp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSosSignWarp, _ARGS_);
+        //public static int SetSosSignWarp(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSosSignWarp, _ARGS_);
 
-        //public static _TYPE_ SetSpStayAndDamageAnimId(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSpStayAndDamageAnimId, _ARGS_);
+        //public static int SetSpStayAndDamageAnimId(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSpStayAndDamageAnimId, _ARGS_);
 
-        //public static _TYPE_ SetSpStayAndDamageAnimIdPlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSpStayAndDamageAnimIdPlus, _ARGS_);
+        //public static int SetSpStayAndDamageAnimIdPlus(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSpStayAndDamageAnimIdPlus, _ARGS_);
 
-        //public static _TYPE_ SetSubMenuBrake(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSubMenuBrake, _ARGS_);
+        //public static int SetSubMenuBrake(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSubMenuBrake, _ARGS_);
 
-        //public static _TYPE_ SetSummonedPos(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSummonedPos, _ARGS_);
+        public static int SetSummonedPos()
+            => Call<int>(FuncAddress.SetSummonedPos);
 
-        //public static _TYPE_ SetSyncRideObjInfo(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSyncRideObjInfo, _ARGS_);
+        //public static int SetSyncRideObjInfo(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSyncRideObjInfo, _ARGS_);
 
-        //public static _TYPE_ SetSystemIgnore(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetSystemIgnore, _ARGS_);
+        //public static int SetSystemIgnore(_ARGS_)
+        //    => Call<int>(FuncAddress.SetSystemIgnore, _ARGS_);
 
-        //public static _TYPE_ SetTalkMsg(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetTalkMsg, _ARGS_);
+        //public static int SetTalkMsg(_ARGS_)
+        //    => Call<int>(FuncAddress.SetTalkMsg, _ARGS_);
 
-        //public static _TYPE_ SetTeamType(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetTeamType, _ARGS_);
+        public static int SetTeamType(int ChrID, TEAM_TYPE Type)
+            => Call<int>(FuncAddress.SetTeamType, ChrID, (int)Type);
 
-        //public static _TYPE_ SetTeamTypeDefault(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetTeamTypeDefault, _ARGS_);
+        //TODO: CHECK IF INFERRED CORRECTLY
+        public static int SetTeamTypeDefault(int ChrID)
+            => Call<int>(FuncAddress.SetTeamTypeDefault, ChrID);
 
-        //public static _TYPE_ SetTeamTypePlus(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetTeamTypePlus, _ARGS_);
+        //public static int SetTeamTypePlus(_ARGS_)
+        //    => Call<int>(FuncAddress.SetTeamTypePlus, _ARGS_);
 
-        //public static _TYPE_ SetTextEffect(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetTextEffect, _ARGS_);
+        public static int SetTextEffect(int EffectID)
+            => Call<int>(FuncAddress.SetTextEffect, EffectID);
 
-        //public static _TYPE_ SetTutorialSummonedPos(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetTutorialSummonedPos, _ARGS_);
+        public static int SetTutorialSummonedPos()
+            => Call<int>(FuncAddress.SetTutorialSummonedPos);
 
-        //public static _TYPE_ SetValidTalk(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SetValidTalk, _ARGS_);
+        public static int SetValidTalk(int ChrID, bool b)
+            => Call<int>(FuncAddress.SetValidTalk, ChrID, b);
 
-        //public static _TYPE_ ShowGenDialog(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ShowGenDialog, _ARGS_);
+        public static int ShowGenDialog(int MessageID, int b, int c, bool d)
+            => Call<int>(FuncAddress.ShowGenDialog, MessageID, b, c, d);
 
-        //public static _TYPE_ ShowRankingDialog(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ShowRankingDialog, _ARGS_);
+        //public static int ShowRankingDialog(_ARGS_)
+        //    => Call<int>(FuncAddress.ShowRankingDialog, _ARGS_);
 
-        //public static _TYPE_ SOSMsgGetResult_Tutorial(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SOSMsgGetResult_Tutorial, _ARGS_);
+        //public static int SOSMsgGetResult_Tutorial(_ARGS_)
+        //    => Call<int>(FuncAddress.SOSMsgGetResult_Tutorial, _ARGS_);
 
-        //public static _TYPE_ StopLoopAnimation(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.StopLoopAnimation, _ARGS_);
+        //public static int StopLoopAnimation(_ARGS_)
+        //    => Call<int>(FuncAddress.StopLoopAnimation, _ARGS_);
 
-        //public static _TYPE_ StopPlayer(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.StopPlayer, _ARGS_);
+        //WARNING: NOT REVERSABLE. PLAYER WILL BE UNABLE TO MOVE UNTIL YOU QUIT TO TITLE SCREEN.
+        public static int StopPlayer()
+            => Call<int>(FuncAddress.StopPlayer);
 
-        //public static _TYPE_ StopPointSE(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.StopPointSE, _ARGS_);
+        //public static int StopPointSE(_ARGS_)
+        //    => Call<int>(FuncAddress.StopPointSE, _ARGS_);
 
-        //public static _TYPE_ SubActionCount(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SubActionCount, _ARGS_);
+        //public static int SubActionCount(_ARGS_)
+        //    => Call<int>(FuncAddress.SubActionCount, _ARGS_);
 
-        //public static _TYPE_ SubDispMaskByBit(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SubDispMaskByBit, _ARGS_);
+        //public static int SubDispMaskByBit(_ARGS_)
+        //    => Call<int>(FuncAddress.SubDispMaskByBit, _ARGS_);
 
-        //public static _TYPE_ SubHitMask(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SubHitMask, _ARGS_);
+        //public static int SubHitMask(_ARGS_)
+        //    => Call<int>(FuncAddress.SubHitMask, _ARGS_);
 
-        //public static _TYPE_ SubHitMaskByBit(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SubHitMaskByBit, _ARGS_);
+        //public static int SubHitMaskByBit(_ARGS_)
+        //    => Call<int>(FuncAddress.SubHitMaskByBit, _ARGS_);
 
-        //public static _TYPE_ SummonBlackRequest(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SummonBlackRequest, _ARGS_);
+        public static int SummonBlackRequest(int UnknownID)
+            => Call<int>(FuncAddress.SummonBlackRequest, UnknownID);
 
-        //public static _TYPE_ SummonedMapReload(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SummonedMapReload, _ARGS_);
+        public static int SummonedMapReload()
+            => Call<int>(FuncAddress.SummonedMapReload);
 
-        //public static _TYPE_ SummonSuccess(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SummonSuccess, _ARGS_);
+        //public static int SummonSuccess(_ARGS_)
+        //    => Call<int>(FuncAddress.SummonSuccess, _ARGS_);
 
-        //public static _TYPE_ SwitchDispMask(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SwitchDispMask, _ARGS_);
+        //public static int SwitchDispMask(_ARGS_)
+        //    => Call<int>(FuncAddress.SwitchDispMask, _ARGS_);
 
-        //public static _TYPE_ SwitchHitMask(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.SwitchHitMask, _ARGS_);
+        //public static int SwitchHitMask(_ARGS_)
+        //    => Call<int>(FuncAddress.SwitchHitMask, _ARGS_);
 
-        //public static _TYPE_ TalkNextPage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.TalkNextPage, _ARGS_);
+        public static int TalkNextPage(int a)
+            => Call<int>(FuncAddress.TalkNextPage, a);
 
-        //public static _TYPE_ TreasureDispModeChange(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.TreasureDispModeChange, _ARGS_);
+        //public static int TreasureDispModeChange(_ARGS_)
+        //    => Call<int>(FuncAddress.TreasureDispModeChange, _ARGS_);
 
-        //public static _TYPE_ TreasureDispModeChange2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.TreasureDispModeChange2, _ARGS_);
+        //public static int TreasureDispModeChange2(_ARGS_)
+        //    => Call<int>(FuncAddress.TreasureDispModeChange2, _ARGS_);
 
-        //public static _TYPE_ TurnCharactor(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.TurnCharactor, _ARGS_);
+        public static int TurnCharactor(int ChrID1, int ChrID2)
+            => Call<int>(FuncAddress.TurnCharactor, ChrID1, ChrID2);
 
-        //public static _TYPE_ Tutorial_begin(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.Tutorial_begin, _ARGS_);
+        //public static int Tutorial_begin(_ARGS_)
+        //    => Call<int>(FuncAddress.Tutorial_begin, _ARGS_);
 
-        //public static _TYPE_ Tutorial_end(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.Tutorial_end, _ARGS_);
+        //public static int Tutorial_end(_ARGS_)
+        //    => Call<int>(FuncAddress.Tutorial_end, _ARGS_);
 
-        //public static _TYPE_ UnLockSession(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.UnLockSession, _ARGS_);
+        //public static int UnLockSession(_ARGS_)
+        //    => Call<int>(FuncAddress.UnLockSession, _ARGS_);
 
-        //public static _TYPE_ UpDateBloodMark(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.UpDateBloodMark, _ARGS_);
+        //public static int UpDateBloodMark(_ARGS_)
+        //    => Call<int>(FuncAddress.UpDateBloodMark, _ARGS_);
 
-        //public static _TYPE_ Util_RequestLevelUp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.Util_RequestLevelUp, _ARGS_);
+        //public static int Util_RequestLevelUp(_ARGS_)
+        //    => Call<int>(FuncAddress.Util_RequestLevelUp, _ARGS_);
 
-        //public static _TYPE_ Util_RequestLevelUpFirst(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.Util_RequestLevelUpFirst, _ARGS_);
+        //public static int Util_RequestLevelUpFirst(_ARGS_)
+        //    => Call<int>(FuncAddress.Util_RequestLevelUpFirst, _ARGS_);
 
-        //public static _TYPE_ Util_RequestRegene(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.Util_RequestRegene, _ARGS_);
+        //public static int Util_RequestRegene(_ARGS_)
+        //    => Call<int>(FuncAddress.Util_RequestRegene, _ARGS_);
 
-        //public static _TYPE_ Util_RequestRespawn(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.Util_RequestRespawn, _ARGS_);
+        //public static int Util_RequestRespawn(_ARGS_)
+        //    => Call<int>(FuncAddress.Util_RequestRespawn, _ARGS_);
 
-        //public static _TYPE_ ValidPointLight(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ValidPointLight, _ARGS_);
+        //public static int ValidPointLight(_ARGS_)
+        //    => Call<int>(FuncAddress.ValidPointLight, _ARGS_);
 
-        //public static _TYPE_ ValidSfx(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.ValidSfx, _ARGS_);
+        //public static int ValidSfx(_ARGS_)
+        //    => Call<int>(FuncAddress.ValidSfx, _ARGS_);
 
-        //public static _TYPE_ VariableExpand_211_Param1(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.VariableExpand_211_Param1, _ARGS_);
+        //public static int VariableExpand_211_Param1(_ARGS_)
+        //    => Call<int>(FuncAddress.VariableExpand_211_Param1, _ARGS_);
 
-        //public static _TYPE_ VariableExpand_211_param2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.VariableExpand_211_param2, _ARGS_);
+        //public static int VariableExpand_211_param2(_ARGS_)
+        //    => Call<int>(FuncAddress.VariableExpand_211_param2, _ARGS_);
 
-        //public static _TYPE_ VariableExpand_211_param3(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.VariableExpand_211_param3, _ARGS_);
+        //public static int VariableExpand_211_param3(_ARGS_)
+        //    => Call<int>(FuncAddress.VariableExpand_211_param3, _ARGS_);
 
-        //public static _TYPE_ VariableExpand_22_param1(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.VariableExpand_22_param1, _ARGS_);
+        //public static int VariableExpand_22_param1(_ARGS_)
+        //    => Call<int>(FuncAddress.VariableExpand_22_param1, _ARGS_);
 
-        //public static _TYPE_ VariableExpand_22_param2(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.VariableExpand_22_param2, _ARGS_);
+        //public static int VariableExpand_22_param2(_ARGS_)
+        //    => Call<int>(FuncAddress.VariableExpand_22_param2, _ARGS_);
 
-        //public static _TYPE_ VariableOrder_211(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.VariableOrder_211, _ARGS_);
+        //public static int VariableOrder_211(_ARGS_)
+        //    => Call<int>(FuncAddress.VariableOrder_211, _ARGS_);
 
-        //public static _TYPE_ VariableOrder_22(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.VariableOrder_22, _ARGS_);
+        //public static int VariableOrder_22(_ARGS_)
+        //    => Call<int>(FuncAddress.VariableOrder_22, _ARGS_);
 
-        //public static _TYPE_ WARN(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WARN, _ARGS_);
+        public static int WARN(string txt)
+            => Call<int>(FuncAddress.WARN, txt);
 
-        //public static _TYPE_ Warp(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.Warp, _ARGS_);
+        public static int Warp(int ChrID, int AreaID)
+            => Call<int>(FuncAddress.Warp, ChrID, AreaID);
 
-        //public static _TYPE_ WarpDmy(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WarpDmy, _ARGS_);
+        public static int WarpDmy(int ChrID, int b, int c)
+            => Call<int>(FuncAddress.WarpDmy, ChrID, b, c);
 
-        //public static _TYPE_ WarpNextStage(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WarpNextStage, _ARGS_);
+        public static int WarpNextStage(int Area, int Block, int c, int d, int Point)
+            => Call<int>(FuncAddress.WarpNextStage, Area, Block, c, d, Point);
 
-        //public static _TYPE_ WarpNextStage_Bonfire(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WarpNextStage_Bonfire, _ARGS_);
+        //public static int WarpNextStage_Bonfire(_ARGS_)
+        //    => Call<int>(FuncAddress.WarpNextStage_Bonfire, _ARGS_);
 
-        //public static _TYPE_ WarpNextStageKick(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WarpNextStageKick, _ARGS_);
+        public static int WarpNextStageKick()
+            => Call<int>(FuncAddress.WarpNextStageKick);
 
-        //public static _TYPE_ WarpRestart(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WarpRestart, _ARGS_);
+        public static int WarpRestart(int ChrID, int AreaID)
+            => Call<int>(FuncAddress.WarpRestart, ChrID, AreaID);
 
-        //public static _TYPE_ WarpRestartNoGrey(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WarpRestartNoGrey, _ARGS_);
+        //public static int WarpRestartNoGrey(_ARGS_)
+        //    => Call<int>(FuncAddress.WarpRestartNoGrey, _ARGS_);
 
-        //public static _TYPE_ WarpSelfBloodMark(_ARGS_)
-        //    => Call<_TYPE_>(FuncAddress.WarpSelfBloodMark, _ARGS_);
+        public static int WarpSelfBloodMark(bool a)
+            => Call<int>(FuncAddress.WarpSelfBloodMark, a);
 
 
     }
