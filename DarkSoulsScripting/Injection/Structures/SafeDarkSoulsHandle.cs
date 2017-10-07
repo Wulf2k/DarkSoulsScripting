@@ -82,8 +82,9 @@ namespace DarkSoulsScripting.Injection.Structures
             return 0;
         }
 
-        public bool TryAttachToDarkSouls(bool suppressMessageBox = false)
+        public bool TryAttachToDarkSouls(out string errorMsg)
         {
+            errorMsg = null;
             Process selectedProcess = null;
             Process[] _allProcesses = Process.GetProcesses();
             foreach (Process proc in _allProcesses)
@@ -123,15 +124,15 @@ namespace DarkSoulsScripting.Injection.Structures
                 ModuleOffsets = new ReadOnlyDictionary<string, List<uint>>(modulesInputDict);
                 selectedProcess.Dispose();
             }
+            else
+            {
+                errorMsg = "Unable to find Dark Souls process.";
+                return false;
+            }
 
             if (!Attached)
             {
-                //Showing 2 message boxes as soon as you start the program is too annoying.
-                if (!suppressMessageBox)
-                {
-                    System.Windows.Forms.MessageBox.Show("Found Dark Souls process but failed to attach to it.\nTry explicitly running this program as an administrator.", "Failed to Attach", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Stop);
-                }
-
+                errorMsg = "Found Dark Souls process but failed to attach to it.\nTry explicitly running your program (or scripting environment) as an administrator.";
                 return false;
             }
             else
@@ -163,7 +164,7 @@ namespace DarkSoulsScripting.Injection.Structures
                 Kernel.WriteProcessMemory_SAFE(handle, 0xBE719F, new byte[] { 0x20 }, 1, 0);
                 Kernel.WriteProcessMemory_SAFE(handle, 0xBE722B, new byte[] { 0x20 }, 1, 0);
 
-                Functions.Extra.SetSaveEnable(false);
+                ExtraFuncs.SetSaveEnable(false);
             }
             else
             {

@@ -1,25 +1,14 @@
 import clr
-import time
+import System
 import random
 
 clr.AddReference("DarkSoulsScripting")
 from DarkSoulsScripting import *
-from DarkSoulsScripting import Functions as f
-
-
-
-Hook.Init()
-
-startTime = time.time()
-
-count = 0
+from DarkSoulsScripting.Extra import *
+from DarkSoulsScripting import IngameFuncs as f
+from DarkSoulsScripting import ExtraFuncs as ex
 
 while True:
-    # f.ChrFadeIn(10000, 5.0, 0);
-    Entity.Player.ChrType = random.randint(1,3)
-    timer = (time.time() - startTime);
-    hz = count / timer;
-    dispStr = "Timer: " + str(timer) + ", Count: " + str(count) + ", Hz: " + str(hz)
-    # print dispStr
-    f.Extra.SetKeyGuideText(dispStr)
-    count = count + 1
+    #f.ChrFadeIn(10000, 5.0, 0.0)
+    Entity.Player.ChrType = random.randint(0,7)
+    print str(Entity.Player.ChrType)

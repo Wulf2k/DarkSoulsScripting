@@ -40,7 +40,7 @@ namespace DarkSoulsScripting.Extra
 
                 prevIngameTime = curIngameTime;
 
-                Functions.Extra.Wait(16);
+                ExtraFuncs.Wait(16);
             } while (ingameTimeStopped);
         }
 

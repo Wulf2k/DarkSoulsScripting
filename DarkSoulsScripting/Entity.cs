@@ -74,7 +74,7 @@ namespace DarkSoulsScripting
 	{
 		public const int MAX_STATNAME_LENGTH = 14;
 
-        public static Entity Player = new Entity(() => Functions.Extra.GetEntityPtr(10000));
+        public static Entity Player = new Entity(() => ExtraFuncs.GetEntityPtr(10000));
         public static EntityLocalPlayerMapInfo LocalPlayerMapInfo = new EntityLocalPlayerMapInfo(() => Hook.RInt32(0x13784A0));
 
         public EntityLocation Location = null;
@@ -127,12 +127,12 @@ namespace DarkSoulsScripting
 
 		public static Entity FromID(int id)
 		{
-			return new Entity(() => Functions.Extra.GetEntityPtr(id));
+			return new Entity(() => ExtraFuncs.GetEntityPtr(id));
 		}
 
 		public static Entity FromName(string mapName, string entityName)
 		{
-			return new Entity(() => Functions.Extra.GetEntityPtrByName(mapName, entityName));
+			return new Entity(() => ExtraFuncs.GetEntityPtrByName(mapName, entityName));
 		}
 
 		public string ModelName {
@@ -1106,7 +1106,7 @@ namespace DarkSoulsScripting
 
 		public void View()
 		{
-            Functions.Extra.CamFocusEntity(Address);
+            ExtraFuncs.CamFocusEntity(Address);
 		}
 
         public void WarpToCoords(float x, float y, float z, float heading)

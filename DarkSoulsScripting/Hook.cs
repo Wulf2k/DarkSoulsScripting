@@ -12,15 +12,32 @@ namespace DarkSoulsScripting
     {
         public static SafeDarkSoulsHandle DARKSOULS { get; private set; } = new SafeDarkSoulsHandle();
 
-        private static DSAsmCaller ASM = new DSAsmCaller();
+        internal static DSAsmCaller ASM = new DSAsmCaller();
+
+        public static T Call<T>(FuncAddress address, params dynamic[] args)
+        {
+            return Call<T>((int)address, args);
+        }
+
+        public static T CallReg<T>(FuncAddress address, dynamic[] args,
+            dynamic eax = null,
+            dynamic ecx = null,
+            dynamic edx = null,
+            dynamic ebx = null,
+            dynamic esp = null,
+            dynamic esi = null,
+            dynamic edi = null)
+        {
+            return CallReg<T>((int)address, args, eax, ecx, edx, ebx, esp, esi, edi);
+        }
 
         public static T Call<T>(int address, params dynamic[] args)
         {
             return ASM.CallIngameFunc<T>(address, args);
         }
 
-        public static T CallReg<T>(int address, dynamic[] args, 
-            dynamic eax = null, 
+        public static T CallReg<T>(int address, dynamic[] args,
+            dynamic eax = null,
             dynamic ecx = null,
             dynamic edx = null,
             dynamic ebx = null,
@@ -34,59 +51,13 @@ namespace DarkSoulsScripting
         private static byte[] ByteBuffer = new byte[8];
 
         private static object LOCK_OBJ = new object();
-        public static void Init()
+        public static bool Init()
         {
-            if (!DARKSOULS.Attached)
-            {
-                DARKSOULS.TryAttachToDarkSouls(true);
-            }
-            ForceInitCleanExitWaitThread();
+            
 
             Array.Clear(ByteBuffer, 0, 8);
-        }
 
-        private static Thread CleanExitThread;
-
-        public static EventWaitHandle CleanExitTrigger = new EventWaitHandle(false, EventResetMode.ManualReset);
-
-        static internal void ForceInitCleanExitWaitThread()
-        {
-            if (CleanExitThread?.IsAlive ?? false)
-            {
-                CleanExitThread.Abort();
-            }
-            CleanExitThread = new Thread(DoCleanExitWait)
-            {
-                IsBackground = true
-            };
-            CleanExitThread.Start();
-        }
-
-        private static void PerformCleanExit()
-        {
-            DARKSOULS.Close();
-        }
-
-        private static void DoCleanExitWait()
-        {
-            bool doCleanExit = false;
-
-            try
-            {
-                do
-                {
-                    doCleanExit = CleanExitTrigger.WaitOne(5000);
-                } while (!(doCleanExit));
-
-            }
-            catch
-            {
-
-            }
-            finally
-            {
-                PerformCleanExit();
-            }
+            return true;
         }
 
         public class Injected
