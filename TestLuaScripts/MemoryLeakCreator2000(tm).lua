@@ -1,1 +1,0 @@
-while true do SetDeadMode(int(10000), true) end
