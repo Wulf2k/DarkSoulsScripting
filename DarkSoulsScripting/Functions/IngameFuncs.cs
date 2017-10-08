@@ -74,7 +74,7 @@ namespace DarkSoulsScripting
         //public static int AddInfomationTosBufferPlus(_ARGS_)
         //    => Call<int>(FuncAddress.AddInfomationTosBufferPlus, _ARGS_);
 
-        public static bool AddInventoryItem(int ItemID, ItemCategory Category, int Quantity)
+        public static bool AddInventoryItem(int ItemID, ITEM_CATE Category, int Quantity)
             => Call<bool>(FuncAddress.AddInventoryItem, ItemID, (int)Category, Quantity);
 
         public static int AddKillBlackGhost()
@@ -405,8 +405,8 @@ namespace DarkSoulsScripting
         public static int GetLastBlockId()
             => Call<int>(FuncAddress.GetLastBlockId);
 
-        public static ChrType GetLocalPlayerChrType()
-            => (ChrType)Call<int>(FuncAddress.GetLocalPlayerChrType);
+        public static CHR_TYPE GetLocalPlayerChrType()
+            => (CHR_TYPE)Call<int>(FuncAddress.GetLocalPlayerChrType);
 
         public static int GetLocalPlayerId()
             => Call<int>(FuncAddress.GetLocalPlayerId);
@@ -593,7 +593,7 @@ namespace DarkSoulsScripting
         //public static bool IsDropCheck_Only(_ARGS_)
         //    => Call<bool>(FuncAddress.IsDropCheck_Only, _ARGS_);
 
-        public static bool IsEquip(ItemCategory Category, int ItemID)
+        public static bool IsEquip(ITEM_CATE Category, int ItemID)
             => Call<bool>(FuncAddress.IsEquip, (int)Category, ItemID);
 
         public static bool IsEventAnim(int ChrID, int b)
@@ -629,7 +629,7 @@ namespace DarkSoulsScripting
         //public static bool IsIntruder(_ARGS_)
         //    => Call<bool>(FuncAddress.IsIntruder, _ARGS_);
 
-        public static bool IsInventoryEquip(ItemCategory Category, int ItemID)
+        public static bool IsInventoryEquip(ITEM_CATE Category, int ItemID)
             => Call<bool>(FuncAddress.IsInventoryEquip, (int)Category, ItemID);
 
         //public static bool IsJobType(_ARGS_)
@@ -1028,7 +1028,7 @@ namespace DarkSoulsScripting
         //public static int RegistSimpleTalk(_ARGS_)
         //    => Call<int>(FuncAddress.RegistSimpleTalk, _ARGS_);
 
-        public static bool RemoveInventoryEquip(ItemCategory Category, int ItemID)
+        public static bool RemoveInventoryEquip(ITEM_CATE Category, int ItemID)
             => Call<int>(FuncAddress.RemoveInventoryEquip, (int)Category, ItemID) == 1; //1 = success, -256 = fail
 
         //public static int RepeatMessage_begin(_ARGS_)
@@ -1148,7 +1148,7 @@ namespace DarkSoulsScripting
         //public static int SetCamModeParamTargetIdForBossLock(_ARGS_)
         //    => Call<int>(FuncAddress.SetCamModeParamTargetIdForBossLock, _ARGS_);
 
-        public static int SetChrType(int ChrID, ChrType Type)
+        public static int SetChrType(int ChrID, CHR_TYPE Type)
             => Call<int>(FuncAddress.SetChrType, ChrID, (int)Type);
 
         public static int SetChrTypeDataGrey()
@@ -1256,13 +1256,11 @@ namespace DarkSoulsScripting
         //public static int SetEventSimpleTalk(_ARGS_)
         //    => Call<int>(FuncAddress.SetEventSimpleTalk, _ARGS_);
 
-        //TODO: CONFIRM USE OF SP_EFFECT_TYPE HERE
-        public static int SetEventSpecialEffect(int ChrID, SP_EFFECT_TYPE Type)
-            => Call<int>(FuncAddress.SetEventSpecialEffect, ChrID, (int)Type);
+        public static int SetEventSpecialEffect(int ChrID, int EffectID)
+            => Call<int>(FuncAddress.SetEventSpecialEffect, ChrID, EffectID);
 
-        //TODO: CONFIRM USE OF SP_EFFECT_TYPE HERE
-        public static int SetEventSpecialEffect_2(int ChrID, SP_EFFECT_TYPE Type)
-            => Call<int>(FuncAddress.SetEventSpecialEffect_2, ChrID, (int)Type);
+        public static int SetEventSpecialEffect_2(int ChrID, int EffectID)
+            => Call<int>(FuncAddress.SetEventSpecialEffect_2, ChrID, EffectID);
 
         //public static int SetEventSpecialEffectOwner(_ARGS_)
         //    => Call<int>(FuncAddress.SetEventSpecialEffectOwner, _ARGS_);
@@ -1297,8 +1295,8 @@ namespace DarkSoulsScripting
         //public static int SetHitMask(_ARGS_)
         //    => Call<int>(FuncAddress.SetHitMask, _ARGS_);
 
-        //public static int SetHp(_ARGS_)
-        //    => Call<int>(FuncAddress.SetHp, _ARGS_);
+        public static int SetHp(int ChrID, float HP)
+            => Call<int>(FuncAddress.SetHp, ChrID, HP);
 
         public static int SetIgnoreHit(int ChrID, bool State)
             => Call<int>(FuncAddress.SetIgnoreHit, ChrID, State);
@@ -1531,8 +1529,8 @@ namespace DarkSoulsScripting
         public static int WarpNextStage(int Area, int Block, int c, int d, int Point)
             => Call<int>(FuncAddress.WarpNextStage, Area, Block, c, d, Point);
 
-        //public static int WarpNextStage_Bonfire(_ARGS_)
-        //    => Call<int>(FuncAddress.WarpNextStage_Bonfire, _ARGS_);
+        public static int WarpNextStage_Bonfire(int BonfireID)
+            => Call<int>(FuncAddress.WarpNextStage_Bonfire, BonfireID);
 
         public static int WarpNextStageKick()
             => Call<int>(FuncAddress.WarpNextStageKick);

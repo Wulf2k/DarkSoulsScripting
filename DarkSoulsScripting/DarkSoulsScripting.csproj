@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -51,6 +51,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityStats.cs" />
     <Compile Include="Extra\DebugUI\WpfPropertyGrid.cs" />
     <Compile Include="Extra\DebugUI\InspectGUI.xaml.cs">
       <DependentUpon>InspectGUI.xaml</DependentUpon>
@@ -59,7 +60,7 @@
     <Compile Include="EntityAIController.cs" />
     <Compile Include="EntityController.cs" />
     <Compile Include="EntityHeader.cs" />
-    <Compile Include="EntityLocalPlayerMapInfo.cs" />
+    <Compile Include="WorldState.cs" />
     <Compile Include="EntityLocation.cs" />
     <Compile Include="Functions\FuncAddress.cs" />
     <Compile Include="Functions\IngameFuncs.cs" />
@@ -87,13 +88,41 @@
     <Compile Include="Functions\ExtraFuncs.cs" />
     <Compile Include="Extra\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Add.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.AddWithCarry.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Decrement.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Division.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Increment.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Multiply.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Negate.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Not.cs" />
+    <Compile Include="X86AssemblyLib\Arithmetic\X86Writer.Subtract.cs" />
+    <Compile Include="X86AssemblyLib\ControlFlow\X86Writer.Call.cs" />
+    <Compile Include="X86AssemblyLib\ControlFlow\X86Writer.Jump.cs" />
+    <Compile Include="X86AssemblyLib\ControlFlow\X86Writer.Patch.cs" />
+    <Compile Include="X86AssemblyLib\DataTypes\X86Address.cs" />
+    <Compile Include="X86AssemblyLib\DataTypes\X86ConditionCode.cs" />
+    <Compile Include="X86AssemblyLib\DataTypes\X86Label.cs" />
+    <Compile Include="X86AssemblyLib\DataTypes\X86Register16.cs" />
+    <Compile Include="X86AssemblyLib\DataTypes\X86Register32.cs" />
+    <Compile Include="X86AssemblyLib\DataTypes\X86Register8.cs" />
+    <Compile Include="X86AssemblyLib\DataTypes\X86ShiftOpCode.cs" />
+    <Compile Include="X86AssemblyLib\General\X86Writer.Compare.cs" />
+    <Compile Include="X86AssemblyLib\General\X86Writer.Move.cs" />
+    <Compile Include="X86AssemblyLib\Interlock\X86Writer.CompareExchange.cs" />
+    <Compile Include="X86AssemblyLib\IO\X86Writer.In.cs" />
+    <Compile Include="X86AssemblyLib\IO\X86Writer.Out.cs" />
+    <Compile Include="X86AssemblyLib\Logical\X86Writer.And.cs" />
+    <Compile Include="X86AssemblyLib\Logical\X86Writer.Or.cs" />
+    <Compile Include="X86AssemblyLib\Logical\X86Writer.Xor.cs" />
+    <Compile Include="X86AssemblyLib\Prefixes\X86Writer.Lock.cs" />
+    <Compile Include="X86AssemblyLib\Prefixes\X86Writer.Repeat.cs" />
+    <Compile Include="X86AssemblyLib\Shift\X86Writer.ShiftLeft.cs" />
+    <Compile Include="X86AssemblyLib\Shift\X86Writer.ShiftRight.cs" />
+    <Compile Include="X86AssemblyLib\Stack\X86Writer.Pop.cs" />
+    <Compile Include="X86AssemblyLib\Stack\X86Writer.Push.cs" />
+    <Compile Include="X86AssemblyLib\X86Writer.cs" />
     <Compile Include="[General Enums].cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Lib\Managed.X86\Managed.X86.csproj">
-      <Project>{1aaf4b4d-2986-4f56-bebc-eec6ea0ee435}</Project>
-      <Name>Managed.X86</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Extra\DebugUI\InspectGUI.xaml">
@@ -102,10 +131,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="X86AssemblyLib\COPYING" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="InjectModuleInitializer" AfterTargets="AfterBuild">
-    <Exec Command="..\packages\InjectModuleInitializer.1.5\tools\InjectModuleInitializer.exe &quot;$(TargetPath)&quot;" />
+    <Exec Command="..\Tools\InjectModuleInitializer.exe &quot;$(TargetPath)&quot;" />
   </Target>
 </Project>

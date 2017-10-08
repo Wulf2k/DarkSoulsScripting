@@ -1,6 +1,7 @@
 ﻿using System;
 using DarkSoulsScripting.Injection;
 using System.ComponentModel;
+using DarkSoulsScripting.AI_DEFINE;
 
 namespace DarkSoulsScripting
 {
@@ -55,35 +56,20 @@ namespace DarkSoulsScripting
 		None = 0,
 		DisableCollision = 0x40
 	}
-
-
-	public enum Covenant
-	{
-		WayOfWhite = 1,
-		PrincessGuard = 2,
-		WarriorOfSunlight = 3,
-		Darkwraith = 4,
-		PathOfTheDragon = 5,
-		GravelordServant = 6,
-		ForestHunter = 7,
-		DarkmoonBlade = 8,
-		ChaosServant = 9
-	}
 	
 	public class Entity : IngameStruct
 	{
-		public const int MAX_STATNAME_LENGTH = 14;
-
         public static Entity Player = new Entity(() => ExtraFuncs.GetEntityPtr(10000));
-        public static EntityLocalPlayerMapInfo LocalPlayerMapInfo = new EntityLocalPlayerMapInfo(() => Hook.RInt32(0x13784A0));
 
-        public EntityLocation Location = null;
-        public EntityHeader Header = null;
+        public EntityLocation Location { get; private set; } = null;
+        public EntityHeader Header { get; private set; } = null;
+        public EntityStats Stats { get; private set; } = null;
 
         protected override void InitStructMembers()
         {
             Location = new EntityLocation(() => LocationPtr);
             Header = new EntityHeader(() => HeaderPtr);
+            Stats = new EntityStats(() => StatsPtr);
         }
 
         public Entity(Func<int> addrReadFunc) : base(addrReadFunc)
@@ -150,14 +136,14 @@ namespace DarkSoulsScripting
 			set { Hook.WInt32(Address + 0x6c, value); }
 		}
 
-		public int ChrType {
-			get { return Hook.RInt32(Address + 0x70); }
-			set { Hook.WInt32(Address + 0x70, value); }
+		public CHR_TYPE ChrType {
+			get { return (CHR_TYPE)Hook.RInt32(Address + 0x70); }
+			set { Hook.WInt32(Address + 0x70, (int)value); }
 		}
 
-		public int TeamType {
-			get { return Hook.RInt32(Address + 0x74); }
-			set { Hook.WInt32(Address + 0x74, value); }
+		public TEAM_TYPE TeamType {
+			get { return (TEAM_TYPE)Hook.RInt32(Address + 0x74); }
+			set { Hook.WInt32(Address + 0x74, (int)value); }
 		}
 
 		public bool IsTargetLocked {
@@ -202,7 +188,7 @@ namespace DarkSoulsScripting
 			set { Hook.WInt32(Address + 0x200, (int)value); }
 		}
 
-		public int EventEntityID {
+		public int ChrID {
 			get { return Hook.RInt32(Address + 0x208); }
 			set { Hook.WInt32(Address + 0x208, value); }
 		}
@@ -480,450 +466,11 @@ namespace DarkSoulsScripting
 
         //TODO: Move Stats to separate struct and remove "Stat" from the beginning of each member's name
 
-        #region Stats
-
-        public int StatsPtr {
-			get { return Hook.RInt32(Address + 0x414); }
-			set { Hook.WInt32(Address + 0x414, value); }
-		}
-
-		public int StatHP {
-			get { return Hook.RInt32(StatsPtr + 0xc); }
-			set { Hook.WInt32(StatsPtr + 0xc, value); }
-		}
-
-		public int StatMaxHPBase {
-			get { return Hook.RInt32(StatsPtr + 0x10); }
-			set { Hook.WInt32(StatsPtr + 0x10, value); }
-		}
-
-		public int StatMaxHP {
-			get { return Hook.RInt32(StatsPtr + 0x14); }
-			set { Hook.WInt32(StatsPtr + 0x14, value); }
-		}
-
-		public int StatMP {
-			get { return Hook.RInt32(StatsPtr + 0x18); }
-			set { Hook.WInt32(StatsPtr + 0x18, value); }
-		}
-
-		public int StatMaxMPBase {
-			get { return Hook.RInt32(StatsPtr + 0x1c); }
-			set { Hook.WInt32(StatsPtr + 0x1c, value); }
-		}
-
-		public int StatMaxMP {
-			get { return Hook.RInt32(StatsPtr + 0x20); }
-			set { Hook.WInt32(StatsPtr + 0x20, value); }
-		}
-
-		public int StatStamina {
-			get { return Hook.RInt32(StatsPtr + 0x24); }
-			set { Hook.WInt32(StatsPtr + 0x24, value); }
-		}
-
-		public int StatMaxStaminaBase {
-			get { return Hook.RInt32(StatsPtr + 0x28); }
-			set { Hook.WInt32(StatsPtr + 0x28, value); }
-		}
-
-		public int StatMaxStamina {
-			get { return Hook.RInt32(StatsPtr + 0x30); }
-			set { Hook.WInt32(StatsPtr + 0x30, value); }
-		}
-
-		public int StatVIT {
-			get { return Hook.RInt32(StatsPtr + 0x38); }
-			set { Hook.WInt32(StatsPtr + 0x38, value); }
-		}
-
-		public int StatATN {
-			get { return Hook.RInt32(StatsPtr + 0x40); }
-			set { Hook.WInt32(StatsPtr + 0x40, value); }
-		}
-
-		public int StatEND {
-			get { return Hook.RInt32(StatsPtr + 0x48); }
-			set { Hook.WInt32(StatsPtr + 0x48, value); }
-		}
-
-		public int StatSTR {
-			get { return Hook.RInt32(StatsPtr + 0x50); }
-			set { Hook.WInt32(StatsPtr + 0x50, value); }
-		}
-
-		public int StatDEX {
-			get { return Hook.RInt32(StatsPtr + 0x58); }
-			set { Hook.WInt32(StatsPtr + 0x58, value); }
-		}
-
-		public int StatINT {
-			get { return Hook.RInt32(StatsPtr + 0x60); }
-			set { Hook.WInt32(StatsPtr + 0x60, value); }
-		}
-
-		public int StatFTH {
-			get { return Hook.RInt32(StatsPtr + 0x68); }
-			set { Hook.WInt32(StatsPtr + 0x68, value); }
-		}
-
-		public int StatRES {
-			get { return Hook.RInt32(StatsPtr + 0x80); }
-			set { Hook.WInt32(StatsPtr + 0x80, value); }
-		}
-
-		public int StatHumanity {
-			get { return Hook.RInt32(StatsPtr + 0x7c); }
-			set { Hook.WInt32(StatsPtr + 0x7c, value); }
-		}
-
-		public short StatGender {
-			//oh no i did the thing REEEEEEEEEEEEEEEE
-			get { return Hook.RInt16(StatsPtr + 0xc2); }
-			set { Hook.WInt16(StatsPtr + 0xc2, value); }
-		}
-
-		public short StatDebugShopLevel {
-			get { return Hook.RInt16(StatsPtr + 0xc4); }
-			set { Hook.WInt16(StatsPtr + 0xc4, value); }
-		}
-
-		public byte StatStartingClass {
-			get { return Hook.RByte(StatsPtr + 0xc6); }
-			set { Hook.WByte(StatsPtr + 0xc6, value); }
-		}
-
-		public byte StatPhysique {
-			get { return Hook.RByte(StatsPtr + 0xc7); }
-			set { Hook.WByte(StatsPtr + 0xc7, value); }
-		}
-
-		public byte StatStartingGift {
-			get { return Hook.RByte(StatsPtr + 0xc7); }
-			set { Hook.WByte(StatsPtr + 0xc7, value); }
-		}
-
-		public int StatMultiplayCount {
-			get { return Hook.RInt32(StatsPtr + 0xcc); }
-			set { Hook.WInt32(StatsPtr + 0xcc, value); }
-		}
-
-		public int StatCoOpSuccessCount {
-			get { return Hook.RInt32(StatsPtr + 0xd0); }
-			set { Hook.WInt32(StatsPtr + 0xd0, value); }
-		}
-
-		public int StatThiefInvadePlaySuccessCount {
-			get { return Hook.RInt32(StatsPtr + 0xd4); }
-			set { Hook.WInt32(StatsPtr + 0xd4, value); }
-		}
-
-		public int StatPlayerRankS {
-			get { return Hook.RInt32(StatsPtr + 0xd8); }
-			set { Hook.WInt32(StatsPtr + 0xd8, value); }
-		}
-
-		public int StatPlayerRankA {
-			get { return Hook.RInt32(StatsPtr + 0xdc); }
-			set { Hook.WInt32(StatsPtr + 0xdc, value); }
-		}
-
-		public int StatPlayerRankB {
-			get { return Hook.RInt32(StatsPtr + 0xe0); }
-			set { Hook.WInt32(StatsPtr + 0xe0, value); }
-		}
-
-		public int StatPlayerRankC {
-			get { return Hook.RInt32(StatsPtr + 0xe4); }
-			set { Hook.WInt32(StatsPtr + 0xe4, value); }
-		}
-
-		public byte StatDevotionWarriorOfSunlight {
-			get { return Hook.RByte(StatsPtr + 0xe5); }
-			set { Hook.WByte(StatsPtr + 0xe5, value); }
-		}
-
-		public byte StatDevotionDarkwraith {
-			get { return Hook.RByte(StatsPtr + 0xe6); }
-			set { Hook.WByte(StatsPtr + 0xe6, value); }
-		}
-
-		public byte StatDevotionDragon {
-			get { return Hook.RByte(StatsPtr + 0xe7); }
-			set { Hook.WByte(StatsPtr + 0xe7, value); }
-		}
-
-		public byte StatDevotionGravelord {
-			get { return Hook.RByte(StatsPtr + 0xe8); }
-			set { Hook.WByte(StatsPtr + 0xe8, value); }
-		}
-
-		public byte StatDevotionForest {
-			get { return Hook.RByte(StatsPtr + 0xe9); }
-			set { Hook.WByte(StatsPtr + 0xe9, value); }
-		}
-
-		public byte StatDevotionDarkmoon {
-			get { return Hook.RByte(StatsPtr + 0xea); }
-			set { Hook.WByte(StatsPtr + 0xea, value); }
-		}
-
-		public byte StatDevotionChaos {
-			get { return Hook.RByte(StatsPtr + 0xeb); }
-			set { Hook.WByte(StatsPtr + 0xeb, value); }
-		}
-
-		public int StatIndictments {
-			get { return Hook.RInt32(StatsPtr + 0xec); }
-			set { Hook.WInt32(StatsPtr + 0xec, value); }
-		}
-
-		public float StatDebugBlockClearBonus {
-			get { return Hook.RFloat(StatsPtr + 0xf0); }
-			set { Hook.WFloat(StatsPtr + 0xf0, value); }
-		}
-
-		public int StatEggSouls {
-			get { return Hook.RInt32(StatsPtr + 0xf4); }
-			set { Hook.WInt32(StatsPtr + 0xf4, value); }
-		}
-
-		public int StatPoisonResist {
-			get { return Hook.RInt32(StatsPtr + 0xf8); }
-			set { Hook.WInt32(StatsPtr + 0xf8, value); }
-		}
-
-		public int StatBleedResist {
-			get { return Hook.RInt32(StatsPtr + 0xfc); }
-			set { Hook.WInt32(StatsPtr + 0xfc, value); }
-		}
-
-		public int StatToxicResist {
-			get { return Hook.RInt32(StatsPtr + 0x100); }
-			set { Hook.WInt32(StatsPtr + 0x100, value); }
-		}
-
-		public int StatCurseResist {
-			get { return Hook.RInt32(StatsPtr + 0x104); }
-			set { Hook.WInt32(StatsPtr + 0x104, value); }
-		}
-
-		public byte StatDebugClearItem {
-			get { return Hook.RByte(StatsPtr + 0x108); }
-			set { Hook.WByte(StatsPtr + 0x108, value); }
-		}
-
-		public byte StatDebugResvSoulSteam {
-			get { return Hook.RByte(StatsPtr + 0x109); }
-			set { Hook.WByte(StatsPtr + 0x109, value); }
-		}
-
-		public byte StatDebugResvSoulPenalty {
-			get { return Hook.RByte(StatsPtr + 0x10a); }
-			set { Hook.WByte(StatsPtr + 0x10a, value); }
-		}
-
-		public Covenant StatCovenant {
-			get { return (Covenant)Hook.RByte(StatsPtr + 0x10b); }
-			set { Hook.WInt32(StatsPtr + 0x10b, Convert.ToByte(value)); }
-		}
-
-		public byte StatAppearanceFaceType {
-			get { return Hook.RByte(StatsPtr + 0x10c); }
-			set { Hook.WByte(StatsPtr + 0x10c, value); }
-		}
-
-		public byte StatAppearanceHairType {
-			get { return Hook.RByte(StatsPtr + 0x10d); }
-			set { Hook.WByte(StatsPtr + 0x10d, value); }
-		}
-
-		public byte StatAppearanceHairAndEyesColor {
-			get { return Hook.RByte(StatsPtr + 0x10e); }
-			set { Hook.WByte(StatsPtr + 0x10e, value); }
-		}
-
-		public byte StatCurseLevel {
-			get { return Hook.RByte(StatsPtr + 0x10f); }
-			set { Hook.WByte(StatsPtr + 0x10f, value); }
-		}
-
-		public byte StatInvadeType {
-			get { return Hook.RByte(StatsPtr + 0x110); }
-			set { Hook.WByte(StatsPtr + 0x110, value); }
-		}
-
-		//TODO: CHECK FOR OTHER EQUIP SLOTS
-
-		//todo: other weapons maybe ;))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
-
-		public int StatEquipRightHand2 {
-			get { return Hook.RInt32(StatsPtr + 0x258); }
-			set { Hook.WInt32(StatsPtr + 0x258, value); }
-		}
-
-		public int StatEquipHead {
-			get { return Hook.RInt32(StatsPtr + 0x26c); }
-			set { Hook.WInt32(StatsPtr + 0x26c, value); }
-		}
-		public int StatEquipChest {
-			get { return Hook.RInt32(StatsPtr + 0x270); }
-			set { Hook.WInt32(StatsPtr + 0x270, value); }
-		}
-		public int StatEquipArms {
-			get { return Hook.RInt32(StatsPtr + 0x274); }
-			set { Hook.WInt32(StatsPtr + 0x274, value); }
-		}
-		public int StatEquipLegs {
-			get { return Hook.RInt32(StatsPtr + 0x278); }
-			set { Hook.WInt32(StatsPtr + 0x278, value); }
-		}
-
-
-		public float StatAppearanceScaleHead {
-			get { return Hook.RFloat(StatsPtr + 0x2ac); }
-			set { Hook.WFloat(StatsPtr + 0x2ac, value); }
-		}
-
-		public float StatAppearanceScaleChest {
-			get { return Hook.RFloat(StatsPtr + 0x2b0); }
-			set { Hook.WFloat(StatsPtr + 0x2b0, value); }
-		}
-
-		public float StatAppearanceScaleWaist {
-			get { return Hook.RFloat(StatsPtr + 0x2b4); }
-			set { Hook.WFloat(StatsPtr + 0x2b4, value); }
-		}
-
-		public float StatAppearanceScaleArms {
-			get { return Hook.RFloat(StatsPtr + 0x2b8); }
-			set { Hook.WFloat(StatsPtr + 0x2b8, value); }
-		}
-
-		public float StatAppearanceScaleLegs {
-			get { return Hook.RFloat(StatsPtr + 0x2bc); }
-			set { Hook.WFloat(StatsPtr + 0x2bc, value); }
-		}
-
-		public float StatAppearanceHairColorR {
-			get { return Hook.RFloat(StatsPtr + 0x380); }
-			set { Hook.WFloat(StatsPtr + 0x380, value); }
-		}
-
-		public float StatAppearanceHairColorG {
-			get { return Hook.RFloat(StatsPtr + 0x384); }
-			set { Hook.WFloat(StatsPtr + 0x384, value); }
-		}
-
-		public float StatAppearanceHairColorB {
-			get { return Hook.RFloat(StatsPtr + 0x388); }
-			set { Hook.WFloat(StatsPtr + 0x388, value); }
-		}
-
-		public float StatAppearanceHairColorA {
-			get { return Hook.RFloat(StatsPtr + 0x38c); }
-			set { Hook.WFloat(StatsPtr + 0x38c, value); }
-		}
-
-		public float StatAppearanceEyeColorR {
-			get { return Hook.RFloat(StatsPtr + 0x390); }
-			set { Hook.WFloat(StatsPtr + 0x390, value); }
-		}
-
-		public float StatAppearanceEyeColorG {
-			get { return Hook.RFloat(StatsPtr + 0x394); }
-			set { Hook.WFloat(StatsPtr + 0x394, value); }
-		}
-
-		public float StatAppearanceEyeColorB {
-			get { return Hook.RFloat(StatsPtr + 0x398); }
-			set { Hook.WFloat(StatsPtr + 0x398, value); }
-		}
-
-		public float StatAppearanceEyeColorA {
-			get { return Hook.RFloat(StatsPtr + 0x39c); }
-			set { Hook.WFloat(StatsPtr + 0x39c, value); }
-		}
-
-        public StatAppearanceFaceDataIndexer StatAppearanceFaceData { get => new StatAppearanceFaceDataIndexer(StatsPtr); }
-
-        public struct StatAppearanceFaceDataIndexer
+        public int StatsPtr
         {
-            public readonly int StatsPtr;
-            public StatAppearanceFaceDataIndexer(int statsPtr)
-            {
-                StatsPtr = statsPtr;
-            }
-
-            public byte this[int index]
-            {
-                get { return Hook.RByte(StatsPtr + 0x3A0 + index); }
-                set { Hook.WByte(StatsPtr + 0x3A0 + index, value); }
-            }
+            get { return Hook.RInt32(Address + 0x414); }
+            set { Hook.WInt32(Address + 0x414, value); }
         }
-
-        //TODO: CHECK FOR OTHER DEFENSES
-
-        public int StatMagicDefense {
-			get { return Hook.RInt32(StatsPtr + 0x43c); }
-			set { Hook.WInt32(StatsPtr + 0x43c, value); }
-		}
-
-		//TODO: IS THIS THE DEMONS SOULS ITEM BURDEN OR WHAT WULF
-
-		public float StatMaxItemBurden {
-			get { return Hook.RFloat(StatsPtr + 0x44c); }
-			set { Hook.WFloat(StatsPtr + 0x44c, value); }
-		}
-
-		//TODO: CONFIRM IF THESE ARE THE BUILDUPS AND NOT THE STAT SCREEN MAXIMUMS
-
-		public float StatPoisonBuildup {
-			get { return Hook.RFloat(StatsPtr + 0x49c); }
-			set { Hook.WFloat(StatsPtr + 0x49c, value); }
-		}
-
-		public float StatToxicBuildup {
-			get { return Hook.RFloat(StatsPtr + 0x4a0); }
-			set { Hook.WFloat(StatsPtr + 0x4a0, value); }
-		}
-
-		public float StatBleedBuildup {
-			get { return Hook.RFloat(StatsPtr + 0x4a4); }
-			set { Hook.WFloat(StatsPtr + 0x4a4, value); }
-		}
-
-		public float StatCurseBuildup {
-			get { return Hook.RFloat(StatsPtr + 0x4a8); }
-			set { Hook.WFloat(StatsPtr + 0x4a8, value); }
-		}
-
-		public float StatPoise {
-			get { return Hook.RFloat(StatsPtr + 0x4ac); }
-			set { Hook.WFloat(StatsPtr + 0x4ac, value); }
-		}
-
-		public int StatSoulLevel {
-			get { return Hook.RInt32(StatsPtr + 0x88); }
-			set { Hook.WInt32(StatsPtr + 0x88, value); }
-		}
-
-		public int StatSouls {
-			get { return Hook.RInt32(StatsPtr + 0x8c); }
-			set { Hook.WInt32(StatsPtr + 0x8c, value); }
-		}
-
-		public int StatPointTotal {
-			get { return Hook.RInt32(StatsPtr + 0x98); }
-			set { Hook.WInt32(StatsPtr + 0x98, value); }
-		}
-
-		public string StatName {
-			get { return Hook.RUnicodeStr(Address + 0xa0, MAX_STATNAME_LENGTH); }
-			set { Hook.WAsciiStr(Address + 0xa0, value.Substring(0, Math.Min(value.Length, MAX_STATNAME_LENGTH))); }
-		}
-
-		#endregion
 
 		public EntityDebugFlags DebugFlags {
 			get { return (EntityDebugFlags)Hook.RInt32(Address + 0x3c4); }
@@ -1104,10 +651,10 @@ namespace DarkSoulsScripting
 
 		#endregion
 
-		public void View()
+		public void SetCamFollow()
 		{
-            ExtraFuncs.CamFocusEntity(Address);
-		}
+            Hook.WInt32(Hook.RInt32(0x137D648) + 0xEC, Address);
+        }
 
         public void WarpToCoords(float x, float y, float z, float heading)
         {

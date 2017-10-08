@@ -334,6 +334,7 @@ namespace DarkSoulsScripting.Injection
         {
             { typeof(void), (b) => 0 },
             { typeof(byte), (b) => b[0] },
+            { typeof(bool), (b) => (bool)(b[0] != 0) },
             { typeof(sbyte), (b) => (sbyte)b[0] },
             { typeof(short), (b) => BitConverter.ToInt16(b, 0) },
             { typeof(ushort), (b) => BitConverter.ToUInt16(b, 0) },

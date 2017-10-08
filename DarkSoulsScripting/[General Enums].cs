@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DarkSoulsScripting
 {
-    public enum ItemCategory : int
+    public enum ITEM_CATE : int
     {
         Weapons = 0x00000000,
         Armor = 0x10000000,
@@ -15,7 +15,7 @@ namespace DarkSoulsScripting
     }
 
     //Note: different than AI_DEFINE.TEAM_TYPE's values
-    public enum ChrType : int
+    public enum CHR_TYPE : int
     {
         Live = 0,
         WhiteGhost = 1,
@@ -23,11 +23,24 @@ namespace DarkSoulsScripting
         GlayGhost = 3,
         WanderGhost = 4,
 
-        //TODO: ADD MORE CHRTYPE
+        //TODO: ADD MORE CHR_TYPE
 
         DragonSummon = 12,
 
-        //TODO: ADD MORE CHRTYPE
+        //TODO: ADD MORE CHR_TYPE
+    }
+
+    public enum COVENANT
+    {
+        WayOfWhite = 1,
+        PrincessGuard = 2,
+        WarriorOfSunlight = 3,
+        Darkwraith = 4,
+        PathOfTheDragon = 5,
+        GravelordServant = 6,
+        ForestHunter = 7,
+        DarkmoonBlade = 8,
+        ChaosServant = 9
     }
 
     //public enum TEAM_TYPE
@@ -83,14 +96,14 @@ namespace DarkSoulsScripting
 
     namespace AI_DEFINE
     {
-        public enum GOAL_RESULT
+        public enum GOAL_RESULT : int
         {
             Failed = -1,
             Continue = 0,
             Success = 1,
         }
 
-        public enum AI_DIR_TYPE
+        public enum AI_DIR_TYPE : int
         {
             CENTER = 0,
             F = 1,
@@ -104,7 +117,7 @@ namespace DarkSoulsScripting
             Top = 9,
         }
 
-        public enum DIST
+        public enum DIST : int
         {
             Near = -1,
             Middle = -2,
@@ -113,7 +126,7 @@ namespace DarkSoulsScripting
             None = -5,
         }
 
-        public enum POINT
+        public enum POINT : int
         {
             INITIAL = 100,
             SNIPE = 101,
@@ -140,7 +153,7 @@ namespace DarkSoulsScripting
             AutoWalkAroundTest = 120,
         }
 
-        public enum EVENT_TARGET
+        public enum EVENT_TARGET : int
         {
             EVENT_TARGET_0 = 1000,
             EVENT_TARGET_1 = 1001,
@@ -155,7 +168,7 @@ namespace DarkSoulsScripting
             EVENT_TARGET_10 = 1010,
         }
 
-        public enum INTERUPT
+        public enum INTERUPT : int
         {
             FindEnemy = 0,
             FindAttack = 1,
@@ -195,7 +208,7 @@ namespace DarkSoulsScripting
             GuardBreakBlow = 34,
         }
 
-        public enum PLATOON_STATE
+        public enum PLATOON_STATE : int
         {
             None = 0,
             Caution = 1,
@@ -204,7 +217,7 @@ namespace DarkSoulsScripting
             Battle = 4,
         }
 
-        public enum COORDINATE_TYPE
+        public enum COORDINATE_TYPE : int
         {
             None = -1,
             Attack = 0,
@@ -216,13 +229,13 @@ namespace DarkSoulsScripting
             UROKOIwaSupport = 110,
         }
 
-        public enum ORDER_TYPE
+        public enum ORDER_TYPE : int
         {
             Role = 0,
             CallHelp = 1, //Not present in DeS at all for some reason
         }
 
-        public enum ROLE_TYPE
+        public enum ROLE_TYPE : int
         {
             None = -1,
             Attack = 0,
@@ -230,7 +243,7 @@ namespace DarkSoulsScripting
             Kankyaku = 2,
         }
 
-        public enum NPC_ATK
+        public enum NPC_ATK : int
         {
             NormalR = 0,
             LargeR = 1,
@@ -268,7 +281,7 @@ namespace DarkSoulsScripting
         }
 
         //Weird lowercase is [sic]
-        public enum AI_EXCEL_THINK_PARAM_TYPE
+        public enum AI_EXCEL_THINK_PARAM_TYPE : int
         {
             NONE = 0,
             maxBackhomeDist = 1,
@@ -297,7 +310,7 @@ namespace DarkSoulsScripting
             thinkAttr_doAdmirer = 23,
         }
 
-        public enum POINT_MOVE_TYPE
+        public enum POINT_MOVE_TYPE : int
         {
             Patrol = 0,
             RoundTrip = 1,
@@ -308,7 +321,7 @@ namespace DarkSoulsScripting
 
         //From DeS:
         //腕ID(ChrAsm::WEP_SET_POSに対応)
-        public enum ARM
+        public enum ARM : int
         {
             L = 0,
             R = 1,
@@ -316,7 +329,7 @@ namespace DarkSoulsScripting
 
         //From DeS:
         //武器装備（ChrAsm::WEP_SLOT_OFFSETに対応）
-        public enum WEP
+        public enum WEP : int
         {
             Primary = 0,
             Secondary = 1,
@@ -325,7 +338,7 @@ namespace DarkSoulsScripting
         //NOT PRESENT IN DARK SOULS
         //From DeS:
         // リプランニング時のゴールアクション。
-        public enum NPC_THINK_GOAL_ACTION
+        public enum NPC_THINK_GOAL_ACTION : int
         {
             NPC_THINK_GOAL_ACTION__NONE = 0, // /< 何もしない
             NPC_THINK_GOAL_ACTION__TURN_TO_TGT = 1, // /< ターゲットの方向に向く
@@ -334,7 +347,7 @@ namespace DarkSoulsScripting
             NPC_THINK_GOAL_ACTION__SET_GOAL = 4, // /< 任意のゴールを設定
         }
 
-        public enum PARTS_DMG
+        public enum PARTS_DMG : int
         {
             PARTS_DMG_NONE = 0,
             PARTS_DMG_LV1 = 1,
@@ -343,7 +356,7 @@ namespace DarkSoulsScripting
             PARTS_DMG_FINAL = 20,
         }
 
-        public enum SP_EFFECT_TYPE
+        public enum SP_EFFECT_TYPE : int
         {
             NONE = 0, // なし
             FIRE = 1, // 炎
@@ -414,13 +427,13 @@ namespace DarkSoulsScripting
             ITEM_DROP_RATE = 66, // アイテムを装備すると、「敵を倒したときにアイテムになる確率」をアップさせます
         }
 
-        public enum OBJ_ACT_TYPE
+        public enum OBJ_ACT_TYPE : int
         {
             LEVER = 0,
             DOOR = 1,
         }
 
-        public enum TEAM_TYPE
+        public enum TEAM_TYPE : int
         {
             None = 0,
             Live = 1,
@@ -440,14 +453,14 @@ namespace DarkSoulsScripting
             Charm = 15,
         }
 
-        public enum GUARD_GOAL_DESIRE_RET
+        public enum GUARD_GOAL_DESIRE_RET : int
         {
             Success = 1,
             Continue = 2,
             Failed = 3,
         }
 
-        public enum WEP_CATE
+        public enum WEP_CATE : int
         {
             None = 0,
             Shield = 1,

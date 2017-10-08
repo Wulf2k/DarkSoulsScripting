@@ -29,7 +29,7 @@
     <InterpreterReference Include="IronPython|2.7-32" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DaS.ScriptLib.NEW\DarkSoulsScripting.csproj">
+    <ProjectReference Include="..\DarkSoulsScripting\DarkSoulsScripting.csproj">
       <Name>DarkSoulsScripting</Name>
       <Project>{4eef2ffb-9e6f-490e-b8d0-19c10451b461}</Project>
       <Private>True</Private>

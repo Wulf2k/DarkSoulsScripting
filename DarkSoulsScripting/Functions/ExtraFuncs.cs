@@ -89,13 +89,6 @@ namespace DarkSoulsScripting
             WFloat(tmpptr + 0x278, 0);
         }
 
-        public static void CamFocusEntity(int entityptr)
-        {
-            int camPtr = RInt32(0x137D648) + 0xEC;
-
-            WInt32(camPtr, entityptr);
-        }
-
         public static void ClearPlayTime()
         {
             int tmpPtr = RInt32(0x1378700);
@@ -899,9 +892,9 @@ namespace DarkSoulsScripting
 
         public static void ForcePlayerStableFootPos()
         {
-            Entity.LocalPlayerMapInfo.LastStandPosX = Entity.Player.Location.X;
-            Entity.LocalPlayerMapInfo.LastStandPosY = Entity.Player.Location.Y;
-            Entity.LocalPlayerMapInfo.LastStandPosZ = Entity.Player.Location.Z;
+            WorldState.LastStandPosX = Entity.Player.Location.X;
+            WorldState.LastStandPosY = Entity.Player.Location.Y;
+            WorldState.LastStandPosZ = Entity.Player.Location.Z;
         }
 
         public static int GetEntityPtr(int entityId)

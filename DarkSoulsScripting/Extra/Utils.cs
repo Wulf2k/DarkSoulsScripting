@@ -1,5 +1,7 @@
 ﻿using System;
 using DarkSoulsScripting.Injection;
+using static DarkSoulsScripting.Hook;
+using static DarkSoulsScripting.ExtraFuncs;
 
 namespace DarkSoulsScripting.Extra
 {
@@ -12,6 +14,38 @@ namespace DarkSoulsScripting.Extra
             return ((input & mask) == mask);
         }
 
+        public static bool IsGameLoading()
+        {
+            int ptr = RInt32(0x137DC70);
+            if (ptr > DARKSOULS.SafeBaseMemoryOffset)
+                return (RInt32(ptr + 0x4) < DARKSOULS.SafeBaseMemoryOffset);
+            else
+                return true;
+        }
+
+        public static void WaitForLoadingScreenStart()
+        {
+            while (!IsGameLoading())
+            {
+                Wait(33);
+            }
+        }
+
+        public static void WaitForLoadingScreenEnd()
+        {
+            while (IsGameLoading())
+            {
+                Wait(33);
+            }
+        }
+
+        public static void WaitLoadCycle()
+        {
+            WaitForLoadingScreenStart();
+            Wait(33);
+            WaitForLoadingScreenEnd();
+        }
+
         //Function WAIT_FOR_GAME()
         //    ingameTimeStopped = True
         //    repeat
@@ -21,45 +55,45 @@ namespace DarkSoulsScripting.Extra
         //    until(Not ingameTimeStopped)
         //    End
 
-        public static void WaitForGame()
-        {
-            int curIngameTime = 0;
-            int prevIngameTime = 0;
-            bool ingameTimeStopped = true;
-            do
-            {
-                int ingameTimePointer = Hook.RInt32(0x1378700);
-                if (ingameTimePointer == 0)
-                    continue;
+        //public static void WaitForGame()
+        //{
+        //    int curIngameTime = 0;
+        //    int prevIngameTime = 0;
+        //    bool ingameTimeStopped = true;
+        //    do
+        //    {
+        //        int ingameTimePointer = Hook.RInt32(0x1378700);
+        //        if (ingameTimePointer != 0)
+        //        {
+        //            curIngameTime = Hook.RInt32(ingameTimePointer + 0x68);
+        //            if (curIngameTime != 0)
+        //            {
+        //                //Only update time variables when a valid time value is read.
+        //                ingameTimeStopped = (prevIngameTime == 0 || prevIngameTime == curIngameTime);
+        //                prevIngameTime = curIngameTime; //
+        //            }
+        //        }
 
-                curIngameTime = Hook.RInt32(ingameTimePointer + 0x68);
-                if (curIngameTime == 0)
-                    continue;
+        //        ExtraFuncs.Wait(16);
+        //    } while (ingameTimeStopped);
+        //}
 
-                ingameTimeStopped = (prevIngameTime == 0 || prevIngameTime == curIngameTime);
+        //public static double WaitForGameAndMeasureDuration()
+        //{
+        //    var startTime = DateTime.Now;
+        //    WaitForGame();
 
-                prevIngameTime = curIngameTime;
+        //    return (1.0 * DateTime.Now.Subtract(startTime).Ticks / TimeSpan.TicksPerSecond);
+        //}
 
-                ExtraFuncs.Wait(16);
-            } while (ingameTimeStopped);
-        }
-
-        public static double WaitForGameAndMeasureDuration()
-        {
-            var startTime = DateTime.Now;
-            WaitForGame();
-
-            return (1.0 * DateTime.Now.Subtract(startTime).Ticks / TimeSpan.TicksPerSecond);
-        }
-
-        public static void WaitUntilAfterNextLoadingScreen()
-        {
-            double waitDuration = 0;
-            do
-            {
-                waitDuration = WaitForGameAndMeasureDuration();
-            } while (!(waitDuration >= MinLoadingScreenDur));
-        }
+        //public static void WaitUntilAfterNextLoadingScreen()
+        //{
+        //    double waitDuration = 0;
+        //    do
+        //    {
+        //        waitDuration = WaitForGameAndMeasureDuration();
+        //    } while (!(waitDuration >= MinLoadingScreenDur));
+        //}
 
         public static uint GetIngameDllAddress(string moduleName)
         {
