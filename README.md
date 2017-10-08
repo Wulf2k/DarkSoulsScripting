@@ -13,7 +13,7 @@
 * Double-click the `ScriptTester.py` script in the *ScriptTester* project.
 * Make sure the latest Steam version of Dark Souls: Prepare to Die Edition is running.
 * In Dark Souls, load a character of your choosing. 
-* Press Shift+F5 to execute the test script in the Python interactive console window and watch it do a lot of weird stuff to your game. You can follow along to help you understand how the scripting works in general.
+* Press Alt+Shift+F5 to execute the test script in the Python interactive console window and watch it do a lot of weird stuff to your game. You can follow along to help you understand how the scripting works in general.
   
 # Getting Started: PyCharm
 * Download and run the .msi installer for IronPython and follow the directions (make sure Visual Studio is closed): https://github.com/IronLanguages/main/releases/tag/ipy-2.7.7
