@@ -43,4 +43,4 @@ from DarkSoulsScripting import ExtraFuncs as ex
 
   
 # Things to note:
-* Saving is automatically disabled for the rest of the play session each time you run **ANY** script. This will allow you to test things without overwriting your save (you can manually call 'SetSaveEnable` in the `Functions.Extra` module to re-enable it if you choose)
+* Saving is automatically disabled for the rest of the play session each time you run **ANY** script. This will allow you to test things without overwriting your save (you can manually call 'SetSaveEnable' in the `Functions.Extra` module to re-enable it if you choose)
