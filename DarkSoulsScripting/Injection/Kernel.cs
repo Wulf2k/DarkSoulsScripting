@@ -1,6 +1,7 @@
 ﻿#define SAFE
 
 using System;
+using System.Diagnostics;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 
@@ -20,6 +21,16 @@ namespace DarkSoulsScripting.Injection
         internal const int MEM_RELEASE = 0x8000;
         internal const int CREATE_SUSPENDED = 0x4;
 
+        private static bool CheckAddress(long addr, bool isWrite)
+        {
+            if (addr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            {
+                Console.WriteLine($"Tried to {(isWrite ? "write" : "read")} from invalid memory address 0x{addr:X} (minimum safe base offset address is hardcoded to 0x{Hook.DARKSOULS.SafeBaseMemoryOffset:X8}).");
+                return false;
+            }
+            return true;
+        }
+
         [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         static internal extern bool CloseHandle(IntPtr hObject);
@@ -35,6 +46,12 @@ namespace DarkSoulsScripting.Injection
 
         static internal bool ReadProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, uint lpNumberOfBytesRead)
         {
+            if (!CheckAddress(lpBaseAddress, false))
+            {
+                Array.Clear(lpBuffer, 0, iSize);
+                return false;
+            }
+
             uint dummy = 0;
             if (VirtualProtectEx(hProcess, lpBaseAddress, iSize, PAGE_READWRITE, ref dummy))
             {
@@ -51,6 +68,11 @@ namespace DarkSoulsScripting.Injection
 
         static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, int lpNumberOfBytesWritten)
         {
+            if (!CheckAddress(lpBaseAddress, true))
+            {
+                return false;
+            }
+
 #if SAFE
             uint dummy = 0;
             if (VirtualProtectEx(hProcess, lpBaseAddress, iSize, PAGE_READWRITE, ref dummy))
@@ -86,6 +108,11 @@ namespace DarkSoulsScripting.Injection
 
         static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, uint lpBuffer, int iSize, int lpNumberOfBytesWritten)
         {
+            if (!CheckAddress(lpBaseAddress, true))
+            {
+                return false;
+            }
+
 #if SAFE
             uint dummy = 0;
             if (VirtualProtectEx(hProcess, lpBaseAddress, iSize, PAGE_READWRITE, ref dummy))

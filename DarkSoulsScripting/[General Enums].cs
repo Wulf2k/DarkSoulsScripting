@@ -25,7 +25,8 @@ namespace DarkSoulsScripting
 
         //TODO: ADD MORE CHR_TYPE
 
-        DragonSummon = 12,
+        Intruder = 12,
+        ColiseumGhost = 13,
 
         //TODO: ADD MORE CHR_TYPE
     }

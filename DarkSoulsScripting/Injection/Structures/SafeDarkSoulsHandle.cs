@@ -87,58 +87,129 @@ namespace DarkSoulsScripting.Injection.Structures
             errorMsg = null;
             Process selectedProcess = null;
             Process[] _allProcesses = Process.GetProcesses();
-            foreach (Process proc in _allProcesses)
+            try
             {
-                if (selectedProcess == null && proc.MainWindowTitle.ToUpper().Equals("DARK SOULS"))
+                var potentialProcesses = new List<Process>();
+                foreach (Process proc in _allProcesses)
                 {
-                    selectedProcess = proc;
-                }
-                else
-                {
-                    proc.Dispose();
-                }
-            }
-
-            if (selectedProcess != null)
-            {
-                SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, selectedProcess.Id));
-                CheckHook();
-                Dictionary<string, List<uint>> modulesInputDict = new Dictionary<string, List<uint>>();
-
-                if (Attached)
-                {
-                    foreach (ProcessModule dll in selectedProcess.Modules)
+                    if (proc.MainWindowTitle.ToUpper().Equals("DARK SOULS"))
                     {
-                        string indexName = dll.ModuleName.ToUpper();
-                        if (modulesInputDict.ContainsKey(indexName))
-                        {
-                            modulesInputDict[indexName].Add((uint)dll.BaseAddress);
-                        }
-                        else
-                        {
-                            modulesInputDict.Add(indexName, new uint[] { (uint)dll.BaseAddress }.ToList());
-                        }
+                        potentialProcesses.Add(proc);
                     }
                 }
 
-                ModuleOffsets = new ReadOnlyDictionary<string, List<uint>>(modulesInputDict);
-                selectedProcess.Dispose();
-            }
-            else
-            {
-                errorMsg = "Unable to find Dark Souls process.";
-                return false;
-            }
+                if (potentialProcesses.Count == 0)
+                {
+                    errorMsg = "Unable to find any process likely to be Dark Souls (i.e. has \"DARK SOULS\" in the title bar).";
+                    return false;
+                }
+                else if (potentialProcesses.Count == 1)
+                {
+                    selectedProcess = potentialProcesses[0];
+                }
+                else if (potentialProcesses.Count >= 2)
+                {
+                    var mostObviousChoice = potentialProcesses.FirstOrDefault(x => x.ProcessName.ToUpper() == "DARKSOULS");
+                    if (mostObviousChoice != default(Process))
+                    {
+                        selectedProcess = mostObviousChoice;
+                        potentialProcesses.Clear();
+                        potentialProcesses.Add(selectedProcess);
+                        Console.WriteLine("Note: Multiple candidates found for Dark Souls process, but the one named \"DARKSOULS\" was chosen automatically.");
+                    }
+                    else
+                    {
+                        var purgedList = new List<Process>();
+                        foreach (var p in potentialProcesses)
+                        {
+                            //Set this process as the active process for the Kernel32 read/write functions in Hook to use
+                            SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, p.Id));
+                            //Run the hook check.
+                            CheckHook();
+                            //If CheckHook() fails, the process will be detached afterward. If it's still attached, add it to the list of still-valid processes.
+                            if (Attached)
+                                purgedList.Add(p);
+                            else
+                                ReleaseHandle();
+                        }
+                        potentialProcesses = purgedList;
+                    }
 
-            if (!Attached)
+                    if (potentialProcesses.Count == 0)
+                    {
+                        errorMsg = "Found one or more processes likely to be Dark Souls (i.e. had \"DARK SOULS\" in the title bar)\n" +
+                            "but none of them passed the byte matching check and as such none were confirmed as valid.\n" +
+                            "Obviously, if you're running a valid Dark Souls process currently and get this message, there is a bug that needs to be fixed.";
+                        return false;
+                    }
+                    else if (potentialProcesses.Count == 1)
+                    {
+                        selectedProcess = potentialProcesses[0];
+                    }
+                    else if (potentialProcesses.Count >= 2)
+                    {
+                        errorMsg = $"Found {potentialProcesses.Count} valid Dark Souls processes running. Impossible to know which one you want to hook to\n" +
+                            "(and impossible to ask you which one you want to hook to, since they all have the same name).\nPlease close all but 1 and try again." +
+                            "\n\nNote: If you need to have multiple instances of the game open for \"educational purposes\", then you can make the executable you\n" +
+                            "want to hook to named \"DARKSOULS.exe\" and it will be chosen instead of showing this error message.";
+                        return false;
+                    }
+                }
+
+                if (selectedProcess != null)
+                {
+                    SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, selectedProcess.Id));
+                    CheckHook();
+                    Dictionary<string, List<uint>> modulesInputDict = new Dictionary<string, List<uint>>();
+
+                    if (Attached)
+                    {
+                        foreach (ProcessModule dll in selectedProcess.Modules)
+                        {
+                            string indexName = dll.ModuleName.ToUpper();
+                            if (modulesInputDict.ContainsKey(indexName))
+                            {
+                                modulesInputDict[indexName].Add((uint)dll.BaseAddress);
+                            }
+                            else
+                            {
+                                modulesInputDict.Add(indexName, new uint[] { (uint)dll.BaseAddress }.ToList());
+                            }
+                        }
+                    }
+
+                    ModuleOffsets = new ReadOnlyDictionary<string, List<uint>>(modulesInputDict);
+                }
+                else
+                {
+                    errorMsg = "Could not find any valid Dark Souls process.";
+                    ReleaseHandle();
+                    return false;
+                }
+
+                if (!Attached)
+                {
+                    errorMsg = "Found Dark Souls process but failed to attach to it.\nTry explicitly running your program (or scripting environment) as an administrator.";
+                    ReleaseHandle();
+                    return false;
+                }
+                else
+                {
+                    OnAttach?.Invoke();
+                    return true;
+                }
+            }
+            catch (Exception e)
             {
-                errorMsg = "Found Dark Souls process but failed to attach to it.\nTry explicitly running your program (or scripting environment) as an administrator.";
+                errorMsg = "Encountered the following exception while trying to attach to Dark Souls process:\n\n" + e.Message;
                 return false;
             }
-            else
+            finally
             {
-                OnAttach?.Invoke();
-                return true;
+                foreach (var p in _allProcesses)
+                {
+                    p?.Dispose();
+                }
             }
         }
 

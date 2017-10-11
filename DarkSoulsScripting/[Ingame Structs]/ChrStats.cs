@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace DarkSoulsScripting
 {
-    public class EntityStats : IngameStruct
+    public class ChrStats : IngameStruct
     {
         public const int MAX_STATNAME_LENGTH = 14;
 
-        public EntityStats(Func<int> addrReadFunc) : base(addrReadFunc)
-        {
+        public AppearanceFaceDataIndexer AppearanceFaceData { get; private set; }
 
+        public struct AppearanceFaceDataIndexer
+        {
+            public readonly int Address;
+            public AppearanceFaceDataIndexer(int addr)
+            {
+                Address = addr;
+            }
+
+            public byte this[int index]
+            {
+                get { return Hook.RByte(Address + 0x3A0 + index); }
+                set { Hook.WByte(Address + 0x3A0 + index, value); }
+            }
         }
 
-        public EntityStats(int addr) : base(addr)
+        protected override void InitSubStructures()
         {
-
-        }
-
-        public override void OverwriteWith(dynamic other)
-        {
-            throw new NotImplementedException();
+            AppearanceFaceData = new AppearanceFaceDataIndexer(Address);
         }
 
         public int HP
@@ -453,23 +460,6 @@ namespace DarkSoulsScripting
             set { Hook.WFloat(Address + 0x39c, value); }
         }
 
-        public AppearanceFaceDataIndexer AppearanceFaceData { get => new AppearanceFaceDataIndexer(Address); }
-
-        public struct AppearanceFaceDataIndexer
-        {
-            public readonly int Address;
-            public AppearanceFaceDataIndexer(int addr)
-            {
-                Address = addr;
-            }
-
-            public byte this[int index]
-            {
-                get { return Hook.RByte(Address + 0x3A0 + index); }
-                set { Hook.WByte(Address + 0x3A0 + index, value); }
-            }
-        }
-
         //TODO: CHECK FOR OTHER DEFENSES
 
         public int MagicDefense
@@ -541,6 +531,5 @@ namespace DarkSoulsScripting
             get { return Hook.RUnicodeStr(Address + 0xa0, MAX_STATNAME_LENGTH); }
             set { Hook.WAsciiStr(Address + 0xa0, value.Substring(0, Math.Min(value.Length, MAX_STATNAME_LENGTH))); }
         }
-
     }
 }

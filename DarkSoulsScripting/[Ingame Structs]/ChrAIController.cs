@@ -3,35 +3,19 @@ using DarkSoulsScripting.Injection;
 
 namespace DarkSoulsScripting
 {
-
-    public class EntityAIController
+    public class ChrAIController : IngameStruct
 	{
+        protected override void InitSubStructures()
+        {
+            
+        }
 
-		public int Address {
-			get { return AddressReadFunc(); }
-		}
-
-
-		public Func<int> AddressReadFunc;
-		public EntityAIController(int ptr)
-		{
-			int ptrDeref = ptr;
-			AddressReadFunc = () => ptrDeref;
-		}
-
-		public void CopyFrom(EntityAIController other)
-		{
-			//TODO
-		}
-
-		public int EntityPtr {
+        public int ChrPtr {
 			get { return Hook.RInt32(Address + 0x14); }
 			set { Hook.WInt32(Address + 0x14, value); }
 		}
 
-		public Entity Entity {
-			get { return new Entity(() => EntityPtr); }
-		}
+        public Chr GetChr() => new Chr() { AddressReadFunc = () => ChrPtr };
 
 		public int AIScript {
 			get { return Hook.RInt32(Address + 0x78); }
@@ -82,7 +66,6 @@ namespace DarkSoulsScripting
 			get { return Hook.RInt32(Address + 0x208); }
 			set { Hook.WInt32(Address + 0x208, value); }
 		}
-
-	}
+    }
 
 }

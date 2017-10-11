@@ -269,8 +269,8 @@ namespace DarkSoulsScripting
         public static int DisableDamage(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableDamage, ChrID, State);
 
-        //public static int DisableHpGauge(_ARGS_)
-        //    => Call<int>(FuncAddress.DisableHpGauge, _ARGS_);
+        public static int DisableHpGauge(int ChrID, bool State)
+            => Call<int>(FuncAddress.DisableHpGauge, ChrID, State);
 
         public static int DisableInterupt(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableInterupt, ChrID, State);

@@ -5,16 +5,9 @@ namespace DarkSoulsScripting
 {
     public class MapEntry : IngameStruct
 	{
-        public MapEntry(int addr) : base(addr)
+        protected override void InitSubStructures()
         {
-        }
 
-        public MapEntry(Func<int> addrReadFunc) : base(addrReadFunc)
-        {
-        }
-
-        public MapEntry()
-        {
         }
 
         public int PointerToBlockAndArea {
@@ -37,43 +30,38 @@ namespace DarkSoulsScripting
 			get { return Hook.RInt32(Address + 0x40); }
 		}
 
-		public EntityHeader[] GetEntityHeaders()
+		public ChrHeader[] GetEntityHeaders()
 		{
-			EntityHeader[] result = new EntityHeader[EntityCount];
+			ChrHeader[] result = new ChrHeader[EntityCount];
 
 			for (int i = 0; i <= result.Length - 1; i++) {
-				result[i] = new EntityHeader(StartOfEntityStruct + (Size * i));
+				result[i] = new ChrHeader() { AddressReadFunc = () => StartOfEntityStruct + (20 * i) };
 			}
 
 			return result;
 		}
 
-		public Entity[] GetEntities()
+		public Chr[] GetEntities()
 		{
-			Entity[] result = new Entity[EntityCount];
+			Chr[] result = new Chr[EntityCount];
 
 			for (int i = 0; i <= EntityCount - 1; i++) {
-				result[i] = new EntityHeader(StartOfEntityStruct + (Size * i)).Entity;
+				result[i] = new ChrHeader() { AddressReadFunc = () => StartOfEntityStruct + (20 * i) }.GetChr();
 			}
 
 			return result;
 		}
 
-		public EntityLocation[] GetEntityLocations()
+		public ChrTransform[] GetEntityTransforms()
 		{
-			EntityLocation[] result = new EntityLocation[EntityCount];
+			ChrTransform[] result = new ChrTransform[EntityCount];
 
 			for (int i = 0; i <= EntityCount - 1; i++) {
-				result[i] = new EntityHeader(StartOfEntityStruct + (Size * i)).Location;
+				result[i] = new ChrHeader() { AddressReadFunc = () => StartOfEntityStruct + (20 * i) }.Transform;
 			}
 
 			return result;
 		}
-
-        public override void OverwriteWith(dynamic other)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 }

@@ -95,18 +95,22 @@ namespace DarkSoulsScripting
             WInt32(tmpPtr + 0x68, 0);
         }
 
-        public static void ControlEntity(int entityPtr, bool state)
-        {
-            entityPtr = RInt32(entityPtr + 0x28);
+        
+        /*
+         *   Use Chr.View() instead
+         */
+        //public static void ControlEntity(int entityPtr, bool state)
+        //{
+        //    entityPtr = RInt32(entityPtr + 0x28);
 
-            int ctrlptr = RInt32(0x137dc70);
-            ctrlptr = RInt32(ctrlptr + 4);
-            ctrlptr = RInt32(ctrlptr);
-            ctrlptr = RInt32(ctrlptr + 0x28);
-            ctrlptr = RInt32(ctrlptr + 0x54);
+        //    int ctrlptr = RInt32(0x137dc70);
+        //    ctrlptr = RInt32(ctrlptr + 4);
+        //    ctrlptr = RInt32(ctrlptr);
+        //    ctrlptr = RInt32(ctrlptr + 0x28);
+        //    ctrlptr = RInt32(ctrlptr + 0x54);
 
-            WInt32(entityPtr + 0x244, ctrlptr * (state ? 0xff : 0 & 1));
-        }
+        //    WInt32(entityPtr + 0x244, ctrlptr * (state ? 0xff : 0 & 1));
+        //}
 
         public static void DisableAI(bool state)
         {
@@ -170,83 +174,87 @@ namespace DarkSoulsScripting
             WInt32(entityptr + 0x270, -1);
         }
 
-        public static void SetCamPos(float xpos, float ypos, float zpos, float xrot, float yrot)
-        {
-            int tmpPtr = 0;
+        /*
+         * These are just garbage tbh
+         */
 
-            tmpPtr = RInt32(0x1378714);
+        //public static void SetCamPos(float xpos, float ypos, float zpos, float xrot, float yrot)
+        //{
+        //    int tmpPtr = 0;
 
-            WFloat(tmpPtr + 0xb0, xpos);
-            WFloat(tmpPtr + 0xb4, ypos);
-            WFloat(tmpPtr + 0xb8, zpos);
+        //    tmpPtr = RInt32(0x1378714);
 
-            tmpPtr = RInt32(0x137d6dc);
-            tmpPtr = RInt32(tmpPtr + 0x3c);
-            tmpPtr = RInt32(tmpPtr + 0x60);
+        //    WFloat(tmpPtr + 0xb0, xpos);
+        //    WFloat(tmpPtr + 0xb4, ypos);
+        //    WFloat(tmpPtr + 0xb8, zpos);
 
-            WFloat(tmpPtr + 0x144, xrot);
-            WFloat(tmpPtr + 0x150, yrot);
-        }
+        //    tmpPtr = RInt32(0x137d6dc);
+        //    tmpPtr = RInt32(tmpPtr + 0x3c);
+        //    tmpPtr = RInt32(tmpPtr + 0x60);
 
-        public static void SetFreeCam(bool state)
-        {
-            if (state)
-            {
-                //WBytes(&HEFDBAF, {&H90, &H90, &H90, &H90, &H90})
-                WBytes(0x404e59, new byte[] {
-                0x90,
-                0x90,
-                0x90,
-                0x90,
-                0x90
-            });
-                WBytes(0x404e63, new byte[] {
-                0x90,
-                0x90,
-                0x90,
-                0x90,
-                0x90
-            });
-                WBytes(0xf06c46, new byte[] {
-                0x90,
-                0x90,
-                0x90,
-                0x90,
-                0x90,
-                0x90,
-                0x90,
-                0x90
-            });
-            }
-            else
-            {
-                //WBytes(&HEFDBAF, {&HE8, &H7c, &H72, &H50, &HFF})
-                WBytes(0x404e59, new byte[] {
-                0x66,
-                0xf,
-                0xd6,
-                0x46,
-                0x20
-            });
-                WBytes(0x404e63, new byte[] {
-                0x66,
-                0xf,
-                0xd6,
-                0x46,
-                0x28
-            });
-                WBytes(0xf06c46, new byte[] {
-                0xf3,
-                0xf,
-                0x11,
-                0x83,
-                0x44,
-                0x1,
-                0x0,
-                0x0
-            });
-            }
-        }
+        //    WFloat(tmpPtr + 0x144, xrot);
+        //    WFloat(tmpPtr + 0x150, yrot);
+        //}
+
+        //public static void SetFreeCam(bool state)
+        //{
+        //    if (state)
+        //    {
+        //        //WBytes(&HEFDBAF, {&H90, &H90, &H90, &H90, &H90})
+        //        WBytes(0x404e59, new byte[] {
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90
+        //    });
+        //        WBytes(0x404e63, new byte[] {
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90
+        //    });
+        //        WBytes(0xf06c46, new byte[] {
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90,
+        //        0x90
+        //    });
+        //    }
+        //    else
+        //    {
+        //        //WBytes(&HEFDBAF, {&HE8, &H7c, &H72, &H50, &HFF})
+        //        WBytes(0x404e59, new byte[] {
+        //        0x66,
+        //        0xf,
+        //        0xd6,
+        //        0x46,
+        //        0x20
+        //    });
+        //        WBytes(0x404e63, new byte[] {
+        //        0x66,
+        //        0xf,
+        //        0xd6,
+        //        0x46,
+        //        0x28
+        //    });
+        //        WBytes(0xf06c46, new byte[] {
+        //        0xf3,
+        //        0xf,
+        //        0x11,
+        //        0x83,
+        //        0x44,
+        //        0x1,
+        //        0x0,
+        //        0x0
+        //    });
+        //    }
+        //}
 
         public static void SetClearCount(int clearCount)
         {
@@ -696,8 +704,8 @@ namespace DarkSoulsScripting
             tmpptr = RInt32(tmpptr + 0x7c);
 
             WUnicodeStr(tmpptr + 0x3b7a, str + (char)0);
-            throw new NotImplementedException(); //TODO TODO TODO
-            //DSLua.DoString("RequestOpenBriefingMsg(10010721, 1)");
+
+            IngameFuncs.RequestOpenBriefingMsg(10010721, true);
         }
 
         public class GenDiagResult
@@ -859,13 +867,13 @@ namespace DarkSoulsScripting
         public static void SetKeyGuideText(string text)
         {
             WInt32(Pointers.MenuPtr + 0x158, RInt32(Pointers.MenuPtr + 0x1c));
-            WUnicodeStr(0x11a7770, text);
+            WUnicodeStr(0x11a7770, text.Replace('\n', (char)0xA));
         }
 
         public static void SetLineHelpText(string text)
         {
             WInt32(Pointers.MenuPtr + 0x154, RInt32(Pointers.MenuPtr + 0x1c));
-            WUnicodeStr(0x11a7758, text);
+            WUnicodeStr(0x11a7758, text.Replace('\n', (char)0xA));
         }
 
         public static void SetKeyGuideTextPos(float x, float y)
@@ -892,15 +900,15 @@ namespace DarkSoulsScripting
 
         public static void ForcePlayerStableFootPos()
         {
-            WorldState.LastStandPosX = Entity.Player.Location.X;
-            WorldState.LastStandPosY = Entity.Player.Location.Y;
-            WorldState.LastStandPosZ = Entity.Player.Location.Z;
+            WorldState.LastStandPosX = Chr.Player.Nav.Transform.X;
+            WorldState.LastStandPosY = Chr.Player.Nav.Transform.Y;
+            WorldState.LastStandPosZ = Chr.Player.Nav.Transform.Z;
         }
 
-        public static int GetEntityPtr(int entityId)
+        public static int GetChrPtr(int entityId)
         {
             //throw new NotImplementedException(); //TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
-            return Call<int>(0xD6C360, entityId);
+            return CallReg<int>(0xD6C360, new dynamic[] { entityId }, eax: entityId);
 
 
         }

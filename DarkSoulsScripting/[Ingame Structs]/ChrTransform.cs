@@ -3,29 +3,12 @@ using DarkSoulsScripting.Injection;
 
 namespace DarkSoulsScripting
 {
-    public class EntityLocation : IngameStruct
+    public class ChrTransform : IngameStruct
 	{
-        public EntityLocation(Func<int> addrReadFunc) : base(addrReadFunc) { }
-
-        public EntityLocation(int addr) : base(addr) { }
-
-        public EntityLocation()
+        protected override void InitSubStructures()
         {
 
         }
-
-        public override void OverwriteWith(dynamic other)
-		{
-			var oAngle = other.Angle;
-			var oX = other.X;
-			var oY = other.Y;
-			var oZ = other.Z;
-
-			Angle = oAngle;
-			X = oX;
-			Y = oY;
-			Z = oZ;
-		}
 
         public float Heading {
 			get { return (float)((Hook.RFloat(Address + 0x4) / Math.PI * 180) + 180); }

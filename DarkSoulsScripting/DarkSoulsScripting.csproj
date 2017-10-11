@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DarkSoulsScripting</RootNamespace>
     <AssemblyName>DarkSoulsScripting</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,27 +51,35 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityStats.cs" />
+    <Compile Include="[Ingame Structs]\ChrAnimInstance.cs" />
+    <Compile Include="[Ingame Structs]\ChrFollowCam.cs" />
+    <Compile Include="[Ingame Structs]\ChrNav.cs" />
+    <Compile Include="[Ingame Structs]\ChrStats.cs" />
     <Compile Include="Extra\DebugUI\WpfPropertyGrid.cs" />
     <Compile Include="Extra\DebugUI\InspectGUI.xaml.cs">
       <DependentUpon>InspectGUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entity.cs" />
-    <Compile Include="EntityAIController.cs" />
-    <Compile Include="EntityController.cs" />
-    <Compile Include="EntityHeader.cs" />
-    <Compile Include="WorldState.cs" />
-    <Compile Include="EntityLocation.cs" />
+    <Compile Include="[Ingame Structs]\Chr.cs" />
+    <Compile Include="[Ingame Structs]\ChrAIController.cs" />
+    <Compile Include="[Ingame Structs]\ChrController.cs" />
+    <Compile Include="[Ingame Structs]\ChrHeader.cs" />
+    <Compile Include="[Ingame Structs]\ChrDbg.cs" />
+    <Compile Include="[Ingame Structs]\Game.cs" />
+    <Compile Include="[Ingame Structs]\GameOptions.cs" />
+    <Compile Include="[Ingame Structs]\GameTendency.cs" />
+    <Compile Include="[Ingame Structs]\Global.cs" />
+    <Compile Include="[Ingame Structs]\Misc.cs" />
+    <Compile Include="[Ingame Structs]\WorldState.cs" />
+    <Compile Include="[Ingame Structs]\ChrTransform.cs" />
     <Compile Include="Functions\FuncAddress.cs" />
     <Compile Include="Functions\IngameFuncs.cs" />
     <Compile Include="Functions\IngameFuncs.Unmapped.cs" />
-    <Compile Include="GameStats.cs" />
-    <Compile Include="IngameStruct.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="MapEntry.cs" />
+    <Compile Include="[Ingame Structs]\IngameStruct.cs" />
+    <Compile Include="[Ingame Structs]\[Collecting Dust]\Map.cs" />
+    <Compile Include="[Ingame Structs]\[Collecting Dust]\MapEntry.cs" />
     <Compile Include="ModuleInitializer.cs" />
-    <Compile Include="MSB.cs" />
-    <Compile Include="MSBEntry.cs" />
+    <Compile Include="[Ingame Structs]\[Collecting Dust]\MSB.cs" />
+    <Compile Include="[Ingame Structs]\[Collecting Dust]\MSBEntry.cs" />
     <Compile Include="Pointers.cs" />
     <Compile Include="Injection\DSAsmCaller.cs" />
     <Compile Include="Hook.cs" />

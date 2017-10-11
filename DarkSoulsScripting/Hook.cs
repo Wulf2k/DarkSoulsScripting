@@ -5,14 +5,34 @@ using System.Threading;
 using DarkSoulsScripting.Injection;
 using System.Collections.Generic;
 using Managed.X86;
+using System.Diagnostics;
+using System.Collections.Concurrent;
 
 namespace DarkSoulsScripting
 {
     public static class Hook
     {
+        public static InjectedPointersContainer InjectedPointers = null;
+
+        public class InjectedPointersContainer
+        {
+            public SafeRemoteHandle ItemDropPtr = new SafeRemoteHandle(1024);
+        }
+
         public static SafeDarkSoulsHandle DARKSOULS { get; private set; } = new SafeDarkSoulsHandle();
 
-        internal static DSAsmCaller ASM = new DSAsmCaller();
+        private class HookState
+        {
+            public Thread Thread;
+            public DSAsmCaller Asm;
+            public byte[] Buffer;
+
+            public long WBit_actualAddress = 0;
+            public int WBit_mask = 0;
+
+            public long RBit_actualAddress = 0;
+            public int RBit_mask = 0;
+        }
 
         public static T Call<T>(FuncAddress address, params dynamic[] args)
         {
@@ -48,47 +68,96 @@ namespace DarkSoulsScripting
             return ASM.CallIngameFuncReg<T>(address, args, eax, ecx, edx, ebx, esp, esi, edi);
         }
 
-        private static byte[] ByteBuffer = new byte[8];
-
-        private static object LOCK_OBJ = new object();
-        public static bool Init()
+        private static HookState GetCurrentState()
         {
-            
+            if (States.ContainsKey(Thread.CurrentThread.ManagedThreadId))
+            {
+                States.TryGetValue(Thread.CurrentThread.ManagedThreadId, out var result);
+                return result;
+            }
+            else
+            {
+                var newEntry = new HookState()
+                {
+                    Thread = Thread.CurrentThread,
+                    Buffer = new byte[8],
+                    Asm = new DSAsmCaller()
+                };
+                States.AddOrUpdate(Thread.CurrentThread.ManagedThreadId, x => newEntry, (k, v) => v);
+                return newEntry;
+            }
+        }
 
-            Array.Clear(ByteBuffer, 0, 8);
+        internal static DSAsmCaller ASM => GetCurrentState().Asm;
+        private static byte[] ByteBuffer => GetCurrentState().Buffer;
+
+        private static ConcurrentDictionary<int, HookState> States = 
+            new ConcurrentDictionary<int, HookState>();
+
+        private static Thread BufferCollectThread;
+
+        private static EventWaitHandle BufferCollectLoopStopTrigger = new EventWaitHandle(false, EventResetMode.ManualReset);
+        private static EventWaitHandle BufferCollectLoopStopTriggerCallback = new EventWaitHandle(false, EventResetMode.ManualReset);
+
+        private static void BufferCollectLoop()
+        {
+            States.AsParallel().ForAll(x =>
+            {
+                if (!(x.Value.Thread?.IsAlive ?? false))
+                {
+                    if (States.TryRemove(x.Key, out var deadState))
+                    {
+                        deadState.Asm?.Dispose();
+                    }
+                    else
+                    {
+                        Console.Error.WriteLine("WARNING: ConcurrentDictionary<int, HookState> Hook.States --> Call to Hook.States.TryRemove(...) failed.");
+                    }
+                }
+            });
+
+            if (BufferCollectLoopStopTrigger.WaitOne(1000))
+            {
+                BufferCollectLoopStopTriggerCallback.Set();
+            }
+        }
+
+        internal static void Cleanup()
+        {
+            DARKSOULS.Close();
+            if (BufferCollectThread?.IsAlive ?? false)
+            {
+                BufferCollectLoopStopTrigger.Set();
+                BufferCollectLoopStopTriggerCallback.WaitOne();
+                foreach (var kvp in States)
+                {
+                    kvp.Value.Asm.Dispose();
+                }
+            }
+        }
+
+        internal static bool Init()
+        {
+            BufferCollectLoopStopTrigger.Reset();
+            BufferCollectLoopStopTriggerCallback.Reset();
+
+            if (!(BufferCollectThread?.IsAlive ?? false))
+            {
+                BufferCollectThread = new Thread(new ThreadStart(BufferCollectLoop)) { IsBackground = true };
+                BufferCollectThread.Start();
+            }
 
             return true;
         }
 
-        public class Injected
-        {
-            public static SafeRemoteHandle ItemDropPtr = new SafeRemoteHandle(1024);
-        }
-
-        private static bool CheckAddress(long addr)
-        {
-            //var result = false;
-            //lock (LOCK_OBJ)
-            //{
-            //    result = (addr >= DARKSOULS.SafeBaseMemoryOffset);
-            //    // AndAlso addr.ToInt32() < &H10000000 'may need adjusting
-            //}
-            return addr >= DARKSOULS.SafeBaseMemoryOffset;
-        }
-
         public static sbyte RInt8(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 1, 0);
             return (sbyte)ByteBuffer[0];
         }
 
-
         public static short RInt16(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 2, 0);
             return BitConverter.ToInt16(ByteBuffer, 0);
         }
@@ -96,8 +165,6 @@ namespace DarkSoulsScripting
 
         public static int RInt32(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 4, 0);
             return BitConverter.ToInt32(ByteBuffer, 0);
         }
@@ -105,8 +172,6 @@ namespace DarkSoulsScripting
 
         public static long RInt64(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 8, 0);
             return BitConverter.ToInt64(ByteBuffer, 0);
         }
@@ -114,8 +179,6 @@ namespace DarkSoulsScripting
 
         public static ushort RUInt16(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 2, 0);
             return BitConverter.ToUInt16(ByteBuffer, 0);
         }
@@ -123,8 +186,6 @@ namespace DarkSoulsScripting
 
         public static uint RUInt32(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 4, 0);
             return BitConverter.ToUInt32(ByteBuffer, 0);
         }
@@ -132,8 +193,6 @@ namespace DarkSoulsScripting
 
         public static ulong RUInt64(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 8, 0);
             return BitConverter.ToUInt64(ByteBuffer, 0);
         }
@@ -141,8 +200,6 @@ namespace DarkSoulsScripting
 
         public static float RFloat(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 4, 0);
             return BitConverter.ToSingle(ByteBuffer, 0);
         }
@@ -150,17 +207,12 @@ namespace DarkSoulsScripting
 
         public static double RDouble(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 8, 0);
             return BitConverter.ToDouble(ByteBuffer, 0);
         }
 
-
         public static IntPtr RIntPtr(long addr)
         {
-            if (!CheckAddress(addr))
-                return new IntPtr(0);
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, IntPtr.Size, 0);
             if (IntPtr.Size == 4)
             {
@@ -172,14 +224,8 @@ namespace DarkSoulsScripting
             }
         }
 
-
         public static byte[] RBytes(long addr, int size)
         {
-            if (!CheckAddress(addr))
-            {
-                byte[] dummyArr = new byte[size];
-                return dummyArr;
-            }
             byte[] _rtnBytes = new byte[size];
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, _rtnBytes, size, 0);
             return _rtnBytes;
@@ -188,8 +234,6 @@ namespace DarkSoulsScripting
 
         public static byte RByte(long addr)
         {
-            if (!CheckAddress(addr))
-                return 0;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 1, 0);
             return ByteBuffer[0];
         }
@@ -197,9 +241,6 @@ namespace DarkSoulsScripting
 
         public static string RAsciiStr(long addr, int maxLength)
         {
-            if (!CheckAddress(addr))
-                return null;
-
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
             int loc = 0;
 
@@ -235,9 +276,6 @@ namespace DarkSoulsScripting
 
         public static string RUnicodeStr(long addr, int maxLength)
         {
-            if (!CheckAddress(addr))
-                return null;
-
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
             int loc = 0;
 
@@ -273,8 +311,6 @@ namespace DarkSoulsScripting
 
         public static bool RBool(long addr)
         {
-            if (!CheckAddress(addr))
-                return false;
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 1, 0);
             return (ByteBuffer[0] != 0);
         }
@@ -282,100 +318,113 @@ namespace DarkSoulsScripting
 
         public static void WBool(long addr, bool val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 1, 0);
         }
 
 
         public static void WInt16(long addr, Int16 val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 2, 0);
         }
 
 
         public static void WUInt16(long addr, UInt16 val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 2, 0);
         }
 
 
         public static void WInt32(long addr, int val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 4, 0);
         }
 
 
         public static void WUInt32(long addr, uint val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 4, 0);
         }
 
 
         public static void WInt64(long addr, Int64 val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 8, 0);
         }
 
 
         public static void WUInt64(long addr, UInt64 val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 8, 0);
         }
 
 
         public static void WFloat(long addr, float val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 4, 0);
         }
 
 
         public static void WBytes(long addr, byte[] val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, val, val.Length, 0);
         }
 
 
         public static void WByte(long addr, byte val)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, new byte[] { val }, 1, 0);
         }
 
 
         public static void WAsciiStr(long addr, string str)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, System.Text.Encoding.ASCII.GetBytes(str).Concat(new byte[] { 0 }).ToArray(), str.Length + 1, 0);
         }
 
 
         public static void WUnicodeStr(long addr, string str)
         {
-            if (!CheckAddress(addr))
-                return;
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, System.Text.Encoding.Unicode.GetBytes(str).Concat(new byte[] {
                 0,
                 0
             }).ToArray(), str.Length * 2 + 2, 0);
+        }
+
+        public static void WBit(long baseAddr, int bitOffset, bool val)
+        {
+            var state = GetCurrentState();
+            state.WBit_actualAddress = (baseAddr + (bitOffset / 8));
+            state.WBit_mask = 0b10000000 >> (bitOffset % 8);
+
+            if (Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)(state.WBit_actualAddress), ByteBuffer, 1, 0))
+            {
+                byte b = RByte(state.WBit_actualAddress);
+                // ((b & mask) == mask) is the boolean value of the flag
+                if (((b & state.WBit_mask) == state.WBit_mask) != val)
+                {
+                    if (val)
+                        WByte(state.WBit_actualAddress, (byte)(b | state.WBit_mask)); 
+                    else
+                        WByte(state.WBit_actualAddress, (byte)(b & (~state.WBit_mask)));
+                }
+            }
+        }
+
+        public static bool RBit(long baseAddr, int bitOffset)
+        {
+            var state = GetCurrentState();
+            state.RBit_actualAddress = (baseAddr + (bitOffset / 8));
+            state.RBit_mask = 0b10000000 >> (bitOffset % 8);
+
+            if (Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)(state.RBit_actualAddress), ByteBuffer, 1, 0))
+            {
+                byte b = RByte(state.RBit_actualAddress);
+                return (b & state.RBit_mask) == state.RBit_mask;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

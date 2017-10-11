@@ -204,6 +204,7 @@ namespace DarkSoulsScripting.Injection
         private void ____freeNativeUnmanagedResources()
         {
             UndoCodeInjection();
+            CodeHandle.Close();
             CodeHandle.Dispose();
             CodeHandle = null;
         }
