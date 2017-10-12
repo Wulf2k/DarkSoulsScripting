@@ -36,25 +36,25 @@ print str(f.Unmapped.GetTravelItemParamId(7)) #No dea what this returns. If you 
 # Use ex. to access extra functions we've added to extend the functionality.
 ex.MsgBoxOK("Hi there. Press OK to spawn your own Artorias bodyguard to help you through Oolacile Township.")
 
-# Use Entity.FromName() to access the entity structure for the map name and entity name specified:
-artorias = Entity.FromName("m12_01_00_00", "c4100_0000") #Gets Artorias, but ONLY if he's loaded, so warp to Oolacile Township or something
+# Use Chr.FromName() to access the entity structure for the map name and entity name specified:
+artorias = Chr.FromName("m12_01_00_00", "c4100_0000") #Gets Artorias, but ONLY if he's loaded, so warp to Oolacile Township or something
 
-# the ChrID property in entity structure gets the ChrID of that entity for use with various functions.
-f.SetDisable(artorias.ChrID, False)
+# the ID property in Chr structure gets the ChrID of that Chr for use with various functions.
+f.SetDisable(artorias.ID, False)
 
 artorias.DisableEventBackreadState = False
 
-# Do note, however, that there are some entities that literally always spawn and have no special events. 
-# These entities will have -1 as their ChrID and, as such, these functions will not work.
-# However, you can still do some of the things those functions do by directly modifying the entity:
-artorias.EnableLogic = True
+# Do note, however, that there are some Chr's that literally always spawn and have no special events. 
+# These Chr's will have -1 as their ID and, as such, these functions will not work.
+# However, you can still do some of the things those functions do by directly modifying the Chr:
+artorias.Nav.EnableLogic = True
 
 artorias.TeamType = TEAM_TYPE.BattleFriend
 # artorias.ChrType = CHR_TYPE.WhiteGhost
 
 
 # There are also some helper functions in many of the ingame structures mapped out that we added to make things easier:
-artorias.WarpToEntity(Entity.Player) # Warps Artorias to the exact same location as the player
+artorias.WarpToChr(Chr.Player) # Warps Artorias to the exact same location as the player
 
 # Some of the ingame structures contain other structures:
 Chr.Player.Stats.Covenant = COVENANT.Darkwraith
