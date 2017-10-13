@@ -364,6 +364,8 @@ namespace DarkSoulsScripting.Injection
                 CompletelyReInitializeAndInjectCodeInNewLocation();
             }
 
+            Kernel.CheckAddress(CodeHandle.GetHandle().ToInt64(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
+
             Buffer_ParamPointerList.Clear();
 
             InitAsmBuffer(functionAddress, args, Buffer_ParamPointerList, eax, ecx, edx, ebx, esp, esi, edi);
@@ -402,6 +404,8 @@ namespace DarkSoulsScripting.Injection
             {
                 CompletelyReInitializeAndInjectCodeInNewLocation();
             }
+
+            Kernel.CheckAddress(CodeHandle.GetHandle().ToInt64(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
 
             Buffer_ParamPointerList.Clear();
 

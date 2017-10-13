@@ -1,6 +1,5 @@
-﻿#define SAFE
-
-using System;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
@@ -21,12 +20,57 @@ namespace DarkSoulsScripting.Injection
         internal const int MEM_RELEASE = 0x8000;
         internal const int CREATE_SUSPENDED = 0x4;
 
-        private static bool CheckAddress(long addr, bool isWrite)
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern int VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out MEMORY_BASIC_INFORMATION lpBuffer, uint dwLength);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MEMORY_BASIC_INFORMATION
+        {
+            public IntPtr BaseAddress;
+            public IntPtr AllocationBase;
+            public uint AllocationProtect;
+            public IntPtr RegionSize;
+            public uint State;
+            public uint Protect;
+            public uint Type;
+        }
+
+        internal static bool CheckAddress(long addr, uint length, string action)
         {
             if (addr < Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
-                Console.WriteLine($"Tried to {(isWrite ? "write" : "read")} from invalid memory address 0x{addr:X} (minimum safe base offset address is hardcoded to 0x{Hook.DARKSOULS.SafeBaseMemoryOffset:X8}).");
+                Console.WriteLine($"Tried to {action} from invalid memory address 0x{addr:X} (minimum safe base offset address is hardcoded to 0x{Hook.DARKSOULS.SafeBaseMemoryOffset:X8}).");
                 return false;
+            }
+            else
+            {
+                var query = VirtualQueryEx(Hook.DARKSOULS.GetHandle(), (IntPtr)addr, out var info, (uint)Marshal.SizeOf(typeof(MEMORY_BASIC_INFORMATION)));
+                if (query == 0)
+                {
+                    var lastError = new Win32Exception();
+                    Console.Error.WriteLine($"WARNING: VirtualQueryEx at 0x{((uint)addr):X8} failed --> {lastError.Message}");
+                    return false;
+                }
+                else
+                {
+                    if (info.Protect != PAGE_EXECUTE_READWRITE)
+                    {
+                        if (VirtualProtectEx(Hook.DARKSOULS.GetHandle(), (IntPtr)addr, (UIntPtr)length, PAGE_EXECUTE_READWRITE, out _))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            var lastError = new Win32Exception();
+                            Console.Error.WriteLine($"WARNING: VirtualProtectEx at 0x{((uint)addr):X8} failed --> {lastError.Message}");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
             }
             return true;
         }
@@ -46,21 +90,13 @@ namespace DarkSoulsScripting.Injection
 
         static internal bool ReadProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, uint lpNumberOfBytesRead)
         {
-            if (!CheckAddress(lpBaseAddress, false))
+            if (!CheckAddress(lpBaseAddress, (uint)iSize, "read"))
             {
                 Array.Clear(lpBuffer, 0, iSize);
                 return false;
             }
 
-            uint dummy = 0;
-            if (VirtualProtectEx(hProcess, lpBaseAddress, iSize, PAGE_READWRITE, ref dummy))
-            {
-                return ReadProcessMemory(hProcess, lpBaseAddress, lpBuffer, iSize, lpNumberOfBytesRead);
-            }
-            else
-            {
-                return false;
-            }
+            return ReadProcessMemory(hProcess, lpBaseAddress, lpBuffer, iSize, lpNumberOfBytesRead);
         }
 
         [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
@@ -68,24 +104,12 @@ namespace DarkSoulsScripting.Injection
 
         static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, int lpNumberOfBytesWritten)
         {
-            if (!CheckAddress(lpBaseAddress, true))
+            if (!CheckAddress(lpBaseAddress, (uint)iSize, "write"))
             {
                 return false;
             }
 
-#if SAFE
-            uint dummy = 0;
-            if (VirtualProtectEx(hProcess, lpBaseAddress, iSize, PAGE_READWRITE, ref dummy))
-            {
-#endif
-                return WriteProcessMemory(hProcess, lpBaseAddress, lpBuffer, iSize, lpNumberOfBytesWritten);
-#if SAFE
-        }
-            else
-            {
-                return false;
-            }
-#endif
+            return WriteProcessMemory(hProcess, lpBaseAddress, lpBuffer, iSize, lpNumberOfBytesWritten);
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
@@ -95,7 +119,8 @@ namespace DarkSoulsScripting.Injection
         static internal extern bool VirtualFreeEx(IntPtr hProcess, uint lpAddress, int dwSize, int dwFreeType);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        static internal extern bool VirtualProtectEx(IntPtr hProcess, uint lpAddress, int dwSize, int flNewProtect, ref uint lpflOldProtect);
+        static internal extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress,
+            UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         static internal extern int WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);
@@ -108,24 +133,12 @@ namespace DarkSoulsScripting.Injection
 
         static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, uint lpBuffer, int iSize, int lpNumberOfBytesWritten)
         {
-            if (!CheckAddress(lpBaseAddress, true))
+            if (!CheckAddress(lpBaseAddress, (uint)iSize, "write"))
             {
                 return false;
             }
 
-#if SAFE
-            uint dummy = 0;
-            if (VirtualProtectEx(hProcess, lpBaseAddress, iSize, PAGE_READWRITE, ref dummy))
-            {
-#endif
-                return WriteProcessMemory(hProcess, lpBaseAddress, lpBuffer, iSize, lpNumberOfBytesWritten);
-#if SAFE
-        }
-            else
-            {
-                return false;
-            }
-#endif
+            return WriteProcessMemory(hProcess, lpBaseAddress, lpBuffer, iSize, lpNumberOfBytesWritten);
         }
     }
 }

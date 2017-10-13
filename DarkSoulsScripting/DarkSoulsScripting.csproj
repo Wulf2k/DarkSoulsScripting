@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.1</LangVersion>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,6 +52,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Injection\DLL\Kernel32.cs" />
     <Compile Include="[Ingame Structs]\ChrAnimInstance.cs" />
     <Compile Include="[Ingame Structs]\ChrFollowCam.cs" />
     <Compile Include="[Ingame Structs]\ChrNav.cs" />

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>fc0e26b0-ae42-4be7-86bf-88bab8c3090a</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ScriptTester.py</StartupFile>
+    <StartupFile>SwapTest.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,6 +26,9 @@
   <ItemGroup>
     <Compile Include="ScriptTester.py" />
     <Compile Include="RandomSpEffectsWhenDoinStuff.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SwapTest.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

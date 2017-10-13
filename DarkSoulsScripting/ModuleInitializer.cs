@@ -19,6 +19,13 @@ namespace DarkSoulsScripting
 
         internal static void Run()
         {
+            /*
+                The kernel32 functions seem to completely block the game's draw thread.
+                We can reduce interruptions to the game's drawing by executing the kernel calls as fast as possible.
+                Therefore, the below line actually (very noticably) boosts the performance of both DarkSoulsScripting AND Dark Souls!
+            */
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
+
             if (Hook.DARKSOULS.TryAttachToDarkSouls(out string error))
             {
                 Hook.Init();

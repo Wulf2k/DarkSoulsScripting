@@ -40,6 +40,11 @@ namespace DarkSoulsScripting
         {
             return new Chr() { AddressReadFunc = () => ExtraFuncs.GetEntityPtrByName(mapName, entityName) };
         }
+
+        public static Chr FromAddress(int addr)
+        {
+            return new Chr() { AddressReadFunc = () => addr };
+        }
         #endregion
 
         public int HeaderPtr {

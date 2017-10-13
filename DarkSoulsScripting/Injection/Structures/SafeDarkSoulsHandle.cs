@@ -220,8 +220,7 @@ namespace DarkSoulsScripting.Injection.Structures
             {
                 Version = DarkSoulsVersion.LatestRelease;
 
-                uint dummy = 0;
-                if (!Kernel.VirtualProtectEx(handle, 0x10CC000, 0x1DE000, Kernel.PAGE_READWRITE, ref dummy))
+                if (!Kernel.VirtualProtectEx(handle, (IntPtr)(0x10CC000), (UIntPtr)(0x1DE000), Kernel.PAGE_EXECUTE_READWRITE, out _))
                 {
                     throw new Exception("VirtualProtectEx Returned False");
                 }
@@ -235,7 +234,7 @@ namespace DarkSoulsScripting.Injection.Structures
                 Kernel.WriteProcessMemory_SAFE(handle, 0xBE719F, new byte[] { 0x20 }, 1, 0);
                 Kernel.WriteProcessMemory_SAFE(handle, 0xBE722B, new byte[] { 0x20 }, 1, 0);
 
-                ExtraFuncs.SetSaveEnable(false);
+                WorldState.Autosave = false;
             }
             else
             {
