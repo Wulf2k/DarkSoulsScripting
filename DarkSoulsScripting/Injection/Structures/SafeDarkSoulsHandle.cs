@@ -48,6 +48,8 @@ namespace DarkSoulsScripting.Injection.Structures
             }
         }
 
+        public int ProcessID { get; private set; } = -1;
+
         public SafeDarkSoulsHandle() : base(true)
         {
         }
@@ -158,6 +160,7 @@ namespace DarkSoulsScripting.Injection.Structures
 
                 if (selectedProcess != null)
                 {
+                    ProcessID = selectedProcess.Id;
                     SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, selectedProcess.Id));
                     CheckHook();
                     Dictionary<string, List<uint>> modulesInputDict = new Dictionary<string, List<uint>>();
@@ -225,7 +228,7 @@ namespace DarkSoulsScripting.Injection.Structures
                     throw new Exception("VirtualProtectEx Returned False");
                 }
 
-                if (!Kernel.FlushInstructionCache(handle, 0x10CC000, 0x1DE000))
+                if (!Kernel.FlushInstructionCache(handle, (IntPtr)0x10CC000, (UIntPtr)0x1DE000))
                 {
                     throw new Exception("FlushInstructionCache Returned False");
                 }
@@ -262,6 +265,16 @@ namespace DarkSoulsScripting.Injection.Structures
         {
             OnDetach?.Invoke();
             return Kernel.CloseHandle(handle);
+        }
+
+        public void Suspend()
+        {
+            Kernel.SuspendProcess(ProcessID);
+        }
+
+        public void Resume()
+        {
+            Kernel.ResumeProcess(ProcessID);
         }
 
     }

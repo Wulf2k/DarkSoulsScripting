@@ -3,7 +3,10 @@ using DarkSoulsScripting.Injection;
 
 namespace DarkSoulsScripting
 {
-    public class ChrAIController : IngameStruct
+    public class ChrAIController<TChr, TChrMovementCtrl, TChrController> : GameStruct
+        where TChrController : ChrController, new()
+        where TChrMovementCtrl : ChrMovementCtrl<TChrController>, new()
+        where TChr : Chr<TChrMovementCtrl, TChrController>, new()
 	{
         protected override void InitSubStructures()
         {
@@ -15,7 +18,7 @@ namespace DarkSoulsScripting
 			set { Hook.WInt32(Address + 0x14, value); }
 		}
 
-        public Chr GetChr() => new Chr() { AddressReadFunc = () => ChrPtr };
+        public TChr GetChr() => new TChr() { AddressReadFunc = () => ChrPtr };
 
 		public int AIScript {
 			get { return Hook.RInt32(Address + 0x78); }

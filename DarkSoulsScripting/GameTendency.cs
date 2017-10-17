@@ -7,7 +7,7 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-    public class GameTendency : IngameStruct
+    public class GameTendency : GameStruct
     {
         protected override void InitSubStructures()
         {

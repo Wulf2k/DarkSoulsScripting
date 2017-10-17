@@ -7,7 +7,7 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-    public class ChrAnimInstance : IngameStruct
+    public class ChrAnimInstance : GameStruct
     {
         protected override void InitSubStructures()
         {

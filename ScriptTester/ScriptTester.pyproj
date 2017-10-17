@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>fc0e26b0-ae42-4be7-86bf-88bab8c3090a</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SwapTest.py</StartupFile>
+    <StartupFile>QUICK_TEST.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DoStuffToAllChrTesting.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QUICK_TEST.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ScriptTester.py" />
     <Compile Include="RandomSpEffectsWhenDoinStuff.py">
       <SubType>Code</SubType>

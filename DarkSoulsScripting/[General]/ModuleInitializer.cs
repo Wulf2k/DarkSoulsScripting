@@ -34,6 +34,8 @@ namespace DarkSoulsScripting
 
                 CleanExitThread = new Thread(new ThreadStart(DoCleanExitWait)) { IsBackground = true };
                 CleanExitThread.Start();
+
+                CodeHooks.InitAll();
             }
             else
             {
@@ -55,6 +57,7 @@ namespace DarkSoulsScripting
 
         private static void CleanExit()
         {
+            CodeHooks.CleanupAll();
             Hook.Cleanup();
         }
 

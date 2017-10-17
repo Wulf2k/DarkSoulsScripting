@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace DarkSoulsScripting
 {
+    public enum WeaponHoldStyle
+    {
+        None,
+        OneHand,
+        TwoHandLeft,
+        TwoHandRight
+    }
+
     public enum ITEM_CATE : int
     {
         Weapons = 0x00000000,

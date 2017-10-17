@@ -41,6 +41,7 @@
     <Reference Include="System.Activities.Core.Presentation" />
     <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -52,39 +53,58 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WorldChrMan.cs" />
+    <Compile Include="[General]\CodeHooks.cs" />
+    <Compile Include="CodeHookTypes\CodeHookBase.cs" />
+    <Compile Include="XInput\Gamepad.XboxOne.cs" />
+    <Compile Include="XInput\Gamepad.PS3.cs" />
+    <Compile Include="XInput\Gamepad.PS4.cs" />
+    <Compile Include="XInput\Gamepad.Xbox360.cs" />
+    <Compile Include="XInput\GamepadBase.cs" />
+    <Compile Include="CodeHookTypes\Reg32Recorder.cs" />
+    <Compile Include="XInput\GamepadState.cs" />
     <Compile Include="Injection\DLL\Kernel32.cs" />
-    <Compile Include="[Ingame Structs]\ChrAnimInstance.cs" />
-    <Compile Include="[Ingame Structs]\ChrFollowCam.cs" />
-    <Compile Include="[Ingame Structs]\ChrNav.cs" />
-    <Compile Include="[Ingame Structs]\ChrStats.cs" />
+    <Compile Include="XInput\ButtonState.cs" />
+    <Compile Include="XInput\Button.cs" />
+    <Compile Include="ChrAnimInstance.cs" />
+    <Compile Include="ChrFollowCam.cs" />
+    <Compile Include="ChrMovementCtrl.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyAIController.cs" />
+    <Compile Include="EnemyController.cs" />
+    <Compile Include="EnemyMovementCtrl.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PlayerController.cs" />
+    <Compile Include="PlayerMovementCtrl.cs" />
+    <Compile Include="PlayerStats.cs" />
     <Compile Include="Extra\DebugUI\WpfPropertyGrid.cs" />
     <Compile Include="Extra\DebugUI\InspectGUI.xaml.cs">
       <DependentUpon>InspectGUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="[Ingame Structs]\Chr.cs" />
-    <Compile Include="[Ingame Structs]\ChrAIController.cs" />
-    <Compile Include="[Ingame Structs]\ChrController.cs" />
-    <Compile Include="[Ingame Structs]\ChrHeader.cs" />
-    <Compile Include="[Ingame Structs]\ChrDbg.cs" />
-    <Compile Include="[Ingame Structs]\Game.cs" />
-    <Compile Include="[Ingame Structs]\GameOptions.cs" />
-    <Compile Include="[Ingame Structs]\GameTendency.cs" />
-    <Compile Include="[Ingame Structs]\Global.cs" />
-    <Compile Include="[Ingame Structs]\Misc.cs" />
-    <Compile Include="[Ingame Structs]\WorldState.cs" />
-    <Compile Include="[Ingame Structs]\ChrTransform.cs" />
+    <Compile Include="Chr.cs" />
+    <Compile Include="ChrAIController.cs" />
+    <Compile Include="ChrController.cs" />
+    <Compile Include="ChrSlot.cs" />
+    <Compile Include="ChrDbg.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameOptions.cs" />
+    <Compile Include="GameTendency.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Misc.cs" />
+    <Compile Include="WorldState.cs" />
+    <Compile Include="ChrTransform.cs" />
     <Compile Include="Functions\FuncAddress.cs" />
     <Compile Include="Functions\IngameFuncs.cs" />
     <Compile Include="Functions\IngameFuncs.Unmapped.cs" />
-    <Compile Include="[Ingame Structs]\IngameStruct.cs" />
-    <Compile Include="[Ingame Structs]\[Collecting Dust]\Map.cs" />
-    <Compile Include="[Ingame Structs]\[Collecting Dust]\MapEntry.cs" />
-    <Compile Include="ModuleInitializer.cs" />
-    <Compile Include="[Ingame Structs]\[Collecting Dust]\MSB.cs" />
-    <Compile Include="[Ingame Structs]\[Collecting Dust]\MSBEntry.cs" />
-    <Compile Include="Pointers.cs" />
+    <Compile Include="GameStruct.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="MapEntry.cs" />
+    <Compile Include="[General]\ModuleInitializer.cs" />
+    <Compile Include="MSB.cs" />
+    <Compile Include="MSBEntry.cs" />
+    <Compile Include="[General]\Pointers.cs" />
     <Compile Include="Injection\DSAsmCaller.cs" />
-    <Compile Include="Hook.cs" />
+    <Compile Include="[General]\Hook.cs" />
     <Compile Include="Injection\Kernel.cs" />
     <Compile Include="Injection\PSAPI.cs" />
     <Compile Include="Injection\Structures\DarkSoulsVersion.cs" />
@@ -132,7 +152,7 @@
     <Compile Include="X86AssemblyLib\Stack\X86Writer.Pop.cs" />
     <Compile Include="X86AssemblyLib\Stack\X86Writer.Push.cs" />
     <Compile Include="X86AssemblyLib\X86Writer.cs" />
-    <Compile Include="[General Enums].cs" />
+    <Compile Include="[General]\[General Enums].cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Extra\DebugUI\InspectGUI.xaml">
@@ -143,6 +163,7 @@
   <ItemGroup>
     <None Include="X86AssemblyLib\COPYING" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="InjectModuleInitializer" AfterTargets="AfterBuild">
     <Exec Command="..\Tools\InjectModuleInitializer.exe &quot;$(TargetPath)&quot;" />

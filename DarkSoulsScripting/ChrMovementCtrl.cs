@@ -7,21 +7,33 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-    public class ChrNav : IngameStruct
+    public class ChrMovementCtrl<TChrController> : GameStruct
+        where TChrController : ChrController, new()
     {
-        public ChrController Controller { get; private set; } = null;
         public ChrTransform Transform { get; private set; } = null;
+        public TChrController Controller { get; private set; } = null;
+        public PlayerController DebugPlayerController { get; private set; } = null;
 
         protected override void InitSubStructures()
         {
-            Controller = new ChrController() { AddressReadFunc = () => ControllerPtr };
             Transform = new ChrTransform() { AddressReadFunc = () => TransformPtr };
+            Controller = new TChrController() { AddressReadFunc = () => ControllerPtr };
+            DebugPlayerController = new PlayerController() { AddressReadFunc = () => DebugPlayerControllerPtr };
         }
+
+        public Player GetChrAsPlayer() => new Player() { AddressReadFunc = () => ChrPtr };
+        public Enemy GetChrAsEnemy() => new Enemy() { AddressReadFunc = () => ChrPtr };
 
         public bool EnableLogic
         {
             get { return RBit(Address + 0xC0, 7); }
             set { WBit(Address + 0xC0, 7, value); }
+        }
+
+        public bool DisableMapHit
+        {
+            get { return RBit(Address + 0xC4, 27); }
+            set { WBit(Address + 0xC4, 27, value); }
         }
 
         //0x40 flag applied to Address + 0xC6
@@ -31,14 +43,17 @@ namespace DarkSoulsScripting
         //    set { SetMapFlagB(ChrMapFlagsB.DisableCollision, value); }
         //}
 
+        public int ChrPtr
+        {
+            get { return RInt32(Address + 0x10); }
+            set { WInt32(Address + 0x10, value); }
+        }
+
         public int ControllerPtr
         {
             get { return RInt32(Address + 0x54); }
             set { WInt32(Address + 0x54, value); }
         }
-
-        //TODO: Have Wulf2k explore this mini heirarchy of animation structs and map them to their own IngameStruct objects
-
 
         public int AnimationPtr
         {
@@ -48,6 +63,9 @@ namespace DarkSoulsScripting
 
         public List<ChrAnimInstance> GetAnimInstances()
         {
+            if (AnimationPtr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+                return new List<ChrAnimInstance>();
+
             int animStructThing = RInt32(AnimationPtr + 0xC);
             int startAddr = RInt32(animStructThing + 0x10);
             int entryCount = RInt32(animStructThing + 0x14);
@@ -148,5 +166,10 @@ namespace DarkSoulsScripting
             get { return (float)((RFloat(Address + 0xE4) / Math.PI * 180) + 180); }
             set { WFloat(Address + 0xE4, (float)(value * Math.PI / 180) - (float)Math.PI); }
         }
+
+        public int DebugPlayerControllerPtr {
+			get { return Hook.RInt32(Address + 0x244); }
+			set { Hook.WInt32(Address + 0x244, value); }
+		}
     }
 }

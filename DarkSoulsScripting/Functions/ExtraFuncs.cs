@@ -564,10 +564,10 @@ namespace DarkSoulsScripting
         //    WarpEntity_Coords(entityPtr, location.Pos.X, location.Pos.Y, location.Pos.Z, location.Rot.HeadingValue);
         //}
 
-        public static void PlayerHide(bool state)
-        {
-            WBool(0x13784e7, state);
-        }
+        //public static void PlayerHide(bool state)
+        //{
+        //    WBool(0x13784e7, state);
+        //}
 
         public static void ShowHUD(bool state)
         {
@@ -578,41 +578,41 @@ namespace DarkSoulsScripting
             WBool(tmpptr + 0xD, state);
         }
 
-        //TODO: waitforload -> WaitForLoadEnd
-        public static void WaitForLoadEnd()
-        {
-            int tmpptr = 0;
-            tmpptr = RInt32(0x1378700);
+        ////TODO: waitforload -> WaitForLoadEnd
+        //public static void WaitForLoadEnd()
+        //{
+        //    int tmpptr = 0;
+        //    tmpptr = RInt32(0x1378700);
 
-            int msPlayed = 0;
-            bool loading = true;
+        //    int msPlayed = 0;
+        //    bool loading = true;
 
-            msPlayed = RInt32(tmpptr + 0x68);
+        //    msPlayed = RInt32(tmpptr + 0x68);
 
-            while (loading)
-            {
-                loading = (msPlayed == RInt32(tmpptr + 0x68));
-                Thread.Sleep(33);
-            }
-        }
+        //    while (loading)
+        //    {
+        //        loading = (msPlayed == RInt32(tmpptr + 0x68));
+        //        Thread.Sleep(33);
+        //    }
+        //}
 
-        //TODO: waittillload -> WaitForLoadStart
-        public static void WaitForLoadStart()
-        {
-            int tmpptr = 0;
-            tmpptr = RInt32(0x1378700);
+        ////TODO: waittillload -> WaitForLoadStart
+        //public static void WaitForLoadStart()
+        //{
+        //    int tmpptr = 0;
+        //    tmpptr = RInt32(0x1378700);
 
-            int msPlayed = 0;
-            bool loading = false;
+        //    int msPlayed = 0;
+        //    bool loading = false;
 
-            msPlayed = RInt32(tmpptr + 0x68);
+        //    msPlayed = RInt32(tmpptr + 0x68);
 
-            while (!loading)
-            {
-                loading = (msPlayed == RInt32(tmpptr + 0x68));
-                Thread.Sleep(33);
-            }
-        }
+        //    while (!loading)
+        //    {
+        //        loading = (msPlayed == RInt32(tmpptr + 0x68));
+        //        Thread.Sleep(33);
+        //    }
+        //}
 
         //public static void WarpEntity_Player(int entityptr)
         //{
@@ -900,17 +900,15 @@ namespace DarkSoulsScripting
 
         public static void ForcePlayerStableFootPos()
         {
-            WorldState.LastStandPosX = Chr.Player.Nav.Transform.X;
-            WorldState.LastStandPosY = Chr.Player.Nav.Transform.Y;
-            WorldState.LastStandPosZ = Chr.Player.Nav.Transform.Z;
+            WorldState.LastStandPosX = WorldChrMan.LocalPlayer.MovementCtrl.Transform.X;
+            WorldState.LastStandPosY = WorldChrMan.LocalPlayer.MovementCtrl.Transform.Y;
+            WorldState.LastStandPosZ = WorldChrMan.LocalPlayer.MovementCtrl.Transform.Z;
         }
 
         public static int GetChrPtr(int entityId)
         {
             //throw new NotImplementedException(); //TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
             return CallReg<int>(0xD6C360, new dynamic[] { entityId }, eax: entityId);
-
-
         }
     }
 }

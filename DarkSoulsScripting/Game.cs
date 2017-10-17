@@ -19,7 +19,7 @@ namespace DarkSoulsScripting
         public static Func<int> AddressReadFunction = () => RInt32(0x1378700);
         public static int Address => AddressReadFunction();
 
-        public static int LocalStatsPtr
+        public static int LocalPlayerStatsPtr
         {
             get { return RInt32(Address + 0x8); }
             set { WInt32(Address + 0x8, value); }
@@ -37,13 +37,13 @@ namespace DarkSoulsScripting
             set { WInt32(Address + 0x38, value); }
         }
 
-        public static ChrStats LocalStats = null;
+        public static PlayerStats LocalPlayerStats = null;
         public static GameOptions Options = null;
         public static GameTendency Tendency = null;
 
         static Game()
         {
-            LocalStats = new ChrStats() { AddressReadFunc = () => LocalStatsPtr };
+            LocalPlayerStats = new PlayerStats() { AddressReadFunc = () => LocalPlayerStatsPtr };
             Options = new GameOptions() { AddressReadFunc = () => OptionsPtr };
             Tendency = new GameTendency() { AddressReadFunc = () => TendencyPtr };
         }

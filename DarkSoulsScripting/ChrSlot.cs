@@ -3,7 +3,7 @@ using DarkSoulsScripting.Injection;
 
 namespace DarkSoulsScripting
 {
-	public class ChrHeader : IngameStruct
+	public class ChrSlot : GameStruct
 	{
         public ChrTransform Transform = null;
 
@@ -17,7 +17,21 @@ namespace DarkSoulsScripting
 			set { Hook.WInt32(Address + 0x0, value); }
 		}
 
-        public Chr GetChr() => new Chr() { AddressReadFunc = () => ChrPtr };
+        public Enemy GetChrAsEnemy()
+        {
+            if (ChrPtr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+                return null;
+
+            return new Enemy() { AddressReadFunc = () => ChrPtr };
+        }
+
+        public Player GetChrAsPlayer()
+        {
+            if (ChrPtr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+                return null;
+
+            return new Player() { AddressReadFunc = () => ChrPtr };
+        }
 
 		public int CloneValue {
 			get { return Hook.RInt32(Address + 0x8); }

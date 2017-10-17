@@ -14,14 +14,14 @@ namespace DarkSoulsScripting
 
         public static byte AreaID
         {
-            get { return RByte(Address + 0xA); }
-            set { WByte(Address + 0xA, value); }
-        }
-
-        public static byte WorldID
-        {
             get { return RByte(Address + 0xB); }
             set { WByte(Address + 0xB, value); }
+        }
+
+        public static byte BlockID
+        {
+            get { return RByte(Address + 0xA); }
+            set { WByte(Address + 0xA, value); }
         }
 
         public static bool IsAliveMotion

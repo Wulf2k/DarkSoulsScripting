@@ -57,7 +57,8 @@ namespace DarkSoulsScripting.Injection
             {
                 return false;
             }
-            return Kernel.WriteProcessMemory_SAFE(Hook.DARKSOULS.GetHandle(), address, bytes, count, 0) && Kernel.FlushInstructionCache(Hook.DARKSOULS.GetHandle(), address, count);
+            return Kernel.WriteProcessMemory_SAFE(Hook.DARKSOULS.GetHandle(), address, bytes, count, 0) 
+                && Kernel.FlushInstructionCache(Hook.DARKSOULS.GetHandle(), (IntPtr)address, (UIntPtr)count);
         }
 
         private bool InjectEntireCodeBuffer()

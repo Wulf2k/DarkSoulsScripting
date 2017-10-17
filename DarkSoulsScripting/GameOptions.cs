@@ -14,7 +14,7 @@ namespace DarkSoulsScripting
         Mild = 2
     }
 
-    public class GameOptions : IngameStruct
+    public class GameOptions : GameStruct
     {
         protected override void InitSubStructures()
         {

@@ -3,7 +3,7 @@ using DarkSoulsScripting.Injection;
 
 namespace DarkSoulsScripting
 {
-    public class ChrTransform : IngameStruct
+    public class ChrTransform : GameStruct
 	{
         protected override void InitSubStructures()
         {

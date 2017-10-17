@@ -6,48 +6,22 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-	public class Chr : IngameStruct
+	public abstract class Chr<TChrMovementCtrl, TChrController> : GameStruct
+        where TChrController : ChrController, new()
+        where TChrMovementCtrl : ChrMovementCtrl<TChrController>, new()
 	{
-        public static Chr Player = new Chr() { AddressReadFunc = () => ExtraFuncs.GetChrPtr(10000) };
+        public const int MAX_NAME_LENGTH = 10;
 
-        #region NestedStructs
-        public ChrHeader Header { get; private set; } = null;
-        public ChrStats Stats { get; private set; } = null;
-        public ChrController DebugController { get; private set; } = null;
-        public ChrNav Nav { get; private set; } = null;
+        public ChrSlot Slot { get; private set; } = null;
+        public TChrMovementCtrl MovementCtrl = null;
 
         protected override void InitSubStructures()
         {
-            Header = new ChrHeader() { AddressReadFunc = () => HeaderPtr };
-            Stats = new ChrStats() { AddressReadFunc = () => StatsPtr };
-            DebugController = new ChrController() { AddressReadFunc = () => DebugControllerPtr };
-            Nav = new ChrNav() { AddressReadFunc = () => NavPtr };
-        }
-        #endregion
-
-        #region Static
-        public static Chr GetPlayer()
-        {
-            return FromID(10000);
+            Slot = new ChrSlot() { AddressReadFunc = () => SlotPtr };
+            MovementCtrl = new TChrMovementCtrl() { AddressReadFunc = () => MovementCtrlPtr };
         }
 
-        public static Chr FromID(int id)
-        {
-            return new Chr() { AddressReadFunc = () => ExtraFuncs.GetChrPtr(id) };
-        }
-
-        public static Chr FromName(string mapName, string entityName)
-        {
-            return new Chr() { AddressReadFunc = () => ExtraFuncs.GetEntityPtrByName(mapName, entityName) };
-        }
-
-        public static Chr FromAddress(int addr)
-        {
-            return new Chr() { AddressReadFunc = () => addr };
-        }
-        #endregion
-
-        public int HeaderPtr {
+        public int SlotPtr {
 			get { return RInt32(Address + 0xc); }
 			set { WInt32(Address + 0xc, value); }
 		}
@@ -57,14 +31,21 @@ namespace DarkSoulsScripting
 			set { WBool(Address + 0x14, value); }
 		}
 
-		public int DebugControllerPtr {
-			get { return RInt32(NavPtr + 0x244); }
-			set { WInt32(NavPtr + 0x244, value); }
-		}
+		
 
 		public string ModelName {
 			get { return RUnicodeStr(Address + 0x38, 10); }
 			set { WUnicodeStr(Address + 0x38, value.Substring(0, Math.Min(value.Length, 10))); }
+		}
+
+        public int UnknownMSBStructPointer {
+			get { return RInt32(Address + 0x54); }
+			set { WInt32(Address + 0x54, value); }
+		}
+
+        public int UnknownMSBStructIndex {
+			get { return RInt32(Address + 0x58); }
+			set { WInt32(Address + 0x58, value); }
 		}
 
 		public int NPCID {
@@ -285,7 +266,7 @@ namespace DarkSoulsScripting
 			set { WInt32(Address + 0x330, value); }
 		}
 
-        public int NavPtr
+        public int MovementCtrlPtr
         {
             get { return RInt32(Address + 0x28); }
             set { WInt32(Address + 0x28, value); }
@@ -442,36 +423,51 @@ namespace DarkSoulsScripting
 
         public void View()
 		{
+            //TODO: MAP THIS IN ITS RESPECTIVE STATIC CLASS:
             WInt32(RInt32(0x137D648) + 0xEC, Address);
         }
 
         public void WarpToCoords(float x, float y, float z, float heading)
         {
-            Nav.WarpX = x;
-            Nav.WarpY = y;
-            Nav.WarpZ = z;
-            Nav.WarpHeading = heading;
-            Nav.WarpActivate = true;
+            MovementCtrl.WarpX = x;
+            MovementCtrl.WarpY = y;
+            MovementCtrl.WarpZ = z;
+            MovementCtrl.WarpHeading = heading;
+            MovementCtrl.WarpActivate = true;
         }
 
-        public void WarpToTransform(ChrTransform loc)
+        public void WarpToTransform(ChrTransform dest)
         {
-            WarpToCoords(loc.X, loc.Y, loc.Z, loc.Heading);
+            WarpToCoords(dest.X, dest.Y, dest.Z, dest.Heading);
         }
 
-		public void WarpToChr(Chr dest)
+		public void WarpToPlayer(Player dest)
 		{
-            WarpToTransform(dest.Nav.Transform);
+            WarpToTransform(dest.MovementCtrl.Transform);
 		}
 
-		public void WarpToChrPtr(int dest)
+        public void WarpToEnemy(Enemy dest)
 		{
-            WarpToChr(new Chr() { AddressReadFunc = () => dest });
+            WarpToTransform(dest.MovementCtrl.Transform);
+		}
+
+        public void SwitchControlPlayer()
+        {
+            MovementCtrl.DebugPlayerControllerPtr = WorldChrMan.LocalPlayer.MovementCtrl.ControllerPtr;
+            IngameFuncs.EnableLogic(10000, false);
+            View();
         }
 
-		public void WarpToChrID(int dest)
-		{
-            WarpToChr(FromID(dest));
-		}
+        public void ReturnControlPlayer()
+        {
+            MovementCtrl.DebugPlayerControllerPtr = 0;
+            IngameFuncs.EnableLogic(10000, true);
+            WorldChrMan.LocalPlayer.View();
+        }
+
+        public string GetName()
+        {
+            return RAsciiStr(RInt32(RInt32(RInt32(UnknownMSBStructPointer + 0x28) + 0x10 + 4 * UnknownMSBStructIndex)), MAX_NAME_LENGTH);
+        }
     }
 }

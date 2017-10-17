@@ -4,13 +4,12 @@ using DarkSoulsScripting.Injection;
 namespace DarkSoulsScripting
 {
 
-    public class ChrController : IngameStruct
+    public class ChrController : GameStruct
 	{
-        public ChrAIController AIController { get; private set; } = null;
 
         protected override void InitSubStructures()
         {
-            AIController = new ChrAIController() { AddressReadFunc = () => AIControllerPtr };
+            
         }
 
         public float MoveX {
@@ -157,16 +156,7 @@ namespace DarkSoulsScripting
 			get { return Hook.RFloat(Address + 0x144); }
 			set { Hook.WFloat(Address + 0x144, value); }
 		}
-
-		public int AnimationID {
-			get { return Hook.RInt32(Address + 0x1e8); }
-			set { Hook.WInt32(Address + 0x1e8, value); }
-		}
-
-		public int AIControllerPtr {
-			get { return Hook.RInt32(Address + 0x230); }
-			set { Hook.WInt32(Address + 0x230, value); }
-		}
+		
     }
 
 }

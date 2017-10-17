@@ -2,6 +2,8 @@
 using DarkSoulsScripting.Injection;
 using static DarkSoulsScripting.Hook;
 using static DarkSoulsScripting.ExtraFuncs;
+using System.Threading;
+using System.Diagnostics;
 
 namespace DarkSoulsScripting.Extra
 {
@@ -94,6 +96,29 @@ namespace DarkSoulsScripting.Extra
         //        waitDuration = WaitForGameAndMeasureDuration();
         //    } while (!(waitDuration >= MinLoadingScreenDur));
         //}
+
+        private static Stopwatch FixedTimestepStopwatch = null;
+
+        public static long GetTickSpanFromHz(double Hz)
+        {
+            return (long)(TimeSpan.TicksPerSecond / Hz);
+        }
+
+        public static void FixedTimestep(Action updateLoop, long timestepTicks)
+        {
+            if (FixedTimestepStopwatch == null)
+                FixedTimestepStopwatch = Stopwatch.StartNew();
+            updateLoop();
+            //Sadly this will only have a resolution of every ~15 ms or so because Windows sucks.
+            var modTicks = (FixedTimestepStopwatch.ElapsedTicks % timestepTicks);
+            var waitTicks = timestepTicks - modTicks;
+            if (modTicks > (timestepTicks / 2))
+            {
+                waitTicks += timestepTicks;
+            }
+            Thread.Sleep(TimeSpan.FromTicks(waitTicks));
+            //FixedTimestepStopwatch.Restart();
+        }
 
         public static uint GetIngameDllAddress(string moduleName)
         {

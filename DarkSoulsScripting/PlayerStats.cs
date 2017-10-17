@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DarkSoulsScripting
 {
-    public class ChrStats : IngameStruct
+    public class PlayerStats : GameStruct
     {
         public const int MAX_STATNAME_LENGTH = 14;
 
@@ -350,9 +350,157 @@ namespace DarkSoulsScripting
             set { Hook.WByte(Address + 0x110, value); }
         }
 
-        //TODO: CHECK FOR OTHER EQUIP SLOTS
+                public int EquipLeftHand1Index
+        {
+            get { return Hook.RInt32(Address + 0x1D4); }
+            set { Hook.WInt32(Address + 0x1D4, value); }
+        }
 
-        //todo: other weapons maybe ;))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+        public int EquipRightHand1Index
+        {
+            get { return Hook.RInt32(Address + 0x1D8); }
+            set { Hook.WInt32(Address + 0x1D8, value); }
+        }
+
+        public int EquipLeftHand2Index
+        {
+            get { return Hook.RInt32(Address + 0x1DC); }
+            set { Hook.WInt32(Address + 0x1DC, value); }
+        }
+
+        public int EquipRightHand2Index
+        {
+            get { return Hook.RInt32(Address + 0x1E0); }
+            set { Hook.WInt32(Address + 0x1E0, value); }
+        }
+
+        public int EquipArrow1Index
+        {
+            get { return Hook.RInt32(Address + 0x1E4); }
+            set { Hook.WInt32(Address + 0x1E4, value); }
+        }
+
+        public int EquipBolt1Index
+        {
+            get { return Hook.RInt32(Address + 0x1E8); }
+            set { Hook.WInt32(Address + 0x1E8, value); }
+        }
+
+        public int EquipArrow2Index
+        {
+            get { return Hook.RInt32(Address + 0x1EC); }
+            set { Hook.WInt32(Address + 0x1EC, value); }
+        }
+
+        public int EquipBolt2Index
+        {
+            get { return Hook.RInt32(Address + 0x1F0); }
+            set { Hook.WInt32(Address + 0x1F0, value); }
+        }
+
+        public int EquipHeadIndex
+        {
+            get { return Hook.RInt32(Address + 0x1F4); }
+            set { Hook.WInt32(Address + 0x1F4, value); }
+        }
+
+        public int EquipChestIndex
+        {
+            get { return Hook.RInt32(Address + 0x1F8); }
+            set { Hook.WInt32(Address + 0x1F8, value); }
+        }
+
+        public int EquipArmsIndex
+        {
+            get { return Hook.RInt32(Address + 0x1FC); }
+            set { Hook.WInt32(Address + 0x1FC, value); }
+        }
+
+        public int EquipLegsIndex
+        {
+            get { return Hook.RInt32(Address + 0x200); }
+            set { Hook.WInt32(Address + 0x200, value); }
+        }
+
+        public int EquipRing1Index
+        {
+            get { return Hook.RInt32(Address + 0x208); }
+            set { Hook.WInt32(Address + 0x208, value); }
+        }
+
+        public int EquipRing2Index
+        {
+            get { return Hook.RInt32(Address + 0x20C); }
+            set { Hook.WInt32(Address + 0x20C, value); }
+        }
+
+        public int EquipItem1Index
+        {
+            get { return Hook.RInt32(Address + 0x210); }
+            set { Hook.WInt32(Address + 0x210, value); }
+        }
+
+        public int EquipItem2Index
+        {
+            get { return Hook.RInt32(Address + 0x214); }
+            set { Hook.WInt32(Address + 0x214, value); }
+        }
+
+        public int EquipItem3Index
+        {
+            get { return Hook.RInt32(Address + 0x218); }
+            set { Hook.WInt32(Address + 0x218, value); }
+        }
+
+        public int EquipItem4Index
+        {
+            get { return Hook.RInt32(Address + 0x21C); }
+            set { Hook.WInt32(Address + 0x21C, value); }
+        }
+
+        public int EquipItem5Index
+        {
+            get { return Hook.RInt32(Address + 0x220); }
+            set { Hook.WInt32(Address + 0x220, value); }
+        }
+
+        public WeaponHoldStyle EquipHoldStyle
+        {
+            get { return (WeaponHoldStyle)Hook.RInt32(Address + 0x230); }
+            set { Hook.WInt32(Address + 0x230, (int)value); }
+        }
+
+        public int EquipWeaponSlotL
+        {
+            get { return Hook.RInt32(Address + 0x234); }
+            set { Hook.WInt32(Address + 0x234, value); }
+        }
+
+        public int EquipWeaponSlotR
+        {
+            get { return Hook.RInt32(Address + 0x238); }
+            set { Hook.WInt32(Address + 0x238, value); }
+        }
+
+        //TODO: GAP
+
+        public int EquipLeftHand1
+        {
+            get { return Hook.RInt32(Address + 0x24C); }
+            set { Hook.WInt32(Address + 0x24C, value); }
+        }
+
+        public int EquipRightHand1
+        {
+            get { return Hook.RInt32(Address + 0x250); }
+            set { Hook.WInt32(Address + 0x250, value); }
+        }
+
+        public int EquipLeftHand2
+        {
+            get { return Hook.RInt32(Address + 0x254); }
+            set { Hook.WInt32(Address + 0x254, value); }
+        }
 
         public int EquipRightHand2
         {
@@ -360,27 +508,95 @@ namespace DarkSoulsScripting
             set { Hook.WInt32(Address + 0x258, value); }
         }
 
+        public int EquipArrow1
+        {
+            get { return Hook.RInt32(Address + 0x25C); }
+            set { Hook.WInt32(Address + 0x25C, value); }
+        }
+
+        public int EquipBolt1
+        {
+            get { return Hook.RInt32(Address + 0x260); }
+            set { Hook.WInt32(Address + 0x260, value); }
+        }
+
+        public int EquipArrow2
+        {
+            get { return Hook.RInt32(Address + 0x264); }
+            set { Hook.WInt32(Address + 0x264, value); }
+        }
+
+        public int EquipBolt2
+        {
+            get { return Hook.RInt32(Address + 0x268); }
+            set { Hook.WInt32(Address + 0x268, value); }
+        }
+
         public int EquipHead
         {
-            get { return Hook.RInt32(Address + 0x26c); }
-            set { Hook.WInt32(Address + 0x26c, value); }
+            get { return Hook.RInt32(Address + 0x26C); }
+            set { Hook.WInt32(Address + 0x26C, value); }
         }
+
         public int EquipChest
         {
             get { return Hook.RInt32(Address + 0x270); }
             set { Hook.WInt32(Address + 0x270, value); }
         }
+
         public int EquipArms
         {
             get { return Hook.RInt32(Address + 0x274); }
             set { Hook.WInt32(Address + 0x274, value); }
         }
+
         public int EquipLegs
         {
             get { return Hook.RInt32(Address + 0x278); }
             set { Hook.WInt32(Address + 0x278, value); }
         }
 
+        public int EquipRing1
+        {
+            get { return Hook.RInt32(Address + 0x280); }
+            set { Hook.WInt32(Address + 0x280, value); }
+        }
+
+        public int EquipRing2
+        {
+            get { return Hook.RInt32(Address + 0x284); }
+            set { Hook.WInt32(Address + 0x284, value); }
+        }
+
+        public int EquipItem1
+        {
+            get { return Hook.RInt32(Address + 0x288); }
+            set { Hook.WInt32(Address + 0x288, value); }
+        }
+
+        public int EquipItem2
+        {
+            get { return Hook.RInt32(Address + 0x28C); }
+            set { Hook.WInt32(Address + 0x28C, value); }
+        }
+
+        public int EquipItem3
+        {
+            get { return Hook.RInt32(Address + 0x290); }
+            set { Hook.WInt32(Address + 0x290, value); }
+        }
+
+        public int EquipItem4
+        {
+            get { return Hook.RInt32(Address + 0x294); }
+            set { Hook.WInt32(Address + 0x294, value); }
+        }
+
+        public int EquipItem5
+        {
+            get { return Hook.RInt32(Address + 0x298); }
+            set { Hook.WInt32(Address + 0x298, value); }
+        }
 
         public float AppearanceScaleHead
         {
