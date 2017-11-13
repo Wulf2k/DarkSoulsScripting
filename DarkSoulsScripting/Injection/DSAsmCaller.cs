@@ -351,7 +351,7 @@ namespace DarkSoulsScripting.Injection
             return TypeConvertCache[typeof(T)].Invoke(result);
         }
 
-        public T CallIngameFuncReg<T>(int functionAddress, IEnumerable<dynamic> args, 
+        public T CallIngameFuncReg<T>(Memloc functionAddress, IEnumerable<dynamic> args, 
             dynamic eax = null,
             dynamic ecx = null,
             dynamic edx = null,
@@ -399,7 +399,7 @@ namespace DarkSoulsScripting.Injection
             return Buffer_Result;
         }
 
-        public T CallIngameFunc<T>(int functionAddress, IEnumerable<dynamic> args)
+        public T CallIngameFunc<T>(Memloc functionAddress, IEnumerable<dynamic> args)
         {
             if (CodeHandle.IsClosed || CodeHandle.IsInvalid)
             {

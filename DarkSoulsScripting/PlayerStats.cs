@@ -12,6 +12,8 @@ namespace DarkSoulsScripting
 
         public AppearanceFaceDataIndexer AppearanceFaceData { get; private set; }
 
+        public ChrAsm ChrAsm { get; set; } = null;
+
         public struct AppearanceFaceDataIndexer
         {
             public readonly int Address;
@@ -30,6 +32,7 @@ namespace DarkSoulsScripting
         protected override void InitSubStructures()
         {
             AppearanceFaceData = new AppearanceFaceDataIndexer(Address);
+            ChrAsm = new ChrAsm() { AddressReadFunc = () => Address };
         }
 
         public int HP
@@ -350,7 +353,7 @@ namespace DarkSoulsScripting
             set { Hook.WByte(Address + 0x110, value); }
         }
 
-                public int EquipLeftHand1Index
+        public int EquipLeftHand1Index
         {
             get { return Hook.RInt32(Address + 0x1D4); }
             set { Hook.WInt32(Address + 0x1D4, value); }

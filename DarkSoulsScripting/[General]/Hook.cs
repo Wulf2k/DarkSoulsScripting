@@ -36,7 +36,7 @@ namespace DarkSoulsScripting
 
         public static T Call<T>(FuncAddress address, params dynamic[] args)
         {
-            return Call<T>((int)address, args);
+            return Call<T>(((int)address, (int)address + 0x1590), args);
         }
 
         public static T CallReg<T>(FuncAddress address, dynamic[] args,
@@ -48,15 +48,15 @@ namespace DarkSoulsScripting
             dynamic esi = null,
             dynamic edi = null)
         {
-            return CallReg<T>((int)address, args, eax, ecx, edx, ebx, esp, esi, edi);
+            return CallReg<T>(((int)address, (int)address + 0x1590), args, eax, ecx, edx, ebx, esp, esi, edi);
         }
 
-        public static T Call<T>(int address, params dynamic[] args)
+        public static T Call<T>(Memloc address, params dynamic[] args)
         {
             return ASM.CallIngameFunc<T>(address, args);
         }
 
-        public static T CallReg<T>(int address, dynamic[] args,
+        public static T CallReg<T>(Memloc address, dynamic[] args,
             dynamic eax = null,
             dynamic ecx = null,
             dynamic edx = null,
@@ -150,68 +150,68 @@ namespace DarkSoulsScripting
             return true;
         }
 
-        public static sbyte RInt8(long addr)
+        public static sbyte RInt8(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 1, 0);
             return (sbyte)ByteBuffer[0];
         }
 
-        public static short RInt16(long addr)
+        public static short RInt16(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 2, 0);
             return BitConverter.ToInt16(ByteBuffer, 0);
         }
 
 
-        public static int RInt32(long addr)
+        public static int RInt32(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 4, 0);
             return BitConverter.ToInt32(ByteBuffer, 0);
         }
 
 
-        public static long RInt64(long addr)
+        public static long RInt64(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 8, 0);
             return BitConverter.ToInt64(ByteBuffer, 0);
         }
 
 
-        public static ushort RUInt16(long addr)
+        public static ushort RUInt16(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 2, 0);
             return BitConverter.ToUInt16(ByteBuffer, 0);
         }
 
 
-        public static uint RUInt32(long addr)
+        public static uint RUInt32(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 4, 0);
             return BitConverter.ToUInt32(ByteBuffer, 0);
         }
 
 
-        public static ulong RUInt64(long addr)
+        public static ulong RUInt64(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 8, 0);
             return BitConverter.ToUInt64(ByteBuffer, 0);
         }
 
 
-        public static float RFloat(long addr)
+        public static float RFloat(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 4, 0);
             return BitConverter.ToSingle(ByteBuffer, 0);
         }
 
 
-        public static double RDouble(long addr)
+        public static double RDouble(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 8, 0);
             return BitConverter.ToDouble(ByteBuffer, 0);
         }
 
-        public static IntPtr RIntPtr(long addr)
+        public static IntPtr RIntPtr(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, IntPtr.Size, 0);
             if (IntPtr.Size == 4)
@@ -224,7 +224,7 @@ namespace DarkSoulsScripting
             }
         }
 
-        public static byte[] RBytes(long addr, int size)
+        public static byte[] RBytes(Memloc addr, int size)
         {
             byte[] _rtnBytes = new byte[size];
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, _rtnBytes, size, 0);
@@ -232,14 +232,14 @@ namespace DarkSoulsScripting
         }
 
 
-        public static byte RByte(long addr)
+        public static byte RByte(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 1, 0);
             return ByteBuffer[0];
         }
 
 
-        public static string RAsciiStr(long addr, int maxLength)
+        public static string RAsciiStr(Memloc addr, int maxLength)
         {
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
             int loc = 0;
@@ -274,7 +274,7 @@ namespace DarkSoulsScripting
         }
 
 
-        public static string RUnicodeStr(long addr, int maxLength)
+        public static string RUnicodeStr(Memloc addr, int maxLength)
         {
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
             int loc = 0;
@@ -309,80 +309,80 @@ namespace DarkSoulsScripting
         }
 
 
-        public static bool RBool(long addr)
+        public static bool RBool(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, ByteBuffer, 1, 0);
             return (ByteBuffer[0] != 0);
         }
 
 
-        public static void WBool(long addr, bool val)
+        public static void WBool(Memloc addr, bool val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 1, 0);
         }
 
 
-        public static void WInt16(long addr, Int16 val)
+        public static void WInt16(Memloc addr, Int16 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 2, 0);
         }
 
 
-        public static void WUInt16(long addr, UInt16 val)
+        public static void WUInt16(Memloc addr, UInt16 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 2, 0);
         }
 
 
-        public static void WInt32(long addr, int val)
+        public static void WInt32(Memloc addr, int val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 4, 0);
         }
 
 
-        public static void WUInt32(long addr, uint val)
+        public static void WUInt32(Memloc addr, uint val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 4, 0);
         }
 
 
-        public static void WInt64(long addr, Int64 val)
+        public static void WInt64(Memloc addr, Int64 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 8, 0);
         }
 
 
-        public static void WUInt64(long addr, UInt64 val)
+        public static void WUInt64(Memloc addr, UInt64 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 8, 0);
         }
 
 
-        public static void WFloat(long addr, float val)
+        public static void WFloat(Memloc addr, float val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, BitConverter.GetBytes(val), 4, 0);
         }
 
 
-        public static void WBytes(long addr, byte[] val)
+        public static void WBytes(Memloc addr, byte[] val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, val, val.Length, 0);
         }
 
 
-        public static void WByte(long addr, byte val)
+        public static void WByte(Memloc addr, byte val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, new byte[] { val }, 1, 0);
         }
 
 
-        public static void WAsciiStr(long addr, string str)
+        public static void WAsciiStr(Memloc addr, string str)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, System.Text.Encoding.ASCII.GetBytes(str).Concat(new byte[] { 0 }).ToArray(), str.Length + 1, 0);
         }
 
 
-        public static void WUnicodeStr(long addr, string str)
+        public static void WUnicodeStr(Memloc addr, string str)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), (uint)addr, System.Text.Encoding.Unicode.GetBytes(str).Concat(new byte[] {
                 0,
@@ -390,7 +390,7 @@ namespace DarkSoulsScripting
             }).ToArray(), str.Length * 2 + 2, 0);
         }
 
-        public static void WBit(long baseAddr, int bitOffset, bool val)
+        public static void WBit(Memloc baseAddr, int bitOffset, bool val)
         {
             var state = GetCurrentState();
             state.WBit_actualAddress = (baseAddr + (bitOffset / 8));
@@ -410,7 +410,7 @@ namespace DarkSoulsScripting
             }
         }
 
-        public static bool RBit(long baseAddr, int bitOffset)
+        public static bool RBit(Memloc baseAddr, int bitOffset)
         {
             var state = GetCurrentState();
             state.RBit_actualAddress = (baseAddr + (bitOffset / 8));

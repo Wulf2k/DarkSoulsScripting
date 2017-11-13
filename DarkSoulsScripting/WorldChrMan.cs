@@ -33,6 +33,17 @@ namespace DarkSoulsScripting
             return result;
         }
 
+        public static EnemyPtrAccessor EnemyPtr = new EnemyPtrAccessor();
+
+        public class EnemyPtrAccessor
+        {
+            public int this[int index]
+            {
+                get => RInt32(ChrsBegin + (index * 0x4));
+                set => WInt32(ChrsBegin + (index * 0x4), value);
+            }
+        }
+
         public static int ChrsBegin
         {
             get => RInt32(Address + 0x4);

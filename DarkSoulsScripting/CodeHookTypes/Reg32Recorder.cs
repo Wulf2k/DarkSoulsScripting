@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Managed.X86;
 using DarkSoulsScripting.Injection.Structures;
 using static DarkSoulsScripting.Hook;
+using System.IO;
 
 namespace DarkSoulsScripting.CodeHookTypes
 {
@@ -26,12 +27,13 @@ namespace DarkSoulsScripting.CodeHookTypes
 
         private const int CustomCodeSize = 11;
 
-        public Reg32Recorder(X86Register32 register, IntPtr originalLocalCodeStart, int originalLocalCodeLength, bool originalCodeAtEnd = true) : base(originalLocalCodeStart, originalLocalCodeLength, CustomCodeSize + originalLocalCodeLength, originalCodeAtEnd)
+        public Reg32Recorder(X86Register32 register, IntPtr originalLocalCodeStart, int originalLocalCodeLength, bool originalCodeAtEnd = true, byte[] specificOriginalCode = null) 
+            : base(originalLocalCodeStart, originalLocalCodeLength, CustomCodeSize + originalLocalCodeLength, originalCodeAtEnd, specificOriginalCode)
         {
             Register = register;
         }
 
-        protected override void BuildCustomRemoteCode(X86Writer w)
+        protected override void BuildCustomRemoteCode(X86Writer w, MemoryStream ms)
         {
             RecordedValueHandle?.Dispose();
             RecordedValueHandle = new SafeRemoteHandle(sizeof(int));

@@ -910,5 +910,88 @@ namespace DarkSoulsScripting
             //throw new NotImplementedException(); //TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
             return CallReg<int>(0xD6C360, new dynamic[] { entityId }, eax: entityId);
         }
+
+
+
+        /*
+            char __usercall sub_D770C0@<al>(signed int a1@<eax>, int a2@<edi>)
+            {
+              int v2; // eax@1
+              int v3; // esi@2
+              int v4; // eax@3
+              int v5; // esi@5
+              char result; // al@7
+
+              v2 = GET_POINTER_FROM_CHRID(a1);
+              if ( v2 && (v3 = *(v2 + 0x28)) != 0 )
+              {
+                *(*(*(v3 + 0x10) + 0x10) + 0x2C) = a2;
+                v4 = *(v3 + 0x20);
+                if ( v4 )
+                  sub_EC7440(v4, a2);
+                *(*(*(v3 + 0x10) + 0x10) + 0x30) = a2 > 0;
+                v5 = *(v3 + 0x20);
+                if ( v5 )
+                {
+                  if ( a2 > 0 )
+                  {
+                    *(v5 + 0x61) |= 2u;
+                    return 1;
+                  }
+                  *(v5 + 0x61) &= 0xFDu;
+                }
+                result = 1;
+              }
+              else
+              {
+                result = 0;
+              }
+              return result;
+            } 
+        */
+        public static bool ChrUpdateHitMask(Enemy chr, int NewHitMask)
+        {
+            if (chr.Address == 0)
+                return false;
+
+            int addr = chr.MovementCtrl.Address;
+
+            if (addr <= 0)
+                return false;
+
+            addr = RInt32(addr + 0x10);
+            addr = RInt32(addr + 0x10);
+
+            WInt32(addr + 0x2C, NewHitMask);
+
+            var something = RInt32(chr.MovementCtrl.Address + 0x20);
+
+            if (something > 0)
+            {
+                Call<int>(0xEC7440, something, NewHitMask);
+            }
+
+            WBool(addr + 0x30, NewHitMask > 0);
+
+            something = RInt32(chr.MovementCtrl.Address + 0x20);
+
+            if (something > 0)
+            {
+                var somethingElse = RUInt32(something + 0x61);
+
+                if (NewHitMask > 0)
+                {
+                    somethingElse |= 2u;
+                    WUInt32(something + 0x61, somethingElse);
+                }
+                else
+                {
+                    somethingElse &= 0xFDu;
+                    WUInt32(something + 0x61, somethingElse);
+                }
+            }
+
+            return true;
+        }
     }
 }

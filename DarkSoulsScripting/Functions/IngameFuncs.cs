@@ -1292,8 +1292,8 @@ namespace DarkSoulsScripting
         //public static int SetHitInfo(_ARGS_)
         //    => Call<int>(FuncAddress.SetHitInfo, _ARGS_);
 
-        //public static int SetHitMask(_ARGS_)
-        //    => Call<int>(FuncAddress.SetHitMask, _ARGS_);
+        public static bool SetHitMask(int ChrID, int NewHitMask)
+            => Call<bool>(FuncAddress.SetHitMask, NewHitMask);
 
         public static int SetHp(int ChrID, float HP)
             => Call<int>(FuncAddress.SetHp, ChrID, HP);

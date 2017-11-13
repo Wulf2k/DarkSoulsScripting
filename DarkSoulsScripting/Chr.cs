@@ -13,17 +13,24 @@ namespace DarkSoulsScripting
         public const int MAX_NAME_LENGTH = 10;
 
         public ChrSlot Slot { get; private set; } = null;
-        public TChrMovementCtrl MovementCtrl = null;
+        public TChrMovementCtrl MovementCtrl { get; private set; } = null;
+        public ChrUNK1 UNK1 { get; private set; } = null;
 
         protected override void InitSubStructures()
         {
             Slot = new ChrSlot() { AddressReadFunc = () => SlotPtr };
             MovementCtrl = new TChrMovementCtrl() { AddressReadFunc = () => MovementCtrlPtr };
+            UNK1 = new ChrUNK1() { AddressReadFunc = () => UNK1Ptr };
         }
 
         public int SlotPtr {
-			get { return RInt32(Address + 0xc); }
-			set { WInt32(Address + 0xc, value); }
+			get { return RInt32(Address + 0xC); }
+			set { WInt32(Address + 0xC, value); }
+		}
+
+        public int UNK1Ptr {
+			get { return RInt32(Address + 0x10); }
+			set { WInt32(Address + 0x10, value); }
 		}
 
 		public bool DisableEventBackreadState {

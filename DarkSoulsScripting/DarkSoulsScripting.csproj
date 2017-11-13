@@ -53,6 +53,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChrAsm.cs" />
+    <Compile Include="ChrUNK1.cs" />
     <Compile Include="WorldChrMan.cs" />
     <Compile Include="[General]\CodeHooks.cs" />
     <Compile Include="CodeHookTypes\CodeHookBase.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="GameStruct.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapEntry.cs" />
+    <Compile Include="[General]\Memloc.cs" />
     <Compile Include="[General]\ModuleInitializer.cs" />
     <Compile Include="MSB.cs" />
     <Compile Include="MSBEntry.cs" />

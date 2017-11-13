@@ -14,7 +14,7 @@ namespace DarkSoulsScripting
 
         internal static void InitAll()
         {
-            TargetedChrPtrRecorder = new Reg32Recorder(X86Register32.EAX, (IntPtr)0xFAE784, 8);
+            TargetedChrPtrRecorder = new Reg32Recorder(X86Register32.EAX, (IntPtr)0xFAE784, 8, true, new byte[] { 0x8B, 0x16, 0x8B, 0x82, 0xA0, 0x00, 0x00, 0x00 });
         }
 
         internal static void CleanupAll()

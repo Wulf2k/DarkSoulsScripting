@@ -21,7 +21,12 @@ namespace DarkSoulsScripting.Injection.Structures
 
         public readonly int SafeBaseMemoryOffset = 0x400000;
 
-        public static readonly DarkSoulsVersion[] CompatibleVersions = new DarkSoulsVersion[] { DarkSoulsVersion.LatestRelease };
+        public static readonly DarkSoulsVersion[] CompatibleVersions = new DarkSoulsVersion[] 
+        {
+            DarkSoulsVersion.LatestRelease,
+            DarkSoulsVersion.Debug,
+        };
+
         public bool Attached
         {
             get { return (!IsClosed) && (!IsInvalid); }
@@ -218,8 +223,9 @@ namespace DarkSoulsScripting.Injection.Structures
 
         private void CheckHook()
         {
-            var test = Hook.RUInt32(0x400080);
-            if ((Hook.RUInt32(0x400080) == 0xFC293654))
+            Version = DarkSoulsVersion.LatestRelease;
+            var versionFlagThing = Hook.RUInt32((0x400080, 0x400080));
+            if (versionFlagThing == 0xFC293654u)
             {
                 Version = DarkSoulsVersion.LatestRelease;
 
@@ -239,19 +245,33 @@ namespace DarkSoulsScripting.Injection.Structures
 
                 WorldState.Autosave = false;
             }
+            else if (versionFlagThing == 0xCE9634B4u)
+            {
+                Version = DarkSoulsVersion.Debug;
+
+                if (!Kernel.VirtualProtectEx(handle, (IntPtr)(0x10D1000), (UIntPtr)(0x1DD000), Kernel.PAGE_EXECUTE_READWRITE, out _))
+                {
+                    throw new Exception("VirtualProtectEx Returned False");
+                }
+
+                if (!Kernel.FlushInstructionCache(handle, (IntPtr)0x10D1000, (UIntPtr)0x1DD000))
+                {
+                    throw new Exception("FlushInstructionCache Returned False");
+                }
+            }
+            else if (versionFlagThing == 0xE91B11E2u)
+            {
+                Version = DarkSoulsVersion.SteamWorksBeta;
+            }
+            /*
+            else if (versionFlagThing == 0x????????u)
+            {
+                Version = DarkSoulsVersion.AncientGFWL;
+            }
+            */
             else
             {
-                byte[] buffer = new byte[4];
-                Kernel.ReadProcessMemory_SAFE(handle, 0x400080, buffer, 4, 0);
-                uint dwBetaChk = BitConverter.ToUInt32(buffer, 0);
-                if ((dwBetaChk == 0xE91B11E2U))
-                {
-                    Version = DarkSoulsVersion.SteamWorksBeta;
-                }
-                else
-                {
-                    Version = DarkSoulsVersion.None;
-                }
+                Version = DarkSoulsVersion.None;
             }
 
             if (!CompatibleVersions.Contains(Version))

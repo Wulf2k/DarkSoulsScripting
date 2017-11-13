@@ -24,7 +24,7 @@ namespace DarkSoulsScripting.CodeHookTypes
         protected SafeRemoteHandle CustomRemoteCodeHandle { get; private set; }
         protected bool IsPatched { get; private set; } = false;
 
-        public CodeHookBase(IntPtr originalLocalCodeStart, int originalLocalCodeLength, int customLocalCodeAllocSize, bool originalCodeAtEnd = false)
+        public CodeHookBase(IntPtr originalLocalCodeStart, int originalLocalCodeLength, int customLocalCodeAllocSize, bool originalCodeAtEnd = false, byte[] specificOriginalCode = null)
         {
             OriginalLocalCodeStartOffset = originalLocalCodeStart;
             OriginalLocalCodeLength = originalLocalCodeLength;
@@ -33,23 +33,28 @@ namespace DarkSoulsScripting.CodeHookTypes
 
             CustomRemoteCodeHandle = new SafeRemoteHandle(CustomLocalCodeAllocSize);
 
+            if (specificOriginalCode != null)
+                OriginalLocalCode = specificOriginalCode;
+
             _buildAsmArrays();
         }
 
         private void _buildAsmArrays()
         {
-            OriginalLocalCode = RBytes(OriginalLocalCodeStartOffset.ToInt64(), OriginalLocalCodeLength);
+            if (OriginalLocalCode == null)
+                OriginalLocalCode = RBytes(OriginalLocalCodeStartOffset.ToInt64(), OriginalLocalCodeLength);
 
             using (var _customRemoteCodeMemoryStream = new MemoryStream(OriginalLocalCodeLength))
             {
+                //Start building wrapped user code at the location immediately after the copy of the original 
+                //code ends (unless OriginalCodeAtEnd is defined, in which case, it's at the beginning of CustomRemoteCodeHandle) :
+                var customRemoteCodeCodeBuilder = new X86Writer(_customRemoteCodeMemoryStream, (IntPtr)(CustomRemoteCodeHandle.GetHandle().ToInt64()));
+
                 //If OriginalCodeAtEnd is not defined, write the original code at the start of the custom remote code:
                 if (!OriginalCodeAtEnd)
                     _customRemoteCodeMemoryStream.Write(OriginalLocalCode, 0, OriginalLocalCodeLength);
 
-                //Start building wrapped user code at the location immediately after the copy of the original 
-                //code ends (unless OriginalCodeAtEnd is defined, in which case, it's at the beginning of CustomRemoteCodeHandle) :
-                var customRemoteCodeCodeBuilder = new X86Writer(_customRemoteCodeMemoryStream, (IntPtr)(CustomRemoteCodeHandle.GetHandle().ToInt64() + _customRemoteCodeMemoryStream.Position));
-                BuildCustomRemoteCode(customRemoteCodeCodeBuilder);
+                BuildCustomRemoteCode(customRemoteCodeCodeBuilder, _customRemoteCodeMemoryStream);
 
                 //If OriginalCodeAtEnd is defined, write the original code at the end of the custom remote code:
                 if (OriginalCodeAtEnd)
@@ -131,7 +136,7 @@ namespace DarkSoulsScripting.CodeHookTypes
             IsPatched = false;
         }
 
-        protected abstract void BuildCustomRemoteCode(X86Writer w);
+        protected abstract void BuildCustomRemoteCode(X86Writer w, MemoryStream ms);
 
         public virtual void Dispose()
         {
