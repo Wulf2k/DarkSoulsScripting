@@ -1,3 +1,3 @@
 from DarkSoulsScriptingBundle import *
 
-f.SetHp(10000, 0)
+print str(f.GetEventMode(1501961))

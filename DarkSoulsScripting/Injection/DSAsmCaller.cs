@@ -34,18 +34,10 @@ namespace DarkSoulsScripting.Injection
         private byte[] Buffer_ResultBytes = new byte[INT32_SIZE];
         private MutatableDword Buffer_GetFunctionCallResult = 0;
 
-        private int Buffer_StackCounter = 0;
-
         private MutatableDword Buffer_SquashIntoDwordResult = 0;
         public SafeRemoteHandle CodeHandle { get; private set; }
-
-        private MoveableAddressOffset AsmLocBegin;
-        private MoveableAddressOffset AsmLocAtECX;
         private MoveableAddressOffset[] AsmLocAfterEachStackMov = new MoveableAddressOffset[BUFFER_STACK_SIZE];
         private MoveableAddressOffset AsmLocAfterLuaFunctionCall;
-        private MoveableAddressOffset AsmLocAfterSetReturnLocation;
-
-        private MoveableAddressOffset AsmLocAfterReturn;
         private byte[] GetNewCopyOfAsmBuffer()
         {
             return AsmBuffer.ToArray();
@@ -195,11 +187,9 @@ namespace DarkSoulsScripting.Injection
             Buffer_ResultBytes = null;
             //Buffer_StackCounter = null;
 
-            AsmLocBegin = null;
             AsmLocAfterEachStackMov = null;
             AsmLocAfterLuaFunctionCall = null;
-            AsmLocAfterSetReturnLocation = null;
-            AsmLocAfterReturn = null;
+
         }
 
         private void ____freeNativeUnmanagedResources()

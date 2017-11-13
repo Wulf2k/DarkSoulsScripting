@@ -90,7 +90,8 @@ namespace DarkSoulsScripting.CodeHookTypes
                 return;
 
             //Write the wrapped code to the allocated memory region:
-            WBytes(CustomRemoteCodeHandle.GetHandle().ToInt64(), CustomRemoteCode);
+            var wrappedCodeHandle = CustomRemoteCodeHandle.GetHandle();
+            WBytes((wrappedCodeHandle, wrappedCodeHandle), CustomRemoteCode);
 
             //Flush instruction cache for wrapped code:
             Kernel.FlushInstructionCache(DARKSOULS.GetHandle(), CustomRemoteCodeHandle.GetHandle(), (UIntPtr)CustomLocalCodeAllocSize);
@@ -108,7 +109,7 @@ namespace DarkSoulsScripting.CodeHookTypes
             DARKSOULS.Suspend();
 
             //Overwrite the original local code with the custom local code:
-            WBytes(OriginalLocalCodeStartOffset.ToInt64(), CustomLocalCode);
+            WBytes((OriginalLocalCodeStartOffset, OriginalLocalCodeStartOffset), CustomLocalCode);
 
             //Flush the instruction cache over the span of the local code:
             Kernel.FlushInstructionCache(DARKSOULS.GetHandle(), OriginalLocalCodeStartOffset, (UIntPtr)OriginalLocalCodeLength);
@@ -125,7 +126,7 @@ namespace DarkSoulsScripting.CodeHookTypes
             DARKSOULS.Suspend();
 
             //Restore the original local code:
-            WBytes(OriginalLocalCodeStartOffset.ToInt64(), OriginalLocalCode);
+            WBytes((OriginalLocalCodeStartOffset, OriginalLocalCodeStartOffset), OriginalLocalCode);
 
             //Flush the instruction cache over the span of the local code:
             Kernel.FlushInstructionCache(DARKSOULS.GetHandle(), OriginalLocalCodeStartOffset, (UIntPtr)OriginalLocalCodeLength);
