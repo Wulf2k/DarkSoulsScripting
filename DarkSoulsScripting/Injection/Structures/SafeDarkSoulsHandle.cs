@@ -17,7 +17,7 @@ namespace DarkSoulsScripting.Injection.Structures
         internal event OnAttachEventHandler OnAttach;
         internal delegate void OnAttachEventHandler();
 
-        public ReadOnlyDictionary<string, List<uint>> ModuleOffsets { get; private set; }
+        public ReadOnlyDictionary<string, List<long>> ModuleOffsets { get; private set; }
 
         public readonly int SafeBaseMemoryOffset = 0x400000;
 
@@ -99,7 +99,7 @@ namespace DarkSoulsScripting.Injection.Structures
                 var potentialProcesses = new List<Process>();
                 foreach (Process proc in _allProcesses)
                 {
-                    if (proc.MainWindowTitle.ToUpper().Equals("DARK SOULS"))
+                    if (proc.MainWindowTitle.ToUpper().Contains("DARK SOULS"))
                     {
                         potentialProcesses.Add(proc);
                     }
@@ -116,7 +116,7 @@ namespace DarkSoulsScripting.Injection.Structures
                 }
                 else if (potentialProcesses.Count >= 2)
                 {
-                    var mostObviousChoice = potentialProcesses.FirstOrDefault(x => x.ProcessName.ToUpper() == "DARKSOULS");
+                    var mostObviousChoice = potentialProcesses.FirstOrDefault(x => x.ProcessName.ToUpper() == "DARKSOULSREMASTERED");
                     if (mostObviousChoice != default(Process))
                     {
                         selectedProcess = mostObviousChoice;
@@ -168,7 +168,7 @@ namespace DarkSoulsScripting.Injection.Structures
                     ProcessID = selectedProcess.Id;
                     SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, selectedProcess.Id));
                     CheckHook();
-                    Dictionary<string, List<uint>> modulesInputDict = new Dictionary<string, List<uint>>();
+                    Dictionary<string, List<long>> modulesInputDict = new Dictionary<string, List<long>>();
 
                     if (Attached)
                     {
@@ -177,16 +177,16 @@ namespace DarkSoulsScripting.Injection.Structures
                             string indexName = dll.ModuleName.ToUpper();
                             if (modulesInputDict.ContainsKey(indexName))
                             {
-                                modulesInputDict[indexName].Add((uint)dll.BaseAddress);
+                                modulesInputDict[indexName].Add((long)dll.BaseAddress);
                             }
                             else
                             {
-                                modulesInputDict.Add(indexName, new uint[] { (uint)dll.BaseAddress }.ToList());
+                                modulesInputDict.Add(indexName, new long[] { (long)dll.BaseAddress }.ToList());
                             }
                         }
                     }
 
-                    ModuleOffsets = new ReadOnlyDictionary<string, List<uint>>(modulesInputDict);
+                    ModuleOffsets = new ReadOnlyDictionary<string, List<long>>(modulesInputDict);
                 }
                 else
                 {
@@ -274,6 +274,7 @@ namespace DarkSoulsScripting.Injection.Structures
                 Version = DarkSoulsVersion.None;
             }
 
+            Version = DarkSoulsVersion.LatestRelease;
             if (!CompatibleVersions.Contains(Version))
             {
                 Close();

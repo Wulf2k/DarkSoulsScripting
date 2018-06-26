@@ -42,8 +42,8 @@ namespace DarkSoulsScripting.XInput
             curState.WriteTo(GetAddress());
         }
         
-        private static uint __xinput = 0xFFFFFFFF;
-        public static uint XInputModuleAddress
+        private static long __xinput = 0xFFFFFFFF;
+        public static long XInputModuleAddress
         {
             get
             {
@@ -55,7 +55,7 @@ namespace DarkSoulsScripting.XInput
             }
         }
 
-        public static uint GetAddress() => RUInt32(RUInt32(XInputModuleAddress + 0x10C44));
+        public static long GetAddress() => RUInt32(RUInt32(XInputModuleAddress + 0x10C44));
 
         public static void ApplyInputDisablePatch()
         {
