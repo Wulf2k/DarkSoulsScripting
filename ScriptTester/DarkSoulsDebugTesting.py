@@ -3,6 +3,17 @@ from time import *
 
 print 1
 
-Hook.WInt32(0x42d0020, 2)
+addr = 0x140000020L
 
-sleep(20)
+sleep(2)
+
+
+
+try:
+        print(RInt32(addr))
+
+
+except:
+        print("failed")
+
+sleep(5)

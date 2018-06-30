@@ -19,7 +19,7 @@ namespace DarkSoulsScripting
 
         public Enemy GetChrAsEnemy()
         {
-            if (ChrPtr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if (ChrPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
                 return null;
 
             return new Enemy() { AddressReadFunc = () => ChrPtr };
@@ -27,7 +27,7 @@ namespace DarkSoulsScripting
 
         public Player GetChrAsPlayer()
         {
-            if (ChrPtr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if (ChrPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
                 return null;
 
             return new Player() { AddressReadFunc = () => ChrPtr };

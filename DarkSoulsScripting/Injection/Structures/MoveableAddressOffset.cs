@@ -5,19 +5,19 @@ namespace DarkSoulsScripting.Injection.Structures
     internal class MoveableAddressOffset
     {
 
-        private uint offset = 0;
+        private Int64 offset = 0;
         private DSAsmCaller FuncCallerInstance { get; }
 
-        public uint Location
+        public Int64 Location
         {
-            get { return (uint)FuncCallerInstance.CodeHandle.GetHandle() + offset; }
-            set { offset = (value - (uint)FuncCallerInstance.CodeHandle.GetHandle()); }
+            get { return (Int64)FuncCallerInstance.CodeHandle.GetHandle() + offset; }
+            set { offset = (value - (Int64)FuncCallerInstance.CodeHandle.GetHandle()); }
         }
 
         public MoveableAddressOffset(DSAsmCaller _funcCaller, IntPtr loc)
         {
             FuncCallerInstance = _funcCaller;
-            Location = (uint)loc;
+            Location = (Int64)loc;
         }
     }
 

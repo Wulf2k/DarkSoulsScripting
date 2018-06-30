@@ -8,6 +8,8 @@ namespace DarkSoulsScripting
 {
     public static class ExtraFuncs
     {
+
+
         public static string GetNgPlusText(int ngLevel)
         {
             if (ngLevel == 0)

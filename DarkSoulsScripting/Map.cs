@@ -5,7 +5,7 @@ namespace DarkSoulsScripting
 {
     public static class Map
     {
-        public static int Address => Hook.RInt32((0x137D644, 0));
+        public static int Address => Hook.RInt32((0x137D644, 0, 0));
 
         public static int PlayerPointer {
 			get { return Hook.RInt32(Address + 0x3C); }

@@ -17,6 +17,7 @@ namespace DarkSoulsScripting
                 {
                     case DarkSoulsVersion.LatestRelease: return addrSteamRelease;
                     case DarkSoulsVersion.Debug: return addrSteamDebug;
+                    case DarkSoulsVersion.Remaster: return addrSteamRemaster;
                     default: return addr_Zero;
                 }
             }
@@ -24,40 +25,47 @@ namespace DarkSoulsScripting
 
         private readonly IntPtr addrSteamRelease;
         private readonly IntPtr addrSteamDebug;
+        private readonly IntPtr addrSteamRemaster;
 
-        private static readonly IntPtr addr_Zero = (IntPtr)0;
+        private static readonly IntPtr addr_Zero = IntPtr.Zero;
 
-        public Memloc(long addrSteamRelease, long addrSteamDebug)
+        public Memloc(Int64 addrSteamRelease, Int64 addrSteamDebug, Int64 addrSteamRemaster)
         {
             this.addrSteamRelease = new IntPtr(addrSteamRelease);
             this.addrSteamDebug = new IntPtr(addrSteamDebug);
+            this.addrSteamRemaster = new IntPtr(addrSteamRemaster);
         }
 
-        public Memloc(IntPtr addrSteamRelease, IntPtr addrSteamDebug)
+        public Memloc(IntPtr addrSteamRelease, IntPtr addrSteamDebug, IntPtr addrSteamRemaster)
         {
             this.addrSteamRelease = addrSteamRelease;
             this.addrSteamDebug = addrSteamDebug;
+            this.addrSteamRemaster = addrSteamRemaster;
         }
 
-        public Memloc(long addrSteamRelease)
+        public Memloc(Int64 addrSteamRemaster)
         {
-            this.addrSteamRelease = new IntPtr(addrSteamRelease);
+            this.addrSteamRelease = IntPtr.Zero;
             this.addrSteamDebug = IntPtr.Zero;
+            this.addrSteamRemaster = new IntPtr(addrSteamRemaster);
         }
 
-        public Memloc(IntPtr addrSteamRelease)
+        public Memloc(IntPtr addrSteamRemaster)
         {
-            this.addrSteamRelease = addrSteamRelease;
+            this.addrSteamRelease = IntPtr.Zero;
             this.addrSteamDebug = IntPtr.Zero;
+            this.addrSteamRemaster = addrSteamRemaster;
         }
 
-        public static implicit operator Memloc(int releaseAddress) => new Memloc(releaseAddress, 0);
-        public static implicit operator Memloc(long releaseAddress) => new Memloc(releaseAddress, 0);
-        public static implicit operator Memloc(uint releaseAddress) => new Memloc(releaseAddress, 0);
-        public static implicit operator Memloc(IntPtr releaseAddress) => new Memloc(releaseAddress, IntPtr.Zero);
+        //public static implicit operator Memloc(int releaseAddress) => new Memloc(releaseAddress, 0, 0);
+        //public static implicit operator Memloc(uint releaseAddress) => new Memloc(releaseAddress, 0, 0);
+        public static implicit operator Memloc(int remasterAddress) => new Memloc(0, 0, remasterAddress);
+        public static implicit operator Memloc(uint remasterAddress) => new Memloc(0, 0, remasterAddress);
+        public static implicit operator Memloc(Int64 remasterAddress) => new Memloc(0, 0, remasterAddress);
+        public static implicit operator Memloc(IntPtr remasterAddress) => new Memloc(IntPtr.Zero, IntPtr.Zero, remasterAddress);
 
-        public static implicit operator Memloc((long Release, long Debug) addr) => new Memloc(addr.Release, addr.Debug);
-        public static implicit operator Memloc((IntPtr Release, IntPtr Debug) addr) => new Memloc(addr.Release, addr.Debug);
+        public static implicit operator Memloc((Int64 Release, Int64 Debug, Int64 Remaster) addr) => new Memloc(addr.Release, addr.Debug, addr.Remaster);
+        public static implicit operator Memloc((IntPtr Release, IntPtr Debug, IntPtr Remaster) addr) => new Memloc(addr.Release, addr.Debug, addr.Remaster);
 
         public static implicit operator int(Memloc m) => m.Address.ToInt32();
         public static implicit operator uint(Memloc m) => (uint)m.Address;

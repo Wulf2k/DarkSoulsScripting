@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DarkSoulsScripting
 {
-    public enum FuncAddress : int
+    public enum FuncAddress : Int64
     {
         ActionEnd = 0xD616D0,
         AddActionCount = 0xD5FC20,
@@ -64,7 +64,8 @@ namespace DarkSoulsScripting
         CheckEventChr_Proxy = 0xD5E9E0,
         CheckPenalty = 0xD5EE50,
         ChrDisableUpdate = 0xD61460,
-        ChrFadeIn = 0xD607E0,
+        //ChrFadeIn = 0xD607E0,
+        ChrFadeIn = 0x1404A9080,
         ChrFadeOut = 0xD60770,
         ChrResetAnimation = 0xD60670,
         ChrResetRequest = 0xD606A0,
@@ -518,4 +519,17 @@ namespace DarkSoulsScripting
         WarpRestartNoGrey = 0xD62550,
         WarpSelfBloodMark = 0xD649D0
     }
+    public enum FuncAddress64 : Int64
+    {
+        AddInventoryItem = 0x1404A4F90,
+        CamReset = 0x1404A4C50,
+        ChrFadeIn = 0x1404A9080,
+        ChrFadeOut = 0x1404A90A0,
+        ChrResetAnimation = 0x1404A9300,
+        LuaCall = 0x1404A3C80,
+        ReturnMapSelect = 0x1404A4C30,
+        SetEventFlag = 0x1404A0340,
+        WarpNextStage = 0x1404A37F0
+    }
+
 }

@@ -21,7 +21,7 @@ namespace DarkSoulsScripting.Injection
         internal const int MEM_RELEASE = 0x8000;
         internal const int CREATE_SUSPENDED = 0x4;
 
-        internal static Dictionary<long, bool> SafeMemoryIndex = new Dictionary<long, bool>();
+        internal static Dictionary<Int64, bool> SafeMemoryIndex = new Dictionary<long, bool>();
 
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern int VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out MEMORY_BASIC_INFORMATION lpBuffer, uint dwLength);
@@ -38,17 +38,17 @@ namespace DarkSoulsScripting.Injection
             public uint Type;
         }
 
-        internal static bool CheckAddress(long addr, uint length, string action)
+        internal static bool CheckAddress(IntPtr addr, uint length, string action)
         {
-            if (SafeMemoryIndex.ContainsKey(addr) && SafeMemoryIndex[addr])
+            if (SafeMemoryIndex.ContainsKey((Int64)addr) && SafeMemoryIndex[(Int64)addr])
             {
                 return true;
             }
             else
             {
-                if (addr > 0x7FFFFFFF || addr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+                if ((Int64)addr > 0x7FFFFFFFFFFFFFFF || (Int64)addr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
                 {
-                    Console.WriteLine($"Tried to {action} from invalid memory address 0x{addr:X} (minimum safe base offset address is hardcoded to 0x{Hook.DARKSOULS.SafeBaseMemoryOffset:X8}).");
+                    Console.WriteLine($"Tried to {action} from invalid memory address 0x{addr:16} (minimum safe base offset address is hardcoded to 0x{Hook.DARKSOULS.SafeBaseMemoryOffset:X16}).");
                     return false;
                 }
                 else
@@ -57,28 +57,28 @@ namespace DarkSoulsScripting.Injection
                     if (query == 0)
                     {
                         var lastError = new Win32Exception();
-                        Console.Error.WriteLine($"WARNING: VirtualQueryEx at 0x{((uint)addr):X8} failed --> {lastError.Message}");
+                        Console.Error.WriteLine($"WARNING: VirtualQueryEx at 0x{((Int64)addr):X16} failed --> {lastError.Message}");
                         return false;
                     }
                     else
                     {
                         if (info.Protect != PAGE_EXECUTE_READWRITE)
                         {
-                            if (VirtualProtectEx(Hook.DARKSOULS.GetHandle(), (IntPtr)addr, (UIntPtr)length, PAGE_EXECUTE_READWRITE, out var garbage))
+                            if (VirtualProtectEx(Hook.DARKSOULS.GetHandle(), (IntPtr)addr, length, PAGE_EXECUTE_READWRITE, out var garbage))
                             {
-                                SafeMemoryIndex.Add(addr, true);
+                                SafeMemoryIndex.Add((Int64)addr, true);
                                 return true;
                             }
                             else
                             {
                                 var lastError = new Win32Exception();
-                                Console.Error.WriteLine($"WARNING: VirtualProtectEx at 0x{((uint)addr):X8} failed --> {lastError.Message}");
+                                Console.Error.WriteLine($"WARNING: VirtualProtectEx at 0x{((Int64)addr):X16} failed --> {lastError.Message}");
                                 return false;
                             }
                         }
                         else
                         {
-                            SafeMemoryIndex.Add(addr, true);
+                            SafeMemoryIndex.Add((Int64)addr, true);
                             return true;
                         }
                     }
@@ -91,15 +91,15 @@ namespace DarkSoulsScripting.Injection
         static internal extern bool CloseHandle(IntPtr hObject);
 
         [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        static internal extern uint CreateRemoteThread(IntPtr hProcess, uint lpThreadAttributes, int dwStackSize, uint lpStartAddress, uint lpParameter, int dwCreationFlags, uint lpThreadId);
+        static internal extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttributes, int dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, int dwCreationFlags, IntPtr lpThreadId);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        static internal extern uint OpenProcess(int dwDesiredAcess, bool bInheritHandle, int dwProcessId);
+        static internal extern IntPtr OpenProcess(int dwDesiredAcess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern bool ReadProcessMemory(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, uint lpNumberOfBytesRead);
+        private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int iSize, IntPtr lpNumberOfBytesRead);
 
-        static internal bool ReadProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, uint lpNumberOfBytesRead)
+        static internal bool ReadProcessMemory_SAFE(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int iSize, IntPtr lpNumberOfBytesRead)
         {
             if (!CheckAddress(lpBaseAddress, (uint)iSize, "read"))
             {
@@ -111,9 +111,9 @@ namespace DarkSoulsScripting.Injection
         }
 
         [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern bool WriteProcessMemory(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, int lpNumberOfBytesWritten);
+        private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int iSize, IntPtr lpNumberOfBytesWritten);
 
-        static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int iSize, int lpNumberOfBytesWritten)
+        static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int iSize, IntPtr lpNumberOfBytesWritten)
         {
             if (!CheckAddress(lpBaseAddress, (uint)iSize, "write"))
             {
@@ -124,14 +124,14 @@ namespace DarkSoulsScripting.Injection
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        static internal extern uint VirtualAllocEx(IntPtr hProcess, uint lpAddress, int dwSize, int flAllocationType, int flProtect);
+        static internal extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, int dwSize, int flAllocationType, int flProtect);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        static internal extern bool VirtualFreeEx(IntPtr hProcess, uint lpAddress, int dwSize, int dwFreeType);
+        static internal extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, int dwSize, int dwFreeType);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         static internal extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress,
-            UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
+            uint dwSize, int flNewProtect, out IntPtr lpflOldProtect);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         static internal extern int WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);
@@ -140,9 +140,9 @@ namespace DarkSoulsScripting.Injection
         static internal extern bool FlushInstructionCache(IntPtr hProcess, IntPtr lpBaseAddress, UIntPtr dwSize);
 
         [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern bool WriteProcessMemory(IntPtr hProcess, uint lpBaseAddress, uint lpBuffer, int iSize, int lpNumberOfBytesWritten);
+        private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int iSize, IntPtr lpNumberOfBytesWritten);
 
-        static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, uint lpBaseAddress, uint lpBuffer, int iSize, int lpNumberOfBytesWritten)
+        static internal bool WriteProcessMemory_SAFE(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int iSize, IntPtr lpNumberOfBytesWritten)
         {
             if (!CheckAddress(lpBaseAddress, (uint)iSize, "write"))
             {

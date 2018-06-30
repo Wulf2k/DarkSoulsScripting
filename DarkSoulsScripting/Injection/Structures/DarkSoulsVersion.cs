@@ -6,6 +6,7 @@
         LatestRelease,
         SteamWorksBeta,
         Debug,
-        AncientGFWL
+        AncientGFWL,
+        Remaster
     }
 }

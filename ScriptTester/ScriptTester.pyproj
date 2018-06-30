@@ -34,7 +34,6 @@
     <Compile Include="Example.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="IronPython|2.7-32" />
     <InterpreterReference Include="IronPython|2.7-64" />
   </ItemGroup>
   <ItemGroup>

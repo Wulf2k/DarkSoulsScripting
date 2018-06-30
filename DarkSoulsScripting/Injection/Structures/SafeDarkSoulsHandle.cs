@@ -19,12 +19,13 @@ namespace DarkSoulsScripting.Injection.Structures
 
         public ReadOnlyDictionary<string, List<long>> ModuleOffsets { get; private set; }
 
-        public readonly int SafeBaseMemoryOffset = 0x400000;
+        public readonly IntPtr SafeBaseMemoryOffset = IntPtr.Zero;
 
         public static readonly DarkSoulsVersion[] CompatibleVersions = new DarkSoulsVersion[] 
         {
             DarkSoulsVersion.LatestRelease,
             DarkSoulsVersion.Debug,
+            DarkSoulsVersion.Remaster
         };
 
         public bool Attached
@@ -47,6 +48,8 @@ namespace DarkSoulsScripting.Injection.Structures
                         return "Steamworks December 2014 Beta (Incompatible)";
                     case DarkSoulsVersion.AncientGFWL:
                         return "Games for Windows Live Release (Incompatible)";
+                    case DarkSoulsVersion Remaster:
+                        return "Dark Souls Remastered";
                 }
                 return Version.ToString();
                 //Shut up compiler
@@ -64,9 +67,9 @@ namespace DarkSoulsScripting.Injection.Structures
             return handle;
         }
 
-        private uint GetIngameDllAddress(string moduleName)
+        private IntPtr GetIngameDllAddress(string moduleName)
         {
-            uint[] modules = new uint[255];
+            IntPtr[] modules = new IntPtr[255];
             uint cbNeeded = 0;
             PSAPI.EnumProcessModules(Hook.DARKSOULS.GetHandle(), modules, 4 * 1024, ref cbNeeded);
 
@@ -75,7 +78,7 @@ namespace DarkSoulsScripting.Injection.Structures
 
             for (int i = 0; i <= numModules - 1; i++)
             {
-                var disModule = new IntPtr(modules[i]);
+                var disModule = modules[i];
                 System.Text.StringBuilder name = new System.Text.StringBuilder();
                 PSAPI.GetModuleBaseName(Hook.DARKSOULS.GetHandle(), disModule, name, 255);
 
@@ -86,7 +89,7 @@ namespace DarkSoulsScripting.Injection.Structures
 
             }
 
-            return 0;
+            return IntPtr.Zero;
         }
 
         public bool TryAttachToDarkSouls(out string errorMsg)
@@ -166,8 +169,9 @@ namespace DarkSoulsScripting.Injection.Structures
                 if (selectedProcess != null)
                 {
                     ProcessID = selectedProcess.Id;
-                    SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, selectedProcess.Id));
+                    SetHandle(Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, selectedProcess.Id));
                     CheckHook();
+                    
                     Dictionary<string, List<long>> modulesInputDict = new Dictionary<string, List<long>>();
 
                     if (Attached)
@@ -223,13 +227,14 @@ namespace DarkSoulsScripting.Injection.Structures
 
         private void CheckHook()
         {
-            Version = DarkSoulsVersion.LatestRelease;
-            var versionFlagThing = Hook.RUInt32((0x400080, 0x400080));
+            Version = DarkSoulsVersion.Remaster;
+            //var versionFlagThing = Hook.RUInt32((0x400080, 0x400080, 0x140000000));
+            var versionFlagThing = Hook.RUInt32((0x140000000, 0x140000000, 0x140000000));
             if (versionFlagThing == 0xFC293654u)
             {
                 Version = DarkSoulsVersion.LatestRelease;
 
-                if (!Kernel.VirtualProtectEx(handle, (IntPtr)(0x10CC000), (UIntPtr)(0x1DE000), Kernel.PAGE_EXECUTE_READWRITE, out _))
+                if (!Kernel.VirtualProtectEx(handle, (IntPtr)(0x10CC000), 0x1DE000, Kernel.PAGE_EXECUTE_READWRITE, out _))
                 {
                     throw new Exception("VirtualProtectEx Returned False");
                 }
@@ -239,9 +244,9 @@ namespace DarkSoulsScripting.Injection.Structures
                     throw new Exception("FlushInstructionCache Returned False");
                 }
 
-                Kernel.WriteProcessMemory_SAFE(handle, 0xBE73FE, new byte[] { 0x20 }, 1, 0);
-                Kernel.WriteProcessMemory_SAFE(handle, 0xBE719F, new byte[] { 0x20 }, 1, 0);
-                Kernel.WriteProcessMemory_SAFE(handle, 0xBE722B, new byte[] { 0x20 }, 1, 0);
+                Kernel.WriteProcessMemory_SAFE(handle, (IntPtr)0xBE73FE, new byte[] { 0x20 }, 1, IntPtr.Zero);
+                Kernel.WriteProcessMemory_SAFE(handle, (IntPtr)0xBE719F, new byte[] { 0x20 }, 1, IntPtr.Zero);
+                Kernel.WriteProcessMemory_SAFE(handle, (IntPtr)0xBE722B, new byte[] { 0x20 }, 1, IntPtr.Zero);
 
                 WorldState.Autosave = false;
             }
@@ -249,7 +254,7 @@ namespace DarkSoulsScripting.Injection.Structures
             {
                 Version = DarkSoulsVersion.Debug;
 
-                if (!Kernel.VirtualProtectEx(handle, (IntPtr)(0x10D1000), (UIntPtr)(0x1DD000), Kernel.PAGE_EXECUTE_READWRITE, out _))
+                if (!Kernel.VirtualProtectEx(handle, (IntPtr)(0x10D1000), 0x1DD000, Kernel.PAGE_EXECUTE_READWRITE, out _))
                 {
                     throw new Exception("VirtualProtectEx Returned False");
                 }
@@ -263,6 +268,11 @@ namespace DarkSoulsScripting.Injection.Structures
             {
                 Version = DarkSoulsVersion.SteamWorksBeta;
             }
+            else if (versionFlagThing == 0x00905a4d)
+            {
+                Version = DarkSoulsVersion.Remaster;
+
+            }
             /*
             else if (versionFlagThing == 0x????????u)
             {
@@ -274,7 +284,11 @@ namespace DarkSoulsScripting.Injection.Structures
                 Version = DarkSoulsVersion.None;
             }
 
-            Version = DarkSoulsVersion.LatestRelease;
+
+
+
+
+            Version = DarkSoulsVersion.Remaster;
             if (!CompatibleVersions.Contains(Version))
             {
                 Close();

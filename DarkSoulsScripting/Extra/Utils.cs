@@ -18,9 +18,9 @@ namespace DarkSoulsScripting.Extra
 
         public static bool IsGameLoading()
         {
-            int ptr = RInt32(0x137DC70);
-            if (ptr > DARKSOULS.SafeBaseMemoryOffset)
-                return (RInt32(ptr + 0x4) < DARKSOULS.SafeBaseMemoryOffset);
+            IntPtr ptr = RIntPtr(0x137DC70);
+            if ((Int64)ptr > (Int64)DARKSOULS.SafeBaseMemoryOffset)
+                return ((Int64)RIntPtr(ptr + IntPtr.Size) < (Int64)DARKSOULS.SafeBaseMemoryOffset);
             else
                 return true;
         }
@@ -120,9 +120,9 @@ namespace DarkSoulsScripting.Extra
             //FixedTimestepStopwatch.Restart();
         }
 
-        public static uint GetIngameDllAddress(string moduleName)
+        public static IntPtr GetIngameDllAddress(string moduleName)
         {
-            uint[] modules = new uint[255];
+            IntPtr[] modules = new IntPtr[255];
             uint cbNeeded = 0;
             PSAPI.EnumProcessModules(Hook.DARKSOULS.GetHandle(), modules, 4 * 1024, ref cbNeeded);
 
@@ -130,7 +130,7 @@ namespace DarkSoulsScripting.Extra
 
             for (int i = 0; i <= numModules - 1; i++)
             {
-                var disModule = new IntPtr(modules[i]);
+                var disModule = modules[i];
                 System.Text.StringBuilder name = new System.Text.StringBuilder();
                 PSAPI.GetModuleBaseName(Hook.DARKSOULS.GetHandle(), disModule, name, 255);
 
@@ -140,7 +140,7 @@ namespace DarkSoulsScripting.Extra
                 }
             }
 
-            return 0;
+            return IntPtr.Zero;
         }
     }
 }

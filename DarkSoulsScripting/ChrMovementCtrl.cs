@@ -63,7 +63,7 @@ namespace DarkSoulsScripting
 
         public List<ChrAnimInstance> GetAnimInstances()
         {
-            if (AnimationPtr < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if (AnimationPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
                 return new List<ChrAnimInstance>();
 
             int animStructThing = RInt32(AnimationPtr + 0xC);

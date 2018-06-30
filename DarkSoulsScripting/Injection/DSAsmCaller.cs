@@ -43,19 +43,20 @@ namespace DarkSoulsScripting.Injection
             return AsmBuffer.ToArray();
         }
 
-        private bool WriteAsm(uint address, byte[] bytes, int count)
+        private bool WriteAsm(IntPtr address, byte[] bytes, int count)
         {
-            if (address < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if ((Int64)address < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return false;
             }
-            return Kernel.WriteProcessMemory_SAFE(Hook.DARKSOULS.GetHandle(), address, bytes, count, 0) 
+            return Kernel.WriteProcessMemory_SAFE(Hook.DARKSOULS.GetHandle(), address, bytes, count, IntPtr.Zero) 
                 && Kernel.FlushInstructionCache(Hook.DARKSOULS.GetHandle(), (IntPtr)address, (UIntPtr)count);
         }
 
+
         private bool InjectEntireCodeBuffer()
         {
-            return WriteAsm((uint)CodeHandle.GetHandle(), AsmBuffer.ToArray(), (int)AsmBuffer.Position);
+            return WriteAsm(CodeHandle.GetHandle(), AsmBuffer.ToArray(), (int)AsmBuffer.Position);
         }
 
         private void CompletelyReInitializeAndInjectCodeInNewLocation()
@@ -355,7 +356,7 @@ namespace DarkSoulsScripting.Injection
                 CompletelyReInitializeAndInjectCodeInNewLocation();
             }
 
-            Kernel.CheckAddress(CodeHandle.GetHandle().ToInt64(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
+            Kernel.CheckAddress(CodeHandle.GetHandle(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
 
             Buffer_ParamPointerList.Clear();
 
@@ -396,7 +397,7 @@ namespace DarkSoulsScripting.Injection
                 CompletelyReInitializeAndInjectCodeInNewLocation();
             }
 
-            Kernel.CheckAddress(CodeHandle.GetHandle().ToInt64(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
+            Kernel.CheckAddress(CodeHandle.GetHandle(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
 
             Buffer_ParamPointerList.Clear();
 

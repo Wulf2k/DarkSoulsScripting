@@ -16,17 +16,17 @@ namespace DarkSoulsScripting.Injection.Structures
         private void Alloc()
         {
             IntPtr dsHandle = Hook.DARKSOULS.GetHandle();
-            uint funcHandle = (uint)Func.GetHandle();
-            if (funcHandle < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            IntPtr funcHandle = Func.GetHandle();
+            if ((Int64)funcHandle < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return;
             }
 
-            SetHandle((IntPtr)Kernel.CreateRemoteThread(dsHandle, 0, 0, funcHandle, 0, 0, 0));
+            SetHandle((IntPtr)Kernel.CreateRemoteThread(dsHandle, IntPtr.Zero, 0, funcHandle, IntPtr.Zero, 0, IntPtr.Zero));
         }
         public IntPtr GetHandle()
         {
-            if (IsClosed || IsInvalid || handle.ToInt32() < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if (IsClosed || IsInvalid || handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 Alloc();
             }
@@ -41,7 +41,7 @@ namespace DarkSoulsScripting.Injection.Structures
         {
             Hook.DARKSOULS.OnDetach -= DARKSOULS_OnDetach;
 
-            if (handle.ToInt32() < Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if (handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return false;
             }
