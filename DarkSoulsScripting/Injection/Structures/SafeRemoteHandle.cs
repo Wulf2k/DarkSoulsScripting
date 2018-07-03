@@ -48,10 +48,10 @@ namespace DarkSoulsScripting.Injection.Structures
         public void MemPatch(byte[] src, int? srcIndex = null, int? destOffset = null, int? numBytes = null)
         {
             IntPtr dsHandle = Hook.DARKSOULS.GetHandle();
-            if (dsHandle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            /*if (dsHandle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return;
-            }
+            }*/
 
             if ((destOffset ?? 0 + numBytes ?? src.Length) > Size)
             {
@@ -64,10 +64,10 @@ namespace DarkSoulsScripting.Injection.Structures
 
         public void MemPatch(SafeMarshalledHandle src, int? destOffset = null, int? numBytes = null)
         {
-            if (handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            /*if (handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return;
-            }
+            }*/
 
             if ((destOffset ?? 0 + numBytes ?? src.Size) > Size)
             {
@@ -84,13 +84,13 @@ namespace DarkSoulsScripting.Injection.Structures
         {
             byte[] result = new byte[8];
 
-            if (handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            /*if (handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return result;
-            }
+            }*/
 
             IntPtr dsHandle = Hook.DARKSOULS.GetHandle();
-            if (!Kernel.ReadProcessMemory_SAFE(dsHandle, handle + DSAsmCaller.FUNC_RETURN_ADDR_OFFSET, result, 8, IntPtr.Zero))
+            if (!Kernel.ReadProcessMemory_SAFE(dsHandle, handle + DSAsmCaller.FUNC_RETURN_ADDR_OFFSET, result, IntPtr.Size, IntPtr.Zero))
             {
                 //Throw New Exception("Kernel.ReadProcessMemory Fail for SafeRemoteHandle.GetFuncReturnValue()")
             }

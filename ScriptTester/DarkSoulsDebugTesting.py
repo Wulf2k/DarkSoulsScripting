@@ -3,18 +3,13 @@ from time import *
 
 print 1
 
-addr = 0x140000020L
-
-
-import platform
-print platform.architecture()
-
 try:
-        
-    f.ChrFadeIn(10000, 1, 1)
+    
+    
+    print(f.ReqularLeavePlayer(0))
 
 
 except:
         print("failed")
 
-sleep(5)
+sleep(20)

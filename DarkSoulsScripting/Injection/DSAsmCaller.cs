@@ -191,21 +191,34 @@ namespace DarkSoulsScripting.Injection
                 0x48, 0x89, 0x4C, 0x24, 0x20, //mov [rsp+28],rcx
                 0x48, 0xB9, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //mov rcx, 00  (55d)
                 0x48, 0x89, 0x4C, 0x24, 0x28, //mov [rsp+28],rcx
-                0xFF, 0x15, 0x02, 0x00, 0x00, 0x00, 0xEB, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //call absolute address (71d)
+                0xFF, 0x15, 0x02, 0x00, 0x00, 0x00, 0xEB, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //call absolute address (76d)
+
+                0x48, 0xBB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //mov val return address to rbx (81d)
+                0x48, 0x89, 0x03, //mov [rbx], rax
+
                 0x48, 0x81, 0xEC, 0x80, 0x00, 0x00, 0x00, //sub rsp, 00000080
                 0x9D,  //popfq
                 0xC3    //retn
             };
 
-
+            /*
             if (args.Length > 0) { Array.Copy(BitConverter.GetBytes((Int64)args[0]), 0, asm64, 0xA, 8); }
             if (args.Length > 1) { Array.Copy(BitConverter.GetBytes((Int64)args[1]), 0, asm64, 20, 8); }
             if (args.Length > 2) { Array.Copy(BitConverter.GetBytes((Int64)args[2]), 0, asm64, 30, 8); }
             if (args.Length > 3) { Array.Copy(BitConverter.GetBytes((Int64)args[3]), 0, asm64, 40, 8); }
             if (args.Length > 4) { Array.Copy(BitConverter.GetBytes((Int64)args[4]), 0, asm64, 55, 8); }
+            */
 
+            if (args.Length > 0) { Array.Copy(BitConverter.GetBytes(args[0]), 0, asm64, 0xA, 4); }
+            if (args.Length > 1) { Array.Copy(BitConverter.GetBytes(args[1]), 0, asm64, 20, 4); }
+            if (args.Length > 2) { Array.Copy(BitConverter.GetBytes(args[2]), 0, asm64, 30, 4); }
+            if (args.Length > 3) { Array.Copy(BitConverter.GetBytes(args[3]), 0, asm64, 40, 4); }
+            if (args.Length > 4) { Array.Copy(BitConverter.GetBytes(args[4]), 0, asm64, 55, 4); }
+
+            
 
             Array.Copy(BitConverter.GetBytes((Int64)funcAddr), 0, asm64, 76, 8);
+            Array.Copy(BitConverter.GetBytes(CodeHandle.GetHandle().ToInt64() + 0x200), 0, asm64, 86, 8);  //Move rax to return address
 
             return asm64;
             
@@ -282,7 +295,7 @@ namespace DarkSoulsScripting.Injection
                 var hand = new SafeRemoteHandle((argStr.Length + 1) * 2);
                 var handVal = hand.GetHandle();
 
-                Hook.WUnicodeStr((uint)handVal, argStr);
+                Hook.WUnicodeStr((IntPtr)handVal, argStr);
 
                 allocPtrList.Add(hand);
                 Buffer_SquashIntoDwordResult = (uint)handVal;
@@ -375,6 +388,7 @@ namespace DarkSoulsScripting.Injection
             { typeof(ushort), (b) => BitConverter.ToUInt16(b, 0) },
             { typeof(int), (b) => BitConverter.ToInt32(b, 0) },
             { typeof(uint), (b) => BitConverter.ToUInt32(b, 0) },
+            { typeof(Int64), (b) => BitConverter.ToInt64(b, 0) },
             { typeof(float), (b) => BitConverter.ToSingle(b, 0) },
             { typeof(string), (b) => Hook.RAsciiStr(BitConverter.ToInt32(b, 0), 255 /* idk */) },
         };

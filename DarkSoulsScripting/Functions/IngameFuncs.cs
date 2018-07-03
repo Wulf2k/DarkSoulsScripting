@@ -414,8 +414,8 @@ namespace DarkSoulsScripting
         //public static int GetLocalPlayerInvadeType(_ARGS_)
         //    => Call<int>(FuncAddress.GetLocalPlayerInvadeType, _ARGS_);
 
-        //public static int GetLocalPlayerSoulLv(_ARGS_)
-        //    => Call<int>(FuncAddress.GetLocalPlayerSoulLv, _ARGS_);
+        public static int GetLocalPlayerSoulLv()
+            => Call<int>(FuncAddress.GetLocalPlayerSoulLv);
 
         //public static int GetLocalPlayerVowType(_ARGS_)
         //    => Call<int>(FuncAddress.GetLocalPlayerVowType, _ARGS_);
@@ -650,8 +650,8 @@ namespace DarkSoulsScripting
         //public static bool IsMatchingMultiPlay(_ARGS_)
         //    => Call<bool>(FuncAddress.IsMatchingMultiPlay, _ARGS_);
 
-        //public static bool IsOnline(_ARGS_)
-        //    => Call<bool>(FuncAddress.IsOnline, _ARGS_);
+        public static bool IsOnline()
+            => Call<bool>(FuncAddress.IsOnline);
 
         //public static bool IsOnlineMode(_ARGS_)
         //    => Call<bool>(FuncAddress.IsOnlineMode, _ARGS_);
@@ -689,8 +689,8 @@ namespace DarkSoulsScripting
         //public static bool IsReviveWait(_ARGS_)
         //    => Call<bool>(FuncAddress.IsReviveWait, _ARGS_);
 
-        //public static bool IsShow_CampMenu(_ARGS_)
-        //    => Call<bool>(FuncAddress.IsShow_CampMenu, _ARGS_);
+        public static bool IsShow_CampMenu()
+            => Call<bool>(FuncAddress.IsShow_CampMenu);
 
         public static bool IsShowMenu()
             => Call<bool>(FuncAddress.IsShowMenu);
