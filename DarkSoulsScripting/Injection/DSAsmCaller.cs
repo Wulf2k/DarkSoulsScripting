@@ -45,10 +45,7 @@ namespace DarkSoulsScripting.Injection
 
         private bool WriteAsm(IntPtr address, byte[] bytes, int count)
         {
-            if ((Int64)address < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
-            {
-                return false;
-            }
+            Console.WriteLine($"Func address: {(Int64)address:X16}");
             return Kernel.WriteProcessMemory_SAFE(Hook.DARKSOULS.GetHandle(), address, bytes, count, IntPtr.Zero) 
                 && Kernel.FlushInstructionCache(Hook.DARKSOULS.GetHandle(), (IntPtr)address, (UIntPtr)count);
         }
@@ -65,6 +62,7 @@ namespace DarkSoulsScripting.Injection
             CodeHandle?.Dispose();
             CodeHandle = new SafeRemoteHandle(FUNCTION_CALL_ASM_BUFFER_SIZE);
         }
+
 
         private void UndoCodeInjection()
         {
@@ -170,6 +168,50 @@ namespace DarkSoulsScripting.Injection
             asm.Pop32(Reg32.EBP);
             asm.Retn();
         }
+
+        private byte[] InitAsm64Buffer(IntPtr funcAddr, IEnumerable<dynamic> parameters, List<SafeRemoteHandle> allocPtrList,
+    dynamic rax = null,
+    dynamic rcx = null,
+    dynamic rdx = null,
+    dynamic rbx = null,
+    dynamic rsp = null,
+    dynamic rsi = null,
+    dynamic rdi = null)
+        {
+            var args = parameters.ToArray();
+
+
+            byte[] asm64 = {
+                0x9C, //pushfq
+                0x48, 0x81, 0xC4, 0x80, 0x00, 0x00, 0x00, //add rsp, 00000080
+                0x48, 0xBA, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //mov rdx, 00   (0xA = rdx loc)
+                0x49, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //mov r8, 00 (20d)
+                0x49, 0xB9, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //mov r9, 00 (30d)
+                0x48, 0xB9, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //mov rcx, 00 (40d)
+                0x48, 0x89, 0x4C, 0x24, 0x20, //mov [rsp+28],rcx
+                0x48, 0xB9, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //mov rcx, 00  (55d)
+                0x48, 0x89, 0x4C, 0x24, 0x28, //mov [rsp+28],rcx
+                0xFF, 0x15, 0x02, 0x00, 0x00, 0x00, 0xEB, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //call absolute address (71d)
+                0x48, 0x81, 0xEC, 0x80, 0x00, 0x00, 0x00, //sub rsp, 00000080
+                0x9D,  //popfq
+                0xC3    //retn
+            };
+
+
+            if (args.Length > 0) { Array.Copy(BitConverter.GetBytes((Int64)args[0]), 0, asm64, 0xA, 8); }
+            if (args.Length > 1) { Array.Copy(BitConverter.GetBytes((Int64)args[1]), 0, asm64, 20, 8); }
+            if (args.Length > 2) { Array.Copy(BitConverter.GetBytes((Int64)args[2]), 0, asm64, 30, 8); }
+            if (args.Length > 3) { Array.Copy(BitConverter.GetBytes((Int64)args[3]), 0, asm64, 40, 8); }
+            if (args.Length > 4) { Array.Copy(BitConverter.GetBytes((Int64)args[4]), 0, asm64, 55, 8); }
+
+
+            Array.Copy(BitConverter.GetBytes((Int64)funcAddr), 0, asm64, 76, 8);
+
+            return asm64;
+            
+        }
+
+
 
         private void ____freeClrManagedResources()
         {
@@ -378,6 +420,45 @@ namespace DarkSoulsScripting.Injection
             Buffer_ResultBytes = ExecuteAsm();
 
             Buffer_Result = GetFunctionCallResult<T>(Buffer_ResultBytes);
+
+            foreach (SafeRemoteHandle ptr in Buffer_ParamPointerList)
+            {
+                ptr.Close();
+                ptr.Dispose();
+            }
+
+            Buffer_ParamPointerList.Clear();
+
+            return Buffer_Result;
+        }
+
+        public T CallIngameFunc64<T>(Memloc functionAddress, IEnumerable<dynamic> args)
+        {
+            if (CodeHandle.IsClosed || CodeHandle.IsInvalid)
+            {
+                CompletelyReInitializeAndInjectCodeInNewLocation();
+            }
+
+            Kernel.CheckAddress(CodeHandle.GetHandle(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
+
+            byte[] byt = InitAsm64Buffer(functionAddress, args, Buffer_ParamPointerList);
+
+           
+
+            if (!(WriteAsm(CodeHandle.GetHandle(), byt, byt.Length)))
+            {
+                Extra.Dbg.PrintErr("WARNING: CODE INJECT FAILURE");
+            }
+
+            foreach (SafeRemoteHandle ptr in Buffer_ParamPointerList)
+            {
+                ptr.Dispose();
+            }
+
+            Buffer_ResultBytes = ExecuteAsm();
+
+            Buffer_Result = GetFunctionCallResult<T>(Buffer_ResultBytes);
+            
 
             foreach (SafeRemoteHandle ptr in Buffer_ParamPointerList)
             {

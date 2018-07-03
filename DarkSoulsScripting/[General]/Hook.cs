@@ -53,7 +53,16 @@ namespace DarkSoulsScripting
 
         public static T Call<T>(Memloc address, params dynamic[] args)
         {
-            return ASM.CallIngameFunc<T>(address, args);
+            if (IntPtr.Size == 4)
+            {
+                return ASM.CallIngameFunc<T>(address, args);
+            }
+            else
+            {
+                Console.WriteLine("64 bit Call triggered");
+                return ASM.CallIngameFunc64<T>(address, args);
+            }
+            
         }
 
         public static T CallReg<T>(Memloc address, dynamic[] args,

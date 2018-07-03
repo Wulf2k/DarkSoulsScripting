@@ -19,7 +19,7 @@ namespace DarkSoulsScripting.Injection.Structures
 
         public ReadOnlyDictionary<string, List<long>> ModuleOffsets { get; private set; }
 
-        public readonly IntPtr SafeBaseMemoryOffset = IntPtr.Zero;
+        public readonly IntPtr SafeBaseMemoryOffset = (IntPtr)0x140000000;
 
         public static readonly DarkSoulsVersion[] CompatibleVersions = new DarkSoulsVersion[] 
         {

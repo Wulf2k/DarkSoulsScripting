@@ -8,6 +8,16 @@ namespace DarkSoulsScripting
 {
     public static class ExtraFuncs
     {
+        public static string Test()
+        {
+            IngameFuncs.WarpNextStage(10, 0, 0, 0, 0);
+
+
+            return ("End Test Func");
+
+
+
+        }
 
 
         public static string GetNgPlusText(int ngLevel)

@@ -17,16 +17,18 @@ namespace DarkSoulsScripting.Injection.Structures
         {
             IntPtr dsHandle = Hook.DARKSOULS.GetHandle();
             IntPtr funcHandle = Func.GetHandle();
-            if ((Int64)funcHandle < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            /*if ((Int64)funcHandle < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return;
-            }
-
-            SetHandle((IntPtr)Kernel.CreateRemoteThread(dsHandle, IntPtr.Zero, 0, funcHandle, IntPtr.Zero, 0, IntPtr.Zero));
+            }*/
+            
+            IntPtr remoteThread = Kernel.CreateRemoteThread(dsHandle, IntPtr.Zero, 0, funcHandle, IntPtr.Zero, 0, IntPtr.Zero);
+            Console.WriteLine(remoteThread);
+            SetHandle(remoteThread);
         }
         public IntPtr GetHandle()
         {
-            if (IsClosed || IsInvalid || handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if (IsClosed || IsInvalid) // || handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 Alloc();
             }
@@ -41,10 +43,10 @@ namespace DarkSoulsScripting.Injection.Structures
         {
             Hook.DARKSOULS.OnDetach -= DARKSOULS_OnDetach;
 
-            if (handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            /*if (handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 return false;
-            }
+            }*/
 
             return Kernel.CloseHandle(handle);
         }

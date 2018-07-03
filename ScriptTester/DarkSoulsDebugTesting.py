@@ -5,12 +5,13 @@ print 1
 
 addr = 0x140000020L
 
-sleep(2)
 
-
+import platform
+print platform.architecture()
 
 try:
-        print(RInt32(addr))
+        
+    f.ChrFadeIn(10000, 1, 1)
 
 
 except:

@@ -21,7 +21,7 @@ namespace DarkSoulsScripting.Injection.Structures
         }
         public IntPtr GetHandle()
         {
-            if (IsClosed || IsInvalid || handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if (IsClosed || IsInvalid ) // || handle.ToInt64() < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
             {
                 Alloc();
             }

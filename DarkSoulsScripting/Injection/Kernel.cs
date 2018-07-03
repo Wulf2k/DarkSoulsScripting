@@ -46,13 +46,7 @@ namespace DarkSoulsScripting.Injection
             }
             else
             {
-                if ((Int64)addr > 0x7FFFFFFFFFFFFFFF || (Int64)addr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
-                {
-                    Console.WriteLine($"Tried to {action} from invalid memory address 0x{addr:16} (minimum safe base offset address is hardcoded to 0x{Hook.DARKSOULS.SafeBaseMemoryOffset:X16}).");
-                    return false;
-                }
-                else
-                {
+
                     var query = VirtualQueryEx(Hook.DARKSOULS.GetHandle(), (IntPtr)addr, out var info, (uint)Marshal.SizeOf(typeof(MEMORY_BASIC_INFORMATION)));
                     if (query == 0)
                     {
@@ -82,7 +76,7 @@ namespace DarkSoulsScripting.Injection
                             return true;
                         }
                     }
-                }
+                
             }
         }
 
@@ -176,6 +170,8 @@ namespace DarkSoulsScripting.Injection
         internal static void SuspendProcess(int pid)
         {
             var process = Process.GetProcessById(pid);
+
+
 
             if (process.ProcessName == string.Empty)
                 return;
