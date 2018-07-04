@@ -6,50 +6,58 @@ namespace DarkSoulsScripting
 {
     public static class WorldState
     {
-		public static int Address => RInt32(0x13784A0);
+        //public static IntPtr Address => RIntPtr(0x13784A0);
+        public static IntPtr Address => RIntPtr(0x141CFDC48);
 
         //TODO: ADD MORE STUFF
+        //TODO:  Values still set for 32 bit, miss for 64
 
         public static byte WarpNextStageKick
         {
-            get => RByte(Address + 0x11);
-            set => WByte(Address + 0x11, value);
+            //Updated for DSR
+            get => RByte(Address + 0x19);
+            set => WByte(Address + 0x19, value);
         }
 
         public static byte SetMapUid_Area
         {
-            get => RByte(Address + 0x16);
-            set => WByte(Address + 0x16, value);
+            //Updated for DSR
+            get => RByte(Address + 0x1E);
+            set => WByte(Address + 0x1E, value);
         }
 
         public static byte SetMapUid_World
         {
-            get => RByte(Address + 0x17);
-            set => WByte(Address + 0x17, value);
+            //Updated for DSR
+            get => RByte(Address + 0x1F);
+            set => WByte(Address + 0x1F, value);
         }
 
         public static int SetMapUid_Point
         {
-            get => RInt32(Address + 0x18);
-            set => WInt32(Address + 0x18, value);
+            //Updated for DSR
+            get => RInt32(Address + 0x20);
+            set => WInt32(Address + 0x20, value);
         }
 
         public static int SetMiniBlockIndex
         {
-            get => RInt32(Address + 0x24);
-            set => WInt32(Address + 0x24, value);
+            //Updated for DSR
+            get => RInt32(Address + 0x2C);
+            set => WInt32(Address + 0x2C, value);
         }
 
         public static byte SetSummonedPos
         {
-            get => RByte(Address + 0x18);
-            set => WByte(Address + 0x18, value);
+            get => RByte(Address + 0x20);
+            set => WByte(Address + 0x20, value);
         }
 
         public static int SaveSlot
         {
-            get => RInt32(Address + 0xA70);
-            set => WInt32(Address + 0xA70, value);
+            //Updated for DSR
+            get => RInt32(Address + 0xAA0);
+            set => WInt32(Address + 0xAA0, value);
         }
 
         public static float SosSignPosX
@@ -90,8 +98,9 @@ namespace DarkSoulsScripting
 
         public static int BonfireID
         {
-            get => RInt32(Address + 0xB04);
-            set => WInt32(Address + 0xB04, value);
+            //Updated for DSR
+            get => RInt32(Address + 0xB34);
+            set => WInt32(Address + 0xB34, value);
         }
 
         public static bool TutorialBegin
@@ -108,8 +117,9 @@ namespace DarkSoulsScripting
 
         public static bool TriggerSaveA
         {
-            get => RBool(Address + 0xB0F);
-            set => WBool(Address + 0xB0F, value);
+            //Updated for DSR  (Added 0x30)
+            get => RBool(Address + 0xB3F);
+            set => WBool(Address + 0xB3F, value);
         }
 
         public static bool TriggerSaveB
@@ -131,14 +141,16 @@ namespace DarkSoulsScripting
 
         public static bool bRequestToEnding
         {
-            get => RBool(Address + 0xB18);
-            set => WBool(Address + 0xB18, value);
+            //Updated for DSR
+            get => RBool(Address + 0xB48);
+            set => WBool(Address + 0xB48, value);
         }
 
         public static bool Autosave
         {
-            get => RBool(Address + 0xB40);
-            set => WBool(Address + 0xB40, value);
+            //Updated for DSR
+            get => RBool(Address + 0xB70);
+            set => WBool(Address + 0xB70, value);
         }
 
         public static bool IsFpsDisconnection

@@ -23,32 +23,37 @@ namespace DarkSoulsScripting
 
         public byte CameraSpeed
         {
-            get { return RByte(Address + 0x4); }
-            set { WByte(Address + 0x4, value); }
+            //Updated for DSR
+            get { return RByte(Address + 0x8); }
+            set { WByte(Address + 0x8, value); }
         }
 
         public byte Vibration
         {
-            get { return RByte(Address + 0x5); }
-            set { WByte(Address + 0x5, value); }
+            //Updated for DSR
+            get { return RByte(Address + 0x9); }
+            set { WByte(Address + 0x9, value); }
         }
 
         public byte Brightness
         {
-            get { return RByte(Address + 0x6); }
-            set { WByte(Address + 0x6, value); }
+            //Updated for DSR
+            get { return RByte(Address + 0xA); }
+            set { WByte(Address + 0xA, value); }
         }
 
         public byte SoundType
         {
-            get { return RByte(Address + 0x7); }
-            set { WByte(Address + 0x7, value); }
+            //Updated for DSR
+            get { return RByte(Address + 0xB); }
+            set { WByte(Address + 0xB, value); }
         }
 
         public byte VolumeBGM
         {
-            get { return RByte(Address + 0x8); }
-            set { WByte(Address + 0x8, value); }
+            //Updated for DSR
+            get { return RByte(Address + 0xC); }
+            set { WByte(Address + 0xC, value); }
         }
 
         public byte VolumeSFX

@@ -16,25 +16,27 @@ namespace DarkSoulsScripting
 
     public static class Game
     {
-        public static Func<int> AddressReadFunction = () => RInt32(0x1378700);
-        public static int Address => AddressReadFunction();
+        public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141D146E0);
+        public static IntPtr Address => AddressReadFunction();
 
-        public static int LocalPlayerStatsPtr
+        public static IntPtr LocalPlayerStatsPtr
         {
-            get { return RInt32(Address + 0x8); }
-            set { WInt32(Address + 0x8, value); }
+            //Updated for DSR
+            get { return RIntPtr(Address + 0x10); }
+            set { WIntPtr(Address + 0x10, value); }
         }
 
-        public static int OptionsPtr
+        public static IntPtr OptionsPtr
         {
-            get { return RInt32(Address + 0x2C); }
-            set { WInt32(Address + 0x2C, value); }
+            //Updated for DSR
+            get { return RIntPtr(Address + 0x58); }
+            set { WIntPtr(Address + 0x58, value); }
         }
 
-        public static int TendencyPtr
+        public static IntPtr TendencyPtr
         {
-            get { return RInt32(Address + 0x38); }
-            set { WInt32(Address + 0x38, value); }
+            get { return RIntPtr(Address + 0x38); }
+            set { WIntPtr(Address + 0x38, value); }
         }
 
         public static PlayerStats LocalPlayerStats = null;
@@ -50,57 +52,66 @@ namespace DarkSoulsScripting
 
         public static int ClearCount
         {
-            get { return RInt32(Address + 0x3C); }
-            set { WInt32(Address + 0x3C, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x78); }
+            set { WInt32(Address + 0x78, value); }
         }
 
         public static ClearState ClearState
         {
-            get { return (ClearState)RInt32(Address + 0x40); }
-            set { WInt32(Address + 0x40, (int)value); }
+            //Updated for DSR
+            get { return (ClearState)RInt32(Address + 0x7C); }
+            set { WInt32(Address + 0x7C, (int)value); }
         }
 
         public static int FullRecover
         {
-            get { return RInt32(Address + 0x44); }
-            set { WInt32(Address + 0x44, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x80); }
+            set { WInt32(Address + 0x80, value); }
         }
 
         public static int ItemComplete
         {
-            get { return RInt32(Address + 0x48); }
-            set { WInt32(Address + 0x48, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x84); }
+            set { WInt32(Address + 0x84, value); }
         }
 
         public static int RescueWhite
         {
-            get { return RInt32(Address + 0x4C); }
-            set { WInt32(Address + 0x4C, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x88); }
+            set { WInt32(Address + 0x88, value); }
         }
 
         //[sic] lol
         public static int KillBlack
         {
-            get { return RInt32(Address + 0x50); }
-            set { WInt32(Address + 0x50, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x8C); }
+            set { WInt32(Address + 0x8C, value); }
         }
 
         public static int TrueDeath
         {
-            get { return RInt32(Address + 0x54); }
-            set { WInt32(Address + 0x54, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x90); }
+            set { WInt32(Address + 0x90, value); }
         }
 
         public static int TrueDeathNum
         {
-            get { return RInt32(Address + 0x58); }
-            set { WInt32(Address + 0x58, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x94); }
+            set { WInt32(Address + 0x94, value); }
         }
 
         public static int DeathNum
         {
-            get { return RInt32(Address + 0x5C); }
-            set { WInt32(Address + 0x5C, value); }
+            //Updated for DSR
+            get { return RInt32(Address + 0x98); }
+            set { WInt32(Address + 0x98, value); }
         }
 
         public static int IngameTime

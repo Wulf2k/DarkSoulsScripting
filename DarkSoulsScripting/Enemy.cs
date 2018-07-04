@@ -15,7 +15,7 @@ namespace DarkSoulsScripting
 
         }
 
-        public static Enemy FromPtr(int ptr)
+        public static Enemy FromPtr(IntPtr ptr)
         {
             return new Enemy() { AddressReadFunc = () => ptr };
         }

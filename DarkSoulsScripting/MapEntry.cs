@@ -30,8 +30,8 @@ namespace DarkSoulsScripting
             return null;
         }
 
-        public int PointerToBlockAndArea {
-			get { return RInt32(Address + 0x4); }
+        public IntPtr PointerToBlockAndArea {
+			get { return RIntPtr(Address + 0x4); }
 		}
 
 		public byte Block {
@@ -46,8 +46,8 @@ namespace DarkSoulsScripting
 			get { return RInt32(Address + 0x3C); }
 		}
 
-        public int StartOfChrStruct {
-            get { return RInt32(Address + 0x40); }
+        public IntPtr StartOfChrStruct {
+            get { return RIntPtr(Address + 0x40); }
         }
 
         public List<ChrSlot> GetChrSlots()
@@ -55,7 +55,7 @@ namespace DarkSoulsScripting
             List<ChrSlot> result = new List<ChrSlot>();
 
 			for (int i = 0; i < ChrCount; i++) {
-                var addr = StartOfChrStruct + (0x20 * i);
+                IntPtr addr = StartOfChrStruct + (0x20 * i);
                 result.Add(new ChrSlot() { AddressReadFunc = () => addr });
 			}
 
@@ -67,7 +67,7 @@ namespace DarkSoulsScripting
             List<Enemy> result = new List<Enemy>();
 
 			for (int i = 0; i < ChrCount; i++) {
-                var addr = RInt32(StartOfChrStruct + (0x20 * i));
+                var addr = RIntPtr(StartOfChrStruct + (0x20 * i));
                 result.Add(new ChrSlot() { AddressReadFunc = () => addr }.GetChrAsEnemy());
 			}
 

@@ -16,8 +16,8 @@ namespace DarkSoulsScripting
 
         public struct AppearanceFaceDataIndexer
         {
-            public readonly int Address;
-            public AppearanceFaceDataIndexer(int addr)
+            public readonly IntPtr Address;
+            public AppearanceFaceDataIndexer(IntPtr addr)
             {
                 Address = addr;
             }
@@ -37,182 +37,212 @@ namespace DarkSoulsScripting
 
         public int HP
         {
-            get { return Hook.RInt32(Address + 0xc); }
-            set { Hook.WInt32(Address + 0xc, value); }
+            //Updated for DSR
+            get { return Hook.RInt32(IntPtr.Add(Address, 0x14)); }
+            set { Hook.WInt32(IntPtr.Add(Address, 0x14), value); }
         }
 
         public int MaxHPBase
         {
-            get { return Hook.RInt32(Address + 0x10); }
-            set { Hook.WInt32(Address + 0x10, value); }
-        }
-
-        public int MaxHP
-        {
-            get { return Hook.RInt32(Address + 0x14); }
-            set { Hook.WInt32(Address + 0x14, value); }
-        }
-
-        public int MP
-        {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x18); }
             set { Hook.WInt32(Address + 0x18, value); }
         }
 
-        public int MaxMPBase
+        public int MaxHP
         {
-            get { return Hook.RInt32(Address + 0x1c); }
-            set { Hook.WInt32(Address + 0x1c, value); }
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x1C); }
+            set { Hook.WInt32(Address + 0x1C, value); }
         }
 
-        public int MaxMP
+        public int MP
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x20); }
             set { Hook.WInt32(Address + 0x20, value); }
         }
 
-        public int Stamina
+        public int MaxMPBase
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x24); }
             set { Hook.WInt32(Address + 0x24, value); }
         }
 
-        public int MaxStaminaBase
+        public int MaxMP
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x28); }
             set { Hook.WInt32(Address + 0x28, value); }
         }
 
-        public int MaxStamina
+        public int Stamina
         {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x2C); }
+            set { Hook.WInt32(Address + 0x2C, value); }
+        }
+
+        public int MaxStaminaBase
+        {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x30); }
             set { Hook.WInt32(Address + 0x30, value); }
         }
 
-        public int VIT
+        public int MaxStamina
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x38); }
             set { Hook.WInt32(Address + 0x38, value); }
         }
 
-        public int ATN
+        public int VIT
         {
-            get { return Hook.RInt32(Address + 0x40); }
-            set { Hook.WInt32(Address + 0x40, value); }
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x10); }
+            set { Hook.WInt32(Address + 0x10, value); }
         }
 
-        public int END
+        public int ATN
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x48); }
             set { Hook.WInt32(Address + 0x48, value); }
         }
 
-        public int STR
+        public int END
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x50); }
             set { Hook.WInt32(Address + 0x50, value); }
         }
 
-        public int DEX
+        public int STR
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x58); }
             set { Hook.WInt32(Address + 0x58, value); }
         }
 
-        public int INT
+        public int DEX
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x60); }
             set { Hook.WInt32(Address + 0x60, value); }
         }
 
-        public int FTH
+        public int INT
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x68); }
             set { Hook.WInt32(Address + 0x68, value); }
         }
 
+        public int FTH
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x70); }
+            set { Hook.WInt32(Address + 0x70, value); }
+        }
+
         public int RES
         {
-            get { return Hook.RInt32(Address + 0x80); }
-            set { Hook.WInt32(Address + 0x80, value); }
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x88); }
+            set { Hook.WInt32(Address + 0x88, value); }
         }
 
         public int Humanity
         {
-            get { return Hook.RInt32(Address + 0x7c); }
-            set { Hook.WInt32(Address + 0x7c, value); }
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x84); }
+            set { Hook.WInt32(Address + 0x84, value); }
         }
 
         public short Gender //oh no i did the thing REEEEEEEEEEEEEEEE
         {
-            get { return Hook.RInt16(Address + 0xc2); }
-            set { Hook.WInt16(Address + 0xc2, value); }
+            //Updated for DSR
+            get { return Hook.RInt16(Address + 0xcA); }
+            set { Hook.WInt16(Address + 0xcA, value); }
         }
 
         public short DebugShopLevel
         {
-            get { return Hook.RInt16(Address + 0xc4); }
-            set { Hook.WInt16(Address + 0xc4, value); }
+            //Updated for DSR
+            get { return Hook.RInt16(Address + 0xcc); }
+            set { Hook.WInt16(Address + 0xcc, value); }
         }
 
         public byte StartingClass
         {
-            get { return Hook.RByte(Address + 0xc6); }
-            set { Hook.WByte(Address + 0xc6, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0xce); }
+            set { Hook.WByte(Address + 0xce, value); }
         }
 
         public byte Physique
         {
-            get { return Hook.RByte(Address + 0xc7); }
-            set { Hook.WByte(Address + 0xc7, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0xcf); }
+            set { Hook.WByte(Address + 0xcf, value); }
         }
 
         public byte StartingGift
         {
-            get { return Hook.RByte(Address + 0xc7); }
-            set { Hook.WByte(Address + 0xc7, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0xd0); }
+            set { Hook.WByte(Address + 0xd0, value); }
         }
 
         public int MultiplayCount
         {
-            get { return Hook.RInt32(Address + 0xcc); }
-            set { Hook.WInt32(Address + 0xcc, value); }
-        }
-
-        public int CoOpSuccessCount
-        {
-            get { return Hook.RInt32(Address + 0xd0); }
-            set { Hook.WInt32(Address + 0xd0, value); }
-        }
-
-        public int ThiefInvadePlaySuccessCount
-        {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0xd4); }
             set { Hook.WInt32(Address + 0xd4, value); }
         }
 
-        public int PlayerRankS
+        public int CoOpSuccessCount
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0xd8); }
             set { Hook.WInt32(Address + 0xd8, value); }
         }
 
-        public int PlayerRankA
+        public int ThiefInvadePlaySuccessCount
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0xdc); }
             set { Hook.WInt32(Address + 0xdc, value); }
         }
 
-        public int PlayerRankB
+        public int PlayerRankS
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0xe0); }
             set { Hook.WInt32(Address + 0xe0, value); }
         }
 
-        public int PlayerRankC
+        public int PlayerRankA
         {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0xe4); }
             set { Hook.WInt32(Address + 0xe4, value); }
+        }
+
+        public int PlayerRankB
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0xe8); }
+            set { Hook.WInt32(Address + 0xe8, value); }
+        }
+
+        public int PlayerRankC
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0xec); }
+            set { Hook.WInt32(Address + 0xec, value); }
         }
 
         public byte DevotionWarriorOfSunlight
@@ -317,40 +347,47 @@ namespace DarkSoulsScripting
             set { Hook.WByte(Address + 0x10a, value); }
         }
 
-        public COVENANT Covenant
+        //public COVENANT Covenant
+        public byte Covenant
         {
-            get { return (COVENANT)Hook.RByte(Address + 0x10b); }
-            set { Hook.WInt32(Address + 0x10b, Convert.ToByte(value)); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0x113); }
+            set { Hook.WInt32(Address + 0x113, value); }
         }
 
         public byte AppearanceFaceType
         {
-            get { return Hook.RByte(Address + 0x10c); }
-            set { Hook.WByte(Address + 0x10c, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0x114); }
+            set { Hook.WByte(Address + 0x114, value); }
         }
 
         public byte AppearanceHairType
         {
-            get { return Hook.RByte(Address + 0x10d); }
-            set { Hook.WByte(Address + 0x10d, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0x115); }
+            set { Hook.WByte(Address + 0x115, value); }
         }
 
         public byte AppearanceHairAndEyesColor
         {
-            get { return Hook.RByte(Address + 0x10e); }
-            set { Hook.WByte(Address + 0x10e, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0x116); }
+            set { Hook.WByte(Address + 0x116, value); }
         }
 
         public byte CurseLevel
         {
-            get { return Hook.RByte(Address + 0x10f); }
-            set { Hook.WByte(Address + 0x10f, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0x117); }
+            set { Hook.WByte(Address + 0x117, value); }
         }
 
         public byte InvadeType
         {
-            get { return Hook.RByte(Address + 0x110); }
-            set { Hook.WByte(Address + 0x110, value); }
+            //Updated for DSR
+            get { return Hook.RByte(Address + 0x118); }
+            set { Hook.WByte(Address + 0x118, value); }
         }
 
         public int EquipLeftHand1Index
@@ -603,32 +640,37 @@ namespace DarkSoulsScripting
 
         public float AppearanceScaleHead
         {
-            get { return Hook.RFloat(Address + 0x2ac); }
-            set { Hook.WFloat(Address + 0x2ac, value); }
+            //Updated for DSR
+            get { return Hook.RFloat(Address + 0x388); }
+            set { Hook.WFloat(Address + 0x388, value); }
         }
 
         public float AppearanceScaleChest
         {
-            get { return Hook.RFloat(Address + 0x2b0); }
-            set { Hook.WFloat(Address + 0x2b0, value); }
+            //Updated for DSR
+            get { return Hook.RFloat(Address + 0x38C); }
+            set { Hook.WFloat(Address + 0x390, value); }
         }
 
         public float AppearanceScaleWaist
         {
-            get { return Hook.RFloat(Address + 0x2b4); }
-            set { Hook.WFloat(Address + 0x2b4, value); }
+            //Updated for DSR
+            get { return Hook.RFloat(Address + 0x390); }
+            set { Hook.WFloat(Address + 0x390, value); }
         }
 
         public float AppearanceScaleArms
         {
-            get { return Hook.RFloat(Address + 0x2b8); }
-            set { Hook.WFloat(Address + 0x2b8, value); }
+            //Updated for DSR
+            get { return Hook.RFloat(Address + 0x394); }
+            set { Hook.WFloat(Address + 0x394, value); }
         }
 
         public float AppearanceScaleLegs
         {
-            get { return Hook.RFloat(Address + 0x2bc); }
-            set { Hook.WFloat(Address + 0x2bc, value); }
+            //Updated for DSR
+            get { return Hook.RFloat(Address + 0x398); }
+            set { Hook.WFloat(Address + 0x398, value); }
         }
 
         public float AppearanceHairColorR

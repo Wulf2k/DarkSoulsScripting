@@ -13,9 +13,9 @@ namespace DarkSoulsScripting
             
         }
 
-        public int ChrPtr {
-			get { return Hook.RInt32(Address + 0x14); }
-			set { Hook.WInt32(Address + 0x14, value); }
+        public IntPtr ChrPtr {
+			get { return Hook.RIntPtr(Address + 0x14); }
+			set { Hook.WIntPtr(Address + 0x14, value); }
 		}
 
         public TChr GetChr() => new TChr() { AddressReadFunc = () => ChrPtr };

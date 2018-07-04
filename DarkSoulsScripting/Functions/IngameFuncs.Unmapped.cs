@@ -1318,7 +1318,7 @@ namespace DarkSoulsScripting
 
             public static int SetMapUid(params dynamic[] args)
                 => Call<int>(FuncAddress.SetMapUid, args);
-
+            
             public static int SetMaxHp(params dynamic[] args)
                 => Call<int>(FuncAddress.SetMaxHp, args);
 

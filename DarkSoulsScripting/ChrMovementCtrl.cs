@@ -43,27 +43,27 @@ namespace DarkSoulsScripting
         //    set { SetMapFlagB(ChrMapFlagsB.DisableCollision, value); }
         //}
 
-        public int ChrPtr
+        public IntPtr ChrPtr
         {
-            get { return RInt32(Address + 0x10); }
-            set { WInt32(Address + 0x10, value); }
+            get { return RIntPtr(Address + 0x10); }
+            set { WIntPtr(Address + 0x10, value); }
         }
 
-        public int ControllerPtr
+        public IntPtr ControllerPtr
         {
-            get { return RInt32(Address + 0x54); }
-            set { WInt32(Address + 0x54, value); }
+            get { return RIntPtr(Address + 0x54); }
+            set { WIntPtr(Address + 0x54, value); }
         }
 
-        public int AnimationPtr
+        public IntPtr AnimationPtr
         {
-            get { return RInt32(Address + 0x14); }
-            set { WInt32(Address + 0x14, value); }
+            get { return RIntPtr(Address + 0x14); }
+            set { WIntPtr(Address + 0x14, value); }
         }
 
         public List<ChrAnimInstance> GetAnimInstances()
         {
-            if (AnimationPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
+            if ((Int64)AnimationPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
                 return new List<ChrAnimInstance>();
 
             int animStructThing = RInt32(AnimationPtr + 0xC);
@@ -74,7 +74,7 @@ namespace DarkSoulsScripting
 
             for (int i = 0; i < entryCount; i++)
             {
-                int entryAddr = RInt32(startAddr + (i * 4));
+                IntPtr entryAddr = RIntPtr(startAddr + (i * 4));
                 result.Add(new ChrAnimInstance() { AddressReadFunc = () => entryAddr });
             }
 
@@ -111,10 +111,10 @@ namespace DarkSoulsScripting
             set { WBool(AnimationPtr + 0x82, value); }
         }
 
-        public int TransformPtr
+        public IntPtr TransformPtr
         {
-            get { return RInt32(Address + 0x1c); }
-            set { WInt32(Address + 0x1c, value); }
+            get { return RIntPtr(Address + 0x1c); }
+            set { WIntPtr(Address + 0x1c, value); }
         }
 
         public bool WarpActivate
@@ -167,9 +167,9 @@ namespace DarkSoulsScripting
             set { WFloat(Address + 0xE4, (float)(value * Math.PI / 180) - (float)Math.PI); }
         }
 
-        public int DebugPlayerControllerPtr {
-			get { return Hook.RInt32(Address + 0x244); }
-			set { Hook.WInt32(Address + 0x244, value); }
+        public IntPtr DebugPlayerControllerPtr {
+			get { return Hook.RIntPtr(Address + 0x244); }
+			set { Hook.WIntPtr(Address + 0x244, value); }
 		}
     }
 }

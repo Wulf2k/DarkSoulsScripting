@@ -5,13 +5,13 @@ namespace DarkSoulsScripting
 {
     public abstract class GameStruct
     {
-        public int Address
+        public IntPtr Address
         {
             get { return AddressReadFunc(); }
         }
 
-        private Func<int> _addressReadFunc;
-        internal Func<int> AddressReadFunc
+        private Func<IntPtr> _addressReadFunc;
+        internal Func<IntPtr> AddressReadFunc
         {
             get => _addressReadFunc;
             set

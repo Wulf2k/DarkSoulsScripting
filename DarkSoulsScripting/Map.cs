@@ -1,15 +1,16 @@
 ﻿using DarkSoulsScripting.Injection;
+using System;
 using System.Collections.Generic;
 
 namespace DarkSoulsScripting
 {
     public static class Map
     {
-        public static int Address => Hook.RInt32((0x137D644, 0, 0));
+        public static IntPtr Address => Hook.RIntPtr((0x137D644, 0, 0));
 
-        public static int PlayerPointer {
-			get { return Hook.RInt32(Address + 0x3C); }
-            set { Hook.WInt32(Address + 0x3C, value); }
+        public static IntPtr PlayerPointer {
+			get { return Hook.RIntPtr(Address + 0x3C); }
+            set { Hook.WIntPtr(Address + 0x3C, value); }
 		}
 
 		public static int MapEntryCount {
@@ -20,7 +21,7 @@ namespace DarkSoulsScripting
 		{
             List<MapEntry> result = new List<MapEntry>();
 			for (int i = 0; i < MapEntryCount; i++) {
-                var addr = Hook.RInt32(Address + 0x74 + (4 * i));
+                var addr = Hook.RIntPtr(Address + 0x74 + (4 * i));
                 result.Add(new MapEntry() { AddressReadFunc = () => addr });
 			}
 			return result;

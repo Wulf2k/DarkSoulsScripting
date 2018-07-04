@@ -4,10 +4,7 @@ from time import *
 print 1
 
 try:
-    
-    
-    print(f.ReqularLeavePlayer(0))
-
+        Game.LocalPlayerStats.AppearanceScaleLegs = 00.0
 
 except:
         print("failed")

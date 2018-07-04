@@ -17,9 +17,9 @@ namespace DarkSoulsScripting
             AIController = new EnemyAIController() { AddressReadFunc = () => AIControllerPtr };
         }
 
-        public int AIControllerPtr {
-			get { return Hook.RInt32(Address + 0x230); }
-			set { Hook.WInt32(Address + 0x230, value); }
+        public IntPtr AIControllerPtr {
+			get { return Hook.RIntPtr(Address + 0x230); }
+			set { Hook.WIntPtr(Address + 0x230, value); }
 		}
 
         public int AnimationID {

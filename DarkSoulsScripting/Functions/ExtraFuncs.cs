@@ -963,16 +963,16 @@ namespace DarkSoulsScripting
         */
         public static bool ChrUpdateHitMask(Enemy chr, int NewHitMask)
         {
-            if (chr.Address == 0)
+            if (chr.Address == IntPtr.Zero)
                 return false;
 
-            int addr = chr.MovementCtrl.Address;
+            IntPtr addr = chr.MovementCtrl.Address;
 
-            if (addr <= 0)
+            if ((Int64)addr <= 0)
                 return false;
 
-            addr = RInt32(addr + 0x10);
-            addr = RInt32(addr + 0x10);
+            addr = RIntPtr(addr + 0x10);
+            addr = RIntPtr(addr + 0x10);
 
             WInt32(addr + 0x2C, NewHitMask);
 

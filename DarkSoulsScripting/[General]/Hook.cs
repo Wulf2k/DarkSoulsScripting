@@ -59,7 +59,6 @@ namespace DarkSoulsScripting
             }
             else
             {
-                Console.WriteLine("64 bit Call triggered");
                 return ASM.CallIngameFunc64<T>(address, args);
             }
             
@@ -372,6 +371,18 @@ namespace DarkSoulsScripting
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 4, IntPtr.Zero);
         }
 
+        public static void WIntPtr(Memloc addr, IntPtr val)
+        {
+            if (IntPtr.Size == 4)
+            {
+                Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes((Int32)val), IntPtr.Size, IntPtr.Zero);
+            }
+            else
+            {
+                Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes((Int64)val), IntPtr.Size, IntPtr.Zero);
+            }
+            
+        }
 
         public static void WBytes(Memloc addr, byte[] val)
         {

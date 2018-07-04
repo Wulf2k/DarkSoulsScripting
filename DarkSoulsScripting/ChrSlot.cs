@@ -12,24 +12,18 @@ namespace DarkSoulsScripting
             Transform = new ChrTransform() { AddressReadFunc = () => TransformPtr };
         }
 
-        public int ChrPtr {
-			get { return Hook.RInt32(Address + 0x0); }
-			set { Hook.WInt32(Address + 0x0, value); }
+        public IntPtr ChrPtr {
+			get { return Hook.RIntPtr(Address + 0x0); }
+			set { Hook.WIntPtr(Address + 0x0, value); }
 		}
 
         public Enemy GetChrAsEnemy()
         {
-            if (ChrPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
-                return null;
-
             return new Enemy() { AddressReadFunc = () => ChrPtr };
         }
 
         public Player GetChrAsPlayer()
         {
-            if (ChrPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
-                return null;
-
             return new Player() { AddressReadFunc = () => ChrPtr };
         }
 
@@ -38,17 +32,17 @@ namespace DarkSoulsScripting
 			set { Hook.WInt32(Address + 0x8, value); }
 		}
 
-		public int UnknownPtr1 {
-			get { return Hook.RInt32(Address + 0x10); }
+		public IntPtr UnknownPtr1 {
+			get { return Hook.RIntPtr(Address + 0x10); }
 		}
 
-		public int TransformPtr {
-			get { return Hook.RInt32(Address + 0x18); }
-			set { Hook.WInt32(Address + 0x18, value); }
+		public IntPtr TransformPtr {
+			get { return Hook.RIntPtr(Address + 0x18); }
+			set { Hook.WIntPtr(Address + 0x18, value); }
 		}
 
-		public int UnknownPtr2 {
-			get { return Hook.RInt32(Address + 0x1c); }
+		public IntPtr UnknownPtr2 {
+			get { return Hook.RIntPtr(Address + 0x1c); }
 		}
 
 		//TODO: See if writeable, also see wtf it even is lol

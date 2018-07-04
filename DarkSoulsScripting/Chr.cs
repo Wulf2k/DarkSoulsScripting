@@ -23,14 +23,14 @@ namespace DarkSoulsScripting
             UNK1 = new ChrUNK1() { AddressReadFunc = () => UNK1Ptr };
         }
 
-        public int SlotPtr {
-			get { return RInt32(Address + 0xC); }
-			set { WInt32(Address + 0xC, value); }
+        public IntPtr SlotPtr {
+			get { return RIntPtr(IntPtr.Add(Address, 0xC)); }
+			set { WIntPtr(Address + 0xC, value); }
 		}
 
-        public int UNK1Ptr {
-			get { return RInt32(Address + 0x10); }
-			set { WInt32(Address + 0x10, value); }
+        public IntPtr UNK1Ptr {
+			get { return RIntPtr(Address + 0x10); }
+			set { WIntPtr(Address + 0x10, value); }
 		}
 
 		public bool DisableEventBackreadState {
@@ -45,9 +45,9 @@ namespace DarkSoulsScripting
 			set { WUnicodeStr(Address + 0x38, value.Substring(0, Math.Min(value.Length, 10))); }
 		}
 
-        public int UnknownMSBStructPointer {
-			get { return RInt32(Address + 0x54); }
-			set { WInt32(Address + 0x54, value); }
+        public IntPtr UnknownMSBStructPointer {
+			get { return RIntPtr(Address + 0x54); }
+			set { WIntPtr(Address + 0x54, value); }
 		}
 
         public int UnknownMSBStructIndex {
@@ -111,8 +111,8 @@ namespace DarkSoulsScripting
 			set { WBool(Address + 0x128, value); }
 		}
 
-		public int DeathStructPointer {
-			get { return RInt32(Address + 0x170); }
+		public IntPtr DeathStructPointer {
+			get { return RIntPtr(Address + 0x170); }
 		}
 
 		public bool IsDead {
@@ -268,21 +268,21 @@ namespace DarkSoulsScripting
 			set { WInt32(Address + 0x31c, value); }
 		}
 
-		public int Unknown1Ptr {
-			get { return RInt32(Address + 0x330); }
-			set { WInt32(Address + 0x330, value); }
+		public IntPtr Unknown1Ptr {
+			get { return RIntPtr(Address + 0x330); }
+			set { WIntPtr(Address + 0x330, value); }
 		}
 
-        public int MovementCtrlPtr
+        public IntPtr MovementCtrlPtr
         {
-            get { return RInt32(Address + 0x28); }
-            set { WInt32(Address + 0x28, value); }
+            get { return RIntPtr(Address + 0x28); }
+            set { WIntPtr(Address + 0x28, value); }
         }
 
-        public int StatsPtr
+        public IntPtr StatsPtr
         {
-            get { return RInt32(Address + 0x414); }
-            set { WInt32(Address + 0x414, value); }
+            get { return RIntPtr(Address + 0x414); }
+            set { WIntPtr(Address + 0x414, value); }
         }
 
 		#region "DebugFlags"
@@ -431,7 +431,7 @@ namespace DarkSoulsScripting
         public void View()
 		{
             //TODO: MAP THIS IN ITS RESPECTIVE STATIC CLASS:
-            WInt32(RInt32(0x137D648) + 0xEC, Address);
+            //WInt32(RInt32(0x137D648) + 0xEC, Address);
         }
 
         public void WarpToCoords(float x, float y, float z, float heading)
@@ -467,7 +467,7 @@ namespace DarkSoulsScripting
 
         public void ReturnControlPlayer()
         {
-            MovementCtrl.DebugPlayerControllerPtr = 0;
+            MovementCtrl.DebugPlayerControllerPtr = IntPtr.Zero;
             IngameFuncs.EnableLogic(10000, true);
             WorldChrMan.LocalPlayer.View();
         }
