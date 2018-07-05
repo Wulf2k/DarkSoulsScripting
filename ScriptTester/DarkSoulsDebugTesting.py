@@ -4,7 +4,9 @@ from time import *
 print 1
 
 try:
-        Game.LocalPlayerStats.AppearanceScaleLegs = 00.0
+        Game.Options.CameraSpeed = 1
+        print(Game.LocalPlayerStats.Name)
+        print(hex(int(Game.LocalPlayerStats.Address)))
 
 except:
         print("failed")

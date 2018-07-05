@@ -771,26 +771,30 @@ namespace DarkSoulsScripting
 
         public int SoulLevel
         {
-            get { return Hook.RInt32(Address + 0x88); }
-            set { Hook.WInt32(Address + 0x88, value); }
+            //DSR
+            get { return Hook.RInt32(Address + 0x90); }
+            set { Hook.WInt32(Address + 0x90, value); }
         }
 
         public int Souls
         {
-            get { return Hook.RInt32(Address + 0x8c); }
-            set { Hook.WInt32(Address + 0x8c, value); }
+            //DSR
+            get { return Hook.RInt32(Address + 0x94); }
+            set { Hook.WInt32(Address + 0x94, value); }
         }
 
         public int PointTotal
         {
-            get { return Hook.RInt32(Address + 0x98); }
-            set { Hook.WInt32(Address + 0x98, value); }
+            //DSR
+            get { return Hook.RInt32(Address + 0xA0); }
+            set { Hook.WInt32(Address + 0xA0, value); }
         }
 
         public string Name
         {
-            get { return Hook.RUnicodeStr(Address + 0xa0, MAX_STATNAME_LENGTH); }
-            set { Hook.WAsciiStr(Address + 0xa0, value.Substring(0, Math.Min(value.Length, MAX_STATNAME_LENGTH))); }
+            //DSR
+            get { return Hook.RUnicodeStr(Address + 0xa8, MAX_STATNAME_LENGTH); }
+            set { Hook.WAsciiStr(Address + 0xa8, value.Substring(0, Math.Min(value.Length, MAX_STATNAME_LENGTH))); }
         }
     }
 }

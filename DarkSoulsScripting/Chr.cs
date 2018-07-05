@@ -41,8 +41,9 @@ namespace DarkSoulsScripting
 		
 
 		public string ModelName {
-			get { return RUnicodeStr(Address + 0x38, 10); }
-			set { WUnicodeStr(Address + 0x38, value.Substring(0, Math.Min(value.Length, 10))); }
+            //DSR
+			get { return RUnicodeStr(Address + 0x68, 10); }
+			set { WUnicodeStr(Address + 0x68, value.Substring(0, Math.Min(value.Length, 10))); }
 		}
 
         public IntPtr UnknownMSBStructPointer {
