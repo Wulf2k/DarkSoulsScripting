@@ -16,7 +16,8 @@ namespace DarkSoulsScripting
 
         public string GetName()
         {
-            return RUnicodeStr(RInt32(RInt32(Address + 0x60) + 4), MAX_NAME_LENGTH);
+            //DSR
+            return RUnicodeStr(RInt32(RInt32(Address + 0x90) + IntPtr.Size), MAX_NAME_LENGTH);
         }
 
         public Enemy FindEnemy(int modelID, int instanceNum)
@@ -31,31 +32,37 @@ namespace DarkSoulsScripting
         }
 
         public IntPtr PointerToBlockAndArea {
-			get { return RIntPtr(Address + 0x4); }
+            //DSR
+			get { return RIntPtr(Address + IntPtr.Size); }
 		}
 
 		public byte Block {
-			get { return RByte(PointerToBlockAndArea + 0x6); }
+            //DSR
+            get { return RByte(PointerToBlockAndArea + IntPtr.Size + 0x2); }
 		}
 
 		public byte Area {
-			get { return RByte(PointerToBlockAndArea + 0x7); }
+            //DSR
+            get { return RByte(PointerToBlockAndArea + IntPtr.Size + 0x3); }
 		}
 
 		public int ChrCount {
-			get { return RInt32(Address + 0x3C); }
+            //DSR
+			get { return RInt32(Address + 0x48); }
 		}
 
         public IntPtr StartOfChrStruct {
-            get { return RIntPtr(Address + 0x40); }
+            //DSR
+            get { return RIntPtr(Address + 0x50); }
         }
 
         public List<ChrSlot> GetChrSlots()
 		{
+            //DSR
             List<ChrSlot> result = new List<ChrSlot>();
 
 			for (int i = 0; i < ChrCount; i++) {
-                IntPtr addr = StartOfChrStruct + (0x20 * i);
+                IntPtr addr = StartOfChrStruct + (IntPtr.Size * 7 * i);
                 result.Add(new ChrSlot() { AddressReadFunc = () => addr });
 			}
 
@@ -64,10 +71,11 @@ namespace DarkSoulsScripting
 
 		public List<Enemy> GetChrsAsEnemies()
 		{
+            //DSR
             List<Enemy> result = new List<Enemy>();
 
 			for (int i = 0; i < ChrCount; i++) {
-                var addr = RIntPtr(StartOfChrStruct + (0x20 * i));
+                var addr = RIntPtr(StartOfChrStruct + (IntPtr.Size * 7 * i));
                 result.Add(new ChrSlot() { AddressReadFunc = () => addr }.GetChrAsEnemy());
 			}
 
@@ -76,10 +84,11 @@ namespace DarkSoulsScripting
 
 		public List<ChrTransform> GetChrTransforms()
 		{
+            //DSR
             List<ChrTransform> result = new List<ChrTransform>();
 
 			for (int i = 0; i < ChrCount; i++) {
-                var addr = StartOfChrStruct + (0x20 * i);
+                var addr = StartOfChrStruct + (IntPtr.Size * 7 * i);
                 result.Add(new ChrSlot() { AddressReadFunc = () => addr }.Transform);
 			}
 

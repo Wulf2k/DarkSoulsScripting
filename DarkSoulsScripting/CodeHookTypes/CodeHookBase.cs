@@ -122,7 +122,6 @@ namespace DarkSoulsScripting.CodeHookTypes
 
         public void RestoreCode()
         {
-            Console.WriteLine(DARKSOULS.ProcessID);
             //Suspend execution of Dark Souls process:
             DARKSOULS.Suspend();
 

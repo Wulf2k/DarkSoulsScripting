@@ -13,6 +13,7 @@ namespace DarkSoulsScripting
         }
 
         public IntPtr ChrPtr {
+            //DSR
 			get { return Hook.RIntPtr(Address + 0x0); }
 			set { Hook.WIntPtr(Address + 0x0, value); }
 		}
@@ -28,21 +29,25 @@ namespace DarkSoulsScripting
         }
 
 		public int CloneValue {
-			get { return Hook.RInt32(Address + 0x8); }
+            //DSR
+			get { return Hook.RInt32(Address + 0x10); }
 			set { Hook.WInt32(Address + 0x8, value); }
 		}
 
 		public IntPtr UnknownPtr1 {
-			get { return Hook.RIntPtr(Address + 0x10); }
+            //DSR
+			get { return Hook.RIntPtr(Address + 0x28); }
 		}
 
 		public IntPtr TransformPtr {
-			get { return Hook.RIntPtr(Address + 0x18); }
-			set { Hook.WIntPtr(Address + 0x18, value); }
+            //DSR
+			get { return Hook.RIntPtr(Address + 0x28); }
+			set { Hook.WIntPtr(Address + 0x28, value); }
 		}
 
 		public IntPtr UnknownPtr2 {
-			get { return Hook.RIntPtr(Address + 0x1c); }
+            //DSR
+			get { return Hook.RIntPtr(Address + 0x30); }
 		}
 
 		//TODO: See if writeable, also see wtf it even is lol
@@ -51,13 +56,15 @@ namespace DarkSoulsScripting
 		}
 
         public bool IsHide {
-			get { return Hook.RBit(Address + 0x14, 5); }
-			set { Hook.WBit(Address + 0x14, 5, value); }
+            //DSR
+			get { return Hook.RBit(Address + 0x20, 5); }
+			set { Hook.WBit(Address + 0x20, 5, value); }
 		}
 
 		public bool IsDisable {
-            get { return Hook.RBit(Address + 0x14, 7); }
-            set { Hook.WBit(Address + 0x14, 7, value); }
+            //DSR
+            get { return Hook.RBit(Address + 0x20, 7); }
+            set { Hook.WBit(Address + 0x20, 7, value); }
         }
 
 	}

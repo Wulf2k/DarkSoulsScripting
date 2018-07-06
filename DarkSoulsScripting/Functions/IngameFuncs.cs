@@ -290,7 +290,8 @@ namespace DarkSoulsScripting
         public static int EnableGeneratorSystem(int UnknownID, bool State)
             => Call<int>(FuncAddress.EnableGeneratorSystem, UnknownID, State);
 
-        public static int EnableHide(int ChrID, bool State)
+        //Fix, state = bool
+        public static int EnableHide(int ChrID, int State)
             => Call<int>(FuncAddress.EnableHide, ChrID, State);
 
         public static int EnableInvincible(int ChrID, bool State)
@@ -1148,7 +1149,8 @@ namespace DarkSoulsScripting
         //public static int SetCamModeParamTargetIdForBossLock(_ARGS_)
         //    => Call<int>(FuncAddress.SetCamModeParamTargetIdForBossLock, _ARGS_);
 
-        public static int SetChrType(int ChrID, CHR_TYPE Type)
+        //Fix Type = CHR_TYPE
+        public static int SetChrType(int ChrID, int Type)
             => Call<int>(FuncAddress.SetChrType, ChrID, (int)Type);
 
         public static int SetChrTypeDataGrey()
@@ -1193,7 +1195,8 @@ namespace DarkSoulsScripting
         public static int SetDefaultRoutePoint(int ChrID)
             => Call<int>(FuncAddress.SetDefaultRoutePoint, ChrID);
 
-        public static int SetDisable(int ChrID, bool State)
+        //Fix state, bool not int
+        public static int SetDisable(int ChrID, int State)
             => Call<int>(FuncAddress.SetDisable, ChrID, State);
 
         public static int SetDisableBackread_forEvent(int ChrID, bool State)

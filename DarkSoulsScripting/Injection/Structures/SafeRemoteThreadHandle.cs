@@ -23,7 +23,6 @@ namespace DarkSoulsScripting.Injection.Structures
             }*/
             
             IntPtr remoteThread = Kernel.CreateRemoteThread(dsHandle, IntPtr.Zero, 0, funcHandle, IntPtr.Zero, 0, IntPtr.Zero);
-            Console.WriteLine(remoteThread);
             SetHandle(remoteThread);
         }
         public IntPtr GetHandle()

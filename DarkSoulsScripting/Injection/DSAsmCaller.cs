@@ -45,7 +45,6 @@ namespace DarkSoulsScripting.Injection
 
         private bool WriteAsm(IntPtr address, byte[] bytes, int count)
         {
-            Console.WriteLine($"Func address: {(Int64)address:X16}");
             return Kernel.WriteProcessMemory_SAFE(Hook.DARKSOULS.GetHandle(), address, bytes, count, IntPtr.Zero) 
                 && Kernel.FlushInstructionCache(Hook.DARKSOULS.GetHandle(), (IntPtr)address, (UIntPtr)count);
         }
@@ -209,6 +208,7 @@ namespace DarkSoulsScripting.Injection
             if (args.Length > 4) { Array.Copy(BitConverter.GetBytes((Int64)args[4]), 0, asm64, 55, 8); }
             */
 
+            //Fix this damn int conversion crap
             if (args.Length > 0) { Array.Copy(BitConverter.GetBytes(args[0]), 0, asm64, 0xA, 4); }
             if (args.Length > 1) { Array.Copy(BitConverter.GetBytes(args[1]), 0, asm64, 20, 4); }
             if (args.Length > 2) { Array.Copy(BitConverter.GetBytes(args[2]), 0, asm64, 30, 4); }

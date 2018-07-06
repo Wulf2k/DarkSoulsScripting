@@ -24,56 +24,70 @@ namespace DarkSoulsScripting
         }
 
         public IntPtr SlotPtr {
-			get { return RIntPtr(IntPtr.Add(Address, 0xC)); }
-			set { WIntPtr(Address + 0xC, value); }
+            //DSR
+            get { return RIntPtr(IntPtr.Add(Address, 0x18)); }
+			set { WIntPtr(Address + 0x18, value); }
 		}
 
         public IntPtr UNK1Ptr {
-			get { return RIntPtr(Address + 0x10); }
-			set { WIntPtr(Address + 0x10, value); }
+            //DSR
+            get { return RIntPtr(Address + 0x20); }
+			set { WIntPtr(Address + 0x20, value); }
 		}
 
 		public bool DisableEventBackreadState {
-			get { return RBool(Address + 0x14); }
-			set { WBool(Address + 0x14, value); }
+            //DSR
+            get { return RBool(Address + 0x28); }
+			set { WBool(Address + 0x28, value); }
 		}
 
-		
+        public IntPtr MovementCtrlPtr
+        {
+            //DSR
+            get { return RIntPtr(Address + 0x50); }
+            set { WIntPtr(Address + 0x50, value); }
+        }
 
-		public string ModelName {
+        public string ModelName {
             //DSR
 			get { return RUnicodeStr(Address + 0x68, 10); }
 			set { WUnicodeStr(Address + 0x68, value.Substring(0, Math.Min(value.Length, 10))); }
 		}
 
         public IntPtr UnknownMSBStructPointer {
-			get { return RIntPtr(Address + 0x54); }
-			set { WIntPtr(Address + 0x54, value); }
+            //DSR
+			get { return RIntPtr(Address + 0x90); }
+			set { WIntPtr(Address + 0x90, value); }
 		}
 
         public int UnknownMSBStructIndex {
-			get { return RInt32(Address + 0x58); }
-			set { WInt32(Address + 0x58, value); }
+            //DSR
+            get { return RInt32(Address + 0x94); }
+			set { WInt32(Address + 0x94, value); }
 		}
 
-		public int NPCID {
-			get { return RInt32(Address + 0x68); }
-			set { WInt32(Address + 0x68, value); }
+		public int NPCParam {
+            //DSR
+			get { return RInt32(Address + 0xA8); }
+			set { WInt32(Address + 0xA8, value); }
 		}
 
-		public int NPCID2 {
-			get { return RInt32(Address + 0x6c); }
-			set { WInt32(Address + 0x6c, value); }
+		public int ChrInitParam {
+            //DSR
+			get { return RInt32(Address + 0xAC); }
+			set { WInt32(Address + 0xAC, value); }
 		}
 
 		public CHR_TYPE ChrType {
-			get { return (CHR_TYPE)RInt32(Address + 0x70); }
-			set { WInt32(Address + 0x70, (int)value); }
+            //DSR
+			get { return (CHR_TYPE)RInt32(Address + 0xB4); }
+			set { WInt32(Address + 0xB4, (int)value); }
 		}
 
 		public TEAM_TYPE TeamType {
-			get { return (TEAM_TYPE)RInt32(Address + 0x74); }
-			set { WInt32(Address + 0x74, (int)value); }
+            //DSR
+			get { return (TEAM_TYPE)RInt32(Address + 0xB8); }
+			set { WInt32(Address + 0xB8, (int)value); }
 		}
 
         // CRASHES GAME
@@ -274,20 +288,26 @@ namespace DarkSoulsScripting
 			set { WIntPtr(Address + 0x330, value); }
 		}
 
-        public IntPtr MovementCtrlPtr
+
+
+
+
+        public int TalkID
         {
-            get { return RIntPtr(Address + 0x28); }
-            set { WIntPtr(Address + 0x28, value); }
+            //DSR
+            get { return RInt32(Address + 0x454);  }
+            set { WInt32(Address + 0x454, value); }
         }
 
         public IntPtr StatsPtr
         {
-            get { return RIntPtr(Address + 0x414); }
-            set { WIntPtr(Address + 0x414, value); }
+            //DSR
+            get { return RIntPtr(Address + 0x568); }
+            set { WIntPtr(Address + 0x568, value); }
         }
 
-		#region "DebugFlags"
-		public bool NoGoodsConsume {
+        #region "DebugFlags"
+        public bool NoGoodsConsume {
             get { return RBit(Address + 0x3C4, 7); }
             set { WBit(Address + 0x3C4, 7, value); }
         }
