@@ -21,6 +21,8 @@ try:
         nmes = currmap.GetChrsAsEnemies()
         nme = nmes[27]
 
+        print(hex(int(nme.UnknownMSBStructPointer)))
+        print(nme.UnknownMSBStructIndex)
         print(nme.ModelName)
 
         WorldChrMan.LocalPlayer.WarpToEnemy(nme)

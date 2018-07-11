@@ -62,8 +62,8 @@ namespace DarkSoulsScripting
 
         public int UnknownMSBStructIndex {
             //DSR
-            get { return RInt32(Address + 0x94); }
-			set { WInt32(Address + 0x94, value); }
+            get { return RInt32((Address + 0x94, IntPtr.Zero, Address + 0x98)); }
+			set { WInt32((Address + 0x94, IntPtr.Zero, Address + 0x98), value); }
 		}
 
 		public int NPCParam {
@@ -497,6 +497,7 @@ namespace DarkSoulsScripting
 
         public string GetName()
         {
+            //This is fucked up, fix it.
             return RAsciiStr(RIntPtr(RIntPtr(RIntPtr(UnknownMSBStructPointer + 0x28) + 0x10 + 4 * UnknownMSBStructIndex)), MAX_NAME_LENGTH);
         }
     }
