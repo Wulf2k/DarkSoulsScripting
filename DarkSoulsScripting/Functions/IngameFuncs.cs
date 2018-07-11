@@ -275,10 +275,12 @@ namespace DarkSoulsScripting
         public static int DisableInterupt(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableInterupt, ChrID, State);
 
-        public static int DisableMapHit(int ChrID, bool State)
+        //change state back to bool
+        public static int DisableMapHit(int ChrID, int State)
             => Call<int>(FuncAddress.DisableMapHit, ChrID, State);
 
-        public static int DisableMove(int ChrID, bool State)
+        //change state back to bool
+        public static int DisableMove(int ChrID, int State)
             => Call<int>(FuncAddress.DisableMove, ChrID, State);
 
         //public static int DivideRest(_ARGS_)
@@ -297,7 +299,8 @@ namespace DarkSoulsScripting
         public static int EnableInvincible(int ChrID, bool State)
             => Call<int>(FuncAddress.EnableInvincible, ChrID, State);
 
-        public static int EnableLogic(int ChrID, bool State)
+        //Switch state back to bool
+        public static int EnableLogic(int ChrID, int State)
             => Call<int>(FuncAddress.EnableLogic, ChrID, State);
 
         public static int EnableObjTreasure(int ObjID, bool State)

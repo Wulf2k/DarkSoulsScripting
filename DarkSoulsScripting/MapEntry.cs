@@ -17,7 +17,7 @@ namespace DarkSoulsScripting
         public string GetName()
         {
             //DSR
-            return RUnicodeStr(RInt32(RInt32(Address + 0x90) + IntPtr.Size), MAX_NAME_LENGTH);
+            return RUnicodeStr(RIntPtr(RIntPtr(Address + 0x90) + IntPtr.Size), MAX_NAME_LENGTH);
         }
 
         public Enemy FindEnemy(int modelID, int instanceNum)
@@ -75,7 +75,7 @@ namespace DarkSoulsScripting
             List<Enemy> result = new List<Enemy>();
 
 			for (int i = 0; i < ChrCount; i++) {
-                var addr = RIntPtr(StartOfChrStruct + (IntPtr.Size * 7 * i));
+                var addr = StartOfChrStruct + (IntPtr.Size * 7 * i);
                 result.Add(new ChrSlot() { AddressReadFunc = () => addr }.GetChrAsEnemy());
 			}
 

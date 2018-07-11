@@ -9,30 +9,34 @@ namespace DarkSoulsScripting
 {
     public static class Global
     {
-        public static IntPtr Address => RIntPtr(0x1378560);
+        public static IntPtr Address => RIntPtr((0x1378560, 0, 0x141D06768));
 
 
         public static byte AreaID
         {
+            //DSR
             get { return RByte(Address + 0xB); }
             set { WByte(Address + 0xB, value); }
         }
 
         public static byte BlockID
         {
+            //DSR
             get { return RByte(Address + 0xA); }
             set { WByte(Address + 0xA, value); }
         }
 
         public static bool IsAliveMotion
         {
-            get { return RBool(Address + 0x1C); }
+            //DSR
+            get { return RBool(Address + 0x24); }
             set { WBool(Address + 0x1C, value); }
         }
 
         public static bool IsReviveWait
         {
-            get { return RBool(Address + 0x1F); }
+            //DSR
+            get { return RBool(Address + 0x27); }
             set { WBool(Address + 0x1F, value); }
         }
     }

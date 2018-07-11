@@ -24,16 +24,32 @@ namespace DarkSoulsScripting
         public Player GetChrAsPlayer() => new Player() { AddressReadFunc = () => ChrPtr };
         public Enemy GetChrAsEnemy() => new Enemy() { AddressReadFunc = () => ChrPtr };
 
+        public IntPtr ChrPtr
+        {
+            //DSR
+            get { return RIntPtr((Address + 0x10, IntPtr.Zero, Address + 0x10)); }
+            set { WIntPtr((Address + 0x10, IntPtr.Zero, Address + 0x10), value); }
+        }
+
+        public IntPtr ControllerPtr
+        {
+            //DSR
+            get { return RIntPtr((Address + 0x54, IntPtr.Zero, Address + 0x88)); }
+            set { WIntPtr((Address + 0x54, IntPtr.Zero, Address + 0x88), value); }
+        }
+
         public bool EnableLogic
         {
-            get { return RBit(Address + 0xC0, 7); }
-            set { WBit(Address + 0xC0, 7, value); }
+            //DSR
+            get { return RBit((Address + 0xC0, IntPtr.Zero, Address + 0x100), 7); }
+            set { WBit((Address + 0xC0, IntPtr.Zero, Address + 0x100), 7, value); }
         }
 
         public bool DisableMapHit
         {
-            get { return RBit(Address + 0xC4, 27); }
-            set { WBit(Address + 0xC4, 27, value); }
+            //DSR
+            get { return RBit((Address + 0xC4, IntPtr.Zero, Address + 0x104), 27); }
+            set { WBit((Address + 0xC4, IntPtr.Zero, Address + 0x104), 27, value); }
         }
 
         //0x40 flag applied to Address + 0xC6
@@ -43,38 +59,26 @@ namespace DarkSoulsScripting
         //    set { SetMapFlagB(ChrMapFlagsB.DisableCollision, value); }
         //}
 
-        public IntPtr ChrPtr
-        {
-            get { return RIntPtr(Address + 0x10); }
-            set { WIntPtr(Address + 0x10, value); }
-        }
-
-        public IntPtr ControllerPtr
-        {
-            get { return RIntPtr(Address + 0x54); }
-            set { WIntPtr(Address + 0x54, value); }
-        }
 
         public IntPtr AnimationPtr
         {
-            get { return RIntPtr(Address + 0x14); }
-            set { WIntPtr(Address + 0x14, value); }
+            //DSR
+            get { return RIntPtr((Address + 0x14, IntPtr.Zero, Address + 0x18)); }
+            set { WIntPtr((Address + 0x14, IntPtr.Zero, Address + 0x18), value); }
         }
 
         public List<ChrAnimInstance> GetAnimInstances()
         {
-            if ((Int64)AnimationPtr < (Int64)Hook.DARKSOULS.SafeBaseMemoryOffset)
-                return new List<ChrAnimInstance>();
-
-            int animStructThing = RInt32(AnimationPtr + 0xC);
-            int startAddr = RInt32(animStructThing + 0x10);
-            int entryCount = RInt32(animStructThing + 0x14);
+            //DSR
+            IntPtr animStructThing = RIntPtr((AnimationPtr + 0xC, IntPtr.Zero, AnimationPtr + 0x18));
+            IntPtr startAddr = RIntPtr((AnimationPtr + 0x10, IntPtr.Zero, AnimationPtr + 0x20));
+            int entryCount = RInt32((AnimationPtr + 0x14, IntPtr.Zero, AnimationPtr + 0x28));
 
             var result = new List<ChrAnimInstance>();
 
             for (int i = 0; i < entryCount; i++)
             {
-                IntPtr entryAddr = RIntPtr(startAddr + (i * 4));
+                IntPtr entryAddr = RIntPtr(startAddr + (i * IntPtr.Size));
                 result.Add(new ChrAnimInstance() { AddressReadFunc = () => entryAddr });
             }
 
@@ -83,20 +87,23 @@ namespace DarkSoulsScripting
 
         public float AnimationSpeed
         {
-            get { return RFloat(AnimationPtr + 0x64); }
-            set { WFloat(AnimationPtr + 0x64, value); }
+            //DSR
+            get { return RFloat((AnimationPtr + 0x64, IntPtr.Zero, AnimationPtr + 0xA8)); }
+            set { WFloat((AnimationPtr + 0x64, IntPtr.Zero, AnimationPtr + 0xA8), value); }
         }
 
         public bool AnimDbgDrawSkeleton
         {
-            get { return RBool(AnimationPtr + 0x68); }
-            set { WBool(AnimationPtr + 0x68, value); }
+            //DSR
+            get { return RBool((AnimationPtr + 0x68, IntPtr.Zero, AnimationPtr + 0xB0)); }
+            set { WBool((AnimationPtr + 0x68, IntPtr.Zero, AnimationPtr + 0xB0), value); }
         }
 
         public bool AnimDbgDrawBoneName
         {
-            get { return RBool(AnimationPtr + 0x69); }
-            set { WBool(AnimationPtr + 0x69, value); }
+            //DSR
+            get { return RBool((AnimationPtr + 0x69, IntPtr.Zero, AnimationPtr + 0xB1)); }
+            set { WBool((AnimationPtr + 0x69, IntPtr.Zero, AnimationPtr + 0xB1), value); }
         }
 
         public bool AnimDbgDrawExtractMotion
@@ -113,63 +120,73 @@ namespace DarkSoulsScripting
 
         public IntPtr TransformPtr
         {
-            get { return RIntPtr(Address + 0x1c); }
-            set { WIntPtr(Address + 0x1c, value); }
+            //DSR
+            get { return RIntPtr((Address + 0x1c, IntPtr.Zero, Address + 0x28)); }
+            set { WIntPtr((Address + 0x1c, IntPtr.Zero, Address + 0x28), value); }
         }
 
         public bool WarpActivate
         {
-            get { return RBool(Address + 0xC8); }
-            set { WBool(Address + 0xC8, value); }
+            //DSR
+            get { return RBool((Address + 0xC8, IntPtr.Zero, Address + 0x108)); }
+            set { WBool((Address + 0xC8, IntPtr.Zero, Address + 0x108), value); }
         }
 
         public float WarpX
         {
-            get { return RFloat(Address + 0xD0); }
-            set { WFloat(Address + 0xD0, value); }
+            //DSR
+            get { return RFloat((Address + 0xD0, IntPtr.Zero, Address + 0x110)); }
+            set { WFloat((Address + 0xD0, IntPtr.Zero, Address + 0x110), value); }
         }
 
         public float WarpY
         {
-            get { return RFloat(Address + 0xD4); }
-            set { WFloat(Address + 0xD4, value); }
+            //DSR
+            get { return RFloat((Address + 0xD4, IntPtr.Zero, Address + 0x114)); }
+            set { WFloat((Address + 0xD4, IntPtr.Zero, Address + 0x114), value); }
         }
 
         public float WarpZ
         {
-            get { return RFloat(Address + 0xD8); }
-            set { WFloat(Address + 0xD8, value); }
+            //DSR
+            get { return RFloat((Address + 0xD8, IntPtr.Zero, Address + 0x118)); }
+            set { WFloat((Address + 0xD8, IntPtr.Zero, Address + 0x118), value); }
         }
 
         //TODO: Confirm warp x and z rotation exist (I just guessed based on the pattern: [ pos x, pos y, pos y, {???}, rot y, {???} ]
 
         public float WarpRX
         {
-            get { return RFloat(Address + 0xE0); }
-            set { WFloat(Address + 0xE0, value); }
+            //DSR
+            get { return RFloat((Address + 0xE0, IntPtr.Zero, Address + 0x120)); }
+            set { WFloat((Address + 0xE0, IntPtr.Zero, Address + 0x120), value); }
         }
 
         public float WarpRY
         {
-            get { return RFloat(Address + 0xE4); }
-            set { WFloat(Address + 0xE4, value); }
+            //DSR
+            get { return RFloat((Address + 0xE4, IntPtr.Zero, Address + 0x124)); }
+            set { WFloat((Address + 0xE4, IntPtr.Zero, Address + 0x124), value); }
         }
 
         public float WarpRZ
         {
-            get { return RFloat(Address + 0xE8); }
-            set { WFloat(Address + 0xE8, value); }
+            //DSR
+            get { return RFloat((Address + 0xE8, IntPtr.Zero, Address + 0x128)); }
+            set { WFloat((Address + 0xE8, IntPtr.Zero, Address + 0x128), value); }
         }
 
         public float WarpHeading
         {
-            get { return (float)((RFloat(Address + 0xE4) / Math.PI * 180) + 180); }
-            set { WFloat(Address + 0xE4, (float)(value * Math.PI / 180) - (float)Math.PI); }
+            //DSR
+            get { return (float)((RFloat((Address + 0xE4, IntPtr.Zero, Address + 0x124)) / Math.PI * 180) + 180); }
+            set { WFloat((Address + 0xE4, IntPtr.Zero, Address + 0x124), (float)(value * Math.PI / 180) - (float)Math.PI); }
         }
 
         public IntPtr DebugPlayerControllerPtr {
-			get { return Hook.RIntPtr(Address + 0x244); }
-			set { Hook.WIntPtr(Address + 0x244, value); }
+            //DSR
+			get { return Hook.RIntPtr(Address + 0x298); }
+			set { Hook.WIntPtr(Address + 0x298, value); }
 		}
     }
 }

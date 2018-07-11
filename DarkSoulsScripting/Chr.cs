@@ -44,8 +44,8 @@ namespace DarkSoulsScripting
         public IntPtr MovementCtrlPtr
         {
             //DSR
-            get { return RIntPtr(Address + 0x50); }
-            set { WIntPtr(Address + 0x50, value); }
+            get { return RIntPtr(Address + 0x48); }
+            set { WIntPtr(Address + 0x48, value); }
         }
 
         public string ModelName {
@@ -159,8 +159,9 @@ namespace DarkSoulsScripting
 		}
 
 		public float Opacity {
-			get { return RFloat(Address + 0x258); }
-			set { WFloat(Address + 0x258, value); }
+            //DSR
+			get { return RFloat((Address + 0x258, IntPtr.Zero, Address + 0x308)); }
+			set { WFloat((Address + 0x258, IntPtr.Zero, Address + 0x308), value); }
 		}
 
 		public int DrawGroup1 {
@@ -453,6 +454,7 @@ namespace DarkSoulsScripting
 		{
             //TODO: MAP THIS IN ITS RESPECTIVE STATIC CLASS:
             //WInt32(RInt32(0x137D648) + 0xEC, Address);
+            WIntPtr((RIntPtr((0x137D648, 0, 0x141d02008))+0xEC, IntPtr.Zero, RIntPtr((0x137D648, 0, 0x141d02008))+0xF0), Address);
         }
 
         public void WarpToCoords(float x, float y, float z, float heading)
@@ -482,20 +484,20 @@ namespace DarkSoulsScripting
         public void SwitchControlPlayer()
         {
             MovementCtrl.DebugPlayerControllerPtr = WorldChrMan.LocalPlayer.MovementCtrl.ControllerPtr;
-            IngameFuncs.EnableLogic(10000, false);
+            IngameFuncs.EnableLogic(10000, 0);
             View();
         }
 
         public void ReturnControlPlayer()
         {
             MovementCtrl.DebugPlayerControllerPtr = IntPtr.Zero;
-            IngameFuncs.EnableLogic(10000, true);
+            IngameFuncs.EnableLogic(10000, 1);
             WorldChrMan.LocalPlayer.View();
         }
 
         public string GetName()
         {
-            return RAsciiStr(RInt32(RInt32(RInt32(UnknownMSBStructPointer + 0x28) + 0x10 + 4 * UnknownMSBStructIndex)), MAX_NAME_LENGTH);
+            return RAsciiStr(RIntPtr(RIntPtr(RIntPtr(UnknownMSBStructPointer + 0x28) + 0x10 + 4 * UnknownMSBStructIndex)), MAX_NAME_LENGTH);
         }
     }
 }

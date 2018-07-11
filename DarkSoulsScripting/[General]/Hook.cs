@@ -224,7 +224,7 @@ namespace DarkSoulsScripting
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, IntPtr.Size, IntPtr.Zero);
             if (IntPtr.Size == 4)
             {
-                return new IntPtr(BitConverter.ToUInt32(ByteBuffer, 0));
+                return new IntPtr(BitConverter.ToInt32(ByteBuffer, 0));
             }
             else
             {

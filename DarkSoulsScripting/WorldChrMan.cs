@@ -12,7 +12,7 @@ namespace DarkSoulsScripting
         //Taken from the Dark Souls 1 Overhaul IDA Workspace.
         public const int CHR_STRUCT_SIZE = 0x5F8;
 
-        public static IntPtr Address => RIntPtr(0x137DC70);
+        public static IntPtr Address => RIntPtr((0x137DC70, 0, 0x141D0C520));
 
         public static Player LocalPlayer { get; private set; } = null;
 
@@ -25,7 +25,7 @@ namespace DarkSoulsScripting
         public static List<Enemy> GetEnemies()
         {
             var result = new List<Enemy>();
-            for (Int64 i = (Int64)ChrsBegin; i <= (Int64)ChrsEnd; i += 4)
+            for (Int64 i = (Int64)ChrsBegin; i <= (Int64)ChrsEnd; i += IntPtr.Size)
             {
                 IntPtr thisEnemyAddress = RIntPtr(i);
                 result.Add(new Enemy() { AddressReadFunc = () => thisEnemyAddress });
@@ -39,21 +39,24 @@ namespace DarkSoulsScripting
         {
             public IntPtr this[int index]
             {
-                get => RIntPtr(ChrsBegin + (index * 0x4));
-                set => WIntPtr(ChrsBegin + (index * 0x4), value);
+                //DSR
+                get => RIntPtr(ChrsBegin + (index * IntPtr.Size));
+                set => WIntPtr(ChrsBegin + (index * IntPtr.Size), value);
             }
         }
 
         public static IntPtr ChrsBegin
         {
-            get => RIntPtr(Address + 0x4);
-            set => WIntPtr(Address + 0x4, value);
+            //DSR
+            get => RIntPtr(Address + IntPtr.Size);
+            set => WIntPtr(Address + IntPtr.Size, value);
         }
 
         public static IntPtr ChrsEnd
         {
-            get => RIntPtr(Address + 0x8);
-            set => WIntPtr(Address + 0x8, value);
+            //DSR
+            get => RIntPtr(Address + IntPtr.Size * 2);
+            set => WIntPtr(Address + IntPtr.Size * 2, value);
         }
     }
 }

@@ -4,17 +4,32 @@ from time import *
 print 1
 
 try:
-        Game.Options.CameraSpeed = 1
-        print(Game.LocalPlayerStats.Name)
-        print(Map.MapEntryCount)
-
         currmap = Map.GetCurrent()
 
         print(currmap.Area)
         print(currmap.Block)
         print(currmap.GetName())
 
-        print(hex(int(WorldChrMan.LocalPlayer.Address)))
+        WorldChrMan.LocalPlayer.MovementCtrl.AnimationSpeed = 1.0
+        
+        print(WorldChrMan.LocalPlayer.MovementCtrl.Transform.X)
+        print(WorldChrMan.LocalPlayer.MovementCtrl.Transform.Y)
+        print(WorldChrMan.LocalPlayer.MovementCtrl.Transform.Z)
+
+
+        print(hex(int(currmap.StartOfChrStruct)))
+        nmes = currmap.GetChrsAsEnemies()
+        nme = nmes[27]
+
+        print(nme.ModelName)
+
+        WorldChrMan.LocalPlayer.WarpToEnemy(nme)
+
+        nme.SwitchControlPlayer()
+
+
+        
+
 
 
         
@@ -25,4 +40,4 @@ try:
 except:
         print("failed")
 
-sleep(20)
+sleep(10)
