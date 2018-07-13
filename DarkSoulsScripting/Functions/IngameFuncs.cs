@@ -296,7 +296,8 @@ namespace DarkSoulsScripting
         public static int EnableHide(int ChrID, int State)
             => Call<int>(FuncAddress.EnableHide, ChrID, State);
 
-        public static int EnableInvincible(int ChrID, bool State)
+        //Switch state back to bool
+        public static int EnableInvincible(int ChrID, int State)
             => Call<int>(FuncAddress.EnableInvincible, ChrID, State);
 
         //Switch state back to bool

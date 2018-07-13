@@ -9,7 +9,8 @@ namespace DarkSoulsScripting
 {
     public static class ChrFollowCam
     {
-        public static int Address => RInt32(RInt32(RInt32(0x137D6DC) + 0x3C) + 0x60);
+        //DSR 1.03
+        public static IntPtr Address => RIntPtr(RIntPtr(RIntPtr((0x137D6DC, 0, 0x141D177E8)) + 0x18 + IntPtr.Size * 9) + 0x60);
 
         public static float FovY
         {

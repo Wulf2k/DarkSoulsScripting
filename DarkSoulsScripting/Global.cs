@@ -9,7 +9,8 @@ namespace DarkSoulsScripting
 {
     public static class Global
     {
-        public static IntPtr Address => RIntPtr((0x1378560, 0, 0x141D06768));
+        //DSR 1.03
+        public static IntPtr Address => RIntPtr((0x1378560, 0, 0x141D19958));
 
 
         public static byte AreaID

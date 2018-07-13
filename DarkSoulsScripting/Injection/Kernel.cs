@@ -97,6 +97,7 @@ namespace DarkSoulsScripting.Injection
         {
             if (!CheckAddress(lpBaseAddress, (uint)iSize, "read"))
             {
+                Console.WriteLine("hit");
                 Array.Clear(lpBuffer, 0, iSize);
                 return false;
             }

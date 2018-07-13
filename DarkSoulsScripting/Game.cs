@@ -16,7 +16,8 @@ namespace DarkSoulsScripting
 
     public static class Game
     {
-        public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141D146E0);
+        //DSR 1.03
+        public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141D278F0);
         public static IntPtr Address => AddressReadFunction();
 
         public static IntPtr LocalPlayerStatsPtr

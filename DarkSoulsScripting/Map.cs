@@ -6,7 +6,8 @@ namespace DarkSoulsScripting
 {
     public static class Map
     {
-        public static IntPtr Address => Hook.RIntPtr((0x137D644, 0, 0x141D01FC0));
+        //DSR 1.03
+        public static IntPtr Address => Hook.RIntPtr((0x137D644, 0, 0x141D151B0));
 
         public static IntPtr PlayerPointer {
             //DSR

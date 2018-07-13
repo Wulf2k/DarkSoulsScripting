@@ -7,7 +7,9 @@ namespace DarkSoulsScripting
     public static class WorldState
     {
         //public static IntPtr Address => RIntPtr(0x13784A0);
-        public static IntPtr Address => RIntPtr(0x141CFDC48);
+
+        //DSR 1.03
+        public static IntPtr Address => RIntPtr((0x13784A0, 0, 0x141D10E18));
 
         //TODO: ADD MORE STUFF
         //TODO:  Values still set for 32 bit, miss for 64

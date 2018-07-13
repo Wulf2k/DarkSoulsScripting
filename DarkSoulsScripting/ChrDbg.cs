@@ -9,98 +9,105 @@ namespace DarkSoulsScripting
 {
     public static class ChrDbg
     {
-        public static bool AllNoMagicQtyConsume
-        {
-            get { return RBool(0x1376EE7); }
-            set { WBool(0x1376EE7, value); }
-        }
+        //DSR 1.03
+
 
         public static bool PlayerNoDead
         {
             //DSR
-            get { return RBool((0x13784D2, 0, 0x141d01fd9)); }
-            set { WBool((0x13784D2, 0, 0x141d01fd9), value); }
+            get { return RBool((0x13784D2, 0, 0x141d151c9)); }
+            set { WBool((0x13784D2, 0, 0x141d151c9), value); }
         }
 
         public static bool PlayerExterminate
         {
             //DSR
-            get { return RBool((0x13784D3, 0, 0x141d01fDB)); }
-            set { WBool((0x13784D3, 0, 0x141d01fDB), value); }
+            get { return RBool((0x13784D3, 0, 0x141d151ca)); }
+            set { WBool((0x13784D3, 0, 0x141d151ca), value); }
         }
 
         public static bool AllNoStaminaConsume
         {
-            get { return RBool(0x13784E4); }
-            set { WBool(0x13784E4, value); }
+            //DSR
+            get { return RBool((0x13784E4, 0, 0x141D151cb)); }
+            set { WBool((0x13784E4, 0, 0x141D151cb), value); }
         }
 
         public static bool AllNoMPConsume
         {
-            get { return RBool(0x13784E5); }
-            set { WBool(0x13784E5, value); }
+            //DSR
+            get { return RBool((0x13784E5, 0, 0x141D151cc)); }
+            set { WBool((0x13784E5, 0, 0x141D151cc), value); }
         }
 
         public static bool AllNoArrowConsume
         {
-            get { return RBool(0x13784E6); }
-            set { WBool(0x13784E6, value); }
+            //DSR
+            get { return RBool((0x13784E6, 0, 0x141d151cd)); }
+            set { WBool((0x13784E6, 0, 0x141d151cd), value); }
+        }
+
+        public static bool AllNoMagicQtyConsume
+        {
+            //DSR
+            get { return RBool((0x1376EE7, 0, 0x141d151ce)); }
+            set { WBool((0x1376EE7, 0, 0x141d151ce), value); }
         }
 
         public static bool PlayerHide
         {
             //DSR
-            get { return RBool((0x13784e7, 0, 0x141d01fdf)); }
-            set { WBool((0x13784e7, 0, 0x141d01fdf), value); }
+            get { return RBool((0x13784e7, 0, 0x141d151cf)); }
+            set { WBool((0x13784e7, 0, 0x141d151cf), value); }
         }
 
         public static bool PlayerSilence
         {
             //DSR
-            get { return RBool((0x13784E8, 0, 0x141d01fe0)); }
-            set { WBool((0x13784E8, 0, 0x141d01fe0), value); }
+            get { return RBool((0x13784E8, 0, 0x141d151d0)); }
+            set { WBool((0x13784E8, 0, 0x141d151d0), value); }
         }
 
         public static bool AllNoDead
         {
             //DSR
-            get { return RBool((0x13784e9, 0, 0x141d01fe1)); }
-            set { WBool((0x13784e9, 0, 0x141d01fe1), value); }
+            get { return RBool((0x13784e9, 0, 0x141d151d1)); }
+            set { WBool((0x13784e9, 0, 0x141d151d1), value); }
         }
 
         public static bool AllNoDamage
         {
             //DSR
-            get { return RBool((0x13784EA, 0, 0x141d01fe2)); }
-            set { WBool((0x13784EA, 0, 0x141d01fe2), value); }
+            get { return RBool((0x13784EA, 0, 0x141d151d2)); }
+            set { WBool((0x13784EA, 0, 0x141d151d2), value); }
         }
 
         public static bool AllNoHit
         {
             //DSR
-            get { return RBool((0x13784EB, 0, 0x141d01fe3)); }
-            set { WBool((0x13784EB, 0, 0x141d01fe3), value); }
+            get { return RBool((0x13784EB, 0, 0x141d151d3)); }
+            set { WBool((0x13784EB, 0, 0x141d151d3), value); }
         }
 
         public static bool AllNoAttack
         {
             //DSR
-            get { return RBool((0x13784EC, 0, 0x141d01fe4)); }
-            set { WBool((0x13784EC, 0, 0x141d01fe4), value); }
+            get { return RBool((0x13784EC, 0, 0x141d151d4)); }
+            set { WBool((0x13784EC, 0, 0x141d151d4), value); }
         }
 
         public static bool AllNoMove
         {
             //DSR
-            get { return RBool((0x13784ED, 0, 0x141d01fe5)); }
-            set { WBool((0x13784ED, 0, 0x141d01fe5), value); }
+            get { return RBool((0x13784ED, 0, 0x141d151d5)); }
+            set { WBool((0x13784ED, 0, 0x141d151d5), value); }
         }
 
         public static bool AllNoUpdateAI
         {
             //DSR
-            get { return RBool((0x13784EE, 0, 0x141d01fe6)); }
-            set { WBool(0x13784EE, value); }
+            get { return RBool((0x13784EE, 0, 0x141d151d6)); }
+            set { WBool((0x13784EE, 0, 0x141d151d6), value); }
         }
 
         public static bool DisplayMiniCompass

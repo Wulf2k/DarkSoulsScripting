@@ -9,10 +9,12 @@ namespace DarkSoulsScripting
 {
     public class WorldChrMan
     {
-        //Taken from the Dark Souls 1 Overhaul IDA Workspace.
+        
         public const int CHR_STRUCT_SIZE = 0x5F8;
 
-        public static IntPtr Address => RIntPtr((0x137DC70, 0, 0x141D0C520));
+
+        //DSR 1.03
+        public static IntPtr Address => RIntPtr((0x137DC70, 0, 0x141D1F710));
 
         public static Player LocalPlayer { get; private set; } = null;
 
