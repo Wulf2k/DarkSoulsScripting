@@ -29,6 +29,16 @@ namespace DarkSoulsScripting
             }
             return null;
         }
+	
+	public Enemy FindEnemyByMsbStr(str name)
+        {
+            foreach (var e in GetChrsAsEnemies())
+            {
+                if (e.GetName() == name)
+                    return e;
+            }
+            return null;
+        }
 
         public int PointerToBlockAndArea {
 			get { return RInt32(Address + 0x4); }
