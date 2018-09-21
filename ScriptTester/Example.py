@@ -31,13 +31,13 @@ print str(f.Unmapped.GetTravelItemParamId(7)) #No dea what this returns. If you 
 # Use ex. to access extra functions we've added to extend the functionality.
 ex.MsgBoxOK("Hi there. Press OK to spawn your own Artorias bodyguard to help you through Oolacile Township.")
 
-# Use Map.Find() to find a map by its MSB file name
-oolacile = Map.Find("m12_01_00_00")
+# Use Map.Find(area, block) to find a map by its area/block numbers
+oolacile = Map.Find(12, 1) # m12_01_00_00
 
-# Use the FindEnemy function on a Map object to search for an enemy by its name in the MSB file
-artorias = oolacile.FindEnemy("c4100_0000")
+# Use the FindEnemy(id, instance) function on a MapEntry object to search for an enemy.
+artorias = oolacile.FindEnemy(4100, 0) # The enemy named "c4100_0000" in the MSB
 
-# Note: Map.Find("m12_01_00_00").FindEnemy("c4100_0000") also works
+# Note: Map.Find(12, 1).FindEnemy(4100, 0) also works
 
 # the ID property in Chr structure gets the ChrID of that Chr for use with various functions.
 f.SetDisable(artorias.ID, False)
