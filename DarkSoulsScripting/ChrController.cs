@@ -137,6 +137,7 @@ namespace DarkSoulsScripting
 			set { Hook.WFloat(Address + 0xf4, value); }
 		}
 
+
 		public float SecondsR2Held {
 			get { return Hook.RFloat(Address + 0x104); }
 			set { Hook.WFloat(Address + 0x104, value); }

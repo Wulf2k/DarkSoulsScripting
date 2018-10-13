@@ -59,6 +59,12 @@ namespace DarkSoulsScripting
         //    set { SetMapFlagB(ChrMapFlagsB.DisableCollision, value); }
         //}
 
+        public bool DisableMove
+        {
+            //DSR
+            get { return Hook.RBool(Address + 0x101); }
+            set { Hook.WBool((IntPtr.Zero, IntPtr.Zero, Address + 0x101), value); }
+        }
 
         public IntPtr AnimationPtr
         {

@@ -275,12 +275,10 @@ namespace DarkSoulsScripting
         public static int DisableInterupt(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableInterupt, ChrID, State);
 
-        //change state back to bool
-        public static int DisableMapHit(int ChrID, int State)
+        public static int DisableMapHit(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableMapHit, ChrID, State);
 
-        //change state back to bool
-        public static int DisableMove(int ChrID, int State)
+        public static int DisableMove(int ChrID, bool State)
             => Call<int>(FuncAddress.DisableMove, ChrID, State);
 
         //public static int DivideRest(_ARGS_)
