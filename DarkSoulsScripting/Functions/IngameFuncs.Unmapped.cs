@@ -197,6 +197,9 @@ namespace DarkSoulsScripting
             public static int ClearMyWorldState(params dynamic[] args)
                 => Call<int>(FuncAddress.ClearMyWorldState, args);
 
+            public static int ClearRecallData(params dynamic[] args)
+                => Call<int>(FuncAddress.ClearRecallData, args);
+
             public static int ClearSosSign(params dynamic[] args)
                 => Call<int>(FuncAddress.ClearSosSign, args);
 
