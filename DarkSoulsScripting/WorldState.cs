@@ -62,6 +62,7 @@ namespace DarkSoulsScripting
             set => WInt32(Address + 0xAA0, value);
         }
 
+        /*
         public static float SosSignPosX
         {
             get => RFloat(Address + 0xA80);
@@ -97,14 +98,14 @@ namespace DarkSoulsScripting
             get => RByte(Address + 0xB00);
             set => WByte(Address + 0xB00, value);
         }
-
+        */
         public static int BonfireID
         {
-            //Updated for DSR
+            //1.03
             get => RInt32(Address + 0xB34);
             set => WInt32(Address + 0xB34, value);
         }
-
+        /*
         public static bool TutorialBegin
         {
             get => RBool(Address + 0xB0C);
@@ -140,44 +141,56 @@ namespace DarkSoulsScripting
         {
             TriggerSaveA = true;
         }
-
+        */
         public static bool bRequestToEnding
         {
-            //Updated for DSR
+            //1.03
             get => RBool(Address + 0xB48);
             set => WBool(Address + 0xB48, value);
         }
 
-        public static bool Autosave
+        public static bool SaveMode
         {
-            //Updated for DSR
+            //1.03
             get => RBool(Address + 0xB70);
             set => WBool(Address + 0xB70, value);
         }
 
         public static bool IsFpsDisconnection
         {
-            get => RBool(Address + 0xB4C);
-            set => WBool(Address + 0xB4C, value);
+            //1.03
+            get => RBool(Address + 0xB7C);
+            set => WBool(Address + 0xB7C, value);
         }
 
         public static bool IsOnlineMode
         {
-            get => RBool(Address + 0xB4D);
-            set => WBool(Address + 0xB4D, value);
+            //1.03
+            get => RBool(Address + 0xB7D);
+            set => WBool(Address + 0xB7D, value);
         }
 
         public static bool IsTitleStart
         {
-            get => RBool(Address + 0xB4E);
-            set => WBool(Address + 0xB4E, value);
+            //1.03
+            get => RBool(Address + 0xB7E);
+            set => WBool(Address + 0xB7E, value);
         }
 
-        //public static bool Unknown_OfflineState_QuestionMark
-        //{
-        //    get => RBool(Address + 0xB60);
-        //    set => WBool(Address + 0xB60, value);
-        //}
+        public static bool ChecksumUpdateEnabled
+        {
+            //1.03
+            get => RBool(Address + 0xB95);
+            set => WBool(Address + 0xB95, value);
+        }
+
+        public static bool IsNoInput
+        {
+            //1.03
+            get => RBool(Address + 0xB97);
+            set => WBool(Address + 0xB97, value);
+        }
+        /*
 
         public static int ClearMyWorldState_1
         {
@@ -218,88 +231,102 @@ namespace DarkSoulsScripting
 
         public static bool IsDisableAllAreaEne
         {
-            get => RBool(Address + 0xC2C);
-            set => WBool(Address + 0xC2C, value);
+            //1.03
+            get => RBool(Address + 0xD3F);
+            set => WBool(Address + 0xD3F, value);
         }
 
         public static bool IsDisableAllAreaEvent
         {
-            get => RBool(Address + 0xC2D);
-            set => WBool(Address + 0xC2D, value);
+            //1.03
+            get => RBool(Address + 0xD40);
+            set => WBool(Address + 0xD40, value);
         }
 
         public static bool IsDisableAllAreaMap
         {
-            get => RBool(Address + 0xC2E);
-            set => WBool(Address + 0xC2E, value);
+            //1.03
+            get => RBool(Address + 0xD41);
+            set => WBool(Address + 0xD41, value);
         }
 
         public static bool IsDisableAllAreaObj
         {
-            get => RBool(Address + 0xC2F);
-            set => WBool(Address + 0xC2F, value);
+            //1.03
+            get => RBool(Address + 0xD42);
+            set => WBool(Address + 0xD42, value);
         }
 
         public static bool IsEnableAllAreaObj
         {
-            get => RBool(Address + 0xC30);
-            set => WBool(Address + 0xC30, value);
+            //1.03
+            get => RBool(Address + 0xD43);
+            set => WBool(Address + 0xD43, value);
         }
 
         public static bool IsEnableAllAreaObjBreak
         {
-            get => RBool(Address + 0xC31);
-            set => WBool(Address + 0xC31, value);
+            //1.03
+            get => RBool(Address + 0xD44);
+            set => WBool(Address + 0xD44, value);
         }
 
         public static bool IsDisableAllAreaHiHit
         {
-            get => RBool(Address + 0xC32);
-            set => WBool(Address + 0xC32, value);
+            //1.03
+            get => RBool(Address + 0xD45);
+            set => WBool(Address + 0xD45, value);
         }
 
         public static bool IsEnableAllAreaLoHit
         {
-            get => RBool(Address + 0xC33);
-            set => WBool(Address + 0xC33, value);
+            //1.03
+            get => RBool(Address + 0xD46);
+            set => WBool(Address + 0xD46, value);
         }
 
         public static bool IsDisableAllAreaSFX
         {
-            get => RBool(Address + 0xC34);
-            set => WBool(Address + 0xC34, value);
+            //1.03
+            get => RBool(Address + 0xD47);
+            set => WBool(Address + 0xD47, value);
         }
 
         public static bool IsDisableAllAreaSound
         {
-            get => RBool(Address + 0xC35);
-            set => WBool(Address + 0xC35, value);
+            //1.03
+            get => RBool(Address + 0xD48);
+            set => WBool(Address + 0xD48, value);
         }
 
         public static bool IsObjBreakRecordMode
         {
-            get => RBool(Address + 0xC36);
-            set => WBool(Address + 0xC36, value);
+            //1.03
+            get => RBool(Address + 0xD49);
+            set => WBool(Address + 0xD49, value);
         }
 
         public static bool IsAutoMapWarpMode
         {
-            get => RBool(Address + 0xC37);
-            set => WBool(Address + 0xC37, value);
+            //1.03
+            get => RBool(Address + 0xD4A);
+            set => WBool(Address + 0xD3A, value);
         }
 
         public static bool IsChrNpcWanderTest
         {
-            get => RBool(Address + 0xC38);
-            set => WBool(Address + 0xC38, value);
+            //1.03
+            get => RBool(Address + 0xD4B);
+            set => WBool(Address + 0xD4B, value);
         }
 
         public static bool IsDbgChrAllDead
         {
-            get => RBool(Address + 0xC39);
-            set => WBool(Address + 0xC39, value);
+            //1.03
+            get => RBool(Address + 0xD4C);
+            set => WBool(Address + 0xD4C, value);
         }
-
+        /*
         public static float LastStandPosX
         {
             get => RFloat(Address + 0xB70);
@@ -323,5 +350,6 @@ namespace DarkSoulsScripting
             get => RFloat(Address + 0xB7C);
             set => WFloat(Address + 0xB7C, value);
         }
+        */
     }
 }

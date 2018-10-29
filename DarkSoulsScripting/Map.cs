@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace DarkSoulsScripting
-{
+{   //"Map" = WorldChrMan
     public static class Map
     {
         //DSR 1.03

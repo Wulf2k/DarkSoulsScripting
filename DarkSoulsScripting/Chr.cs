@@ -108,7 +108,7 @@ namespace DarkSoulsScripting
 		}
 
 
-
+        /*
         // CRASHES GAME
         public int OmissionLevel
         {
@@ -176,13 +176,13 @@ namespace DarkSoulsScripting
 			get { return RInt32(Address + 0x208); }
 			set { WInt32(Address + 0x208, value); }
 		}
-
+        */
 		public float Opacity {
-            //DSR
+            //1.03
 			get { return RFloat((Address + 0x258, IntPtr.Zero, Address + 0x328)); }
 			set { WFloat((Address + 0x258, IntPtr.Zero, Address + 0x328), value); }
 		}
-
+        /*
 		public int DrawGroup1 {
 			get { return RInt32(Address + 0x264); }
 			set { WInt32(Address + 0x264, value); }
@@ -242,20 +242,20 @@ namespace DarkSoulsScripting
 			get { return RInt16(Address + 0x28c); }
 			set { WInt16(Address + 0x28c, value); }
 		}
-
+        */
 		public int HP {
 
-            //DSR
+            //1.03
 			get { return RInt32(Address + 0x3E8); }
 			set { WInt32(Address + 0x3E8, value); }
 		}
 
 		public int MaxHP {
-            //DSR
+            //1.03
 			get { return RInt32(Address + 0x3EC); }
 			set { WInt32(Address + 0x3EC, value); }
 		}
-
+        /*
 		public int Stamina {
 			get { return RInt32(Address + 0x2e4); }
 			set { WInt32(Address + 0x2e4, value); }
@@ -312,7 +312,7 @@ namespace DarkSoulsScripting
 		}
 
 
-
+    */
 
 
         public int TalkID
@@ -325,11 +325,11 @@ namespace DarkSoulsScripting
 
         public IntPtr StatsPtr
         {
-            //DSR
+            //1.03
             get { return RIntPtr(Address + 0x578); }
             set { WIntPtr(Address + 0x578, value); }
         }
-
+        /*
         #region "DebugFlags"
         public bool NoGoodsConsume {
             get { return RBit(Address + 0x525, 7); }
@@ -473,16 +473,16 @@ namespace DarkSoulsScripting
             set { WBit(Address + 0x1FC, 28, value); }
         }
         #endregion
-
+        */
         public void View()
 		{
-            //TODO: MAP THIS IN ITS RESPECTIVE STATIC CLASS:
-            //WInt32(RInt32(0x137D648) + 0xEC, Address);
+            //1.03
             WIntPtr((RIntPtr((0x137D648, 0, 0x141D151F8))+0xEC, IntPtr.Zero, RIntPtr((0x137D648, 0, 0x141D151F8))+0xF0), Address);
         }
-
+        
         public void WarpToCoords(float x, float y, float z, float heading)
         {
+            //1.03
             MovementCtrl.WarpX = x;
             MovementCtrl.WarpY = y;
             MovementCtrl.WarpZ = z;
@@ -497,6 +497,7 @@ namespace DarkSoulsScripting
 
 		public void WarpToPlayer(Player dest)
 		{
+            //1.03
             WarpToTransform(dest.MovementCtrl.Transform);
 		}
 
@@ -521,8 +522,8 @@ namespace DarkSoulsScripting
 
         public string GetName()
         {
-            //This is fucked up, fix it.
-            return RAsciiStr(RIntPtr(RIntPtr(RIntPtr(UnknownMSBStructPointer + 0x28) + 0x10 + 4 * UnknownMSBStructIndex)), MAX_NAME_LENGTH);
+            //1.03
+            return RAsciiStr(RIntPtr(UnknownMSBStructPointer + 0x1f0) + 0x64 + 0xD0 * UnknownMSBStructIndex, MAX_NAME_LENGTH);
         }
 
         public Enemy GetTargetAsEnemy()

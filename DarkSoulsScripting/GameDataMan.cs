@@ -14,7 +14,7 @@ namespace DarkSoulsScripting
         bad = 2
     }
 
-    public static class Game
+    public static class GameDataMan
     {
         //DSR 1.03
         public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141D278F0);
@@ -27,10 +27,16 @@ namespace DarkSoulsScripting
             set { WIntPtr(Address + 0x10, value); }
         }
 
-        public static IntPtr OptionsPtr
+        public static IntPtr GameOptionsPtr
         {
-            //Updated for DSR
+            //1.03
             get { return RIntPtr(Address + 0x58); }
+            set { WIntPtr(Address + 0x58, value); }
+        }
+        public static IntPtr PcOptionsPtr
+        {
+            //1.03
+            get { return RIntPtr(Address + 0x68); }
             set { WIntPtr(Address + 0x58, value); }
         }
 
@@ -42,12 +48,14 @@ namespace DarkSoulsScripting
 
         public static PlayerStats LocalPlayerStats = null;
         public static GameOptions Options = null;
+        public static PCOptions PcOptions = null;
         public static GameTendency Tendency = null;
 
-        static Game()
+        static GameDataMan()
         {
             LocalPlayerStats = new PlayerStats() { AddressReadFunc = () => LocalPlayerStatsPtr };
-            Options = new GameOptions() { AddressReadFunc = () => OptionsPtr };
+            Options = new GameOptions() { AddressReadFunc = () => GameOptionsPtr };
+            PcOptions = new PCOptions() { AddressReadFunc = () => PcOptionsPtr };
             Tendency = new GameTendency() { AddressReadFunc = () => TendencyPtr };
         }
 

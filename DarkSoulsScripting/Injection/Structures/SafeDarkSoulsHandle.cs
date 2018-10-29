@@ -248,7 +248,7 @@ namespace DarkSoulsScripting.Injection.Structures
                 Kernel.WriteProcessMemory_SAFE(handle, (IntPtr)0xBE719F, new byte[] { 0x20 }, 1, IntPtr.Zero);
                 Kernel.WriteProcessMemory_SAFE(handle, (IntPtr)0xBE722B, new byte[] { 0x20 }, 1, IntPtr.Zero);
 
-                WorldState.Autosave = false;
+                //WorldState.Autosave = false;
             }
             else if (versionFlagThing == 0xCE9634B4u)
             {

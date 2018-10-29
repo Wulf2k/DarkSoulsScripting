@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DarkSoulsScripting</RootNamespace>
     <AssemblyName>DarkSoulsScripting</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,6 +56,11 @@
   <ItemGroup>
     <Compile Include="ChrAsm.cs" />
     <Compile Include="ChrUNK1.cs" />
+    <Compile Include="FreeCam.cs" />
+    <Compile Include="MapItemMan.cs" />
+    <Compile Include="MenuMan.cs" />
+    <Compile Include="MouseMan.cs" />
+    <Compile Include="PCOptions.cs" />
     <Compile Include="WorldChrMan.cs" />
     <Compile Include="[General]\CodeHooks.cs" />
     <Compile Include="CodeHookTypes\CodeHookBase.cs" />
@@ -89,7 +94,7 @@
     <Compile Include="ChrController.cs" />
     <Compile Include="ChrSlot.cs" />
     <Compile Include="ChrDbg.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="GameDataMan.cs" />
     <Compile Include="GameOptions.cs" />
     <Compile Include="GameTendency.cs" />
     <Compile Include="Global.cs" />

@@ -910,12 +910,14 @@ namespace DarkSoulsScripting
             WInt32(Pointers.MenuPtr + 0x154, -1);
         }
 
+        /*
         public static void ForcePlayerStableFootPos()
         {
             WorldState.LastStandPosX = WorldChrMan.LocalPlayer.MovementCtrl.Transform.X;
             WorldState.LastStandPosY = WorldChrMan.LocalPlayer.MovementCtrl.Transform.Y;
             WorldState.LastStandPosZ = WorldChrMan.LocalPlayer.MovementCtrl.Transform.Z;
         }
+        */
 
         public static int GetChrPtr(int entityId)
         {

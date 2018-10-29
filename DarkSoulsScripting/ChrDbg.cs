@@ -9,8 +9,22 @@ namespace DarkSoulsScripting
 {
     public static class ChrDbg
     {
-        //DSR 1.03
+        //DSR 1.03, all funcs updated.
 
+
+        public static IntPtr Address => Hook.RIntPtr(0x141D151F8);
+
+
+        public static bool AllDrawHit
+        {
+            get { return RBool(Address + 0x39); }
+            set { WBool(Address + 0x39, value); }
+        }
+        public static bool NewKnockBackMode
+        {
+            get { return RBool(Address + 0xDC); }
+            set { WBool(Address + 0xDC, value); }
+        }
 
         public static bool PlayerNoDead
         {
@@ -109,23 +123,35 @@ namespace DarkSoulsScripting
             get { return RBool((0x13784EE, 0, 0x141d151d6)); }
             set { WBool((0x13784EE, 0, 0x141d151d6), value); }
         }
-
-        public static bool DisplayMiniCompass
+        public static bool AllOmmissionMode
         {
-            get { return RBool(0x137851B); }
-            set { WBool(0x137851B, value); }
+            //DSR
+            get { return RBool((0x13784EE, 0, 0x141d151d8)); }
+            set { WBool((0x13784EE, 0, 0x141d151d8), value); }
         }
-
-        public static bool DisplayHeightMarker
+        public static bool PlayerReload
         {
-            get { return RBool(0x1378524); }
-            set { WBool(0x1378524, value); }
+            //DSR
+            get { return RBool((0x13784EE, 0, 0x141d151db)); }
+            set { WBool((0x13784EE, 0, 0x141d151db), value); }
         }
-
-        public static bool DisplayCompass
+        public static bool ShowCompass
         {
-            get { return RBool(0x1378525); }
-            set { WBool(0x1378525, value); }
+            //DSR
+            get => RBool(0x141D173D1);
+            set => WBool(0x141D173D1, value);
+        }
+        public static bool ShowAltimeter
+        {
+            //DSR
+            get => RBool(0x141D173D2);
+            set => WBool(0x141D173D2, value);
+        }
+        public static bool ShowHeading
+        {
+            //DSR
+            get => RBool(0x141D173D3);
+            set => WBool(0x141D173D3, value);
         }
     }
 }
