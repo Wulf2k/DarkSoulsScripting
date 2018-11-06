@@ -878,13 +878,14 @@ namespace DarkSoulsScripting
 
         public static void SetKeyGuideText(string text)
         {
-            WInt32(Pointers.MenuPtr + 0x158, RInt32(Pointers.MenuPtr + 0x1c));
-            WUnicodeStr(0x11a7770, text.Replace('\n', (char)0xA));
+            //1.03
+            WInt32(Pointers.MenuPtr + 0x168, RInt32(Pointers.MenuPtr + 0x2c));
+            WUnicodeStr(0x1BC414A0, text.Replace('\n', (char)0xA));
         }
 
         public static void SetLineHelpText(string text)
         {
-            WInt32(Pointers.MenuPtr + 0x154, RInt32(Pointers.MenuPtr + 0x1c));
+            WInt32(Pointers.MenuPtr + 0x16c, RInt32(Pointers.MenuPtr + 0x1c));
             WUnicodeStr(0x11a7758, text.Replace('\n', (char)0xA));
         }
 
@@ -902,12 +903,14 @@ namespace DarkSoulsScripting
 
         public static void SetKeyGuideTextClear()
         {
-            WInt32(Pointers.MenuPtr + 0x158, -1);
+            //1.03
+            WInt32(Pointers.MenuPtr + 0x168, -1);
         }
 
         public static void SetLineHelpTextClear()
         {
-            WInt32(Pointers.MenuPtr + 0x154, -1);
+            //1.03
+            WInt32(Pointers.MenuPtr + 0x16c, -1);
         }
 
         /*
