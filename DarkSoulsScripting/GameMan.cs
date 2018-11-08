@@ -4,7 +4,7 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-    public static class WorldState
+    public class GameMan
     {
         //public static IntPtr Address => RIntPtr(0x13784A0);
 
@@ -12,7 +12,7 @@ namespace DarkSoulsScripting
         public static IntPtr Address => RIntPtr((0x13784A0, 0, 0x141D10E18));
 
         //TODO: ADD MORE STUFF
-        //TODO:  Values still set for 32 bit, miss for 64
+        //All uncommented offsets updated for 1.03
 
         public static byte WarpNextStageKick
         {
@@ -51,8 +51,9 @@ namespace DarkSoulsScripting
 
         public static byte SetSummonedPos
         {
-            get => RByte(Address + 0x20);
-            set => WByte(Address + 0x20, value);
+            //1.03
+            get => RByte(Address + 0x30);
+            set => WByte(Address + 0x30, value);
         }
 
         public static int SaveSlot

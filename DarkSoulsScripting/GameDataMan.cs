@@ -14,7 +14,7 @@ namespace DarkSoulsScripting
         bad = 2
     }
 
-    public static class GameDataMan
+    public class GameDataMan
     {
         //DSR 1.03
         public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141D278F0);

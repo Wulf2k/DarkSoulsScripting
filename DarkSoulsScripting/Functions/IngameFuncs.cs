@@ -74,8 +74,8 @@ namespace DarkSoulsScripting
         //public static int AddInfomationTosBufferPlus(_ARGS_)
         //    => Call<int>(FuncAddress.AddInfomationTosBufferPlus, _ARGS_);
 
-        public static bool AddInventoryItem(int ItemID, ITEM_CATE Category, int Quantity)
-            => Call<bool>(FuncAddress.AddInventoryItem, ItemID, (int)Category, Quantity);
+        //public static bool AddInventoryItem(int pad, int ItemID, ITEM_CATE Category, int Quantity)
+        //    => Call<bool>(FuncAddress.AddInventoryItem, ItemID, (int)Category, Quantity);
 
         public static int AddKillBlackGhost()
             => Call<int>(FuncAddress.AddKillBlackGhost);
@@ -1173,8 +1173,8 @@ namespace DarkSoulsScripting
         //public static int SetClearState(_ARGS_)
         //    => Call<int>(FuncAddress.SetClearState, _ARGS_);
 
-        //public static int SetColiEnable(_ARGS_)
-        //    => Call<int>(FuncAddress.SetColiEnable, _ARGS_);
+        public static int SetColiEnable(int ChrID, bool state)
+            => Call<int>(FuncAddress.SetColiEnable, ChrID, state);
 
         //public static int SetColiEnableArray(_ARGS_)
         //    => Call<int>(FuncAddress.SetColiEnableArray, _ARGS_);

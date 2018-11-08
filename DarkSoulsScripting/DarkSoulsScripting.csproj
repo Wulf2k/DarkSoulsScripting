@@ -58,8 +58,10 @@
     <Compile Include="ChrUNK1.cs" />
     <Compile Include="FreeCam.cs" />
     <Compile Include="MapItemMan.cs" />
+    <Compile Include="MenuGenDlg.cs" />
     <Compile Include="MenuMan.cs" />
     <Compile Include="MouseMan.cs" />
+    <Compile Include="MsgMan.cs" />
     <Compile Include="PCOptions.cs" />
     <Compile Include="WorldChrMan.cs" />
     <Compile Include="[General]\CodeHooks.cs" />
@@ -99,7 +101,7 @@
     <Compile Include="GameTendency.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Misc.cs" />
-    <Compile Include="WorldState.cs" />
+    <Compile Include="GameMan.cs" />
     <Compile Include="ChrTransform.cs" />
     <Compile Include="Functions\FuncAddress.cs" />
     <Compile Include="Functions\IngameFuncs.cs" />
