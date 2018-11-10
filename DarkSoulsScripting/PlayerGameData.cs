@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DarkSoulsScripting
 {
-    public class PlayerStats : GameStruct
+    public class PlayerGameData : GameStruct
     {
         public const int MAX_STATNAME_LENGTH = 14;
 
@@ -35,25 +35,32 @@ namespace DarkSoulsScripting
             ChrAsm = new ChrAsm() { AddressReadFunc = () => Address };
         }
 
+        public int PlayerId
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(IntPtr.Add(Address, 0x10)); }
+            set { Hook.WInt32(IntPtr.Add(Address, 0x10), value); }
+        }
+
         public int HP
         {
             //Updated for DSR
-            get { return Hook.RInt32(IntPtr.Add(Address, 0x14)); }
-            set { Hook.WInt32(IntPtr.Add(Address, 0x14), value); }
+            get { return Hook.RInt32(Address + 0x14); }
+            set { Hook.WInt32(Address + 0x14, value); }
         }
 
-        public int MaxHPBase
+        public int MaxHP
         {
             //Updated for DSR
             get { return Hook.RInt32(Address + 0x18); }
             set { Hook.WInt32(Address + 0x18, value); }
         }
 
-        public int MaxHP
+        public int MaxHPBase
         {
             //Updated for DSR
-            get { return Hook.RInt32(Address + 0x1C); }
-            set { Hook.WInt32(Address + 0x1C, value); }
+            get { return Hook.RInt32(Address + 0x1c); }
+            set { Hook.WInt32(Address + 0x1c, value); }
         }
 
         public int MP
@@ -63,14 +70,14 @@ namespace DarkSoulsScripting
             set { Hook.WInt32(Address + 0x20, value); }
         }
 
-        public int MaxMPBase
+         public int MaxMP
         {
             //Updated for DSR
             get { return Hook.RInt32(Address + 0x24); }
             set { Hook.WInt32(Address + 0x24, value); }
         }
 
-        public int MaxMP
+        public int MaxMPBase
         {
             //Updated for DSR
             get { return Hook.RInt32(Address + 0x28); }
@@ -80,13 +87,6 @@ namespace DarkSoulsScripting
         public int Stamina
         {
             //Updated for DSR
-            get { return Hook.RInt32(Address + 0x2C); }
-            set { Hook.WInt32(Address + 0x2C, value); }
-        }
-
-        public int MaxStaminaBase
-        {
-            //Updated for DSR
             get { return Hook.RInt32(Address + 0x30); }
             set { Hook.WInt32(Address + 0x30, value); }
         }
@@ -94,15 +94,22 @@ namespace DarkSoulsScripting
         public int MaxStamina
         {
             //Updated for DSR
+            get { return Hook.RInt32(Address + 0x34); }
+            set { Hook.WInt32(Address + 0x34, value); }
+        }
+
+        public int MaxStaminaBase
+        {
+            //Updated for DSR
             get { return Hook.RInt32(Address + 0x38); }
-            set { Hook.WInt32(Address + 0x38, value); }
+            set { Hook.WInt32(Address + 0x30, value); }
         }
 
         public int VIT
         {
             //Updated for DSR
-            get { return Hook.RInt32(Address + 0x10); }
-            set { Hook.WInt32(Address + 0x10, value); }
+            get { return Hook.RInt32(Address + 0x40); }
+            set { Hook.WInt32(Address + 0x40, value); }
         }
 
         public int ATN
@@ -147,11 +154,11 @@ namespace DarkSoulsScripting
             set { Hook.WInt32(Address + 0x70, value); }
         }
 
-        public int RES
+        public int LCK
         {
             //Updated for DSR
-            get { return Hook.RInt32(Address + 0x88); }
-            set { Hook.WInt32(Address + 0x88, value); }
+            get { return Hook.RInt32(Address + 0x78); }
+            set { Hook.WInt32(Address + 0x78, value); }
         }
 
         public int Humanity
@@ -161,7 +168,49 @@ namespace DarkSoulsScripting
             set { Hook.WInt32(Address + 0x84, value); }
         }
 
-        public short Gender //oh no i did the thing REEEEEEEEEEEEEEEE
+        public int RES
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x88); }
+            set { Hook.WInt32(Address + 0x88, value); }
+        }
+
+        public int SoulLevel
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x90); }
+            set { Hook.WInt32(Address + 0x90, value); }
+        }
+
+        public int Souls
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0x94); }
+            set { Hook.WInt32(Address + 0x94, value); }
+        }
+
+        public int PointTotal
+        {
+            //DSR
+            get { return Hook.RInt32(Address + 0xA0); }
+            set { Hook.WInt32(Address + 0xA0, value); }
+        }
+
+        public int ChrType
+        {
+            //Updated for DSR
+            get { return Hook.RInt32(Address + 0xa4); }
+            set { Hook.WInt32(Address + 0xa4, value); }
+        }
+
+        public string Name
+        {
+            //DSR
+            get { return Hook.RUnicodeStr(Address + 0xa8, MAX_STATNAME_LENGTH); }
+            set { Hook.WAsciiStr(Address + 0xa8, value.Substring(0, Math.Min(value.Length, MAX_STATNAME_LENGTH))); }
+        }
+
+        public short Gender
         {
             //Updated for DSR
             get { return Hook.RInt16(Address + 0xcA); }
@@ -245,6 +294,7 @@ namespace DarkSoulsScripting
             set { Hook.WInt32(Address + 0xec, value); }
         }
 
+        /*
         public byte DevotionWarriorOfSunlight
         {
             get { return Hook.RByte(Address + 0xe5); }
@@ -346,7 +396,7 @@ namespace DarkSoulsScripting
             get { return Hook.RByte(Address + 0x10a); }
             set { Hook.WByte(Address + 0x10a, value); }
         }
-
+        */
         //public COVENANT Covenant
         public byte Covenant
         {
@@ -390,6 +440,7 @@ namespace DarkSoulsScripting
             set { Hook.WByte(Address + 0x118, value); }
         }
 
+        /*
         public int EquipLeftHand1Index
         {
             get { return Hook.RInt32(Address + 0x1D4); }
@@ -637,6 +688,7 @@ namespace DarkSoulsScripting
             get { return Hook.RInt32(Address + 0x298); }
             set { Hook.WInt32(Address + 0x298, value); }
         }
+        */
 
         public float AppearanceScaleHead
         {
@@ -672,7 +724,7 @@ namespace DarkSoulsScripting
             get { return Hook.RFloat(Address + 0x398); }
             set { Hook.WFloat(Address + 0x398, value); }
         }
-
+        /*
         public float AppearanceHairColorR
         {
             get { return Hook.RFloat(Address + 0x380); }
@@ -769,32 +821,7 @@ namespace DarkSoulsScripting
             set { Hook.WFloat(Address + 0x4ac, value); }
         }
 
-        public int SoulLevel
-        {
-            //DSR
-            get { return Hook.RInt32(Address + 0x90); }
-            set { Hook.WInt32(Address + 0x90, value); }
-        }
+        */
 
-        public int Souls
-        {
-            //DSR
-            get { return Hook.RInt32(Address + 0x94); }
-            set { Hook.WInt32(Address + 0x94, value); }
-        }
-
-        public int PointTotal
-        {
-            //DSR
-            get { return Hook.RInt32(Address + 0xA0); }
-            set { Hook.WInt32(Address + 0xA0, value); }
-        }
-
-        public string Name
-        {
-            //DSR
-            get { return Hook.RUnicodeStr(Address + 0xa8, MAX_STATNAME_LENGTH); }
-            set { Hook.WAsciiStr(Address + 0xa8, value.Substring(0, Math.Min(value.Length, MAX_STATNAME_LENGTH))); }
-        }
     }
 }

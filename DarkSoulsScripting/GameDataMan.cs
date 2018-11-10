@@ -16,12 +16,35 @@ namespace DarkSoulsScripting
 
     public class GameDataMan
     {
+        //All currently active offsets updated for 1.03
         //DSR 1.03
         public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141D278F0);
         public static IntPtr Address => AddressReadFunction();
 
-        public static IntPtr LocalPlayerStatsPtr
+        static GameDataMan()
         {
+            LocalPlayerStats = new PlayerGameData() { AddressReadFunc = () => LocalPlayerStatsPtr };
+            Options = new GameOptions() { AddressReadFunc = () => GameOptionsPtr };
+            PcOptions = new PCOptions() { AddressReadFunc = () => PcOptionsPtr };
+            Tendency = new GameTendency() { AddressReadFunc = () => TendencyPtr };
+        }
+
+        public static PlayerGameData LocalPlayerStats = null;
+        public static GameOptions Options = null;
+        public static PCOptions PcOptions = null;
+        public static GameTendency Tendency = null;
+
+
+
+        public static IntPtr TrophyEquipDataPtr
+        {
+            //Updated for DSR
+            get { return RIntPtr(Address + 0x8); }
+            set { WIntPtr(Address + 0x8, value); }
+        }
+
+        public static IntPtr LocalPlayerStatsPtr
+        {//PlayerGameData
             //Updated for DSR
             get { return RIntPtr(Address + 0x10); }
             set { WIntPtr(Address + 0x10, value); }
@@ -37,26 +60,14 @@ namespace DarkSoulsScripting
         {
             //1.03
             get { return RIntPtr(Address + 0x68); }
-            set { WIntPtr(Address + 0x58, value); }
+            set { WIntPtr(Address + 0x68, value); }
         }
 
         public static IntPtr TendencyPtr
-        {
-            get { return RIntPtr(Address + 0x38); }
-            set { WIntPtr(Address + 0x38, value); }
-        }
-
-        public static PlayerStats LocalPlayerStats = null;
-        public static GameOptions Options = null;
-        public static PCOptions PcOptions = null;
-        public static GameTendency Tendency = null;
-
-        static GameDataMan()
-        {
-            LocalPlayerStats = new PlayerStats() { AddressReadFunc = () => LocalPlayerStatsPtr };
-            Options = new GameOptions() { AddressReadFunc = () => GameOptionsPtr };
-            PcOptions = new PCOptions() { AddressReadFunc = () => PcOptionsPtr };
-            Tendency = new GameTendency() { AddressReadFunc = () => TendencyPtr };
+        {//QwcData
+            //1.03
+            get { return RIntPtr(Address + 0x70); }
+            set { WIntPtr(Address + 0x70, value); }
         }
 
         public static int ClearCount
@@ -123,6 +134,12 @@ namespace DarkSoulsScripting
             set { WInt32(Address + 0x98, value); }
         }
 
+        public static int DeathState
+        {
+            get { return RInt32(Address + 0xb4); }
+            set { WInt32(Address + 0xb4, value); }
+        }
+        /*
         public static int IngameTime
         {
             get { return RInt32(Address + 0x68); }
@@ -141,10 +158,7 @@ namespace DarkSoulsScripting
             set { WInt32(Address + 0x70, value); }
         }
 
-        public static int DeathState
-        {
-            get { return RInt32(Address + 0x78); }
-            set { WInt32(Address + 0x78, value); }
-        }
+        
+        */
     }
 }

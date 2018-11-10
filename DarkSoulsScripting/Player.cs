@@ -8,13 +8,13 @@ namespace DarkSoulsScripting
 {
     public class Player : Chr<PlayerMovementCtrl, PlayerController>
     {
-        public PlayerStats Stats { get; private set; } = null;
+        public PlayerGameData Stats { get; private set; } = null;
 
         protected override void InitSubStructures()
         {
             base.InitSubStructures();
 
-            Stats = new PlayerStats() { AddressReadFunc = () => StatsPtr };
+            Stats = new PlayerGameData() { AddressReadFunc = () => StatsPtr };
         }
     }
 }

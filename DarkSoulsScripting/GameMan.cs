@@ -106,6 +106,13 @@ namespace DarkSoulsScripting
             get => RInt32(Address + 0xB34);
             set => WInt32(Address + 0xB34, value);
         }
+
+        public static bool bSaveRequest_Profile
+        {
+            //1.03
+            get => RBool(Address + 0xB3F);
+            set => WBool(Address + 0xB3F, value);
+        }
         /*
         public static bool TutorialBegin
         {
@@ -327,30 +334,30 @@ namespace DarkSoulsScripting
             get => RBool(Address + 0xD4C);
             set => WBool(Address + 0xD4C, value);
         }
-        /*
+        
         public static float LastStandPosX
         {
-            get => RFloat(Address + 0xB70);
-            set => WFloat(Address + 0xB70, value);
+            get => RFloat(Address + 0xBA0);
+            set => WFloat(Address + 0xBA0, value);
         }
 
         public static float LastStandPosY
         {
-            get => RFloat(Address + 0xB74);
-            set => WFloat(Address + 0xB74, value);
+            get => RFloat(Address + 0xBA4);
+            set => WFloat(Address + 0xBA4, value);
         }
 
         public static float LastStandPosZ
         {
-            get => RFloat(Address + 0xB78);
-            set => WFloat(Address + 0xB78, value);
+            get => RFloat(Address + 0xBA8);
+            set => WFloat(Address + 0xBA8, value);
         }
 
         public static float LastStandAngle
         {
-            get => RFloat(Address + 0xB7C);
-            set => WFloat(Address + 0xB7C, value);
+            get => RFloat(Address + 0xBAC);
+            set => WFloat(Address + 0xBAC, value);
         }
-        */
+
     }
 }

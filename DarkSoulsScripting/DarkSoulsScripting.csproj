@@ -86,7 +86,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="PlayerController.cs" />
     <Compile Include="PlayerMovementCtrl.cs" />
-    <Compile Include="PlayerStats.cs" />
+    <Compile Include="PlayerGameData.cs" />
     <Compile Include="Extra\DebugUI\WpfPropertyGrid.cs" />
     <Compile Include="Extra\DebugUI\InspectGUI.xaml.cs">
       <DependentUpon>InspectGUI.xaml</DependentUpon>
