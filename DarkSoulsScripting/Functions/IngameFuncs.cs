@@ -1182,8 +1182,8 @@ namespace DarkSoulsScripting
         //public static int SetCompletelyNoMove(_ARGS_)
         //    => Call<int>(FuncAddress.SetCompletelyNoMove, _ARGS_);
 
-        //public static int SetDeadMode(_ARGS_)
-        //    => Call<int>(FuncAddress.SetDeadMode, _ARGS_);
+        public static int SetDeadMode(int ChrID, bool state)
+            => Call<int>(FuncAddress.SetDeadMode, ChrID, state);
 
         //public static int SetDeadMode2(_ARGS_)
         //    => Call<int>(FuncAddress.SetDeadMode2, _ARGS_);

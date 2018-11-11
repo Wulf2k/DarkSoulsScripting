@@ -52,6 +52,91 @@ namespace DarkSoulsScripting
             get { return RInt32(Address + 0x104); }
             set { WInt32(Address + 0x104, value); }
         }
+        public static Int32 DropItem_Type
+        {
+            get { return RInt32(Address + 0x83c); }
+            set { WInt32(Address + 0x83c, value); }
+        }
+        public static Int32 DropItem_Id
+        {
+            get { return RInt32(Address + 0x840); }
+            set { WInt32(Address + 0x840, value); }
+        }
+        public static Int32 DropItem_Durability
+        {
+            get { return RInt32(Address + 0x844); }
+            set { WInt32(Address + 0x844, value); }
+        }
+        public static Int32 DropItem_Quantity
+        {
+            get { return RInt32(Address + 0x848); }
+            set { WInt32(Address + 0x848, value); }
+        }
+
+        public static IntPtr GenDlgValuesPtr
+        {
+            get { return RIntPtr(Address + 0xA38); }
+            set { WIntPtr(Address + 0xA38, value); }
+        }
+
+
+        public static Int32 LastTalkId
+        {
+            get { return RInt32(Address + 0xbb8); }
+            set { WInt32(Address + 0xbb8, value); }
+        }
+
+
+
+        public static Int32 SaveMapNameID
+        {
+            get { return RInt32(Address + 0xF7C); }
+            set { WInt32(Address + 0xF7C, value); }
+        }
+
+
+
+        public static Int32 BossGauge1_NameId
+        {
+            get { return RInt32(Address + 0x1050); }
+            set { WInt32(Address + 0x1050, value); }
+        }
+        public static Int32 BossGauge1_Enabled
+        {
+            get { return RInt32(Address + 0x1054); }
+            set { WInt32(Address + 0x1054, value); }
+        }
+        public static Int32 BossGauge1_MyDamage
+        {
+            get { return RInt32(Address + 0x1058); }
+            set { WInt32(Address + 0x1058, value); }
+        }
+        public static Int32 BossGauge1_NetDamage
+        {
+            get { return RInt32(Address + 0x105c); }
+            set { WInt32(Address + 0x105c, value); }
+        }
+
+        public static Int32 BossGauge2_NameId
+        {
+            get { return RInt32(Address + 0x1064); }
+            set { WInt32(Address + 0x1064, value); }
+        }
+        public static Int32 BossGauge2_Enabled
+        {
+            get { return RInt32(Address + 0x1068); }
+            set { WInt32(Address + 0x1068, value); }
+        }
+        public static Int32 BossGauge2_MyDamage
+        {
+            get { return RInt32(Address + 0x1068); }
+            set { WInt32(Address + 0x1068, value); }
+        }
+        public static Int32 BossGauge2_NetDamage
+        {
+            get { return RInt32(Address + 0x106c); }
+            set { WInt32(Address + 0x106c, value); }
+        }
 
     }
 }
