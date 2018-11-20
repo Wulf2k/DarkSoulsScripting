@@ -106,7 +106,18 @@ namespace DarkSoulsScripting
             get => RInt32(Address + 0xB34);
             set => WInt32(Address + 0xB34, value);
         }
-
+        public static bool bTutorial_state
+        {
+            //1.03
+            get => RBool(Address + 0xB3C);
+            set => WBool(Address + 0xB3C, value);
+        }
+        public static bool bSetTutorialSummonedPos
+        {
+            //1.03
+            get => RBool(Address + 0xB3E);
+            set => WBool(Address + 0xB3E, value);
+        }
         public static bool bSaveRequest_Profile
         {
             //1.03
