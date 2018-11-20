@@ -506,6 +506,12 @@ namespace DarkSoulsScripting
             public static int GetWhiteGhostCount(params dynamic[] args)
                 => Call<int>(FuncAddress.GetWhiteGhostCount, args);
 
+            public static int HasSpecialEffectAttribute(params dynamic[] args)
+                => Call<int>(FuncAddress.HasSpecialEffectAttribute, args);
+
+            public static int HasSpecialEffectId(params dynamic[] args)
+                => Call<int>(FuncAddress.HasSpecialEffectId, args);
+
             public static int HasSuppleItem(params dynamic[] args)
                 => Call<int>(FuncAddress.HasSuppleItem, args);
 
