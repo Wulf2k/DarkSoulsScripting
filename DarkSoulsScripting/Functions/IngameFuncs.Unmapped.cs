@@ -431,6 +431,9 @@ namespace DarkSoulsScripting
             public static int GetMultiWallNum(params dynamic[] args)
                 => Call<int>(FuncAddress.GetMultiWallNum, args);
 
+            public static int GetMyBloodBlockId(params dynamic[] args)
+                => Call<int>(FuncAddress.GetMyBloodBlockId, args);
+
             public static int GetNetPlayerChrType(params dynamic[] args)
                 => Call<int>(FuncAddress.GetNetPlayerChrType, args);
 
@@ -1021,6 +1024,9 @@ namespace DarkSoulsScripting
 
             public static int RecoveryHeroin(params dynamic[] args)
                 => Call<int>(FuncAddress.RecoveryHeroin, args);
+
+            public static int RecvGlobalQwc(params dynamic[] args)
+                => Call<int>(FuncAddress.RecvGlobalQwc, args);
 
             public static int RegistObjact(params dynamic[] args)
                 => Call<int>(FuncAddress.RegistObjact, args);
