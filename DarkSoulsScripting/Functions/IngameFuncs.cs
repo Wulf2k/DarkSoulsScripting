@@ -369,8 +369,8 @@ namespace DarkSoulsScripting
         //public static int GetEnemyPlayerId_Random(_ARGS_)
         //    => Call<int>(FuncAddress.GetEnemyPlayerId_Random, _ARGS_);
 
-        //public static int GetEventFlagValue(_ARGS_)
-        //    => Call<int>(FuncAddress.GetEventFlagValue, _ARGS_);
+        public static int GetEventFlagValue(int EventId)
+            => Call<int>(FuncAddress.GetEventFlagValue, EventId);
 
         //public static int GetEventGoalState(_ARGS_)
         //    => Call<int>(FuncAddress.GetEventGoalState, _ARGS_);
