@@ -100,7 +100,6 @@
     <Compile Include="GameOptions.cs" />
     <Compile Include="GameTendency.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="Misc.cs" />
     <Compile Include="GameMan.cs" />
     <Compile Include="ChrTransform.cs" />
     <Compile Include="Functions\FuncAddress.cs" />

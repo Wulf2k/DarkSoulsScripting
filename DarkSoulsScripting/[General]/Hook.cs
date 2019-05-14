@@ -332,16 +332,19 @@ namespace DarkSoulsScripting
                 RFloat(addr + 0x30), RFloat(addr + 0x34), RFloat(addr + 0x38), RFloat(addr + 0x3C));
         }
 
+        public static Quaternion RQuaternion(Memloc addr)
+        {
+            return new Quaternion(RVector3(addr), RFloat(addr + 0xC));
+        }
+
         public static Vector3 RVector3(Memloc addr)
         {
             return new Vector3(RFloat(addr), RFloat(addr + 0x4), RFloat(addr + 0x8));
-
         }
 
         public static Vector4 RVector4(Memloc addr)
         {
             return new Vector4(RFloat(addr), RFloat(addr + 0x4), RFloat(addr + 0x8), RFloat(addr + 0xC));
-
         }
 
         public static void WBool(Memloc addr, bool val)
@@ -453,19 +456,27 @@ namespace DarkSoulsScripting
             WFloat(addr + 0x3C, mat.M44);
         }
 
+        public static void WQuaternion(Memloc addr, Quaternion quat)
+        {
+            WFloat(addr + 0x0, quat.X);
+            WFloat(addr + 0x4, quat.Y);
+            WFloat(addr + 0x8, quat.Z);
+            WFloat(addr + 0xC, quat.W);
+        }
+
         public static void WVector3(Memloc addr, Vector3 vec)
         {
-            WFloat(addr + 0x00, vec.X);
-            WFloat(addr + 0x04, vec.Y);
-            WFloat(addr + 0x08, vec.Z);
+            WFloat(addr + 0x0, vec.X);
+            WFloat(addr + 0x4, vec.Y);
+            WFloat(addr + 0x8, vec.Z);
         }
 
         public static void WVector4(Memloc addr, Vector4 vec)
         {
-            WFloat(addr + 0x00, vec.X);
-            WFloat(addr + 0x04, vec.Y);
-            WFloat(addr + 0x08, vec.Z);
-            WFloat(addr + 0x0C, vec.W);
+            WFloat(addr + 0x0, vec.X);
+            WFloat(addr + 0x4, vec.Y);
+            WFloat(addr + 0x8, vec.Z);
+            WFloat(addr + 0xC, vec.W);
         }
 
         public static void WBit(Memloc baseAddr, int bitOffset, bool val)
