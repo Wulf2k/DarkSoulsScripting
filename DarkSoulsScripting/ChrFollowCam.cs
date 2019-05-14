@@ -18,12 +18,10 @@ namespace DarkSoulsScripting
             //This is wrong, learn Quaternions.
             //get => Matrix4x4.CreateLookAt(RVector3(Address + 0x40), WorldChrMan.LocalPlayer.MovementCtrl.Transform.Pos, new Vector3(0, 1, 0));
             get => RMatrix4x4(Address + 0x10);
-            
         }
         public static Matrix4x4 ProjectionMatrix
         {
             get => Matrix4x4.CreatePerspectiveFieldOfView(FovY, AspectRatio, NearPlaneDistance, FarPlaneDistance);
-                
         }
 
         public static float FovY
