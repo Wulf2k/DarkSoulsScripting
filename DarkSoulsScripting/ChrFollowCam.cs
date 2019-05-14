@@ -24,7 +24,7 @@ namespace DarkSoulsScripting
                 
         }
 
-        public static float FoV
+        public static float FovY
         {
             get => RFloat(Address + 0x50);
             set => WFloat(Address + 0x50, value);

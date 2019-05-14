@@ -338,6 +338,11 @@ namespace DarkSoulsScripting
 
         }
 
+        public static Vector4 RVector4(Memloc addr)
+        {
+            return new Vector4(RFloat(addr), RFloat(addr + 0x4), RFloat(addr + 0x8), RFloat(addr + 0xC));
+
+        }
 
         public static void WBool(Memloc addr, bool val)
         {
@@ -423,6 +428,44 @@ namespace DarkSoulsScripting
                 0,
                 0
             }).ToArray(), str.Length * 2 + 2, IntPtr.Zero);
+        }
+
+        public static void WMatrix4x4(Memloc addr, Matrix4x4 mat)
+        {
+            WFloat(addr + 0x00, mat.M11);
+            WFloat(addr + 0x04, mat.M12);
+            WFloat(addr + 0x08, mat.M13);
+            WFloat(addr + 0x0C, mat.M14);
+
+            WFloat(addr + 0x10, mat.M21);
+            WFloat(addr + 0x14, mat.M22);
+            WFloat(addr + 0x18, mat.M23);
+            WFloat(addr + 0x1C, mat.M24);
+
+            WFloat(addr + 0x20, mat.M31);
+            WFloat(addr + 0x24, mat.M32);
+            WFloat(addr + 0x28, mat.M33);
+            WFloat(addr + 0x2C, mat.M34);
+
+            WFloat(addr + 0x30, mat.M41);
+            WFloat(addr + 0x34, mat.M42);
+            WFloat(addr + 0x38, mat.M43);
+            WFloat(addr + 0x3C, mat.M44);
+        }
+
+        public static void WVector3(Memloc addr, Vector3 vec)
+        {
+            WFloat(addr + 0x00, vec.X);
+            WFloat(addr + 0x04, vec.Y);
+            WFloat(addr + 0x08, vec.Z);
+        }
+
+        public static void WVector4(Memloc addr, Vector4 vec)
+        {
+            WFloat(addr + 0x00, vec.X);
+            WFloat(addr + 0x04, vec.Y);
+            WFloat(addr + 0x08, vec.Z);
+            WFloat(addr + 0x0C, vec.W);
         }
 
         public static void WBit(Memloc baseAddr, int bitOffset, bool val)

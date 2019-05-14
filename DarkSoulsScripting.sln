@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkSoulsScripting", "DarkSoulsScripting\DarkSoulsScripting.csproj", "{4EEF2FFB-9E6F-490E-B8D0-19C10451B461}"
-EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ScriptTester", "ScriptTester\ScriptTester.pyproj", "{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,30 +81,6 @@ Global
 		{4EEF2FFB-9E6F-490E-B8D0-19C10451B461}.ReleaseWin|x64.Build.0 = Release|Any CPU
 		{4EEF2FFB-9E6F-490E-B8D0-19C10451B461}.ReleaseWin|x86.ActiveCfg = Release|Any CPU
 		{4EEF2FFB-9E6F-490E-B8D0-19C10451B461}.ReleaseWin|x86.Build.0 = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugKopiLua|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugKopiLua|ARM.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugKopiLua|x64.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugKopiLua|x86.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugWin|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugWin|ARM.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugWin|x64.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.DebugWin|x86.ActiveCfg = Debug|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Release|ARM.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Release|x64.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.Release|x86.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseKopiLua|Any CPU.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseKopiLua|ARM.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseKopiLua|x64.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseKopiLua|x86.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseWin|Any CPU.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseWin|ARM.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseWin|x64.ActiveCfg = Release|Any CPU
-		{FC0E26B0-AE42-4BE7-86BF-88BAB8C3090A}.ReleaseWin|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
