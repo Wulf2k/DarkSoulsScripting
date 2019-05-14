@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,36 @@ namespace DarkSoulsScripting
         //DSR 1.03
         public static IntPtr Address => RIntPtr(RIntPtr(RIntPtr((0x137D6DC, 0, 0x141D177E8)) + 0x18 + IntPtr.Size * 9) + 0x60);
 
-        public static float FovY
+        public static Matrix4x4 ViewMatrix
+        {
+            get => Matrix4x4.CreateLookAt(RVector3(Address + 0x40), RVector3(Address + 0x90), new Vector3(0, 1, 0));
+        }
+        public static Matrix4x4 ProjectionMatrix
+        {
+            get => Matrix4x4.CreatePerspectiveFieldOfView(RFloat(Address + 0x50), RFloat(Address + 0x54),
+                    RFloat(Address + 0x58), RFloat(Address + 0x5C));
+                
+        }
+
+        public static float FoV
         {
             get => RFloat(Address + 0x50);
             set => WFloat(Address + 0x50, value);
         }
 
-        public static float DrawDistance
+        public static float AspectRatio
+        {
+            get => RFloat(Address + 0x54);
+            set => WFloat(Address + 0x54, value);
+        }
+
+        public static float NearPlaneDistance
+        {
+            get => RFloat(Address + 0x58);
+            set => WFloat(Address + 0x58, value);
+        }
+
+        public static float FarPlaneDistance
         {
             get => RFloat(Address + 0x5C);
             set => WFloat(Address + 0x5C, value);

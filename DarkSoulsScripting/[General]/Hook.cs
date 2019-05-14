@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Numerics;
 using DarkSoulsScripting.Injection.Structures;
 using System.Threading;
 using DarkSoulsScripting.Injection;
@@ -321,6 +322,20 @@ namespace DarkSoulsScripting
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 1, IntPtr.Zero);
             return (ByteBuffer[0] != 0);
+        }
+
+        public static Matrix4x4 RMatrix4x4(Memloc addr)
+        {
+            return new Matrix4x4(RFloat(addr), RFloat(addr +0x4), RFloat(addr + 0x8), RFloat(addr + 0xC),
+                RFloat(addr), RFloat(addr + 0x14), RFloat(addr + 0x18), RFloat(addr + 0x1C),
+                RFloat(addr + 0x20), RFloat(addr + 0x24), RFloat(addr + 0x28), RFloat(addr + 0x2C),
+                RFloat(addr + 0x30), RFloat(addr + 0x34), RFloat(addr + 0x38), RFloat(addr + 0x3C));
+        }
+
+        public static Vector3 RVector3(Memloc addr)
+        {
+            return new Vector3(RFloat(addr), RFloat(addr + 0x4), RFloat(addr + 0x8));
+
         }
 
 

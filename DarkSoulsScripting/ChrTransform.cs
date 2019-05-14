@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using DarkSoulsScripting.Injection;
 
 namespace DarkSoulsScripting
@@ -20,6 +21,10 @@ namespace DarkSoulsScripting
 			set { Hook.WFloat(Address + 0x4, value); }
 		}
 
+        public Vector3 Pos
+        {
+            get { return Hook.RVector3(Address + 0x10); }
+        }
 		public float X {
 			get { return Hook.RFloat(Address + 0x10); }
 			set { Hook.WFloat(Address + 0x10, value); }
