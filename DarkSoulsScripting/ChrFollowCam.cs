@@ -66,6 +66,12 @@ namespace DarkSoulsScripting
             set => WFloat(Address + 0xE8, value);
         }
 
+        public static Vector3 Pos
+        {
+            get => RVector3(Address + 0x100);
+            set => WVector3(Address + 0x100, value);
+        }
+
         public static float PosX
         {
             get => RFloat(Address + 0x100);

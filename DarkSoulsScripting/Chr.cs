@@ -79,8 +79,8 @@ namespace DarkSoulsScripting
 
         public int UnknownMSBStructIndex {
             //DSR
-            get { return RInt32((Address + 0xB4, IntPtr.Zero, Address + 0x98)); }
-			set { WInt32((Address + 0xB4, IntPtr.Zero, Address + 0x98), value); }
+            get { return RInt32((Address + 0x98, IntPtr.Zero, Address + 0xB8)); }
+			set { WInt32((Address + 0x98, IntPtr.Zero, Address + 0xB8), value); }
 		}
 
 		public int NPCParam {
