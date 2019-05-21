@@ -62,6 +62,7 @@
     <Compile Include="MenuGenDlg.cs" />
     <Compile Include="MenuMan.cs" />
     <Compile Include="MouseMan.cs" />
+    <Compile Include="ParamMan.cs" />
     <Compile Include="MsgMan.cs" />
     <Compile Include="PCOptions.cs" />
     <Compile Include="WorldChrMan.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="XInput\ButtonState.cs" />
     <Compile Include="XInput\Button.cs" />
     <Compile Include="ChrAnimInstance.cs" />
-    <Compile Include="ChrFollowCam.cs" />
+    <Compile Include="ChrCam.cs" />
     <Compile Include="ChrMovementCtrl.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyAIController.cs" />

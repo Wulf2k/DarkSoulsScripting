@@ -8,15 +8,14 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-    public static class ChrFollowCam
+    public static class ChrCam
     {
         //DSR 1.03
-        public static IntPtr Address => RIntPtr(RIntPtr(RIntPtr((0x137D6DC, 0, 0x141D177E8)) + 0x18 + IntPtr.Size * 9) + 0x60);
+        //public static IntPtr Address => RIntPtr(RIntPtr(RIntPtr((0x137D6DC, 0, 0x141D177E8)) + 0x18 + IntPtr.Size * 9) + 0x60);
+        public static IntPtr Address => RIntPtr(RIntPtr(0x141d0a198)+0x10);
 
-        public static Matrix4x4 ViewMatrix
+        public static Matrix4x4 CameraMatrix
         {
-            //This is wrong, learn Quaternions.
-            //get => Matrix4x4.CreateLookAt(RVector3(Address + 0x40), WorldChrMan.LocalPlayer.MovementCtrl.Transform.Pos, new Vector3(0, 1, 0));
             get => RMatrix4x4(Address + 0x10);
         }
         public static Matrix4x4 ProjectionMatrix
