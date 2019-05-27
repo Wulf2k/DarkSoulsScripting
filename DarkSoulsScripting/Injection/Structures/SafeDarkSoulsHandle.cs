@@ -92,6 +92,17 @@ namespace DarkSoulsScripting.Injection.Structures
             return IntPtr.Zero;
         }
 
+        public bool TryAttachToDarkSouls(int dwProcessID)
+        {
+            SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, dwProcessID));
+            CheckHook();
+            //if (!Attached)
+              //       ReleaseHandle();
+
+            return Attached;
+        }
+
+
         public bool TryAttachToDarkSouls(out string errorMsg)
         {
             errorMsg = null;

@@ -14,12 +14,15 @@ namespace DarkSoulsScripting
 
         public static IntPtr Address => RIntPtr(0x141d1b098);
         public static Params EquipParamGoods { get; private set; } = null;
+        public static Params SpEffectParam { get; private set; } = null;
         //public static Param SysMsg { get; private set; } = null;
-        
+
 
         static ParamMan()
         {
             EquipParamGoods = new Params() { AddressReadFunc = () => RIntPtr(RIntPtr(RIntPtr(Address + 0x10) + 0x108)+0x38) };
+            SpEffectParam = new Params() { AddressReadFunc = () => RIntPtr(RIntPtr(RIntPtr(Address + 0x10) + 0x198) + 0x38) };
+
             //SysMsg = new Param() { AddressReadFunc = () => RIntPtr(Address + 0x340) };
         }
 
