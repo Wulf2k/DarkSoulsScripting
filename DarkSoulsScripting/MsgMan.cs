@@ -14,13 +14,17 @@ namespace DarkSoulsScripting
 
         public static IntPtr Address => RIntPtr(0x141d1b748);
         public static Fmg DlgMsg { get; private set; } = null;
+        public static Fmg EventMsg { get; private set; } = null;
+        public static Fmg MenuOthersMsg { get; private set; } = null;
         public static Fmg SysMsg { get; private set; } = null;
         
 
         static MsgMan()
         {
+            EventMsg = new Fmg() { AddressReadFunc = () => RIntPtr(Address + 0xF8) };
             DlgMsg = new Fmg() { AddressReadFunc = () => RIntPtr(Address + 0x338) };
             SysMsg = new Fmg() { AddressReadFunc = () => RIntPtr(Address + 0x340) };
+            MenuOthersMsg = new Fmg() { AddressReadFunc = () => RIntPtr(Address + 0x3E0) };
         }
 
     }
