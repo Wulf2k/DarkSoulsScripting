@@ -113,7 +113,7 @@ namespace DarkSoulsScripting.Injection.Structures
                 var potentialProcesses = new List<Process>();
                 foreach (Process proc in _allProcesses)
                 {
-                    if (proc.MainWindowTitle.ToUpper().Contains("DARK SOULS"))
+                    if (proc.MainWindowTitle.ToUpper().IndexOf("DARK SOULS") == 0)
                     {
                         potentialProcesses.Add(proc);
                     }
