@@ -14,6 +14,9 @@ namespace DarkSoulsScripting
 
 
         //DSR 1.03
+
+        //Hey, this isn't WorldChrMan....
+        //WorldChrManAddress = 0x141d151b0
         public static IntPtr Address => RIntPtr((0x137DC70, 0, 0x141D1F710));
 
         public static Player LocalPlayer { get; private set; } = null;
@@ -23,7 +26,7 @@ namespace DarkSoulsScripting
             LocalPlayer = new Player() { AddressReadFunc = () => RIntPtr(ChrsBegin + 0x0) };
         }
 
-        //TODO: SEE IF THESE ARE ALL ENEMIES OR WHAT.
+        //This is not all enemies.
         public static List<Enemy> GetEnemies()
         {
             var result = new List<Enemy>();

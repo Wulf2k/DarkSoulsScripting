@@ -51,7 +51,7 @@ namespace DarkSoulsScripting.Injection
                     if (query == 0)
                     {
                         var lastError = new Win32Exception();
-                        Console.Error.WriteLine($"WARNING: VirtualQueryEx at 0x{((Int64)addr):X16} failed --> {lastError.Message}");
+                    if (Hook.DARKSOULS.Verbose) { Console.Error.WriteLine($"WARNING: VirtualQueryEx at 0x{((Int64)addr):X16} failed --> {lastError.Message}"); }
                         return false;
                     }
                     else
@@ -66,7 +66,7 @@ namespace DarkSoulsScripting.Injection
                             else
                             {
                                 var lastError = new Win32Exception();
-                                Console.Error.WriteLine($"WARNING: VirtualProtectEx at 0x{((Int64)addr):X16} failed --> {lastError.Message}");
+                            if (Hook.DARKSOULS.Verbose) { Console.Error.WriteLine($"WARNING: VirtualProtectEx at 0x{((Int64)addr):X16} failed --> {lastError.Message}"); }
                                 return false;
                             }
                         }
