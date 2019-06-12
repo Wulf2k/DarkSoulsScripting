@@ -52,6 +52,11 @@ namespace DarkSoulsScripting
             get { return RInt32(Address + 0x104); }
             set { WInt32(Address + 0x104, value); }
         }
+        public static Int32 LoadingState
+        {
+            get { return RInt32(Address + 0x800); }
+            set { WInt32(Address + 0x800, value); }
+        }
         public static Int32 DropItem_Type
         {
             get { return RInt32(Address + 0x83c); }
