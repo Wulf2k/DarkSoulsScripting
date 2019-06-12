@@ -27,119 +27,102 @@ namespace DarkSoulsScripting
 
         public byte CameraSpeedX
         {
-            //Updated for DSR
             get { return RByte(Address + 0x8); }
             set { WByte(Address + 0x8, value); }
         }
 
         public byte Vibration
         {
-            //Updated for DSR
             get { return RByte(Address + 0x9); }
             set { WByte(Address + 0x9, value); }
         }
 
         public byte Brightness
         {
-            //Updated for DSR
             get { return RByte(Address + 0xA); }
             set { WByte(Address + 0xA, value); }
         }
 
         public byte SoundType
         {
-            //Updated for DSR
             get { return RByte(Address + 0xB); }
             set { WByte(Address + 0xB, value); }
         }
 
         public byte VolumeBGM
         {
-            //Updated for DSR
             get { return RByte(Address + 0xC); }
             set { WByte(Address + 0xC, value); }
         }
 
         public byte VolumeSFX
         {
-            //1.03
             get { return RByte(Address + 0xD); }
             set { WByte(Address + 0xD, value); }
         }
 
         public byte VolumeVoice
         {
-            //1.03
             get { return RByte(Address + 0xE); }
             set { WByte(Address + 0xE, value); }
         }
 
         public BloodLevel Blood
         {
-            //1.03
             get { return (BloodLevel)RByte(Address + 0xF); }
             set { WByte(Address + 0xF, (byte)value); }
         }
 
         public bool Subtitles
         {
-            //1.03
             get { return RBool(Address + 0x10); }
             set { WBool(Address + 0x10, value); }
         }
 
         public bool HUD
         {
-            //1.03
             get { return RBool(Address + 0x11); }
             set { WBool(Address + 0x11, value); }
         }
 
         public byte UIScale
         {
-            //1.03
             get { return RByte(Address + 0x12); }
             set { WByte(Address + 0x12, value); }
         }
 
         public bool CameraReverseX
         {
-            //1.03
             get { return RBool(Address + 0x13); }
             set { WBool(Address + 0x13, value); }
         }
 
         public bool CameraReverseY
         {
-            //1.03
             get { return RBool(Address + 0x14); }
             set { WBool(Address + 0xF, value); }
         }
 
         public bool AutoLockOn
         {
-            //1.03
             get { return RBool(Address + 0x15); }
             set { WBool(Address + 0x15, value); }
         }
 
         public bool CameraAutoWallRecovery
         {
-            //1.03
             get { return RBool(Address + 0x16); }
             set { WBool(Address + 0x16, value); }
         }
 
         public bool JoinLeaderboard
         {
-            //1.03
             get { return RBool(Address + 0x17); }
             set { WBool(Address + 0x17, value); }
         }
 
         public byte DebugRankRegisterProfileIdx
         {
-            //1.03
             get { return RByte(Address + 0x18); }
             set { WByte(Address + 0x18, value); }
         }

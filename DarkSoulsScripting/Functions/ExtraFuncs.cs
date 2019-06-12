@@ -878,7 +878,7 @@ namespace DarkSoulsScripting
 
         public static void SetKeyGuideText(string text)
         {
-            //1.03
+            
             WInt32(Pointers.MenuPtr + 0x168, RInt32(Pointers.MenuPtr + 0x2c));
             WUnicodeStr(0x1BC414A0, text.Replace('\n', (char)0xA));
         }
@@ -903,13 +903,13 @@ namespace DarkSoulsScripting
 
         public static void SetKeyGuideTextClear()
         {
-            //1.03
+            
             WInt32(Pointers.MenuPtr + 0x168, -1);
         }
 
         public static void SetLineHelpTextClear()
         {
-            //1.03
+            
             WInt32(Pointers.MenuPtr + 0x16c, -1);
         }
 

@@ -38,69 +38,69 @@ namespace DarkSoulsScripting
 
         public static IntPtr TrophyEquipDataPtr
         {
-            //Updated for DSR
+            
             get { return RIntPtr(Address + 0x8); }
             set { WIntPtr(Address + 0x8, value); }
         }
 
         public static IntPtr LocalPlayerStatsPtr
         {//PlayerGameData
-            //Updated for DSR
+            
             get { return RIntPtr(Address + 0x10); }
             set { WIntPtr(Address + 0x10, value); }
         }
 
         public static IntPtr GameOptionsPtr
         {
-            //1.03
+            
             get { return RIntPtr(Address + 0x58); }
             set { WIntPtr(Address + 0x58, value); }
         }
         public static IntPtr PcOptionsPtr
         {
-            //1.03
+            
             get { return RIntPtr(Address + 0x68); }
             set { WIntPtr(Address + 0x68, value); }
         }
 
         public static IntPtr TendencyPtr
         {//QwcData
-            //1.03
+            
             get { return RIntPtr(Address + 0x70); }
             set { WIntPtr(Address + 0x70, value); }
         }
 
         public static int ClearCount
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x78); }
             set { WInt32(Address + 0x78, value); }
         }
 
         public static ClearState ClearState
         {
-            //Updated for DSR
+            
             get { return (ClearState)RInt32(Address + 0x7C); }
             set { WInt32(Address + 0x7C, (int)value); }
         }
 
         public static int FullRecover
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x80); }
             set { WInt32(Address + 0x80, value); }
         }
 
         public static int ItemComplete
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x84); }
             set { WInt32(Address + 0x84, value); }
         }
 
         public static int RescueWhite
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x88); }
             set { WInt32(Address + 0x88, value); }
         }
@@ -108,28 +108,28 @@ namespace DarkSoulsScripting
         //[sic] lol
         public static int KillBlack
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x8C); }
             set { WInt32(Address + 0x8C, value); }
         }
 
         public static int TrueDeath
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x90); }
             set { WInt32(Address + 0x90, value); }
         }
 
         public static int TrueDeathNum
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x94); }
             set { WInt32(Address + 0x94, value); }
         }
 
         public static int DeathNum
         {
-            //Updated for DSR
+            
             get { return RInt32(Address + 0x98); }
             set { WInt32(Address + 0x98, value); }
         }

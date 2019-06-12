@@ -25,295 +25,92 @@ namespace DarkSoulsScripting
 
         public int Handle
         {
-            //DSR
             get { return RInt32(Address + 0x8);  }
             set { WInt32(Address + 0x8, value);  }
         }
 
-        public IntPtr SlotPtr {
-            //DSR
+        public IntPtr SlotPtr
+        {
             get { return RIntPtr(IntPtr.Add(Address, 0x18)); }
 			set { WIntPtr(Address + 0x18, value); }
 		}
 
-        public IntPtr UNK1Ptr {
-            //DSR
+        public IntPtr UNK1Ptr
+        {
             get { return RIntPtr(Address + 0x20); }
 			set { WIntPtr(Address + 0x20, value); }
 		}
 
-		public bool DisableEventBackreadState {
-            //DSR
+		public bool DisableEventBackreadState
+        {
             get { return RBool(Address + 0x28); }
 			set { WBool(Address + 0x28, value); }
 		}
 
         public IntPtr MovementCtrlPtr
         {
-            //DSR
-            //CHANGED FROM 1.02, 1.03 added 0x20
             get { return RIntPtr(Address + 0x68); }
             set { WIntPtr(Address + 0x68, value); }
         }
 
-
         public int TargetHandle
         {
-            //DSR
             get { return RInt32(RIntPtr(Address + 0x70) + 0x220); }
             //immediately overwritten if set // set { WInt32(RIntPtr(Address + 0x70) + 0x220, value); }
         }
 
 
         public string ModelName {
-            //DSR
 			get { return RUnicodeStr(Address + 0x88, 10); }
 			set { WUnicodeStr(Address + 0x88, value.Substring(0, Math.Min(value.Length, 10))); }
 		}
 
         public IntPtr UnknownMSBStructPointer {
-            //DSR
+
 			get { return RIntPtr(Address + 0xB0); }
 			set { WIntPtr(Address + 0xB0, value); }
 		}
 
         public int UnknownMSBStructIndex {
-            //DSR
             get { return RInt32((Address + 0x98, IntPtr.Zero, Address + 0xB8)); }
 			set { WInt32((Address + 0x98, IntPtr.Zero, Address + 0xB8), value); }
 		}
 
 		public int NPCParam {
-            //DSR
 			get { return RInt32(Address + 0xC8); }
 			set { WInt32(Address + 0xC8, value); }
 		}
 
 		public int ChrInitParam {
-            //DSR
 			get { return RInt32(Address + 0xCC); }
 			set { WInt32(Address + 0xCC, value); }
 		}
 
 		public CHR_TYPE ChrType {
-            //DSR
 			get { return (CHR_TYPE)RInt32(Address + 0xD4); }
 			set { WInt32(Address + 0xD4, (int)value); }
 		}
 
 		public TEAM_TYPE TeamType {
-            //DSR
 			get { return (TEAM_TYPE)RInt32(Address + 0xD8); }
 			set { WInt32(Address + 0xD8, (int)value); }
 		}
 
-
-        /*
-        // CRASHES GAME
-        public int OmissionLevel
-        {
-            get { return RInt32(Address + 0x114); }
-            set { WInt32(Address + 0x114, value); }
-        }
-
-        public int ForcePlayAnimation1
-        {
-            get { return RInt32(Address + 0xFC); }
-            set { WInt32(Address + 0xFC, value); }
-        }
-
-        public int ForcePlayAnimation2
-        {
-            get { return RInt32(Address + 0x100); }
-            set { WInt32(Address + 0x100, value); }
-        }
-
-        public int ForcePlayAnimation3
-        {
-            get { return RInt32(Address + 0x104); }
-            set { WInt32(Address + 0x104, value); }
-        }
-
-        public int ForcePlayAnimation4
-        {
-            get { return RInt32(Address + 0x108); }
-            set { WInt32(Address + 0x108, value); }
-        }
-
-        public bool IsTargetLocked {
-			get { return RBool(Address + 0x128); }
-			set { WBool(Address + 0x128, value); }
-		}
-
-		public IntPtr DeathStructPointer {
-			get { return RIntPtr(Address + 0x170); }
-		}
-
-		public bool IsDead {
-			get { return RBool(DeathStructPointer + 0x18); }
-		}
-		//Writing value crashed game...
-		//Set(value As Boolean)
-		//    WBool(DeathStructPointer + &H18, value)
-		//End Set
-
-		public float PoiseCurrent {
-			get { return RFloat(Address + 0x1c0); }
-			set { WFloat(Address + 0x1c0, value); }
-		}
-
-		public float PoiseMax {
-			get { return RFloat(Address + 0x1c4); }
-			set { WFloat(Address + 0x1c4, value); }
-		}
-
-		public float PoiseRecoverTimer {
-			get { return RFloat(Address + 0x1cc); }
-			set { WFloat(Address + 0x1cc, value); }
-		}
-
-		public int ID {
-			get { return RInt32(Address + 0x208); }
-			set { WInt32(Address + 0x208, value); }
-		}
-        */
 		public float Opacity {
-            //1.03
+            
 			get { return RFloat((Address + 0x258, IntPtr.Zero, Address + 0x328)); }
 			set { WFloat((Address + 0x258, IntPtr.Zero, Address + 0x328), value); }
 		}
-        /*
-		public int DrawGroup1 {
-			get { return RInt32(Address + 0x264); }
-			set { WInt32(Address + 0x264, value); }
-		}
-
-		public int DrawGroup2 {
-			get { return RInt32(Address + 0x268); }
-			set { WInt32(Address + 0x268, value); }
-		}
-
-		public int DrawGroup3 {
-			get { return RInt32(Address + 0x26c); }
-			set { WInt32(Address + 0x26c, value); }
-		}
-
-		public int DrawGroup4 {
-			get { return RInt32(Address + 0x270); }
-			set { WInt32(Address + 0x270, value); }
-		}
-
-		public int DispGroup1 {
-			get { return RInt32(Address + 0x274); }
-			set { WInt32(Address + 0x274, value); }
-		}
-
-		public int DispGroup2 {
-			get { return RInt32(Address + 0x278); }
-			set { WInt32(Address + 0x278, value); }
-		}
-
-		public int DispGroup3 {
-			get { return RInt32(Address + 0x27c); }
-			set { WInt32(Address + 0x27c, value); }
-		}
-
-		public int DispGroup4 {
-			get { return RInt32(Address + 0x280); }
-			set { WInt32(Address + 0x280, value); }
-		}
-
-		public int MultiplayerZone {
-			get { return RInt32(Address + 0x284); }
-			set { WInt32(Address + 0x284, value); }
-		}
-
-		public short Material_Floor {
-			get { return RInt16(Address + 0x288); }
-			set { WInt16(Address + 0x288, value); }
-		}
-
-		public short Material_ArmorSE {
-			get { return RInt16(Address + 0x28a); }
-			set { WInt16(Address + 0x28a, value); }
-		}
-
-		public short Material_ArmorSFX {
-			get { return RInt16(Address + 0x28c); }
-			set { WInt16(Address + 0x28c, value); }
-		}
-        */
+        
 		public int HP {
-
-            //1.03
 			get { return RInt32(Address + 0x3E8); }
 			set { WInt32(Address + 0x3E8, value); }
 		}
 
 		public int MaxHP {
-            //1.03
 			get { return RInt32(Address + 0x3EC); }
 			set { WInt32(Address + 0x3EC, value); }
 		}
-        /*
-		public int Stamina {
-			get { return RInt32(Address + 0x2e4); }
-			set { WInt32(Address + 0x2e4, value); }
-		}
-
-		public int MaxStamina {
-			get { return RInt32(Address + 0x2e8); }
-			set { WInt32(Address + 0x2e8, value); }
-		}
-
-		public int ResistancePoisonCurrent {
-			get { return RInt32(Address + 0x300); }
-			set { WInt32(Address + 0x300, value); }
-		}
-
-		public int ResistanceToxicCurrent {
-			get { return RInt32(Address + 0x304); }
-			set { WInt32(Address + 0x304, value); }
-		}
-
-		public int ResistanceBleedCurrent {
-			get { return RInt32(Address + 0x308); }
-			set { WInt32(Address + 0x308, value); }
-		}
-
-		public int ResistanceCurseCurrent {
-			get { return RInt32(Address + 0x30c); }
-			set { WInt32(Address + 0x30c, value); }
-		}
-
-		public int ResistancePoisonMax {
-			get { return RInt32(Address + 0x310); }
-			set { WInt32(Address + 0x310, value); }
-		}
-
-		public int ResistanceToxicMax {
-			get { return RInt32(Address + 0x314); }
-			set { WInt32(Address + 0x314, value); }
-		}
-
-		public int ResistanceBleedMax {
-			get { return RInt32(Address + 0x318); }
-			set { WInt32(Address + 0x318, value); }
-		}
-
-		public int ResistanceCurseMax {
-			get { return RInt32(Address + 0x31c); }
-			set { WInt32(Address + 0x31c, value); }
-		}
-
-		public IntPtr Unknown1Ptr {
-			get { return RIntPtr(Address + 0x330); }
-			set { WIntPtr(Address + 0x330, value); }
-		}
-
-
-    */
-
 
         public int TalkID
         {
@@ -325,7 +122,7 @@ namespace DarkSoulsScripting
 
         public IntPtr StatsPtr
         {
-            //1.03
+            
             get { return RIntPtr(Address + 0x578); }
             set { WIntPtr(Address + 0x578, value); }
         }
@@ -476,13 +273,13 @@ namespace DarkSoulsScripting
         */
         public void View()
 		{
-            //1.03
+            
             WIntPtr((RIntPtr((0x137D648, 0, 0x141D151F8))+0xEC, IntPtr.Zero, RIntPtr((0x137D648, 0, 0x141D151F8))+0xF0), Address);
         }
         
         public void WarpToCoords(float x, float y, float z, float heading)
         {
-            //1.03
+            
             MovementCtrl.WarpX = x;
             MovementCtrl.WarpY = y;
             MovementCtrl.WarpZ = z;
@@ -497,7 +294,7 @@ namespace DarkSoulsScripting
 
 		public void WarpToPlayer(Player dest)
 		{
-            //1.03
+            
             WarpToTransform(dest.MovementCtrl.Transform);
 		}
 
@@ -522,7 +319,7 @@ namespace DarkSoulsScripting
 
         public string GetName()
         {
-            //1.03
+            
             return RAsciiStr(RIntPtr(UnknownMSBStructPointer + 0x1f0) + 0x64 + 0xD0 * UnknownMSBStructIndex, MAX_NAME_LENGTH);
         }
 
