@@ -30,7 +30,7 @@ namespace DarkSoulsScripting
         public static List<Enemy> GetEnemies()
         {
             var result = new List<Enemy>();
-            for (Int64 i = (Int64)ChrsBegin; i <= (Int64)ChrsEnd; i += IntPtr.Size)
+            for (Int64 i = (Int64)ChrsBegin; i < (Int64)ChrsEnd; i += IntPtr.Size)
             {
                 IntPtr thisEnemyAddress = RIntPtr(i);
                 result.Add(new Enemy() { AddressReadFunc = () => thisEnemyAddress });
