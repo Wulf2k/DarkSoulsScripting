@@ -95,6 +95,7 @@ namespace DarkSoulsScripting.Injection.Structures
 
         public bool TryAttachToDarkSouls(int dwProcessID)
         {
+            //TODO:  Figure out why Attached doesn't get set this way.
             SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, dwProcessID));
             CheckHook();
             //if (!Attached)

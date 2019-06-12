@@ -39,7 +39,7 @@ namespace DarkSoulsScripting
                     return e;
             }
 
-            return null;
+            return new MapEntry() { AddressReadFunc = () => IntPtr.Zero };
         }
 
         //TODO: REPLACE FUNCTION CALLS WITH DIRECT READS
