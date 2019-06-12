@@ -57,5 +57,14 @@ namespace DarkSoulsScripting
                 set => WInt32(Address + 0x10, value);
             }
         }
+        public static class RemoMan
+        {
+            public static IntPtr Address => RIntPtr(0x141D0D980);
+            public static int Step
+            {
+                get => RInt32(Address + 0x10);
+                set => WInt32(Address + 0x10, value);
+            }
+        }
     }
 }
