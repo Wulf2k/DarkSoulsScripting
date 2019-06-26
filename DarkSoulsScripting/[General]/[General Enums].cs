@@ -460,6 +460,10 @@ namespace DarkSoulsScripting
             Intruder = 13,
             Neutral = 14,
             Charm = 15,
+            B_RedGhost = 16,
+            B_Blue_Ghost = 17,
+            B_White = 18,
+            Max = 19,
         }
 
         public enum GUARD_GOAL_DESIRE_RET : int
