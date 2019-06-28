@@ -16,38 +16,6 @@ namespace DarkSoulsScripting.Extra
             return ((input & mask) == mask);
         }
 
-        public static bool IsGameLoading()
-        {
-            IntPtr ptr = RIntPtr(0x137DC70);
-            if ((Int64)ptr > (Int64)DARKSOULS.SafeBaseMemoryOffset)
-                return ((Int64)RIntPtr(ptr + IntPtr.Size) < (Int64)DARKSOULS.SafeBaseMemoryOffset);
-            else
-                return true;
-        }
-
-        public static void WaitForLoadingScreenStart()
-        {
-            while (!IsGameLoading())
-            {
-                Wait(33);
-            }
-        }
-
-        public static void WaitForLoadingScreenEnd()
-        {
-            while (IsGameLoading())
-            {
-                Wait(33);
-            }
-        }
-
-        public static void WaitLoadCycle()
-        {
-            WaitForLoadingScreenStart();
-            Wait(33);
-            WaitForLoadingScreenEnd();
-        }
-
         //Function WAIT_FOR_GAME()
         //    ingameTimeStopped = True
         //    repeat
