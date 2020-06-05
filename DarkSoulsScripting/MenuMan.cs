@@ -72,10 +72,29 @@ namespace DarkSoulsScripting
             get { return RInt32(Address + 0x844); }
             set { WInt32(Address + 0x844, value); }
         }
+
         public static Int32 DropItem_Quantity
         {
             get { return RInt32(Address + 0x848); }
             set { WInt32(Address + 0x848, value); }
+        }
+
+        public static float LockIconXPos
+        {
+            get { return RFloat(Address + 0xA20); }
+            set { WFloat(Address + 0xA20, value); }
+        }
+
+        public static float LockIconYPos
+        {
+            get { return RFloat(Address + 0xA24); }
+            set { WFloat(Address + 0xA24, value); }
+        }
+
+        public static bool LockIconVisible
+        {
+            get { return RBool(Address + 0xA30); }
+            set { WBool(Address + 0xA30, value); }
         }
 
         public static IntPtr GenDlgValuesPtr

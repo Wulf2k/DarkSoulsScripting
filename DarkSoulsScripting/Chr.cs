@@ -112,6 +112,18 @@ namespace DarkSoulsScripting
 			set { WInt32(Address + 0x3EC, value); }
 		}
 
+        public int BleedResist
+        {
+            get { return RInt32(Address + 0x420); }
+            set { WInt32(Address + 0x420, value); }
+        }
+
+        public int MaxBleedResist
+        {
+            get { return RInt32(Address + 0x430); }
+            set { WInt32(Address + 0x430, value); }
+        }
+
         public int TalkID
         {
             //DSR
