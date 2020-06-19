@@ -59,6 +59,7 @@
     <Compile Include="FrpgSystem.cs" />
     <Compile Include="FrpgWindow.cs" />
     <Compile Include="FreeCam.cs" />
+    <Compile Include="HgMan.cs" />
     <Compile Include="GameRend.cs" />
     <Compile Include="MapItemMan.cs" />
     <Compile Include="MenuGenDlg.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="ParamMan.cs" />
     <Compile Include="MsgMan.cs" />
     <Compile Include="PCOptions.cs" />
+    <Compile Include="WorldChrManDbg.cs" />
     <Compile Include="WorldChrMan.cs" />
     <Compile Include="[General]\CodeHooks.cs" />
     <Compile Include="CodeHookTypes\CodeHookBase.cs" />

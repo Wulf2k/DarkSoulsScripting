@@ -19,7 +19,7 @@ namespace DarkSoulsScripting
         static MenuMan()
         {
             GenDlg = new MenuGenDlg() { AddressReadFunc = () => RIntPtr(Address + 0xA38) };
-        
+
         }
 
         public static bool DrawLayoutOnCursor
@@ -109,6 +109,31 @@ namespace DarkSoulsScripting
             get { return RInt32(Address + 0xbb8); }
             set { WInt32(Address + 0xbb8, value); }
         }
+
+
+
+        
+        public static Int32 FloatingHPBar1Handle
+        {
+            get { return RInt32(Address + 0xde8); }
+            set { WInt32(Address + 0xde8, value); }
+        }
+        public static float FloatingHPBar1xpos
+        {
+            get { return RFloat(Address + 0xdec); }
+            set { WFloat(Address + 0xdec, value); }
+        }
+        public static float FloatingHPBar1ypos
+        {
+            get { return RFloat(Address + 0xdf0); }
+            set { WFloat(Address + 0xdf0, value); }
+        }
+        public static Int32 FloatingHPBar1Displayed
+        {
+            get { return RInt32(Address + 0xdf8); }
+            set { WInt32(Address + 0xdf8, value); }
+        }
+
 
 
 
