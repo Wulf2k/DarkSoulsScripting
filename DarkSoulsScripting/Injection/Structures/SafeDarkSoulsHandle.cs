@@ -99,8 +99,8 @@ namespace DarkSoulsScripting.Injection.Structures
             SetHandle((IntPtr)Kernel.OpenProcess(Kernel.PROCESS_ALL_ACCESS, false, dwProcessID));
             CheckHook();
             //if (!Attached)
-              //       ReleaseHandle();
-
+            //       ReleaseHandle();
+            ProcessID = dwProcessID;
             return Attached;
         }
 

@@ -169,7 +169,7 @@ namespace DarkSoulsScripting.Injection
 
         internal static void SuspendProcess(int pid)
         {
-            var process = Process.GetProcessById(pid);
+            var process = Process.GetProcessById((int)pid);
 
 
 
