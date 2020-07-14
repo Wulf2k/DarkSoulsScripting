@@ -15,12 +15,15 @@ namespace DarkSoulsScripting
         public static IntPtr Address => RIntPtr(0x141D26168);
 
         public static MenuGenDlg GenDlg { get; private set; } = null;
+        public static FloatingHPBar[] HpBars { get; private set; } = null;
 
         static MenuMan()
         {
             GenDlg = new MenuGenDlg() { AddressReadFunc = () => RIntPtr(Address + 0xA38) };
-
-        }
+            HpBars = new FloatingHPBar[8];
+            for (int x = 0; x < 8; x++)
+                HpBars[x] = new FloatingHPBar() { AddressReadFunc = () => Address };
+    }
 
         public static bool DrawLayoutOnCursor
         {
@@ -112,7 +115,7 @@ namespace DarkSoulsScripting
 
 
 
-        
+
         public static Int32 FloatingHPBar1Handle
         {
             get { return RInt32(Address + 0xde8); }
@@ -134,10 +137,55 @@ namespace DarkSoulsScripting
             set { WInt32(Address + 0xdf8, value); }
         }
 
+        public class FloatingHPBar : GameStruct
+        {
+            protected override void InitSubStructures()
+            {
+
+            }
+
+            public static int counter = 0;
+            public int idx = 0;
+            public Int32 Handle
+            {
+                get { return RInt32(Address + 0xde8 + idx * 0x24); }
+                set { WInt32(Address + 0xde8 + idx * 0x24, value); }
+            }
+            public float xpos
+            {
+                get { return RFloat(Address + 0xdec + idx * 0x24); }
+                set { WFloat(Address + 0xdec + idx * 0x24, value); }
+            }
+            public float ypos
+            {
+                get { return RFloat(Address + 0xdf0 + idx * 0x24); }
+                set { WFloat(Address + 0xdf0 + idx * 0x24, value); }
+            }
+            public Int32 Visible
+            {
+                get { return RInt32(Address + 0xe08 + idx * 0x24); }
+                set { WInt32(Address + 0xe08 + idx * 0x24, value); }
+            }
+            public FloatingHPBar()
+            {
+               idx = counter++;
+            }
+        }
+
+        
+
+        /*
+         * 
+         * public static MenuGenDlg GenDlg { get; private set; } = null;
+
+        static MenuMan()
+        {
+            GenDlg = new MenuGenDlg() { AddressReadFunc = () => RIntPtr(Address + 0xA38) };
+
+        }*/
 
 
-
-        public static Int32 SaveMapNameID
+    public static Int32 SaveMapNameID
         {
             get { return RInt32(Address + 0xF7C); }
             set { WInt32(Address + 0xF7C, value); }

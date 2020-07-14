@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iced, Version=1.7.0.0, Culture=neutral, PublicKeyToken=5baba79f4264913b, processorArchitecture=MSIL">
+      <HintPath>..\..\Dss-Test2\packages\Iced.1.7.0\lib\net45\Iced.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -59,6 +62,8 @@
     <Compile Include="FrpgSystem.cs" />
     <Compile Include="FrpgWindow.cs" />
     <Compile Include="FreeCam.cs" />
+    <Compile Include="Injection\EzDrawHook.cs" />
+    <Compile Include="LockTgtMan.cs" />
     <Compile Include="HgMan.cs" />
     <Compile Include="GameRend.cs" />
     <Compile Include="MapItemMan.cs" />
@@ -178,6 +183,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="X86AssemblyLib\COPYING" />
   </ItemGroup>
   <ItemGroup />
