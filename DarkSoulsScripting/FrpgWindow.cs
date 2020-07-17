@@ -23,7 +23,7 @@ namespace DarkSoulsScripting
             get => RInt32(Address + 0x38);
             set => WInt32(Address + 0x38, value);
         }
-        
+
         public static bool LockMouseToWindow
         {
             get => RBool(Address + 0x6C);

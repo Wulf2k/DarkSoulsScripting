@@ -54,7 +54,7 @@ namespace DarkSoulsScripting.Injection.DLL
             UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern uint WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);
+        public static extern uint WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);
 
         [DllImport("kernel32.dll")]
         static extern IntPtr CreateRemoteThread(IntPtr hProcess,

@@ -8,6 +8,10 @@ namespace DarkSoulsScripting
 {
     public enum FuncAddress : Int64
     {
+        GetPlayerInsFromHandle = 0x140371e30,
+
+
+
         ActionEnd = 0x1404abb30,
         AddActionCount = 0x1404ab690,
         AddBlockClearBonus = 0x1404af6b0,

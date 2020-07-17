@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static DarkSoulsScripting.Hook;
@@ -151,16 +152,12 @@ namespace DarkSoulsScripting
                 get { return RInt32(Address + 0xde8 + idx * 0x24); }
                 set { WInt32(Address + 0xde8 + idx * 0x24, value); }
             }
-            public float xpos
+            public Vector2 Pos
             {
-                get { return RFloat(Address + 0xdec + idx * 0x24); }
-                set { WFloat(Address + 0xdec + idx * 0x24, value); }
+                get { return RVector2(Address + 0xdec + idx * 0x24); }
+                set { WVector2(Address + 0xdec + idx * 0x24, value); }
             }
-            public float ypos
-            {
-                get { return RFloat(Address + 0xdf0 + idx * 0x24); }
-                set { WFloat(Address + 0xdf0 + idx * 0x24, value); }
-            }
+
             public Int32 Visible
             {
                 get { return RInt32(Address + 0xe08 + idx * 0x24); }

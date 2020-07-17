@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static DarkSoulsScripting.Hook;
@@ -18,7 +19,13 @@ namespace DarkSoulsScripting
             set => WIntPtr(Address + 0x6e0, value);
         }
 
-        public static float ScreenWidth
+        public static Vector2 ScreenSize
+        {
+            get => RVector2(RIntPtr(Address + 0x6f0));
+            set => WVector2(RIntPtr(Address + 0x6f0), value);
+        }
+
+    public static float ScreenWidth
         {
             get => RFloat(RIntPtr(Address + 0x6f0));
             set => WFloat(RIntPtr(Address + 0x6f0), value);

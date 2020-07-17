@@ -248,7 +248,7 @@ namespace DarkSoulsScripting
         }
 
 
-        public static string RAsciiStr(Memloc addr, int maxLength)
+        public static string RAsciiStr(Memloc addr, int maxLength = 0x100)
         {
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
             int loc = 0;
@@ -283,7 +283,7 @@ namespace DarkSoulsScripting
         }
 
 
-        public static string RUnicodeStr(Memloc addr, int maxLength)
+        public static string RUnicodeStr(Memloc addr, int maxLength = 0x100)
         {
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
             int loc = 0;
@@ -335,6 +335,11 @@ namespace DarkSoulsScripting
         public static Quaternion RQuaternion(Memloc addr)
         {
             return new Quaternion(RVector3(addr), RFloat(addr + 0xC));
+        }
+
+        public static Vector2 RVector2(Memloc addr)
+        {
+            return new Vector2(RFloat(addr), RFloat(addr + 0x4));
         }
 
         public static Vector3 RVector3(Memloc addr)
@@ -462,6 +467,12 @@ namespace DarkSoulsScripting
             WFloat(addr + 0x4, quat.Y);
             WFloat(addr + 0x8, quat.Z);
             WFloat(addr + 0xC, quat.W);
+        }
+
+        public static void WVector2(Memloc addr, Vector2 vec)
+        {
+            WFloat(addr + 0x0, vec.X);
+            WFloat(addr + 0x4, vec.Y);
         }
 
         public static void WVector3(Memloc addr, Vector3 vec)

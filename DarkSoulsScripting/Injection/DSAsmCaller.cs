@@ -177,6 +177,14 @@ namespace DarkSoulsScripting.Injection
         {
             return t;
         }
+        static Int64 ToInt64(IntPtr t)
+        {
+            return t.ToInt64();
+        }
+        static Int64 ToInt64(Int64 t)
+        {
+            return t;
+        }
 
         private byte[] InitAsm64Buffer(IntPtr funcAddr, IEnumerable<dynamic> parameters, List<SafeRemoteHandle> allocPtrList,
     dynamic rax = null,
@@ -219,18 +227,18 @@ namespace DarkSoulsScripting.Injection
             */
 
             //Fix this damn int conversion crap
-            List<Int32> intargs = new List<Int32>();
+            List<Int64> intargs = new List<Int64>();
 
             for (int i = 0; i < (args.Count()); i++)
             {
-               intargs.Add(ToInt32(args[i]));
+               intargs.Add(ToInt64(args[i]));
             }
 
-            if (intargs.Count() > 0) { Array.Copy(BitConverter.GetBytes(intargs[0]), 0, asm64, 0xA, 4); }
-            if (intargs.Count() > 1) { Array.Copy(BitConverter.GetBytes(intargs[1]), 0, asm64, 20, 4); }
-            if (intargs.Count() > 2) { Array.Copy(BitConverter.GetBytes(intargs[2]), 0, asm64, 30, 4); }
-            if (intargs.Count() > 3) { Array.Copy(BitConverter.GetBytes(intargs[3]), 0, asm64, 40, 4); }
-            if (intargs.Count() > 4) { Array.Copy(BitConverter.GetBytes(intargs[4]), 0, asm64, 55, 4); }
+            if (intargs.Count() > 0) { Array.Copy(BitConverter.GetBytes(intargs[0]), 0, asm64, 0xA, 8); }
+            if (intargs.Count() > 1) { Array.Copy(BitConverter.GetBytes(intargs[1]), 0, asm64, 20, 8); }
+            if (intargs.Count() > 2) { Array.Copy(BitConverter.GetBytes(intargs[2]), 0, asm64, 30, 8); }
+            if (intargs.Count() > 3) { Array.Copy(BitConverter.GetBytes(intargs[3]), 0, asm64, 40, 8); }
+            if (intargs.Count() > 4) { Array.Copy(BitConverter.GetBytes(intargs[4]), 0, asm64, 55, 8); }
 
             
 

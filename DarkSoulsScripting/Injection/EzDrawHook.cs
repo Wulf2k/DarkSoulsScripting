@@ -4,6 +4,9 @@ using static DarkSoulsScripting.Hook;
 using DarkSoulsScripting.Injection.Structures;
 using System.IO;
 using System;
+using System.Numerics;
+using System.Drawing;
+using System.Collections.Generic;
 
 namespace DarkSoulsScripting
 {
@@ -15,121 +18,161 @@ namespace DarkSoulsScripting
         }
         public static class ObjMgr
         {
-            public static int objcount;
+            public static List<EzObj> ObjList;
 
             static ObjMgr()
             {
-                objcount = 0;
+                ObjList = new List<EzObj>();
+
+                Console.WriteLine($@"ObjPtr: {objptr.ToString("X")}");
+            }
+            public static void Add(EzObj Obj)
+            {
+                ObjList.Add(Obj);
+                WIntPtr(objptr + (ObjList.Count - 1) * 0x8, Obj.codeptr);
+
+                //Console.WriteLine($@"Obj: {ObjList.Count}{Environment.NewLine}CodePtr: {Obj.codeptr.ToString("X")}{Environment.NewLine}ValPtr: {Obj.valptr.ToString("X")}");
+            }
+            public static void Remove(EzObj Obj)
+            {
+                int objPos = ObjList.IndexOf(Obj);
+                ObjList.RemoveAt(Obj.objId);
+
+                for (int x = objPos; x <= ObjList.Count; x++)
+                {
+                    WIntPtr(objptr + x * 8, RIntPtr(objptr + (x + 1) * 8));
+                }
+
+                Obj.codeptr_.Release();
+                Obj.valptr_.Release();
+
+                Obj.codeptr_ = null;
+                Obj.valptr_ = null;
+
+                Obj.codeptr = IntPtr.Zero;
+                Obj.valptr = IntPtr.Zero;
+
+                Obj = null;
+
             }
         }
 
-        public class Box
+        public class EzObj
         {
-            public IntPtr codeptr;
-            public IntPtr boxptr;
+            public int objId;
 
-            public Box()
+            public SafeRemoteHandle codeptr_;
+            public SafeRemoteHandle valptr_;
+            public IntPtr codeptr;
+            public IntPtr valptr;
+            public IntPtr EzDraw_DrawFunc;
+            public ulong obj_r8 = 0;
+            public ulong obj_rdx = 0;
+
+            public EzObj()
             {
-                SafeRemoteHandle codeptr_ = new SafeRemoteHandle(0x1000);
-                SafeRemoteHandle boxptr_ = new SafeRemoteHandle(0x1000);
+
+                codeptr_ = new SafeRemoteHandle(0x1000);
+                valptr_ = new SafeRemoteHandle(0x1000);
 
                 codeptr = codeptr_.GetHandle();
-                boxptr = boxptr_.GetHandle();
+                valptr = valptr_.GetHandle();
 
-                TexHandle = 0;
-                Color1R = 1;
-                Color1G = 0;
-                Color1B = 0;
-                Color1A = 1;
+                obj_r8 = (ulong)valptr + 0x120;
+                obj_rdx = (ulong)valptr + 0x90;
 
-                Flags = 0x37;
-                State = 7;
+                UseColor1 = true;
+                UseColor2 = true;
+                IgnoreCulling = true;
 
-                InitCode();
+                Color1 = Color.Red;
+                Color2 = Color.Blue;
+
+                objId = ObjMgr.ObjList.Count;
+                ObjMgr.Add(this);
+
             }
             public uint Flags
             {
-                get { return RUInt32(boxptr + 0x10); }
-                set { WUInt32(boxptr + 0x10, value); }
+                get { return RUInt32(valptr + 0x10); }
+                set { WUInt32(valptr + 0x10, value); }
             }
             public uint TexHandle
             {
-                get { return RUInt32(boxptr + 0x14); }
-                set { WUInt32(boxptr + 0x14, value); }
+                get { return RUInt32(valptr + 0x14); }
+                set { WUInt32(valptr + 0x14, value); }
             }
             public uint State
             {
-                get { return RUInt32(boxptr + 0x18); }
-                set { WUInt32(boxptr + 0x18, value); }
-            }
-            public float Color1R
-            {
-                get { return RFloat(boxptr + 0x20); }
-                set { WFloat(boxptr + 0x20, value); }
-            }
-            public float Color1G
-            {
-                get { return RFloat(boxptr + 0x24); }
-                set { WFloat(boxptr + 0x24, value); }
-            }
-            public float Color1B
-            {
-                get { return RFloat(boxptr + 0x28); }
-                set { WFloat(boxptr + 0x28, value); }
-            }
-            public float Color1A
-            {
-                get { return RFloat(boxptr + 0x2c); }
-                set { WFloat(boxptr + 0x2c, value); }
-            }
-            public float Color2R
-            {
-                get { return RFloat(boxptr + 0x30); }
-                set { WFloat(boxptr + 0x30, value); }
-            }
-            public float Color2G
-            {
-                get { return RFloat(boxptr + 0x34); }
-                set { WFloat(boxptr + 0x34, value); }
-            }
-            public float Color2B
-            {
-                get { return RFloat(boxptr + 0x38); }
-                set { WFloat(boxptr + 0x38, value); }
-            }
-            public float Color2A
-            {
-                get { return RFloat(boxptr + 0x3c); }
-                set { WFloat(boxptr + 0x3c, value); }
-            }
-            public float XPos
-            {
-                get { return RFloat(boxptr + 0x90); }
-                set { WFloat(boxptr + 0x90, value); }
-            }
-            public float YPos
-            {
-                get { return RFloat(boxptr + 0x94); }
-                set { WFloat(boxptr + 0x94, value); }
-            }
-            public float Width
-            {
-                get { return RFloat(boxptr + 0xb0); }
-                set { WFloat(boxptr + 0xb0, value); }
-            }
-            public float Height
-            {
-                get { return RFloat(boxptr + 0xc0); }
-                set { WFloat(boxptr + 0xc0, value); }
+                get { return RUInt32(valptr + 0x18); }
+                set { WUInt32(valptr + 0x18, value); }
             }
 
 
-            private void InitCode()
+            public bool UseColor1
+            {
+                get { return RBit(valptr + 0x10, 3); }
+                set { WBit(valptr + 0x10, 3, value); } 
+            }
+            public bool UseColor2
+            {
+                get { return RBit(valptr + 0x10, 2); }
+                set { WBit(valptr + 0x10, 2, value); }
+            }
+
+            public bool IgnoreCulling
+            {
+                get { return RBit(valptr + 0x18, 6); }
+                set { WBit(valptr + 0x18, 6, value); }
+            }
+
+            public bool UseWireFrame
+            {
+                get { return RBit(valptr + 0x1c, 4) && (RByte(valptr + 0x1c) > 0); }
+                set
+                {
+                    WByte(valptr + 0x1c, value ? (byte)1 : (byte)0);
+                    WBit(valptr + 0x10, 4, value);
+                }
+            }
+
+            public Color Color1
+            {
+                get
+                {
+                    Vector4 col = RVector4(valptr + 0x20);
+                    return Color.FromArgb((int)col.X, (int)col.Y, (int)col.Z, (int)col.W);
+                }
+                set
+                {
+                    WFloat(valptr + 0x20, (float)value.R / (float)255);
+                    WFloat(valptr + 0x24, (float)value.G / (float)255);
+                    WFloat(valptr + 0x28, (float)value.B / (float)255);
+                    WFloat(valptr + 0x2c, (float)value.A / (float)255);
+                }
+            }
+            public Color Color2
+            {
+                get
+                {
+                    Vector4 col = RVector4(valptr + 0x30);
+                    return Color.FromArgb((int)col.X, (int)col.Y, (int)col.Z, (int)col.W);
+                }
+                set
+                {
+                    WFloat(valptr + 0x30, (float)value.R / (float)255);
+                    WFloat(valptr + 0x34, (float)value.G / (float)255);
+                    WFloat(valptr + 0x38, (float)value.B / (float)255);
+                    WFloat(valptr + 0x3c, (float)value.A / (float)255);
+                }
+            }
+
+            public void InitCode()
             {
                 IntPtr HgManPtr = HgMan.Address;
                 IntPtr EzDrawPtr = RIntPtr(HgManPtr + 0x60);
                 IntPtr EzDrawStatePtr = RIntPtr(EzDrawPtr + 0x48);
-                IntPtr EzDraw_DrawBox = (IntPtr)0x1401d69e0;
+                
 
                 var c = new Assembler(64);
 
@@ -154,41 +197,44 @@ namespace DarkSoulsScripting
                 c.mov(rcx, (ulong)EzDrawPtr);
                 c.mov(r12, (ulong)EzDrawStatePtr);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x10]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x10]);
                 c.movaps(__[r12 + 0x10], xmm0);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x20]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x20]);
                 c.movaps(__[r12 + 0x20], xmm0);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x30]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x30]);
                 c.movaps(__[r12 + 0x30], xmm0);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x40]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x40]);
                 c.movaps(__[r12 + 0x40], xmm0);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x50]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x50]);
                 c.movaps(__[r12 + 0x50], xmm0);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x60]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x60]);
                 c.movaps(__[r12 + 0x60], xmm0);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x70]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x70]);
                 c.movaps(__[r12 + 0x70], xmm0);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x80]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x80]);
                 c.movaps(__[r12 + 0x80], xmm0);
 
-                c.lea(rdx, __[(ulong)boxptr + 0x90]);
+                c.lea(rdx, __[(ulong)valptr + 0x90]);
 
-                c.movaps(xmm0, __[(ulong)boxptr + 0x90]);  //pos
-                c.movaps(xmm1, __[(ulong)boxptr + 0xa0]);
-                c.movaps(xmm2, __[(ulong)boxptr + 0xb0]);  //width
-                c.movaps(xmm3, __[(ulong)boxptr + 0xc0]);  //height
-                c.movaps(xmm4, __[(ulong)boxptr + 0xd0]);
-                c.movaps(xmm5, __[(ulong)boxptr + 0xe0]);
-                c.movaps(xmm6, __[(ulong)boxptr + 0xf0]);
-                c.movaps(xmm7, __[(ulong)boxptr + 0x100]);
-                c.movaps(xmm8, __[(ulong)boxptr + 0x110]);
+                c.movaps(xmm0, __[(ulong)valptr + 0x90]);
+                c.movaps(xmm1, __[(ulong)valptr + 0xa0]);
+                c.movaps(xmm2, __[(ulong)valptr + 0xb0]);
+                c.movaps(xmm3, __[(ulong)valptr + 0xc0]);
+                c.movaps(xmm4, __[(ulong)valptr + 0xd0]);
+                c.movaps(xmm5, __[(ulong)valptr + 0xe0]);
+                c.movaps(xmm6, __[(ulong)valptr + 0xf0]);
+                c.movaps(xmm7, __[(ulong)valptr + 0x100]);
+                c.movaps(xmm8, __[(ulong)valptr + 0x110]);
+
+                c.mov(r8, obj_r8);
+                c.mov(rdx, obj_rdx);
 
                 c.sub(rsp, 0x78);
                 c.mov(__qword_ptr[rsp + 0x28], 0);
@@ -197,7 +243,7 @@ namespace DarkSoulsScripting
                 c.mov(__qword_ptr[rsp + 0x40], 0x3f800000);
                 c.add(rsp, 8);
 
-                c.call((ulong)EzDraw_DrawBox);
+                c.call((ulong)EzDraw_DrawFunc);
 
                 c.add(rsp, 0x70);
 
@@ -227,11 +273,188 @@ namespace DarkSoulsScripting
                 c.Assemble(new StreamCodeWriter(stream), (ulong)codeptr);
                 WBytes(codeptr, stream.ToArray());
             }
-
+            public void Cleanup()
+            {
+                if (objId > -1)
+                {
+                    ObjMgr.Remove(this);
+                    objId = -1;
+                }
+                
+            }
         }
 
+        public class Box : EzObj
+        {
+            public Box()
+            {
+                EzDraw_DrawFunc = (IntPtr)0x1401d69e0;
 
-        //public static IntPtr boxVals;
+                TexHandle = 0;
+                Color1 = Color.Black;
+                Color2 = Color.Black;
+
+                Flags = 0x37;
+                State = 7;
+
+                InitCode();
+            }
+            public Vector2 Pos
+            {
+                get { return RVector2(valptr + 0x90); }
+                set { WVector2(valptr + 0x90, value); }
+            }
+            public Vector2 Size
+            {
+                get { return new Vector2(RFloat(valptr + 0xb0), RFloat(valptr + 0xc0)); }
+                set
+                {
+                    WFloat(valptr + 0xb0, value.X);
+                    WFloat(valptr + 0xc0, value.Y);
+                }
+            }
+        }
+        public class Cylinder : EzObj
+        {
+            public Cylinder()
+            {
+                EzDraw_DrawFunc = (IntPtr)0x1401d6750;
+
+                Flags = 0x3e;
+
+                Color1 = Color.Red;
+                Color2 = Color.Blue;
+
+                Pos = new Vector3(800, 500, 0);
+                Size = new Vector3(10, 10, 10);
+
+                UseWireFrame = false;
+
+                InitCode();
+            }
+
+            public Vector3 Size
+            {
+                get { return new Vector3(RFloat(valptr + 0x90), RFloat(valptr + 0xa4), RFloat(valptr + 0xb8)); }
+                set
+                {
+                    WFloat(valptr + 0x90, value.X);
+                    WFloat(valptr + 0xa4, value.Y);
+                    WFloat(valptr + 0xb8, value.Z);
+                }
+            }
+
+            public Vector3 Pos
+            {
+                get { return new Vector3(RFloat(valptr + 0x9c), RFloat(valptr + 0xac), RFloat(valptr + 0xbc)); }
+                set
+                {
+                    WFloat(valptr + 0x9c, value.X);
+                    WFloat(valptr + 0xac, value.Y);
+                    WFloat(valptr + 0xbc, value.Z);
+                }
+            }
+        }
+        public class Text : EzObj
+        {
+            public Text()
+            {
+                EzDraw_DrawFunc = (IntPtr)0x1401d6bf0;
+
+                Stretch = new Vector2(1, 1);
+                
+                UseStretch = true;
+                UseFontSize = true;
+                UseTextColor = true;
+
+                TextColor = Color.White;
+                Size = 14;
+
+                InitCode();
+            }
+
+            public bool UseFontSize
+            {
+                get { return RBit(valptr + 0x10, 15); }
+                set { WBit(valptr + 0x10, 15, value); }
+            }
+            public bool UseStretch
+            {
+                get { return RBit(valptr + 0x10, 14); }
+                set { WBit(valptr + 0x10, 14, value); }
+            }
+            public bool UseTextColor
+            {
+                get { return RBit(valptr + 0x10, 13); }
+                set { WBit(valptr + 0x10, 13, value); }
+            }
+            public Color TextColor
+            {
+                get { return Color.FromArgb(RInt32(valptr + 0x74)); }
+                set { WInt32(valptr + 0x74, value.ToArgb()); }
+            }
+            public float Size
+            {
+                get { return RFloat(valptr + 0x78); }
+                set { WFloat(valptr + 0x78, value); }
+            }
+            public Vector2 Stretch
+            {
+                get { return RVector2(valptr + 0x7c); }
+                set { WVector2(valptr + 0x7c, value); }
+            }
+            public Vector2 Pos
+            {
+                get { return RVector2(valptr + 0x90); }
+                set { WVector2(valptr + 0x90, value); }
+            }
+             public string Txt
+            {
+                get { return RUnicodeStr(valptr + 0x120, 0x40); }
+                set { WUnicodeStr(valptr + 0x120, value); }
+            }
+        }
+        public class Sphere : EzObj
+        {
+            public Sphere()
+            {
+                EzDraw_DrawFunc = (IntPtr)0x1401d6640;
+
+                Flags = 0x3e;
+
+                Color1 = Color.Blue;
+                Color2 = Color.Green;
+
+                Pos = new Vector3(800, 500, 0);
+                Size = new Vector3(10, 10, 10);
+
+                UseWireFrame = false;
+
+                InitCode();
+            }
+
+            public Vector3 Size
+            {
+                get { return new Vector3(RFloat(valptr + 0x90), RFloat(valptr + 0xa4), RFloat(valptr + 0xb8)); }
+                set {
+                    WFloat(valptr + 0x90, value.X);
+                    WFloat(valptr + 0xa4, value.Y);
+                    WFloat(valptr + 0xb8, value.Z);
+                }
+            }
+
+            public Vector3 Pos
+            {
+                get { return new Vector3(RFloat(valptr + 0x9c), RFloat(valptr + 0xac), RFloat(valptr + 0xbc)); }
+                set
+                {
+                    WFloat(valptr + 0x9c, value.X);
+                    WFloat(valptr + 0xac, value.Y);
+                    WFloat(valptr + 0xbc, value.Z);
+                }
+            }
+        }
+
         public static IntPtr objptr;
 
         public static void SetHook(bool state)

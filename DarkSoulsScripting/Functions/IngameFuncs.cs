@@ -10,6 +10,13 @@ namespace DarkSoulsScripting
 {
     public static partial class IngameFuncs
     {
+        public static IntPtr GetPlayerInsFromHandle(IntPtr WorldChrMan, int handle)
+            => Call<IntPtr>(FuncAddress.GetPlayerInsFromHandle, WorldChrMan, handle);
+
+
+
+
+
         public static bool ActionEnd(int ChrID)
             => Call<bool>(FuncAddress.ActionEnd, ChrID);
 

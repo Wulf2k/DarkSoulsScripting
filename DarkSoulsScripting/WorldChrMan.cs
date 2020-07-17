@@ -17,13 +17,14 @@ namespace DarkSoulsScripting
 
         //Hey, this isn't WorldChrMan....
         //WorldChrManAddress = 0x141d151b0
-        public static IntPtr Address => RIntPtr((0x137DC70, 0, 0x141D1F710));
+        //public static IntPtr Address => RIntPtr((0x137DC70, 0, 0x141D1F710));
+        public static IntPtr Address => RIntPtr(0x141d151b0);
 
         public static Player LocalPlayer { get; private set; } = null;
 
         static WorldChrMan()
         {
-            LocalPlayer = new Player() { AddressReadFunc = () => RIntPtr(ChrsBegin + 0x0) };
+            LocalPlayer = new Player() { AddressReadFunc = () => RIntPtr(Address + 0x68) };
         }
 
         //This is not all enemies.
@@ -53,15 +54,15 @@ namespace DarkSoulsScripting
         public static IntPtr ChrsBegin
         {
             //DSR
-            get => RIntPtr(Address + IntPtr.Size);
-            set => WIntPtr(Address + IntPtr.Size, value);
+            get => RIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size);
+            set => WIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size, value);
         }
 
         public static IntPtr ChrsEnd
         {
             //DSR
-            get => RIntPtr(Address + IntPtr.Size * 2);
-            set => WIntPtr(Address + IntPtr.Size * 2, value);
+            get => RIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size * 2);
+            set => WIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size * 2, value);
         }
     }
 }

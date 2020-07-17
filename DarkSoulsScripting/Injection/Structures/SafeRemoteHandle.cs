@@ -27,6 +27,11 @@ namespace DarkSoulsScripting.Injection.Structures
             }
             return handle;
         }
+        public bool Release()
+        {
+            IntPtr dsHandle = Hook.DARKSOULS.GetHandle();
+            return Kernel.VirtualFreeEx(Hook.DARKSOULS.GetHandle(), handle, 0, Kernel.MEM_RELEASE);
+        }
         private void DARKSOULS_OnDetach()
         {
             SetHandleAsInvalid();
