@@ -455,6 +455,43 @@ namespace DarkSoulsScripting
             }
         }
 
+        public class unkDraw : EzObj
+        {
+            public unkDraw()
+            {
+                EzDraw_DrawFunc = (IntPtr)0x1401d6980;
+
+                Flags = 0x37;
+                State = 5;
+
+                Color1 = Color.White;
+                Color2 = Color.White;
+
+                Pos = FrpgWindow.DisplaySize * new Vector2(0.75f, 0.75f);
+                Size = FrpgWindow.DisplaySize * new Vector2(0.5f, 0.5f);
+
+                TexHandle = 0x80000011;
+
+                UseWireFrame = false;
+
+                InitCode();
+            }
+            public Vector2 Pos
+            {
+                get { return RVector2(valptr + 0x90); }
+                set { WVector2(valptr + 0x90, value); }
+            }
+            public Vector2 Size
+            {
+                get { return new Vector2(RFloat(valptr + 0xb0), RFloat(valptr + 0xc0)); }
+                set
+                {
+                    WFloat(valptr + 0xb0, value.X);
+                    WFloat(valptr + 0xc0, value.Y);
+                }
+            }
+        }
+
         public static IntPtr objptr;
 
         public static void SetHook(bool state)
