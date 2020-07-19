@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static DarkSoulsScripting.Hook;
@@ -11,17 +12,15 @@ namespace DarkSoulsScripting
     {
         //DSR 1.03
         public static IntPtr Address => RIntPtr(0x141d06ef8);
-        
-        public static int Width
+
+        public static Vector2 WindowSize
         {
-            get => RInt32(Address + 0x34);
-            set => WInt32(Address + 0x34, value);
+            get => new Vector2(RInt32(Address + 0x34), RInt32(Address + 0x38));
         }
 
-        public static int Height
+        public static Vector2 DisplaySize
         {
-            get => RInt32(Address + 0x38);
-            set => WInt32(Address + 0x38, value);
+            get => new Vector2(RInt32(Address + 0x50), RInt32(Address + 0x54));
         }
 
         public static bool LockMouseToWindow
