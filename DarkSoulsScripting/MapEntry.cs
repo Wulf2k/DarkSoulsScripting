@@ -31,34 +31,33 @@ namespace DarkSoulsScripting
             return null;
         }
 
-        public IntPtr PointerToBlockAndArea {
-            //DSR
+        public IntPtr PointerToBlockAndArea
+        {
 			get { return RIntPtr(Address + IntPtr.Size); }
 		}
 
-		public byte Block {
-            //DSR
+		public byte Block
+        {
             get { return RByte(PointerToBlockAndArea + IntPtr.Size + 0x2); }
 		}
 
-		public byte Area {
-            //DSR
+		public byte Area
+        { 
             get { return RByte(PointerToBlockAndArea + IntPtr.Size + 0x3); }
 		}
 
-		public int ChrCount {
-            //DSR
+		public int ChrCount
+        {
 			get { return RInt32(Address + 0x48); }
 		}
 
-        public IntPtr StartOfChrStruct {
-            //DSR
+        public IntPtr StartOfChrStruct
+        {
             get { return RIntPtr(Address + 0x50); }
         }
 
         public List<ChrSlot> GetChrSlots()
 		{
-            //DSR
             List<ChrSlot> result = new List<ChrSlot>();
 
 			for (int i = 0; i < ChrCount; i++) {
@@ -76,7 +75,7 @@ namespace DarkSoulsScripting
 
 			for (int i = 0; i < ChrCount; i++) {
                 var addr = StartOfChrStruct + (IntPtr.Size * 7 * i);
-                result.Add(new ChrSlot() { AddressReadFunc = () => addr }.GetChrAsEnemy());
+                result.Add(new ChrSlot() { AddressReadFunc = () => addr }.GetEnemy());
 			}
 
 			return result;

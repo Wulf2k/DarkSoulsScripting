@@ -7,12 +7,12 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-    public class ChrMovementCtrl<TChrController> : GameStruct
+    public class ChrCtrl<TChrController> : GameStruct
         where TChrController : ChrController, new()
     {
         public ChrTransform Transform { get; private set; } = null;
         public TChrController Controller { get; private set; } = null;
-        public PlayerController DebugPlayerController { get; private set; } = null;
+        public PlayerController DebugPlayerController { get; set; } = null;
 
         protected override void InitSubStructures()
         {
@@ -40,7 +40,6 @@ namespace DarkSoulsScripting
 
         public bool EnableLogic
         {
-            //DSR
             get { return RBit((Address + 0xC0, IntPtr.Zero, Address + 0x100), 7); }
             set { WBit((Address + 0xC0, IntPtr.Zero, Address + 0x100), 7, value); }
         }
@@ -129,6 +128,12 @@ namespace DarkSoulsScripting
             //DSR
             get { return RIntPtr((Address + 0x1c, IntPtr.Zero, Address + 0x28)); }
             set { WIntPtr((Address + 0x1c, IntPtr.Zero, Address + 0x28), value); }
+        }
+
+        public IntPtr ChrManipulator
+        {
+            get { return RIntPtr(Address + 0x88); }
+            set { WIntPtr(Address + 0x88, value); }
         }
 
         public bool WarpActivate

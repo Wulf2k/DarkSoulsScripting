@@ -23,5 +23,11 @@ namespace DarkSoulsScripting
             get => RBool(Address + 0x39);
             set => WBool(Address + 0x39, value);
         }
+
+        public static IntPtr DbgViewChrIns
+        {
+            get => RIntPtr(Address + 0xf0);
+            set => WIntPtr(Address + 0xf0, value);
+        }
     }
 }

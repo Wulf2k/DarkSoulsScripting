@@ -4,10 +4,8 @@ using System.Numerics;
 using DarkSoulsScripting.Injection.Structures;
 using System.Threading;
 using DarkSoulsScripting.Injection;
-using System.Collections.Generic;
-using Managed.X86;
-using System.Diagnostics;
 using System.Collections.Concurrent;
+using System.Runtime.InteropServices;
 
 namespace DarkSoulsScripting
 {
@@ -159,67 +157,70 @@ namespace DarkSoulsScripting
             return true;
         }
 
+        
         public static sbyte RInt8(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 1, IntPtr.Zero);
             return (sbyte)ByteBuffer[0];
         }
 
+        
         public static short RInt16(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 2, IntPtr.Zero);
             return BitConverter.ToInt16(ByteBuffer, 0);
         }
 
-
+        
         public static int RInt32(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 4, IntPtr.Zero);
             return BitConverter.ToInt32(ByteBuffer, 0);
         }
 
-
+        
         public static long RInt64(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 8, IntPtr.Zero);
             return BitConverter.ToInt64(ByteBuffer, 0);
         }
 
-
+        
         public static ushort RUInt16(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 2, IntPtr.Zero);
             return BitConverter.ToUInt16(ByteBuffer, 0);
         }
 
-
+        
         public static uint RUInt32(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 4, IntPtr.Zero);
             return BitConverter.ToUInt32(ByteBuffer, 0);
         }
 
-
+        
         public static ulong RUInt64(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 8, IntPtr.Zero);
             return BitConverter.ToUInt64(ByteBuffer, 0);
         }
 
-
+        
         public static float RFloat(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 4, IntPtr.Zero);
             return BitConverter.ToSingle(ByteBuffer, 0);
         }
 
-
+        
         public static double RDouble(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 8, IntPtr.Zero);
             return BitConverter.ToDouble(ByteBuffer, 0);
         }
 
+        
         public static IntPtr RIntPtr(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, IntPtr.Size, IntPtr.Zero);
@@ -233,6 +234,7 @@ namespace DarkSoulsScripting
             }
         }
 
+        
         public static byte[] RBytes(Memloc addr, int size)
         {
             byte[] _rtnBytes = new byte[size];
@@ -240,14 +242,14 @@ namespace DarkSoulsScripting
             return _rtnBytes;
         }
 
-
+        
         public static byte RByte(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 1, IntPtr.Zero);
             return ByteBuffer[0];
         }
 
-
+        
         public static string RAsciiStr(Memloc addr, int maxLength = 0x100)
         {
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
@@ -282,7 +284,7 @@ namespace DarkSoulsScripting
             return Str.ToString();
         }
 
-
+        
         public static string RUnicodeStr(Memloc addr, int maxLength = 0x100)
         {
             System.Text.StringBuilder Str = new System.Text.StringBuilder(maxLength);
@@ -317,13 +319,14 @@ namespace DarkSoulsScripting
             return Str.ToString();
         }
 
-
+        
         public static bool RBool(Memloc addr)
         {
             Kernel.ReadProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, ByteBuffer, 1, IntPtr.Zero);
             return (ByteBuffer[0] != 0);
         }
 
+        
         public static Matrix4x4 RMatrix4x4(Memloc addr)
         {
             return new Matrix4x4(RFloat(addr), RFloat(addr +0x4), RFloat(addr + 0x8), RFloat(addr + 0xC),
@@ -332,73 +335,79 @@ namespace DarkSoulsScripting
                 RFloat(addr + 0x30), RFloat(addr + 0x34), RFloat(addr + 0x38), RFloat(addr + 0x3C));
         }
 
+        
         public static Quaternion RQuaternion(Memloc addr)
         {
             return new Quaternion(RVector3(addr), RFloat(addr + 0xC));
         }
 
+        
         public static Vector2 RVector2(Memloc addr)
         {
             return new Vector2(RFloat(addr), RFloat(addr + 0x4));
         }
 
+        
         public static Vector3 RVector3(Memloc addr)
         {
             return new Vector3(RFloat(addr), RFloat(addr + 0x4), RFloat(addr + 0x8));
         }
 
+        
         public static Vector4 RVector4(Memloc addr)
         {
             return new Vector4(RFloat(addr), RFloat(addr + 0x4), RFloat(addr + 0x8), RFloat(addr + 0xC));
         }
 
+        
         public static void WBool(Memloc addr, bool val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 1, IntPtr.Zero);
         }
 
-
+        
         public static void WInt16(Memloc addr, Int16 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 2, IntPtr.Zero);
         }
 
-
+        
         public static void WUInt16(Memloc addr, UInt16 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 2, IntPtr.Zero);
         }
 
-
+        
         public static void WInt32(Memloc addr, int val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 4, IntPtr.Zero);
         }
 
-
+        
         public static void WUInt32(Memloc addr, uint val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 4, IntPtr.Zero);
         }
 
-
+        
         public static void WInt64(Memloc addr, Int64 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 8, IntPtr.Zero);
         }
 
-
+        
         public static void WUInt64(Memloc addr, UInt64 val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 8, IntPtr.Zero);
         }
 
-
+        
         public static void WFloat(Memloc addr, float val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, BitConverter.GetBytes(val), 4, IntPtr.Zero);
         }
 
+        
         public static void WIntPtr(Memloc addr, IntPtr val)
         {
             if (IntPtr.Size == 4)
@@ -412,24 +421,25 @@ namespace DarkSoulsScripting
             
         }
 
+        
         public static void WBytes(Memloc addr, byte[] val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, val, val.Length, IntPtr.Zero);
         }
 
-
+        
         public static void WByte(Memloc addr, byte val)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, new byte[] { val }, 1, IntPtr.Zero);
         }
 
-
+        
         public static void WAsciiStr(Memloc addr, string str)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, System.Text.Encoding.ASCII.GetBytes(str).Concat(new byte[] { 0 }).ToArray(), str.Length + 1, IntPtr.Zero);
         }
 
-
+       
         public static void WUnicodeStr(Memloc addr, string str)
         {
             Kernel.WriteProcessMemory_SAFE(DARKSOULS.GetHandle(), addr, System.Text.Encoding.Unicode.GetBytes(str).Concat(new byte[] {
@@ -438,6 +448,7 @@ namespace DarkSoulsScripting
             }).ToArray(), str.Length * 2 + 2, IntPtr.Zero);
         }
 
+        
         public static void WMatrix4x4(Memloc addr, Matrix4x4 mat)
         {
             WFloat(addr + 0x00, mat.M11);
@@ -461,6 +472,7 @@ namespace DarkSoulsScripting
             WFloat(addr + 0x3C, mat.M44);
         }
 
+        
         public static void WQuaternion(Memloc addr, Quaternion quat)
         {
             WFloat(addr + 0x0, quat.X);
@@ -469,12 +481,14 @@ namespace DarkSoulsScripting
             WFloat(addr + 0xC, quat.W);
         }
 
+        
         public static void WVector2(Memloc addr, Vector2 vec)
         {
             WFloat(addr + 0x0, vec.X);
             WFloat(addr + 0x4, vec.Y);
         }
 
+        
         public static void WVector3(Memloc addr, Vector3 vec)
         {
             WFloat(addr + 0x0, vec.X);
@@ -482,6 +496,7 @@ namespace DarkSoulsScripting
             WFloat(addr + 0x8, vec.Z);
         }
 
+        
         public static void WVector4(Memloc addr, Vector4 vec)
         {
             WFloat(addr + 0x0, vec.X);
@@ -490,6 +505,7 @@ namespace DarkSoulsScripting
             WFloat(addr + 0xC, vec.W);
         }
 
+        
         public static void WBit(Memloc baseAddr, int bitOffset, bool val)
         {
             var state = GetCurrentState();

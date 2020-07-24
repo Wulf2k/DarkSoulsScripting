@@ -6,21 +6,25 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-	public abstract class Chr<TChrMovementCtrl, TChrController> : GameStruct
+	public abstract class Chr<TChrCtrl, TChrController> : GameStruct
         where TChrController : ChrController, new()
-        where TChrMovementCtrl : ChrMovementCtrl<TChrController>, new()
+        where TChrCtrl : ChrCtrl<TChrController>, new()
 	{
         public const int MAX_NAME_LENGTH = 10;
 
         public ChrSlot Slot { get; private set; } = null;
-        public TChrMovementCtrl MovementCtrl { get; private set; } = null;
+        public TChrCtrl ChrCtrl { get; private set; } = null;
         public ChrUNK1 UNK1 { get; private set; } = null;
+        public HitIns HitIns { get; private set; } = null;
+        public MsbResCap MsbResCap { get; private set; } = null;
 
         protected override void InitSubStructures()
         {
             Slot = new ChrSlot() { AddressReadFunc = () => SlotPtr };
-            MovementCtrl = new TChrMovementCtrl() { AddressReadFunc = () => MovementCtrlPtr };
+            ChrCtrl = new TChrCtrl() { AddressReadFunc = () => ChrCtrlPtr };
             UNK1 = new ChrUNK1() { AddressReadFunc = () => UNK1Ptr };
+            HitIns = new HitIns() { AddressReadFunc = () => HitIns0Ptr };
+            MsbResCap = new MsbResCap() { AddressReadFunc = () => MsbResCapPtr };
         }
 
         public int Handle
@@ -47,7 +51,7 @@ namespace DarkSoulsScripting
 			set { WBool(Address + 0x28, value); }
 		}
 
-        public IntPtr MovementCtrlPtr
+        public IntPtr ChrCtrlPtr
         {
             get { return RIntPtr(Address + 0x68); }
             set { WIntPtr(Address + 0x68, value); }
@@ -65,13 +69,14 @@ namespace DarkSoulsScripting
 			set { WUnicodeStr(Address + 0x88, value.Substring(0, Math.Min(value.Length, 10))); }
 		}
 
-        public IntPtr UnknownMSBStructPointer {
+        public IntPtr MsbResCapPtr {
 
 			get { return RIntPtr(Address + 0xB0); }
 			set { WIntPtr(Address + 0xB0, value); }
 		}
 
-        public int UnknownMSBStructIndex {
+        public int MsbIndex
+        {
             get { return RInt32((Address + 0x98, IntPtr.Zero, Address + 0xB8)); }
 			set { WInt32((Address + 0x98, IntPtr.Zero, Address + 0xB8), value); }
 		}
@@ -101,7 +106,9 @@ namespace DarkSoulsScripting
 			get { return RFloat((Address + 0x258, IntPtr.Zero, Address + 0x328)); }
 			set { WFloat((Address + 0x258, IntPtr.Zero, Address + 0x328), value); }
 		}
-        
+
+        public IntPtr HitIns0Ptr => RIntPtr(Address + 0x370);
+
 		public int HP {
 			get { return RInt32(Address + 0x3E8); }
 			set { WInt32(Address + 0x3E8, value); }
@@ -292,11 +299,11 @@ namespace DarkSoulsScripting
         public void WarpToCoords(float x, float y, float z, float heading)
         {
             
-            MovementCtrl.WarpX = x;
-            MovementCtrl.WarpY = y;
-            MovementCtrl.WarpZ = z;
-            MovementCtrl.WarpHeading = heading;
-            MovementCtrl.WarpActivate = true;
+            ChrCtrl.WarpX = x;
+            ChrCtrl.WarpY = y;
+            ChrCtrl.WarpZ = z;
+            ChrCtrl.WarpHeading = heading;
+            ChrCtrl.WarpActivate = true;
         }
 
         public void WarpToTransform(ChrTransform dest)
@@ -307,24 +314,24 @@ namespace DarkSoulsScripting
 		public void WarpToPlayer(Player dest)
 		{
             
-            WarpToTransform(dest.MovementCtrl.Transform);
+            WarpToTransform(dest.ChrCtrl.Transform);
 		}
 
         public void WarpToEnemy(Enemy dest)
 		{
-            WarpToTransform(dest.MovementCtrl.Transform);
+            WarpToTransform(dest.ChrCtrl.Transform);
 		}
 
         public void SwitchControlPlayer()
         {
-            MovementCtrl.DebugPlayerControllerPtr = WorldChrMan.LocalPlayer.MovementCtrl.ControllerPtr;
+            ChrCtrl.DebugPlayerControllerPtr = WorldChrMan.LocalPlayer.ChrCtrl.ControllerPtr;
             IngameFuncs.EnableLogic(10000, 0);
             View();
         }
 
         public void ReturnControlPlayer()
         {
-            MovementCtrl.DebugPlayerControllerPtr = IntPtr.Zero;
+            ChrCtrl.DebugPlayerControllerPtr = IntPtr.Zero;
             IngameFuncs.EnableLogic(10000, 1);
             WorldChrMan.LocalPlayer.View();
         }
@@ -332,7 +339,7 @@ namespace DarkSoulsScripting
         public string GetName()
         {
             
-            return RAsciiStr(RIntPtr(UnknownMSBStructPointer + 0x1f0) + 0x64 + 0xD0 * UnknownMSBStructIndex, MAX_NAME_LENGTH);
+            return RAsciiStr(RIntPtr(MsbResCapPtr + 0x48) + RInt32(RIntPtr(MsbResCapPtr + 0x48) + 0xc + 0x4 * MsbIndex) + 0x64, MAX_NAME_LENGTH);
         }
 
         public Enemy GetTargetAsEnemy()

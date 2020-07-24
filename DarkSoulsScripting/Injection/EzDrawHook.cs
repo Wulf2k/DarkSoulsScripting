@@ -7,6 +7,7 @@ using System;
 using System.Numerics;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DarkSoulsScripting
 {
@@ -28,10 +29,15 @@ namespace DarkSoulsScripting
             }
             public static void Add(EzObj Obj)
             {
+                var t = new Thread(() => DelayedAdd(Obj));
+                t.Start();
+                
+            }
+            static void DelayedAdd(EzObj Obj)
+            {
+                Thread.Sleep(33);
                 ObjList.Add(Obj);
                 WIntPtr(objptr + (ObjList.Count - 1) * 0x8, Obj.codeptr);
-
-                //Console.WriteLine($@"Obj: {ObjList.Count}{Environment.NewLine}CodePtr: {Obj.codeptr.ToString("X")}{Environment.NewLine}ValPtr: {Obj.valptr.ToString("X")}");
             }
             public static void Remove(EzObj Obj)
             {
@@ -90,7 +96,6 @@ namespace DarkSoulsScripting
 
                 objId = ObjMgr.ObjList.Count;
                 ObjMgr.Add(this);
-
             }
             public uint Flags
             {
@@ -302,15 +307,23 @@ namespace DarkSoulsScripting
             public Vector2 Pos
             {
                 get { return RVector2(valptr + 0x90); }
-                set { WVector2(valptr + 0x90, value); }
+                set
+                {
+                    WVector2(valptr + 0x90, new Vector2((int)value.X + Size.X / 2, (int)value.Y + Size.Y / 2));
+                }
             }
             public Vector2 Size
             {
                 get { return new Vector2(RFloat(valptr + 0xb0), RFloat(valptr + 0xc0)); }
                 set
                 {
-                    WFloat(valptr + 0xb0, value.X);
-                    WFloat(valptr + 0xc0, value.Y);
+                    Vector2 startSize = Size;
+                    WFloat(valptr + 0xb0, (int)value.X);
+                    WFloat(valptr + 0xc0, (int)value.Y);
+
+                    //adjust pos to maintain topleft positioning
+                    WVector2(valptr + 0x90, new Vector2(Pos.X - (startSize.X - value.X) / 2, Pos.Y - (startSize.Y - value.Y) / 2));
+
                 }
             }
         }
@@ -338,9 +351,9 @@ namespace DarkSoulsScripting
                 get { return new Vector3(RFloat(valptr + 0x90), RFloat(valptr + 0xa4), RFloat(valptr + 0xb8)); }
                 set
                 {
-                    WFloat(valptr + 0x90, value.X);
-                    WFloat(valptr + 0xa4, value.Y);
-                    WFloat(valptr + 0xb8, value.Z);
+                    WFloat(valptr + 0x90, (int)value.X);
+                    WFloat(valptr + 0xa4, (int)value.Y);
+                    WFloat(valptr + 0xb8, (int)value.Z);
                 }
             }
 
@@ -349,9 +362,9 @@ namespace DarkSoulsScripting
                 get { return new Vector3(RFloat(valptr + 0x9c), RFloat(valptr + 0xac), RFloat(valptr + 0xbc)); }
                 set
                 {
-                    WFloat(valptr + 0x9c, value.X);
-                    WFloat(valptr + 0xac, value.Y);
-                    WFloat(valptr + 0xbc, value.Z);
+                    WFloat(valptr + 0x9c, (int)value.X);
+                    WFloat(valptr + 0xac, (int)value.Y);
+                    WFloat(valptr + 0xbc, (int)value.Z);
                 }
             }
         }
@@ -361,8 +374,11 @@ namespace DarkSoulsScripting
             {
                 EzDraw_DrawFunc = (IntPtr)0x1401d6bf0;
 
+                TexHandle = 0;
                 Stretch = new Vector2(1, 1);
-                
+
+                Txt = "NewString";
+
                 UseStretch = true;
                 UseFontSize = true;
                 UseTextColor = true;
@@ -396,19 +412,19 @@ namespace DarkSoulsScripting
             public float Size
             {
                 get { return RFloat(valptr + 0x78); }
-                set { WFloat(valptr + 0x78, value); }
+                set { WFloat(valptr + 0x78, (int)value); }
             }
             public Vector2 Stretch
             {
                 get { return RVector2(valptr + 0x7c); }
-                set { WVector2(valptr + 0x7c, value); }
+                set { WVector2(valptr + 0x7c, new Vector2((int)value.X, (int)value.Y)); }
             }
             public Vector2 Pos
             {
                 get { return RVector2(valptr + 0x90); }
-                set { WVector2(valptr + 0x90, value); }
+                set { WVector2(valptr + 0x90, new Vector2((int)value.X, (int)value.Y)); }
             }
-             public string Txt
+            public string Txt
             {
                 get { return RUnicodeStr(valptr + 0x120, 0x40); }
                 set { WUnicodeStr(valptr + 0x120, value); }
@@ -421,6 +437,7 @@ namespace DarkSoulsScripting
                 EzDraw_DrawFunc = (IntPtr)0x1401d6640;
 
                 Flags = 0x3e;
+                State = 5;
 
                 Color1 = Color.Blue;
                 Color2 = Color.Green;
@@ -437,9 +454,9 @@ namespace DarkSoulsScripting
             {
                 get { return new Vector3(RFloat(valptr + 0x90), RFloat(valptr + 0xa4), RFloat(valptr + 0xb8)); }
                 set {
-                    WFloat(valptr + 0x90, value.X);
-                    WFloat(valptr + 0xa4, value.Y);
-                    WFloat(valptr + 0xb8, value.Z);
+                    WFloat(valptr + 0x90, (int)value.X);
+                    WFloat(valptr + 0xa4, (int)value.Y);
+                    WFloat(valptr + 0xb8, (int)value.Z);
                 }
             }
 
@@ -448,9 +465,9 @@ namespace DarkSoulsScripting
                 get { return new Vector3(RFloat(valptr + 0x9c), RFloat(valptr + 0xac), RFloat(valptr + 0xbc)); }
                 set
                 {
-                    WFloat(valptr + 0x9c, value.X);
-                    WFloat(valptr + 0xac, value.Y);
-                    WFloat(valptr + 0xbc, value.Z);
+                    WFloat(valptr + 0x9c, (int)value.X);
+                    WFloat(valptr + 0xac, (int)value.Y);
+                    WFloat(valptr + 0xbc, (int)value.Z);
                 }
             }
         }
@@ -570,6 +587,202 @@ namespace DarkSoulsScripting
             c.pop(rcx);
             c.pop(rbx);
             c.pop(rax);
+
+            c.jmp((ulong)returnptr);
+
+            var stream = new MemoryStream();
+            c.Assemble(new StreamCodeWriter(stream), (ulong)codeptr);
+            WBytes(codeptr, stream.ToArray());
+
+            c = new Assembler(64);
+            c.PreferVex = false;
+            c.jmp((ulong)codeptr);
+
+            stream = new MemoryStream();
+            c.Assemble(new StreamCodeWriter(stream), (ulong)hookptr);
+            WBytes(hookptr, stream.ToArray());
+
+        }
+        public static void Hook2()
+        {
+            //shitty, flickers
+            SafeRemoteHandle codeptr_ = new SafeRemoteHandle(0x1000);
+            SafeRemoteHandle objptr_ = new SafeRemoteHandle(0x1000);
+
+            IntPtr hookptr = (IntPtr)0x1411ca3f0;
+            IntPtr returnptr = (IntPtr)0x1411ca400;
+            IntPtr codeptr = codeptr_.GetHandle();
+            objptr = objptr_.GetHandle();
+
+            for (int x = 0; x < (objptr_.Size / 8); x++)
+                WUInt64(objptr + 8 * x, 0);
+
+            var c = new Assembler(64);
+
+            Label startloop = c.CreateLabel();
+            Label endloop = c.CreateLabel();
+
+            c.push(rax);
+            c.push(rbx);
+            c.push(rcx);
+            c.push(rdx);
+            c.push(rbp);
+            c.push(rsi);
+            c.push(rdi);
+            c.push(r8);
+            c.push(r9);
+            c.push(r10);
+            c.push(r11);
+            c.push(r12);
+            c.push(r13);
+            c.push(r14);
+            c.push(r15);
+            c.pushfq();
+            c.sub(rsp, 0x100);
+
+            c.mov(rsi, (ulong)objptr);
+
+            c.Label(ref startloop);
+
+            c.xor(r8, r8);
+            c.cmp(__[rsi], r8);
+            c.je(endloop);  //if out of code pointers, end loop
+
+            c.call(__qword_ptr[rsi]);
+            c.add(rsi, 8);
+            c.jmp(startloop);
+
+            c.Label(ref endloop);
+
+            c.add(rsp, 0x100);
+            c.popfq();
+            c.pop(r15);
+            c.pop(r14);
+            c.pop(r13);
+            c.pop(r12);
+            c.pop(r11);
+            c.pop(r10);
+            c.pop(r9);
+            c.pop(r8);
+            c.pop(rdi);
+            c.pop(rsi);
+            c.pop(rbp);
+            c.pop(rdx);
+            c.pop(rcx);
+            c.pop(rbx);
+            c.pop(rax);
+
+
+            //Run asm destroyed by hook
+            c.mov(__[rsp + 0x10], rdx);
+            c.push(rbp);
+            c.push(rsi);
+            c.push(rdi);
+            c.push(r12);
+            c.push(r13);
+            c.push(r14);
+            c.push(r15);
+
+
+            c.jmp((ulong)returnptr);
+
+            var stream = new MemoryStream();
+            c.Assemble(new StreamCodeWriter(stream), (ulong)codeptr);
+            WBytes(codeptr, stream.ToArray());
+
+            c = new Assembler(64);
+            c.PreferVex = false;
+            c.jmp((ulong)codeptr);
+
+            stream = new MemoryStream();
+            c.Assemble(new StreamCodeWriter(stream), (ulong)hookptr);
+            WBytes(hookptr, stream.ToArray());
+
+        }
+        public static void Hook3()
+        {
+            //shitty, flickers
+            SafeRemoteHandle codeptr_ = new SafeRemoteHandle(0x1000);
+            SafeRemoteHandle objptr_ = new SafeRemoteHandle(0x1000);
+
+            IntPtr hookptr = (IntPtr)0x14015f060;
+            IntPtr returnptr = (IntPtr)0x14015f070;
+            IntPtr codeptr = codeptr_.GetHandle();
+            objptr = objptr_.GetHandle();
+
+            for (int x = 0; x < (objptr_.Size / 8); x++)
+                WUInt64(objptr + 8 * x, 0);
+
+            var c = new Assembler(64);
+
+            Label startloop = c.CreateLabel();
+            Label endloop = c.CreateLabel();
+
+            c.push(rax);
+            c.push(rbx);
+            c.push(rcx);
+            c.push(rdx);
+            c.push(rbp);
+            c.push(rsi);
+            c.push(rdi);
+            c.push(r8);
+            c.push(r9);
+            c.push(r10);
+            c.push(r11);
+            c.push(r12);
+            c.push(r13);
+            c.push(r14);
+            c.push(r15);
+            c.pushfq();
+            c.sub(rsp, 0x100);
+
+            c.mov(rsi, (ulong)objptr);
+
+            c.Label(ref startloop);
+
+            c.xor(r8, r8);
+            c.xor(r9, r9);
+            c.cmp(__[rsi], r8);
+            c.je(endloop);  //if out of code pointers, end loop
+
+            c.mov(r9, __[rsi]);
+            c.cmp(r8, r9);
+            c.je(startloop);  //skip this one if no code at dest
+
+            c.call(__qword_ptr[rsi]);
+            c.add(rsi, 8);
+            c.jmp(startloop);
+
+            c.Label(ref endloop);
+
+            c.add(rsp, 0x100);
+            c.popfq();
+            c.pop(r15);
+            c.pop(r14);
+            c.pop(r13);
+            c.pop(r12);
+            c.pop(r11);
+            c.pop(r10);
+            c.pop(r9);
+            c.pop(r8);
+            c.pop(rdi);
+            c.pop(rsi);
+            c.pop(rbp);
+            c.pop(rdx);
+            c.pop(rcx);
+            c.pop(rbx);
+            c.pop(rax);
+
+
+            //Run asm destroyed by hook
+            c.mov(rax, rsp);
+            c.push(rdi);
+            c.push(r12);
+            c.push(r13);
+            c.push(r14);
+            c.push(r15);
+            c.sub(rsp, 0x70);
+
 
             c.jmp((ulong)returnptr);
 

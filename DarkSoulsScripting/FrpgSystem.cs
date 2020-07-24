@@ -9,7 +9,6 @@ namespace DarkSoulsScripting
 {
     public static class FrpgSystem
     {
-        //DSR 1.03
         public static IntPtr Address => RIntPtr(0x141c04e28);
 
         public static class Sys

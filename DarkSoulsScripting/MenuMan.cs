@@ -11,7 +11,6 @@ namespace DarkSoulsScripting
 {
     public class MenuMan
     {
-        //DSR 1.03
 
         public static IntPtr Address => RIntPtr(0x141D26168);
 
@@ -50,6 +49,11 @@ namespace DarkSoulsScripting
         {
             get { return RInt32(Address + 0x74); }
             set { WInt32(Address + 0x74, value); }
+        }
+        public static Int32 GestureMenuState
+        {
+            get { return RInt32(Address + 0x100); }
+            set { WInt32(Address + 0x100, value); }
         }
         public static Int32 TextEffect
         {

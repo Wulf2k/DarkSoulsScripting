@@ -5,7 +5,7 @@ namespace DarkSoulsScripting
 {
     public class ChrAIController<TChr, TChrMovementCtrl, TChrController> : GameStruct
         where TChrController : ChrController, new()
-        where TChrMovementCtrl : ChrMovementCtrl<TChrController>, new()
+        where TChrMovementCtrl : ChrCtrl<TChrController>, new()
         where TChr : Chr<TChrMovementCtrl, TChrController>, new()
 	{
         protected override void InitSubStructures()

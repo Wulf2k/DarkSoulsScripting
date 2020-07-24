@@ -12,18 +12,18 @@ namespace DarkSoulsScripting
             Transform = new ChrTransform() { AddressReadFunc = () => TransformPtr };
         }
 
-        public IntPtr ChrPtr {
-            //DSR
+        public IntPtr ChrPtr
+        {
 			get { return Hook.RIntPtr(Address + 0x0); }
 			set { Hook.WIntPtr(Address + 0x0, value); }
 		}
 
-        public Enemy GetChrAsEnemy()
+        public Enemy GetEnemy()
         {
             return new Enemy() { AddressReadFunc = () => ChrPtr };
         }
 
-        public Player GetChrAsPlayer()
+        public Player GetPlayer()
         {
             return new Player() { AddressReadFunc = () => ChrPtr };
         }
@@ -62,7 +62,6 @@ namespace DarkSoulsScripting
 		}
 
 		public bool IsDisable {
-            //DSR
             get { return Hook.RBit(Address + 0x20, 7); }
             set { Hook.WBit(Address + 0x20, 7, value); }
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DarkSoulsScripting
 {
-    public class PlayerMovementCtrl : ChrMovementCtrl<PlayerController>
+    public class PlayerMovementCtrl : ChrCtrl<PlayerController>
     {
 
         protected override void InitSubStructures()

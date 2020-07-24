@@ -7,36 +7,64 @@ using static DarkSoulsScripting.Hook;
 
 namespace DarkSoulsScripting
 {
-    public class WorldChrMan
+    public static class WorldChrMan
     {
-        
         public const int CHR_STRUCT_SIZE = 0x5F8;
 
+        public static Player LocalPlayer { get; private set; } = null;
+        public static List<WorldBlockChr> LoadedWorldBlockChrs = null;
 
-        //DSR 1.03
 
-        //Hey, this isn't WorldChrMan....
-        //WorldChrManAddress = 0x141d151b0
-        //public static IntPtr Address => RIntPtr((0x137DC70, 0, 0x141D1F710));
+
         public static IntPtr Address => RIntPtr(0x141d151b0);
 
-        public static Player LocalPlayer { get; private set; } = null;
 
         static WorldChrMan()
         {
-            LocalPlayer = new Player() { AddressReadFunc = () => RIntPtr(Address + 0x68) };
+            LocalPlayer = new Player() { AddressReadFunc = () => LocalPlayerPtr };
+            LoadedWorldBlockChrs = new List<WorldBlockChr>();
+            for (int x = 0; x < numLoadedWorldBlockChrs; x++)
+            {
+                IntPtr addr = RIntPtr(LoadedWorldBlockChrStart + x * 8);
+                LoadedWorldBlockChrs.Add(new WorldBlockChr() { AddressReadFunc = () => addr });
+            }
+                
+
         }
 
-        //This is not all enemies.
+        
+
+        
+        public static Int32 numWorldBlockChrs => RInt32(Address + 0x28);
+        public static IntPtr WorldBlockChrPtr => RIntPtr(Address + 0x30);
+        public static IntPtr LocalPlayerPtr => RIntPtr(Address + 0x68);
+        public static Int32 numLoadedWorldBlockChrs => RInt32(Address + 0xA0);
+        public static IntPtr LoadedWorldBlockChrStart => Address + 0xA8;
+
+
+
+
         public static List<Enemy> GetEnemies()
         {
             var result = new List<Enemy>();
-            for (Int64 i = (Int64)ChrsBegin; i < (Int64)ChrsEnd; i += IntPtr.Size)
+
+            foreach (WorldBlockChr wbc in LoadedWorldBlockChrs)
             {
-                IntPtr thisEnemyAddress = RIntPtr(i);
-                result.Add(new Enemy() { AddressReadFunc = () => thisEnemyAddress });
+                Console.WriteLine(wbc.Address.ToString("X"));
+                if (wbc.ChrCount > 0)
+                    foreach (Enemy nme in wbc.GetEnemies())
+                        result.Add(nme);
             }
             return result;
+        }
+        public static Enemy GetEnemyByName(string name)
+        {
+            foreach (var e in GetEnemies())
+            {
+                if (e.GetName() == name)
+                    return e;
+            }
+            return null;
         }
 
         public static EnemyPtrAccessor EnemyPtr = new EnemyPtrAccessor();

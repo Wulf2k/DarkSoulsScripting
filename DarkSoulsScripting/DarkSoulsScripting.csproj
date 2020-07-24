@@ -19,7 +19,8 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\Bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.1</LangVersion>
@@ -63,6 +64,7 @@
     <Compile Include="FrpgSystem.cs" />
     <Compile Include="FrpgWindow.cs" />
     <Compile Include="FreeCam.cs" />
+    <Compile Include="PadMan.cs" />
     <Compile Include="Injection\EzDrawHook.cs" />
     <Compile Include="LockTgtMan.cs" />
     <Compile Include="HgMan.cs" />
@@ -70,11 +72,13 @@
     <Compile Include="MapItemMan.cs" />
     <Compile Include="MenuGenDlg.cs" />
     <Compile Include="MenuMan.cs" />
+    <Compile Include="MsbResCap.cs" />
     <Compile Include="RenderTargetMan.cs" />
     <Compile Include="MouseMan.cs" />
     <Compile Include="ParamMan.cs" />
     <Compile Include="MsgMan.cs" />
     <Compile Include="PCOptions.cs" />
+    <Compile Include="WorldBlockChr.cs" />
     <Compile Include="WorldChrManDbg.cs" />
     <Compile Include="WorldChrMan.cs" />
     <Compile Include="[General]\CodeHooks.cs" />
@@ -91,7 +95,7 @@
     <Compile Include="XInput\Button.cs" />
     <Compile Include="ChrAnimInstance.cs" />
     <Compile Include="ChrCam.cs" />
-    <Compile Include="ChrMovementCtrl.cs" />
+    <Compile Include="ChrCtrl.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyAIController.cs" />
     <Compile Include="EnemyController.cs" />
@@ -123,7 +127,10 @@
     <Compile Include="MapEntry.cs" />
     <Compile Include="[General]\Memloc.cs" />
     <Compile Include="[General]\ModuleInitializer.cs" />
-    <Compile Include="MSB.cs" />
+    <Compile Include="MsbMan.cs" />
+    <Compile Include="FieldInsBase.cs" />
+    <Compile Include="ResCap.cs" />
+    <Compile Include="HitIns.cs" />
     <Compile Include="MSBEntry.cs" />
     <Compile Include="[General]\Pointers.cs" />
     <Compile Include="Injection\DSAsmCaller.cs" />
