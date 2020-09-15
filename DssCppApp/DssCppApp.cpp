@@ -9,6 +9,5 @@ _declspec(dllexport) int RInt32(__int64 value);
 
 int wmain()
 {
-    printf("Test\n");
-    printf("%X", RInt32(0x140000000));
+    //printf("%X", RInt32(0x140000000));
 }

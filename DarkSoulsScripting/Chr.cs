@@ -101,7 +101,12 @@ namespace DarkSoulsScripting
 			set { WInt32(Address + 0xD8, (int)value); }
 		}
 
-		public float Opacity {
+		public bool DisableGravity
+        {
+            get { return RBit(Address + 0x2A5, 1); }
+            set { WBit(Address + 0x2a5, 1, value); }
+        }
+        public float Opacity {
             
 			get { return RFloat((Address + 0x258, IntPtr.Zero, Address + 0x328)); }
 			set { WFloat((Address + 0x258, IntPtr.Zero, Address + 0x328), value); }

@@ -164,29 +164,6 @@ namespace DarkSoulsScripting
             set { WFloat((Address + 0xD8, IntPtr.Zero, Address + 0x118), value); }
         }
 
-        //TODO: Confirm warp x and z rotation exist (I just guessed based on the pattern: [ pos x, pos y, pos y, {???}, rot y, {???} ]
-
-        public float WarpRX
-        {
-            //DSR
-            get { return RFloat((Address + 0xE0, IntPtr.Zero, Address + 0x120)); }
-            set { WFloat((Address + 0xE0, IntPtr.Zero, Address + 0x120), value); }
-        }
-
-        public float WarpRY
-        {
-            //DSR
-            get { return RFloat((Address + 0xE4, IntPtr.Zero, Address + 0x124)); }
-            set { WFloat((Address + 0xE4, IntPtr.Zero, Address + 0x124), value); }
-        }
-
-        public float WarpRZ
-        {
-            //DSR
-            get { return RFloat((Address + 0xE8, IntPtr.Zero, Address + 0x128)); }
-            set { WFloat((Address + 0xE8, IntPtr.Zero, Address + 0x128), value); }
-        }
-
         public float WarpHeading
         {
             //DSR

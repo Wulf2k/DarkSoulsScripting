@@ -46,7 +46,7 @@ namespace DarkSoulsScripting
             {
                 var addr = ChrSlotsPtr + (IntPtr.Size * 7 * i);
 
-                Console.WriteLine(addr.ToString("X"));
+                //Console.WriteLine(addr.ToString("X"));
                 result.Add(new ChrSlot() { AddressReadFunc = () => addr }.GetEnemy());
             }
 

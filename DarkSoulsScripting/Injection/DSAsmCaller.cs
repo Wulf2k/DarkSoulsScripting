@@ -1,5 +1,4 @@
-﻿using DarkSoulsScripting.Injection.Structures;
-using Managed.X86;
+﻿using Managed.X86;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +6,10 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Addr = Managed.X86.X86Address;
 using Reg32 = Managed.X86.X86Register32;
+
+using DarkSoulsScripting.Injection.Structures;
+using static Iced.Intel.AssemblerRegisters;
+using Iced.Intel;
 
 namespace DarkSoulsScripting.Injection
 {
@@ -186,6 +189,71 @@ namespace DarkSoulsScripting.Injection
             return t;
         }
 
+
+        private byte[] InitAsm64BufferNew(IntPtr funcAddr, IEnumerable<dynamic> parameters)
+        {
+            var args = new List<UInt64>();
+
+            foreach (var arg in parameters.ToList())
+                args.Add(Convert.ToUInt64(arg));
+
+            var c = new Assembler(64);
+            c.push(rax);
+            c.push(rbx);
+            c.push(rcx);
+            c.push(rdx);
+            c.push(rbp);
+            c.push(rsi);
+            c.push(rdi);
+            c.push(r8);
+            c.push(r9);
+            c.push(r10);
+            c.push(r11);
+            c.push(r12);
+            c.push(r13);
+            c.push(r14);
+            c.push(r15);
+            c.pushfq();
+            c.sub(rsp, 0x100);
+
+            c.xor(rbx, rbx);
+
+            c.mov(rcx, args.ElementAtOrDefault(0));
+            c.mov(rdx, args.ElementAtOrDefault(1));
+            c.mov(r8, args.ElementAtOrDefault(2));
+            c.mov(r9, args.ElementAtOrDefault(3));
+
+            c.call((ulong)funcAddr);
+
+            c.mov(rbx, (ulong)CodeHandle.GetHandle().ToInt64() + 0x200);
+            c.mov(__qword_ptr[rbx], rax);
+            c.mov(__qword_ptr[rbx + 8], 1);
+
+
+            c.add(rsp, 0x100);
+            c.popfq();
+            c.pop(r8);
+            c.pop(r9);
+            c.pop(r10);
+            c.pop(r11);
+            c.pop(r12);
+            c.pop(r13);
+            c.pop(r14);
+            c.pop(r15);
+            c.pop(rdi);
+            c.pop(rsi);
+            c.pop(rbp);
+            c.pop(rdx);
+            c.pop(rcx);
+            c.pop(rbx);
+            c.pop(rax);
+            c.ret();
+
+            var stream = new MemoryStream();
+            c.Assemble(new StreamCodeWriter(stream), (ulong)CodeHandle.GetHandle().ToInt64());
+            return stream.ToArray();
+
+        }
         private byte[] InitAsm64Buffer(IntPtr funcAddr, IEnumerable<dynamic> parameters, List<SafeRemoteHandle> allocPtrList,
     dynamic rax = null,
     dynamic rcx = null,
@@ -218,15 +286,6 @@ namespace DarkSoulsScripting.Injection
                 0xC3    //retn
             };
 
-            /*
-            if (args.Length > 0) { Array.Copy(BitConverter.GetBytes((Int64)args[0]), 0, asm64, 0xA, 8); }
-            if (args.Length > 1) { Array.Copy(BitConverter.GetBytes((Int64)args[1]), 0, asm64, 20, 8); }
-            if (args.Length > 2) { Array.Copy(BitConverter.GetBytes((Int64)args[2]), 0, asm64, 30, 8); }
-            if (args.Length > 3) { Array.Copy(BitConverter.GetBytes((Int64)args[3]), 0, asm64, 40, 8); }
-            if (args.Length > 4) { Array.Copy(BitConverter.GetBytes((Int64)args[4]), 0, asm64, 55, 8); }
-            */
-
-            //Fix this damn int conversion crap
             List<Int64> intargs = new List<Int64>();
 
             for (int i = 0; i < (args.Count()); i++)
@@ -239,8 +298,7 @@ namespace DarkSoulsScripting.Injection
             if (intargs.Count() > 2) { Array.Copy(BitConverter.GetBytes(intargs[2]), 0, asm64, 30, 8); }
             if (intargs.Count() > 3) { Array.Copy(BitConverter.GetBytes(intargs[3]), 0, asm64, 40, 8); }
             if (intargs.Count() > 4) { Array.Copy(BitConverter.GetBytes(intargs[4]), 0, asm64, 55, 8); }
-
-            
+                        
 
             Array.Copy(BitConverter.GetBytes((Int64)funcAddr), 0, asm64, 76, 8);
             Array.Copy(BitConverter.GetBytes(CodeHandle.GetHandle().ToInt64() + 0x200), 0, asm64, 86, 8);  //Move rax to return address
@@ -480,9 +538,9 @@ namespace DarkSoulsScripting.Injection
 
             Kernel.CheckAddress(CodeHandle.GetHandle(), FUNCTION_CALL_ASM_BUFFER_SIZE, "execute function");
 
-            byte[] byt = InitAsm64Buffer(functionAddress, args, Buffer_ParamPointerList);
+            byte[] byt = InitAsm64BufferNew(functionAddress, args);
+            //byte[] byt = InitAsm64Buffer(functionAddress, args, Buffer_ParamPointerList);
 
-           
 
             if (!(WriteAsm(CodeHandle.GetHandle(), byt, byt.Length)))
             {
