@@ -65,6 +65,8 @@
     <Compile Include="FrpgWindow.cs" />
     <Compile Include="FreeCam.cs" />
     <Compile Include="FileMan.cs" />
+    <Compile Include="TexHdlResCap.cs" />
+    <Compile Include="TexMan.cs" />
     <Compile Include="PadMan.cs" />
     <Compile Include="Injection\EzDrawHook.cs" />
     <Compile Include="LockTgtMan.cs" />

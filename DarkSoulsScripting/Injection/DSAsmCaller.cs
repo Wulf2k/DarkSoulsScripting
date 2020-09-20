@@ -192,10 +192,10 @@ namespace DarkSoulsScripting.Injection
 
         private byte[] InitAsm64BufferNew(IntPtr funcAddr, IEnumerable<dynamic> parameters)
         {
-            var args = new List<UInt64>();
+            var args = new List<Int64>();
 
             foreach (var arg in parameters.ToList())
-                args.Add(Convert.ToUInt64(arg));
+                args.Add(Convert.ToInt64(arg));
 
             var c = new Assembler(64);
             c.push(rax);
@@ -214,7 +214,7 @@ namespace DarkSoulsScripting.Injection
             c.push(r14);
             c.push(r15);
             c.pushfq();
-            c.sub(rsp, 0x100);
+            c.sub(rsp, 0x108);
 
             c.xor(rbx, rbx);
 
@@ -230,7 +230,7 @@ namespace DarkSoulsScripting.Injection
             c.mov(__qword_ptr[rbx + 8], 1);
 
 
-            c.add(rsp, 0x100);
+            c.add(rsp, 0x108);
             c.popfq();
             c.pop(r8);
             c.pop(r9);

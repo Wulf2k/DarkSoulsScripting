@@ -323,8 +323,8 @@ namespace DarkSoulsScripting
             public static int ExcutePenalty(params dynamic[] args)
                 => Call<int>(FuncAddress.ExcutePenalty, args);
 
-            public static int ForceChangeTarget(params dynamic[] args)
-                => Call<int>(FuncAddress.ForceChangeTarget, args);
+            //public static int ForceChangeTarget(params dynamic[] args)
+                //=> Call<int>(FuncAddress.ForceChangeTarget, args);
 
             public static int ForceDead(params dynamic[] args)
                 => Call<int>(FuncAddress.ForceDead, args);
@@ -368,20 +368,20 @@ namespace DarkSoulsScripting
             public static int GetDistance(params dynamic[] args)
                 => Call<int>(FuncAddress.GetDistance, args);
 
-            public static int GetEnemyPlayerId_Random(params dynamic[] args)
-                => Call<int>(FuncAddress.GetEnemyPlayerId_Random, args);
+            //public static int GetEnemyPlayerId_Random(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetEnemyPlayerId_Random, args);
 
             public static int GetEventFlagValue(params dynamic[] args)
                 => Call<int>(FuncAddress.GetEventFlagValue, args);
 
-            public static int GetEventGoalState(params dynamic[] args)
-                => Call<int>(FuncAddress.GetEventGoalState, args);
+            //public static int GetEventGoalState(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetEventGoalState, args);
 
-            public static int GetEventMode(params dynamic[] args)
-                => Call<int>(FuncAddress.GetEventMode, args);
+            //public static int GetEventMode(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetEventMode, args);
 
-            public static int GetEventRequest(params dynamic[] args)
-                => Call<int>(FuncAddress.GetEventRequest, args);
+            //public static int GetEventRequest(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetEventRequest, args);
 
             public static int GetFloorMaterial(params dynamic[] args)
                 => Call<int>(FuncAddress.GetFloorMaterial, args);
@@ -389,8 +389,8 @@ namespace DarkSoulsScripting
             public static int GetGlobalQWC(params dynamic[] args)
                 => Call<int>(FuncAddress.GetGlobalQWC, args);
 
-            public static int GetHeroPoint(params dynamic[] args)
-                => Call<int>(FuncAddress.GetHeroPoint, args);
+            //public static int GetHeroPoint(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetHeroPoint, args);
 
             public static int GetHostPlayerNo(params dynamic[] args)
                 => Call<int>(FuncAddress.GetHostPlayerNo, args);
@@ -398,14 +398,14 @@ namespace DarkSoulsScripting
             public static int GetHp(params dynamic[] args)
                 => Call<int>(FuncAddress.GetHp, args);
 
-            public static int GetHpRate(params dynamic[] args)
-                => Call<int>(FuncAddress.GetHpRate, args);
+            //public static int GetHpRate(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetHpRate, args);
 
-            public static int GetItem(params dynamic[] args)
-                => Call<int>(FuncAddress.GetItem, args);
+            //public static int GetItem(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetItem, args);
 
-            public static int GetLadderCount(params dynamic[] args)
-                => Call<int>(FuncAddress.GetLadderCount, args);
+            //public static int GetLadderCount(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetLadderCount, args);
 
             public static int GetLastBlockId(params dynamic[] args)
                 => Call<int>(FuncAddress.GetLastBlockId, args);
@@ -428,50 +428,50 @@ namespace DarkSoulsScripting
             public static int GetLocalQWC(params dynamic[] args)
                 => Call<int>(FuncAddress.GetLocalQWC, args);
 
-            public static int GetMultiWallNum(params dynamic[] args)
-                => Call<int>(FuncAddress.GetMultiWallNum, args);
+            ///public static int GetMultiWallNum(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetMultiWallNum, args);
 
             public static int GetMyBloodBlockId(params dynamic[] args)
                 => Call<int>(FuncAddress.GetMyBloodBlockId, args);
 
-            public static int GetNetPlayerChrType(params dynamic[] args)
-                => Call<int>(FuncAddress.GetNetPlayerChrType, args);
+            //public static int GetNetPlayerChrType(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetNetPlayerChrType, args);
 
-            public static int GetObjHp(params dynamic[] args)
-                => Call<int>(FuncAddress.GetObjHp, args);
+            //public static int GetObjHp(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetObjHp, args);
 
-            public static int GetParam(params dynamic[] args)
-                => Call<int>(FuncAddress.GetParam, args);
+            //public static int GetParam(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetParam, args);
 
-            public static int GetParam1(params dynamic[] args)
-                => Call<int>(FuncAddress.GetParam1, args);
+            //public static int GetParam1(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetParam1, args);
 
-            public static int GetParam2(params dynamic[] args)
-                => Call<int>(FuncAddress.GetParam2, args);
+            //public static int GetParam2(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetParam2, args);
 
-            public static int GetParam3(params dynamic[] args)
-                => Call<int>(FuncAddress.GetParam3, args);
+            //public static int GetParam3(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetParam3, args);
 
-            public static int GetPartyMemberNum_InvadeType(params dynamic[] args)
-                => Call<int>(FuncAddress.GetPartyMemberNum_InvadeType, args);
+            //public static int GetPartyMemberNum_InvadeType(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetPartyMemberNum_InvadeType, args);
 
             public static int GetPartyMemberNum_VowType(params dynamic[] args)
                 => Call<int>(FuncAddress.GetPartyMemberNum_VowType, args);
 
-            public static int GetPlayerId_Random(params dynamic[] args)
-                => Call<int>(FuncAddress.GetPlayerId_Random, args);
+            //public static int GetPlayerId_Random(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetPlayerId_Random, args);
 
-            public static int GetPlayerNo_LotNitoMultiItem(params dynamic[] args)
-                => Call<int>(FuncAddress.GetPlayerNo_LotNitoMultiItem, args);
+            //public static int GetPlayerNo_LotNitoMultiItem(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetPlayerNo_LotNitoMultiItem, args);
 
-            public static int GetPlayID(params dynamic[] args)
-                => Call<int>(FuncAddress.GetPlayID, args);
+            //public static int GetPlayID(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetPlayID, args);
 
             public static int GetQWC(params dynamic[] args)
                 => Call<int>(FuncAddress.GetQWC, args);
 
-            public static int GetRandom(params dynamic[] args)
-                => Call<int>(FuncAddress.GetRandom, args);
+            //public static int GetRandom(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetRandom, args);
 
             public static int GetRateItem(params dynamic[] args)
                 => Call<int>(FuncAddress.GetRateItem, args);
@@ -479,29 +479,29 @@ namespace DarkSoulsScripting
             public static int GetRateItem_IgnoreMultiPlay(params dynamic[] args)
                 => Call<int>(FuncAddress.GetRateItem_IgnoreMultiPlay, args);
 
-            public static int GetReturnState(params dynamic[] args)
-                => Call<int>(FuncAddress.GetReturnState, args);
+            //public static int GetReturnState(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetReturnState, args);
 
-            public static int GetRightCurrentWeaponId(params dynamic[] args)
-                => Call<int>(FuncAddress.GetRightCurrentWeaponId, args);
+            //public static int GetRightCurrentWeaponId(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetRightCurrentWeaponId, args);
 
-            public static int GetSoloClearBonus(params dynamic[] args)
-                => Call<int>(FuncAddress.GetSoloClearBonus, args);
+            //public static int GetSoloClearBonus(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetSoloClearBonus, args);
 
-            public static int GetSummonAnimId(params dynamic[] args)
-                => Call<int>(FuncAddress.GetSummonAnimId, args);
+            //public static int GetSummonAnimId(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetSummonAnimId, args);
 
             public static int GetSummonBlackResult(params dynamic[] args)
                 => Call<int>(FuncAddress.GetSummonBlackResult, args);
 
-            public static int GetTargetChrID(params dynamic[] args)
-                => Call<int>(FuncAddress.GetTargetChrID, args);
+            //public static int GetTargetChrID(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetTargetChrID, args);
 
-            public static int GetTempSummonParam(params dynamic[] args)
-                => Call<int>(FuncAddress.GetTempSummonParam, args);
+            //public static int GetTempSummonParam(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetTempSummonParam, args);
 
-            public static int GetTravelItemParamId(params dynamic[] args)
-                => Call<int>(FuncAddress.GetTravelItemParamId, args);
+            //public static int GetTravelItemParamId(params dynamic[] args)
+                //=> Call<int>(FuncAddress.GetTravelItemParamId, args);
 
             public static int GetWhiteGhostCount(params dynamic[] args)
                 => Call<int>(FuncAddress.GetWhiteGhostCount, args);
@@ -512,44 +512,44 @@ namespace DarkSoulsScripting
             public static int HasSpecialEffectId(params dynamic[] args)
                 => Call<int>(FuncAddress.HasSpecialEffectId, args);
 
-            public static int HasSuppleItem(params dynamic[] args)
-                => Call<int>(FuncAddress.HasSuppleItem, args);
+            //public static int HasSuppleItem(params dynamic[] args)
+                //=> Call<int>(FuncAddress.HasSuppleItem, args);
 
-            public static int HavePartyMember(params dynamic[] args)
-                => Call<int>(FuncAddress.HavePartyMember, args);
+            //public static int HavePartyMember(params dynamic[] args)
+                //=> Call<int>(FuncAddress.HavePartyMember, args);
 
-            public static int HoverMoveVal(params dynamic[] args)
-                => Call<int>(FuncAddress.HoverMoveVal, args);
+            //public static int HoverMoveVal(params dynamic[] args)
+                //=> Call<int>(FuncAddress.HoverMoveVal, args);
 
-            public static int HoverMoveValDmy(params dynamic[] args)
-                => Call<int>(FuncAddress.HoverMoveValDmy, args);
+            //public static int HoverMoveValDmy(params dynamic[] args)
+                //=> Call<int>(FuncAddress.HoverMoveValDmy, args);
 
             public static int IncrementCoopPlaySuccessCount(params dynamic[] args)
                 => Call<int>(FuncAddress.IncrementCoopPlaySuccessCount, args);
 
-            public static int IncrementThiefInvadePlaySuccessCount(params dynamic[] args)
-                => Call<int>(FuncAddress.IncrementThiefInvadePlaySuccessCount, args);
+            //public static int IncrementThiefInvadePlaySuccessCount(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IncrementThiefInvadePlaySuccessCount, args);
 
-            public static int InfomationMenu(params dynamic[] args)
-                => Call<int>(FuncAddress.InfomationMenu, args);
+            //public static int InfomationMenu(params dynamic[] args)
+                //=> Call<int>(FuncAddress.InfomationMenu, args);
 
             public static int InitDeathState(params dynamic[] args)
                 => Call<int>(FuncAddress.InitDeathState, args);
 
-            public static int InvalidMyBloodMarkInfo(params dynamic[] args)
-                => Call<int>(FuncAddress.InvalidMyBloodMarkInfo, args);
+            //public static int InvalidMyBloodMarkInfo(params dynamic[] args)
+                //=> Call<int>(FuncAddress.InvalidMyBloodMarkInfo, args);
 
-            public static int InvalidMyBloodMarkInfo_Tutorial(params dynamic[] args)
-                => Call<int>(FuncAddress.InvalidMyBloodMarkInfo_Tutorial, args);
+            //public static int InvalidMyBloodMarkInfo_Tutorial(params dynamic[] args)
+                //=> Call<int>(FuncAddress.InvalidMyBloodMarkInfo_Tutorial, args);
 
-            public static int InvalidPointLight(params dynamic[] args)
-                => Call<int>(FuncAddress.InvalidPointLight, args);
+            //public static int InvalidPointLight(params dynamic[] args)
+                //=> Call<int>(FuncAddress.InvalidPointLight, args);
 
             public static int InvalidSfx(params dynamic[] args)
                 => Call<int>(FuncAddress.InvalidSfx, args);
 
-            public static int IsAction(params dynamic[] args)
-                => Call<int>(FuncAddress.IsAction, args);
+            //public static int IsAction(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsAction, args);
 
             public static int IsAlive(params dynamic[] args)
                 => Call<int>(FuncAddress.IsAlive, args);
@@ -557,20 +557,20 @@ namespace DarkSoulsScripting
             public static int IsAliveMotion(params dynamic[] args)
                 => Call<int>(FuncAddress.IsAliveMotion, args);
 
-            public static int IsAngle(params dynamic[] args)
-                => Call<int>(FuncAddress.IsAngle, args);
+            //public static int IsAngle(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsAngle, args);
 
-            public static int IsAnglePlus(params dynamic[] args)
-                => Call<int>(FuncAddress.IsAnglePlus, args);
+            //public static int IsAnglePlus(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsAnglePlus, args);
 
-            public static int IsAppearancePlayer(params dynamic[] args)
-                => Call<int>(FuncAddress.IsAppearancePlayer, args);
+            //public static int IsAppearancePlayer(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsAppearancePlayer, args);
 
-            public static int IsBlackGhost(params dynamic[] args)
-                => Call<int>(FuncAddress.IsBlackGhost, args);
+            //public static int IsBlackGhost(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsBlackGhost, args);
 
-            public static int IsBlackGhost_NetPlayer(params dynamic[] args)
-                => Call<int>(FuncAddress.IsBlackGhost_NetPlayer, args);
+            //public static int IsBlackGhost_NetPlayer(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsBlackGhost_NetPlayer, args);
 
             public static int IsClearItem(params dynamic[] args)
                 => Call<int>(FuncAddress.IsClearItem, args);
@@ -578,14 +578,14 @@ namespace DarkSoulsScripting
             public static int IsClient(params dynamic[] args)
                 => Call<int>(FuncAddress.IsClient, args);
 
-            public static int IsColiseumGhost(params dynamic[] args)
-                => Call<int>(FuncAddress.IsColiseumGhost, args);
+            //public static int IsColiseumGhost(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsColiseumGhost, args);
 
-            public static int IsCompleteEvent(params dynamic[] args)
-                => Call<int>(FuncAddress.IsCompleteEvent, args);
+            //public static int IsCompleteEvent(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsCompleteEvent, args);
 
-            public static int IsCompleteEventValue(params dynamic[] args)
-                => Call<int>(FuncAddress.IsCompleteEventValue, args);
+            //public static int IsCompleteEventValue(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsCompleteEventValue, args);
 
             public static int IsDead_NextGreyGhost(params dynamic[] args)
                 => Call<int>(FuncAddress.IsDead_NextGreyGhost, args);
@@ -593,23 +593,23 @@ namespace DarkSoulsScripting
             public static int IsDeathPenaltySkip(params dynamic[] args)
                 => Call<int>(FuncAddress.IsDeathPenaltySkip, args);
 
-            public static int IsDestroyed(params dynamic[] args)
-                => Call<int>(FuncAddress.IsDestroyed, args);
+            //public static int IsDestroyed(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsDestroyed, args);
 
             public static int IsDisable(params dynamic[] args)
                 => Call<int>(FuncAddress.IsDisable, args);
 
-            public static int IsDistance(params dynamic[] args)
-                => Call<int>(FuncAddress.IsDistance, args);
+            //public static int IsDistance(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsDistance, args);
 
-            public static int IsDropCheck_Only(params dynamic[] args)
-                => Call<int>(FuncAddress.IsDropCheck_Only, args);
+            //public static int IsDropCheck_Only(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsDropCheck_Only, args);
 
-            public static int IsEquip(params dynamic[] args)
-                => Call<int>(FuncAddress.IsEquip, args);
+            //public static int IsEquip(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsEquip, args);
 
-            public static int IsEventAnim(params dynamic[] args)
-                => Call<int>(FuncAddress.IsEventAnim, args);
+            //public static int IsEventAnim(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsEventAnim, args);
 
             public static int IsFireDead(params dynamic[] args)
                 => Call<int>(FuncAddress.IsFireDead, args);
@@ -620,35 +620,35 @@ namespace DarkSoulsScripting
             public static int IsGameClient(params dynamic[] args)
                 => Call<int>(FuncAddress.IsGameClient, args);
 
-            public static int IsGreyGhost(params dynamic[] args)
-                => Call<int>(FuncAddress.IsGreyGhost, args);
+            //public static int IsGreyGhost(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsGreyGhost, args);
 
-            public static int IsGreyGhost_NetPlayer(params dynamic[] args)
-                => Call<int>(FuncAddress.IsGreyGhost_NetPlayer, args);
+            //public static int IsGreyGhost_NetPlayer(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsGreyGhost_NetPlayer, args);
 
             public static int IsHost(params dynamic[] args)
                 => Call<int>(FuncAddress.IsHost, args);
 
-            public static int IsInParty(params dynamic[] args)
-                => Call<int>(FuncAddress.IsInParty, args);
+            //public static int IsInParty(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsInParty, args);
 
-            public static int IsInParty_EnemyMember(params dynamic[] args)
-                => Call<int>(FuncAddress.IsInParty_EnemyMember, args);
+            //public static int IsInParty_EnemyMember(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsInParty_EnemyMember, args);
 
-            public static int IsInParty_FriendMember(params dynamic[] args)
-                => Call<int>(FuncAddress.IsInParty_FriendMember, args);
+            //public static int IsInParty_FriendMember(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsInParty_FriendMember, args);
 
-            public static int IsIntruder(params dynamic[] args)
-                => Call<int>(FuncAddress.IsIntruder, args);
+            //public static int IsIntruder(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsIntruder, args);
 
-            public static int IsInventoryEquip(params dynamic[] args)
-                => Call<int>(FuncAddress.IsInventoryEquip, args);
+            //public static int IsInventoryEquip(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsInventoryEquip, args);
 
-            public static int IsJobType(params dynamic[] args)
-                => Call<int>(FuncAddress.IsJobType, args);
+            //public static int IsJobType(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsJobType, args);
 
-            public static int IsLand(params dynamic[] args)
-                => Call<int>(FuncAddress.IsLand, args);
+            //public static int IsLand(params dynamic[] args)
+                //=> Call<int>(FuncAddress.IsLand, args);
 
             public static int IsLiveNetPlayer(params dynamic[] args)
                 => Call<int>(FuncAddress.IsLiveNetPlayer, args);
@@ -1325,8 +1325,8 @@ namespace DarkSoulsScripting
             public static int SetKeepCommandIndex(params dynamic[] args)
                 => Call<int>(FuncAddress.SetKeepCommandIndex, args);
 
-            public static int SetLoadWait(params dynamic[] args)
-                => Call<int>(FuncAddress.SetLoadWait, args);
+            //public static int SetLoadWait(params dynamic[] args)
+                //=> Call<int>(FuncAddress.SetLoadWait, args);
 
             public static int SetLockActPntInvalidateMask(params dynamic[] args)
                 => Call<int>(FuncAddress.SetLockActPntInvalidateMask, args);
