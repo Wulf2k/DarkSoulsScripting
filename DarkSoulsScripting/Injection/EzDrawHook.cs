@@ -84,7 +84,7 @@ namespace DarkSoulsScripting
                 codeptr = codeptr_.GetHandle();
                 valptr = valptr_.GetHandle();
 
-                obj_r8 = (ulong)valptr + 0x120;
+                obj_r8 = (ulong)valptr + 0x130;
                 obj_rdx = (ulong)valptr + 0x90;
 
                 UseColor1 = true;
@@ -93,6 +93,11 @@ namespace DarkSoulsScripting
 
                 Color1 = Color.Red;
                 Color2 = Color.Blue;
+
+                TexStartOffsetX = 0;
+                TexStartOffsetY = 0;
+                TexShowPortionX = 1.0f;
+                TexShowPortionY = 1.0f;
 
                 objId = ObjMgr.ObjList.Count;
                 ObjMgr.Add(this);
@@ -172,6 +177,29 @@ namespace DarkSoulsScripting
                 }
             }
 
+            public uint TexStartOffsetX
+            {
+                get { return RUInt32(valptr + 0x120); }
+                set { WUInt32(valptr + 0x120, value); }
+            }
+            public uint TexStartOffsetY
+            {
+                get { return RUInt32(valptr + 0x124); }
+                set { WUInt32(valptr + 0x124, value); }
+            }
+            public float TexShowPortionX
+            {
+                get { return RFloat(valptr + 0x128); }
+                set { WFloat(valptr + 0x128, value); }
+            }
+            public float TexShowPortionY
+            {
+                get { return RFloat(valptr + 0x12c); }
+                set { WFloat(valptr + 0x12c, value); }
+            }
+
+
+
             public void InitCode()
             {
                 IntPtr HgManPtr = HgMan.Address;
@@ -238,14 +266,29 @@ namespace DarkSoulsScripting
                 c.movaps(xmm7, __[(ulong)valptr + 0x100]);
                 c.movaps(xmm8, __[(ulong)valptr + 0x110]);
 
+                
+
+                c.sub(rsp, 0x78);
+                c.mov(r8, (ulong)valptr + 0x120);
+                c.mov(r8, __[r8]);
+                c.mov(__qword_ptr[rsp + 0x28], r8);
+
+                c.mov(r8, (ulong)valptr + 0x124);
+                c.mov(r8, __[r8]);
+                c.mov(__qword_ptr[rsp + 0x30], r8);
+
+                c.mov(r8, (ulong)valptr + 0x128);
+                c.mov(r8, __[r8]);
+                c.mov(__qword_ptr[rsp + 0x38], r8);
+
+                c.mov(r8, (ulong)valptr + 0x12c);
+                c.mov(r8, __[r8]);
+                c.mov(__qword_ptr[rsp + 0x40], r8);
+
+
                 c.mov(r8, obj_r8);
                 c.mov(rdx, obj_rdx);
 
-                c.sub(rsp, 0x78);
-                c.mov(__qword_ptr[rsp + 0x28], 0);
-                c.mov(__qword_ptr[rsp + 0x30], 0x0);
-                c.mov(__qword_ptr[rsp + 0x38], 0x3f800000);
-                c.mov(__qword_ptr[rsp + 0x40], 0x3f800000);
                 c.add(rsp, 8);
 
                 c.call((ulong)EzDraw_DrawFunc);
@@ -311,6 +354,11 @@ namespace DarkSoulsScripting
                 {
                     WVector2(valptr + 0x90, new Vector2((int)value.X + Size.X / 2, (int)value.Y + Size.Y / 2));
                 }
+            }
+            public float Depth
+            {
+                get { return RFloat(valptr + 0x9c); }
+                set { WFloat(valptr + 0x9c, value); }
             }
             public Vector2 Size
             {
@@ -426,8 +474,8 @@ namespace DarkSoulsScripting
             }
             public string Txt
             {
-                get { return RUnicodeStr(valptr + 0x120, 0x40); }
-                set { WUnicodeStr(valptr + 0x120, value); }
+                get { return RUnicodeStr(valptr + 0x130, 0x40); }
+                set { WUnicodeStr(valptr + 0x130, value); }
             }
         }
         public class Sphere : EzObj
