@@ -10,8 +10,8 @@ namespace DarkSoulsScripting
 {
     public static class FrpgWindow
     {
-        //DSR 1.03
-        public static IntPtr Address => RIntPtr(0x141d06ef8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c6aee8);
 
         public static Vector2 WindowSize
         {

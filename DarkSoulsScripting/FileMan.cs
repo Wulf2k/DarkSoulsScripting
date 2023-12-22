@@ -12,7 +12,8 @@ namespace DarkSoulsScripting
     public class FileMan
     {
 
-        public static IntPtr Address => RIntPtr(0x141d1e4f8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c81198);
 
         
 

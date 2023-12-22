@@ -6,8 +6,8 @@ namespace DarkSoulsScripting
 {   //"Map" = WorldChrMan
     public static class Map
     {
-        //DSR 1.03
-        public static IntPtr Address => Hook.RIntPtr((0x137D644, 0, 0x141D151B0));
+        //DSR1310
+        public static IntPtr Address => Hook.RIntPtr((0x137D644, 0, 0x141c77e50));
 
         public static IntPtr PlayerPointer {
             //DSR

@@ -10,8 +10,8 @@ namespace DarkSoulsScripting
 {
     public static class HgMan
     {
-        //DSR 1.03
-        public static IntPtr Address => RIntPtr(0x141c04ed8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141b68ec8);
 
         public static IntPtr MenuRend
         {

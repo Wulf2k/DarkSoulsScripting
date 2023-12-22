@@ -9,9 +9,10 @@ namespace DarkSoulsScripting
 {
     public static class FreeCam
     {
-        //DSR 1.03
-        public static IntPtr Address => RIntPtr(RIntPtr(RIntPtr((0x141D0D980)) + 0x28) + 0x330);
-        public static IntPtr EnableAddress => RIntPtr(RIntPtr((0x141D0D980)) + 0x28);
+        //DSR1310
+        //RemoManStep
+        public static IntPtr Address => RIntPtr(RIntPtr(RIntPtr((0x141c71970)) + 0x28) + 0x330);
+        public static IntPtr EnableAddress => RIntPtr(RIntPtr((0x141c71970)) + 0x28);
 
 
         public static bool Enabled

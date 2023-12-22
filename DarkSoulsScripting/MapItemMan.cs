@@ -9,10 +9,8 @@ namespace DarkSoulsScripting
 {
     public static class MapItemMan
     {
-        //DSR 1.03, all funcs updated.
-
-
-        public static IntPtr Address => Hook.RIntPtr(0x141D17438);
+        //DSR1310
+        public static IntPtr Address => Hook.RIntPtr(0x141c7a0c8);
 
         public static Int32 NumItemBags
         {

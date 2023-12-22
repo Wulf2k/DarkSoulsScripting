@@ -10,6 +10,7 @@ namespace DarkSoulsScripting
     public static class Global
     {
         //DSR 1.03
+        //TODO:1310
         public static IntPtr Address => RIntPtr((0x1378560, 0, 0x141D19958));
 
 

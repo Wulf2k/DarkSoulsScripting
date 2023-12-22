@@ -8,11 +8,9 @@ namespace DarkSoulsScripting
     {
         //public static IntPtr Address => RIntPtr(0x13784A0);
 
-        //DSR 1.03
-        public static IntPtr Address => RIntPtr((0x13784A0, 0, 0x141D10E18));
+        //DSR1310
+        public static IntPtr Address => RIntPtr((0x13784A0, 0, 0x141c74e08));
 
-        //TODO: ADD MORE STUFF
-        //All uncommented offsets updated for 1.03
 
         public static byte WarpNextStageKick
         {

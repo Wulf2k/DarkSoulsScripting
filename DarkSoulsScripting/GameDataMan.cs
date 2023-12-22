@@ -16,9 +16,8 @@ namespace DarkSoulsScripting
 
     public class GameDataMan
     {
-        //All currently active offsets updated for 1.03
-        //DSR 1.03
-        public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141D278F0);
+        //DSR 1310
+        public static Func<IntPtr> AddressReadFunction = () => RIntPtr(0x141c8a530);
         public static IntPtr Address => AddressReadFunction();
 
         static GameDataMan()

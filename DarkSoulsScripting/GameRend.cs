@@ -9,8 +9,9 @@ namespace DarkSoulsScripting
 {
     public static class GameRend
     {
-        //DSR 1.03
-        public static IntPtr Address => RIntPtr(RIntPtr(0x141c04ed8) + 0x738);
+        //DSR1310
+        //HgManImp = 0x141b68ec8
+        public static IntPtr Address => RIntPtr(RIntPtr(0x141b68ec8) + 0x738);
 
         public static bool DisplayBoundingBoxes
         {

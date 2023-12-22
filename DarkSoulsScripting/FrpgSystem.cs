@@ -9,7 +9,8 @@ namespace DarkSoulsScripting
 {
     public static class FrpgSystem
     {
-        public static IntPtr Address => RIntPtr(0x141c04e28);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141b68e18);
 
         public static class Sys
         {
@@ -58,7 +59,8 @@ namespace DarkSoulsScripting
         }
         public static class RemoMan
         {
-            public static IntPtr Address => RIntPtr(0x141D0D980);
+            //DSR1310
+            public static IntPtr Address => RIntPtr(0x141c71970);
             public static int Step
             {
                 get => RInt32(Address + 0x10);

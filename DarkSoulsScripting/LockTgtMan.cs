@@ -9,7 +9,8 @@ namespace DarkSoulsScripting
 {
     public static class LockTgtMan
     {
-        public static IntPtr Address => RIntPtr(0x141d174a8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c7a138);
 
         public static bool IsLocked
         {
