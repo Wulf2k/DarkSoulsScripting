@@ -9,8 +9,8 @@ namespace DarkSoulsScripting
 {
     public class WorldChrManDbg
     {
-        
-        public static IntPtr Address => RIntPtr(0x141D151F8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c77e88);
 
         public static IntPtr WorldInfoOwner
         {

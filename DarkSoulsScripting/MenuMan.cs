@@ -12,7 +12,8 @@ namespace DarkSoulsScripting
     public class MenuMan
     {
 
-        public static IntPtr Address => RIntPtr(0x141D26168);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c88d98);
 
         public static MenuGenDlg GenDlg { get; private set; } = null;
         public static FloatingHPBar[] HpBars { get; private set; } = null;

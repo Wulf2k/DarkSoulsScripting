@@ -10,9 +10,9 @@ namespace DarkSoulsScripting
 {
     public class MsgMan
     {
-        //DSR 1.03
+        //DSR1310
 
-        public static IntPtr Address => RIntPtr(0x141d1b748);
+        public static IntPtr Address => RIntPtr(0x141c7e3e8);
         public static Fmg DlgMsg { get; private set; } = null;
         public static Fmg EventMsg { get; private set; } = null;
         public static Fmg MenuOthersMsg { get; private set; } = null;

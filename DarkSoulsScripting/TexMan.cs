@@ -13,7 +13,8 @@ namespace DarkSoulsScripting
 {
     public static class TexMan
     {
-        public static IntPtr Address => RIntPtr(0x141d1cda8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c7fa48);
 
         public static Int32 NumTexHdlResCaps => RInt32(Address + 0x14);
         public static IntPtr PtrTexHdlResCaps => RIntPtr(Address + 0x18);

@@ -336,7 +336,8 @@ namespace DarkSoulsScripting
         {
             public Box()
             {
-                EzDraw_DrawFunc = (IntPtr)0x1401d69e0;
+                //EzDraw_DrawTextureBox
+                EzDraw_DrawFunc = (IntPtr)0x1401d82d0; //DSR1310
 
                 TexHandle = 0;
                 Color1 = Color.Black;
@@ -379,7 +380,8 @@ namespace DarkSoulsScripting
         {
             public Cylinder()
             {
-                EzDraw_DrawFunc = (IntPtr)0x1401d6750;
+                //EzDraw_DrawRoundedCylinder
+                EzDraw_DrawFunc = (IntPtr)0x1401d8040; //DSR1310
 
                 Flags = 0x3e;
 
@@ -420,7 +422,8 @@ namespace DarkSoulsScripting
         {
             public Text()
             {
-                EzDraw_DrawFunc = (IntPtr)0x1401d6bf0;
+                //EzDraw_DrawText
+                EzDraw_DrawFunc = (IntPtr)0x1401d84e0; //DSR1310
 
                 TexHandle = 0;
                 Stretch = new Vector2(1, 1);
@@ -482,7 +485,8 @@ namespace DarkSoulsScripting
         {
             public Sphere()
             {
-                EzDraw_DrawFunc = (IntPtr)0x1401d6640;
+                //EzDraw_DrawSphere
+                EzDraw_DrawFunc = (IntPtr)0x1401d84e0; //DSR1310
 
                 Flags = 0x3e;
                 State = 5;
@@ -524,7 +528,8 @@ namespace DarkSoulsScripting
         {
             public unkDraw()
             {
-                EzDraw_DrawFunc = (IntPtr)0x1401d6980;
+
+                EzDraw_DrawFunc = (IntPtr)0x1401d8270; //DSR1310
 
                 Flags = 0x37;
                 State = 5;
@@ -561,7 +566,8 @@ namespace DarkSoulsScripting
 
         public static void SetHook(bool state)
         {
-            WBool(0x141d173d2, state);
+            //bDisplayAltimeter
+            WBool(0x141c7a062, state); //DSR1310
         }
         public static void SetHook(byte state)
         {
@@ -573,8 +579,13 @@ namespace DarkSoulsScripting
             SafeRemoteHandle codeptr_ = new SafeRemoteHandle(0x1000);
             SafeRemoteHandle objptr_ = new SafeRemoteHandle(0x1000);
 
-            IntPtr hookptr = (IntPtr)0x1403D08AD;
-            IntPtr returnptr = (IntPtr)0x1403d0b57;
+            //cmp byte ptr [bDisplayAltimeter]
+            //jz
+            //(hookptr)
+            IntPtr hookptr = (IntPtr)0x1403cfebd; //DSR1310
+
+
+            IntPtr returnptr = (IntPtr)0x1403d0167;//DSR1310
             IntPtr codeptr = codeptr_.GetHandle();
             objptr = objptr_.GetHandle();
 
@@ -653,6 +664,8 @@ namespace DarkSoulsScripting
         }
         public static void Hook2()
         {
+            return;
+            //TODO:  Update for 1310
             //shitty, flickers
             SafeRemoteHandle codeptr_ = new SafeRemoteHandle(0x1000);
             SafeRemoteHandle objptr_ = new SafeRemoteHandle(0x1000);
@@ -753,8 +766,9 @@ namespace DarkSoulsScripting
             SafeRemoteHandle codeptr_ = new SafeRemoteHandle(0x1000);
             SafeRemoteHandle objptr_ = new SafeRemoteHandle(0x1000);
 
-            IntPtr hookptr = (IntPtr)0x14015f060;
-            IntPtr returnptr = (IntPtr)0x14015f070;
+            //Step_HgManImp
+            IntPtr hookptr = (IntPtr)0x140160890; //DSR1310
+            IntPtr returnptr = (IntPtr)0x1401608a0; //DSR1310
             IntPtr codeptr = codeptr_.GetHandle();
             objptr = objptr_.GetHandle();
 

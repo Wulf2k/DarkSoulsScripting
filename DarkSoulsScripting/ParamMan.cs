@@ -10,9 +10,8 @@ namespace DarkSoulsScripting
 {
     public class ParamMan
     {
-        //DSR 1.03
-
-        public static IntPtr Address => RIntPtr(0x141d1b098);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c7dd38);
         public static IntPtr ParamResCapArray => RIntPtr(Address + 0x10);
         public static int numParams => RInt32(Address + 0xC);
 

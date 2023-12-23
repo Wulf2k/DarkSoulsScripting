@@ -10,7 +10,8 @@ namespace DarkSoulsScripting
 {
     public class MsbMan
     {
-        public static IntPtr Address => RIntPtr(0x141D1AE98);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c7db38);
         public static int numMsbs => RInt32(Address + 0xc);
         public static IntPtr ArrayPtr = RIntPtr(Address + 0x10);
 

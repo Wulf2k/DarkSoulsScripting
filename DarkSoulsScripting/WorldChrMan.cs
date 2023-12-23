@@ -21,8 +21,7 @@ namespace DarkSoulsScripting
         public static List<WorldBlockChr> LoadedWorldBlockChrs = null;
 
 
-
-        public static IntPtr Address => RIntPtr(0x141d151b0);
+        public static IntPtr Address => RIntPtr(0x141c77e50); //DSR1310
 
 
         static WorldChrMan()
@@ -88,21 +87,21 @@ namespace DarkSoulsScripting
         public static IntPtr ChrsBegin
         {
             //DSR
-            get => RIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size);
-            set => WIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size, value);
+            get => RIntPtr(RIntPtr(0x141c823a0) + IntPtr.Size);  //DSR1310
+            set => WIntPtr(RIntPtr(0x141c823a0) + IntPtr.Size, value);  //DSR1310
         }
 
         public static IntPtr ChrsEnd
         {
             //DSR
-            get => RIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size * 2);
-            set => WIntPtr(RIntPtr(0x141D1F710) + IntPtr.Size * 2, value);
+            get => RIntPtr(RIntPtr(0x141c823a0) + IntPtr.Size * 2);  //DSR1310
+            set => WIntPtr(RIntPtr(0x141c823a0) + IntPtr.Size * 2, value);  //DSR1310
         }
 
         public static IntPtr GetChrFromHandle(Int32 Handle)
         {
             //Console.WriteLine($@"Handle: {Handle}");
-            ulong FuncAddr = 0x140371e30;
+            ulong FuncAddr = 0x1403714b0;  //DSR1310, WorldChrMan_GetPlayerInsFromHandle
 
             SafeRemoteHandle codeptr_ = new SafeRemoteHandle(0x1000);
             SafeRemoteHandle valptr_ = new SafeRemoteHandle(0x10);

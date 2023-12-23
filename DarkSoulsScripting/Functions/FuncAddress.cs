@@ -8,12 +8,12 @@ namespace DarkSoulsScripting
 {
     public enum FuncAddress : Int64
     {
-        GetPlayerInsFromHandle = 0x140371e30,
-        GetTexHdlResCap = 0x140581b20,
-        
+        GetPlayerInsFromHandle = 0x1403714b0,  //DSR1310, WorldChrMan_GetPlayerInsFromHandle
+        GetTexHdlResCap = 0x140584420,  //DSR1310, TexMan_Find_TexHdlResCap
 
 
 
+        //TODO:  Update for 1310
         ActionEnd = 0x1404abb30,
         AddActionCount = 0x1404ab690,
         AddBlockClearBonus = 0x1404af6b0,

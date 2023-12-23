@@ -9,8 +9,8 @@ namespace DarkSoulsScripting
 {
     public static class MouseMan
     {
-        //DSR 1.03
-        public static IntPtr Address => RIntPtr(0x141d06ee8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c6aed8);
 
         public static bool LClick
         {

@@ -9,8 +9,8 @@ namespace DarkSoulsScripting
 {
     public static class RenderTargetMan
     {
-        //DSR 1.03
-        public static IntPtr Address => RIntPtr(0x141d095a8);
+        //DSR1310
+        public static IntPtr Address => RIntPtr(0x141c6d598);
 
         public static uint VelocityMapFilter
         {
