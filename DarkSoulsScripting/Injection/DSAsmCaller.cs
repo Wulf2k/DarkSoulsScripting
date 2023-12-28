@@ -10,6 +10,7 @@ using Reg32 = Managed.X86.X86Register32;
 using DarkSoulsScripting.Injection.Structures;
 using static Iced.Intel.AssemblerRegisters;
 using Iced.Intel;
+using DarkSoulsScripting.AI_DEFINE;
 
 namespace DarkSoulsScripting.Injection
 {
@@ -195,7 +196,17 @@ namespace DarkSoulsScripting.Injection
             var args = new List<Int64>();
 
             foreach (var arg in parameters.ToList())
-                args.Add(Convert.ToInt64(arg));
+            {
+                if (arg is IntPtr)
+                {
+                    IntPtr ptrArg = (IntPtr)arg;
+                    args.Add(arg.ToInt64());
+                }
+                else
+                {
+                    args.Add(Convert.ToInt64(arg));
+                }
+            }
 
             var c = new Assembler(64);
             c.push(rax);
@@ -472,6 +483,7 @@ namespace DarkSoulsScripting.Injection
             { typeof(int), (b) => BitConverter.ToInt32(b, 0) },
             { typeof(uint), (b) => BitConverter.ToUInt32(b, 0) },
             { typeof(Int64), (b) => BitConverter.ToInt64(b, 0) },
+            { typeof(IntPtr), (b) => (IntPtr)BitConverter.ToInt64(b, 0) },
             { typeof(float), (b) => BitConverter.ToSingle(b, 0) },
             { typeof(string), (b) => Hook.RAsciiStr(BitConverter.ToInt32(b, 0), 255 /* idk */) },
         };
