@@ -124,16 +124,46 @@ namespace DarkSoulsScripting
 			set { WInt32(Address + 0x3EC, value); }
 		}
 
+        public int PoisonResist
+        {
+            get { return RInt32(Address + 0x418); }
+            set { WInt32(Address + 0x418, value); }
+        }
+        public int ToxicResist
+        {
+            get { return RInt32(Address + 0x41c); }
+            set { WInt32(Address + 0x41c, value); }
+        }
         public int BleedResist
         {
             get { return RInt32(Address + 0x420); }
             set { WInt32(Address + 0x420, value); }
         }
+        public int CurseResist
+        {
+            get { return RInt32(Address + 0x424); }
+            set { WInt32(Address + 0x424, value); }
+        }
 
+        public int MaxPoisonResist
+        {
+            get { return RInt32(Address + 0x428); }
+            set { WInt32(Address + 0x428, value); }
+        }
+        public int MaxToxicResist
+        {
+            get { return RInt32(Address + 0x42c); }
+            set { WInt32(Address + 0x42c, value); }
+        }
         public int MaxBleedResist
         {
             get { return RInt32(Address + 0x430); }
             set { WInt32(Address + 0x430, value); }
+        }
+        public int MaxCurseResist
+        {
+            get { return RInt32(Address + 0x434); }
+            set { WInt32(Address + 0x434, value); }
         }
 
         public int TalkID
